@@ -1,0 +1,102 @@
+---
+title: "SYLLABUS"
+subtitle: "Politik vermessen: Ein Methoden-Toolkit für quantitative politikwissenschaftliche Forschung"
+description: "Sommersemester 2026 | Hauptseminar 15161-S26"
+author: "Maura Kratz | Otto-Suhr-Institut | FU Berlin"
+date: today
+date-format: "[Stand:] DD.MM.YYYY"
+published-title: ""
+author-title: ""
+affiliation-title: ""
+format: 
+  html:
+    theme: [default, syllabus.scss]
+    toc: true
+    toc-title: "Inhalt"
+    page-layout: full
+bibliography: Statistik-mit-R-Studio.bib
+---
+
+::: {style="margin-top: 3rem;"}
+:::
+
+::: callout-note
+#### Auf einen Blick
+
+**Kurszeit:** Dienstag, 10:00 - 12:00 Uhr c.t.\
+**Kursort:** Ihnestr.22, UG 1\
+**Kontakt:** [maura.kratz\@fu-berlin.de](mailto:maura.kratz@fu-berlin.de){.email}\
+**Sprechstunde:** Die reguläre Sprechstunde findet mittwochs von 10:00 bis 11:00 Uhr s.t. statt. Bitte vorab per [E-Mail](mailto:maura.kratz@fu-berlin.de){.email} einen Termin vereinbaren und das Anliegen schildern, damit ich mich bestmöglich vorbereiten kann. Andere Wochentage und Uhrzeiten sind nach individueller Absprache möglich, ebenso wie online-Sprechstundentermine.
+:::
+
+::: {style="margin-top: 3rem;"}
+:::
+
+# Kurzbeschreibung
+
+Hat die sozio-ökonomische Ungleichheit in Deutschland in den letzten Jahrzehnten zugenommen? Wählen Menschen in strukturschwachen Regionen wirklich häufiger die AfD? Ist genderdiskrepantes Wählen in der „Gen Z“ stärker ausgeprägt als bei „Boomern“? Mit quantitativen Methoden können solche gefühlten Wahrheiten empirisch überprüft werden. Dieser Kurs vermittelt das Handwerkszeug für quantitative Datenanalyse mit der gängigen, kostenlosen und open-source-lizensierten Programmiersprache R und der dazugehörigen Nutzungsoberfläche RStudio. Die Software ermöglicht uns, Datensätze selbstständig zu überblicken, strukturieren, visualisieren und auszuwerten. Der Kurs richtet sich explizit an Anfänger\*innen – es werden keinerlei Programmierkenntnisse vorausgesetzt! Vielmehr lernen wir Schritt für Schritt mit R und Rstudio umzugehen: von der Installation der Software und einem Grundverständnis der Oberfläche über Datenvisualisierung bis hin zur Durchführung eigener statistischer Analysen. Dabei wird technisches Handwerkszeug (Bedienung von RStudio) stets mit der Vermittlung eines grundlegenden Verständnisses quantitativer Methodik verknüpft. Zur Vorbereitung der Sitzungen werden Grundlagentexte bereitgestellt. Die Seminarzeit nutzen wir primär für die praktische Anwendung in R sowie zur Klärung inhaltlicher und technischer Fragen. Darüber hinaus kann in den Sprechstunden auf Wunsch ausführlichere, individuelle Hilfestellung gegeben werden. Das Gelernte wird durch wöchentliche, kleine Übungsaufgaben vertieft. Die regelmäßige Bearbeitung der Übungen gilt als Nachweis der aktiven Teilnahme. Als Prüfungsleistung kann eine Hausarbeit verfasst oder ein empirischer Analysebericht ("Data Analysis Report") verfasst werden. Beides wird undifferenziert bewertet (siehe die jeweilige SPO).
+
+## Vorläufiger Zeitplan
+
+## Vorläufiger Zeitplan
+
+| Woche | Datum | Thema |
+|:-----------------------|:-----------------------|:-----------------------|
+| 01 | Di, 14.04.2026, 10:00-12:00 c.t. | Einführung |
+| 02 | Di, 21.04.2026, 10:00-12:00 c.t. | Projekte & Datenimport |
+| 03 | Di, 28.04.2026, 10:00-12:00 c.t. | Datensatzüberblick & Quarto |
+| 04 | Di, 05.05.2026, 10:00-12:00 c.t. | Data Cleaning |
+| 05 | Di, 12.05.2026, 10:00-12:00 c.t. | Deskriptive Statistik – Kennwerte & Visualisierung |
+| 06 | Di, 19.05.2026, 10:00-12:00 c.t. | Deskriptive Statistik – Häufigkeitstabellen, Kreuztabellen |
+| 07 | Di, 26.05.2026, 10:00-12:00 c.t. | Deskriptive Statistik – Schöne Grafiken |
+| 08 | Di, 02.06.2026, 10:00-12:00 c.t. | Deskriptive Statistik – Korrelation & Einfache Lineare Regression |
+| 09 | Di, 09.06.2026, 10:00-12:00 c.t. | Inferenzstatistik – Einfache & Multiple Lineare Regression |
+| 10 | Di, 16.06.2026, 10:00-12:00 c.t. {{< fa laptop >}} | Regression Diagnostics |
+| 11 | Di, 23.06.2026, 10:00-12:00 c.t. {{< fa laptop >}} | Logistische Regression |
+| 12 | Di, 30.06.2026, 10:00-12:00 c.t. | — |
+| 13 | Di, 07.07.2026, 10:00-12:00 c.t. | — |
+| 14 | Di, 14.07.2026, 10:00-12:00 c.t. | — |
+
+## Regelmäßige und aktive Teilnahme
+
+Die regelmäßige und aktive Teilnahme am Kurs ist Voraussetzung zum Ablegen einer Prüfungsleistung. Die Bescheinigung erfolgt auf Grundlage dreier Kriterien:
+
+-   aktives Einbringen in den Sitzungen
+
+-   Lektüre der Vorbereitungstexte bzw. anderweitige Bearbeitung zur Verfügung gestellter Vorbereitungsmaterialien.
+
+-   Bearbeitung und fristgerechte Abgabe der wöchentlichen Übungsaufgaben, die eine systematische Wiederholung des Gelernten sicherstellen.
+
+## Prüfungsleistung
+
+Die Prüfungsleistung besteht aus einer reproduzierbaren Datenanalyse. Es kann entweder eine vollständige, empirische Hausarbeit im Umfang von 4.500 Wörtern verfasst werden, oder ein empirischer Analysebericht ("Data Analysis Report") von circa 2.500 Wörtern das entspricht, inklusive Grafiken und Tabellen, etwa 10 Seiten in Arial 11 bei 1,5-zeiligem Zeilenabstand. Ein Data Analysis Report legt, im Vergleich zu einer Hausarbeit, den Fokus stärker auf die Datenanalyse und die Interpretation der (vorläufigen) Ergebnisse. Theoretische Grundlagen, Hinführung und Sachkenntnisse müssen hingegen weniger detailliert sein. Das Format ist vor allem zur Vorbereitung von Forschungspublikationen gängig. Einige politikwissenschaftliche Zeitschriften bieten mit der Rubrik "Research Note" eine ähnliche Rubrik an - wobei Einreichungen dieses Typs umfangreicher sind, als die in diesem Kurs zu erbringende Prüfungsleistung.
+
+::: callout-important
+## Deadline
+
+Die Abgabe der Prüfungsleistung erfolgt, sofern nicht individuell anders mit der Dozentin abgesprochen, bis zum **30.08.2026**.
+:::
+
+## Empfehlungen und weiterführendes Material
+
+**Zur Anwendung in R und R-Studio**
+
+-   Diehl, Yannick, und Daniel Moosdorf. 2022. „R Workshop - Sozialwissenschaften“. E-Book. Mai 14. https://rloesung.github.io/RWorkshop/. [Gut zum Auffrischen von bspw. tidyverse-Paketen und -Befehlen.]{style="color: #8B0000;"}
+-   Masch, Lena, Kimon Kieslich, Katharina Huseljić, Marco Wähner, und Johann-Sebastian Neef. 2021. R - Ein Einführungsskript. HHU. [Ein tolles begleitendes Skript zur Einführung in die Datenanlyse mit R und R-Studio.]{style="color: #8B0000;"}
+-   Stockemer, Daniel, und Jean-Nicolas Bordeleau. 2023. Quantitative Methods for the Social Sciences: A Practical Introduction with Examples in R. Second edition. Springer Texts in Political Science and International Relations. Springer International Publishing AG. https://doi.org/10.1007/978-3-031-34583-8. [Kapitel 6 bis 9 bieten Möglichkeit zur Vertiefung inferenzstatistischer Verfahren in R..]{style="color: #8B0000;"}
+-   Wagemann, Claudius, Achim Goerres, und Markus B. Siewert, Hrsg. 2020. Handbuch Methoden der Politikwissenschaft. 1st ed. 2020. Springer eBook Collection. Springer Fachmedien Wiesbaden. https://doi.org/10.1007/978-3-658-16936-7. [Eines meiner Lieblingsreferenzwerke, das ich regelmäßig selbst aufschlage. Die Kapitel zu Regressionen und Mehrebenenmodellen bieten einen präzisen, fundierten und vollständigen Überblick.]{style="color: #8B0000;"}
+-   Walther, Björn. 2026. R Tutorials. https://bjoernwalther.com/tutorials-fuer-r/. [Eine tolle Webseite mit Tutorials in form von R-Skripten zu unterschiedlichen Operationen der Datenanalyse mit dazugehörigen YouTube-Videos.]{style="color: #8B0000;"}
+-   Wickham, Hadley, Mine Çetinkaya-Rundel, und Garrett Grolemund. 2024. R für Data Science: Daten Importieren, bereinigen, umformen und visualisieren. 2. aktualisierte und Erweiterte Auflage. Übersetzt von Frank Langenau. O’Reilly. [Ein tolles Werk zum Arbeiten in R, herausgegeben von einem der Erfinder des Tidyverse. Frei zugänglich als E-Book.)]{style="color: #8B0000;"}
+-   Wickham, Hadley, Danielle Navarro, und Thomas Lin Pedersen. 2025. „ggplot2: Elegant Graphics for Data Analysis (3e)“. On-line-book. https://ggplot2-book.org/. [Spezifischer zum ggplot2-Paket und der Grammar of Graphics.]{style="color: #8B0000;"}
+
+**Zu Statistik**
+
+-   ? Behnke, Joachim, und Nathalie Behnke. 2006. Grundlagen der statistischen Datenanalyse: eine Einführung für Politikwissenschaftler. Grundwissen Politik 41. VS Verlag für Sozialwissenschaften. [Ein klassisches Statistik-Lehrbuch für die Basics.]{style="color: #8B0000;"}
+-   Bühner, Markus. 2017. Statistik für Psychologen und Sozialwissenschaftler. 2., Aktualisierte und Erweiterte Auflage. With Pearson Studium und Matthias Ziegler. ps Psychologie. Pearson. [Ein etwas ausführlicheres Statistik-Lehrbuch. In dieser zweiten, überarbeiteten Auflage mit Anwendungsfällen nicht nur in SPSS, sondern auch in R.]{style="color: #8B0000;"}
+-   ? Gehring, Uwe W., und Cornelia Weins. 2010. Grundkurs Statistik für Politologen und Soziologen. VS Verlag für Sozialwissenschaften. https://doi.org/10.1007/978-3-531-91879-2. [Und noch eins.]{style="color: #8B0000;"}
+-   Field, Andy, und James Iles. 2022. An Adventure in Statistics: The Reality Enigma. Second edition. SAGE Edge. SAGE. [Ein kreatives lehrbuch, das Statistik anhand einer SciFi-Geschichte quasi nebenbei erklärt.]{style="color: #8B0000;"}
+-   Jesussek, Mathias, und Hannah Volk-Jesussek. 2024. Statistik leichtgemacht: Eine verständliche Einführung. 4. Aufl. Graz. [Eine tatsächlich sehr verständliche Einführung - es sollte nur die DATAtab-Werbung ignoriert werden ;).]{style="color: #8B0000;"}
+-   ? Niederer, Rudolf, Fabian Heimsch, und Peter Zöfel. 2018. Statistik im Klartext: für Psychologen, Wirtschafts- und Sozialwissenschaftler. [Ein klassisches Lehrbuch für die Grundlagen der Inferenzstatistik).]{style="color: #8B0000;"}
+-   Paul, Melanie. 2024. Schließende Statistik einfach erklärt! von Null auf Statistik-Profi mit Schritt-für-Schritt-Anleitungen. Melanie Paul. [Ein originelles Lehrbuch für die Grundlagen der Inferenzstatistik - für alle, die Glitzer und Pink mögen.).]{style="color: #8B0000;"}
+-   Planing, Patrick. 2022. Statistik Grundlagen: Das interaktive Lehrbuch mit über 150 YouTube-Videos rund um die Burgerkette FIVE PROFS. Illustriert von Ilena Becic. With Ilena Becic. Planing Publishing. https://statistikgrundlagen.de/ebook/front-matter/introduction-2/. [Ein tolles E-Book für's schnelle Nachschlagen zu Visualisierungen, deskriptiver Statistik und Inferenzstatistik, gespickt mit Youtube-Videos zur Erklärung.]{style="color: #8B0000;"}
+-   Wolf, Christof, und Henning Best, Hrsg. 2010. Handbuch der sozialwissenschaftlichen Datenanalyse. 1. Aufl. VS Verlag für Sozialwissenschaften. [Eine sehr hilfreiche Übersicht zu unterschiedlichen Bereichen der quantitativen Datensanalyse, in dem wunderbar einzelne Kapitel zur punktuellen Vertiefung gelesen werden können.]{style="color: #8B0000;"}

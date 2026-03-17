@@ -1,0 +1,24 @@
+---
+title: "Übungen"
+toc: false
+---
+
+Jede Woche gibt es eine kleine Übungsaufgabe zur Vertiefung des Gelernten. Die Abgabe erfolgt per E-Mail an [maura.kratz@fu-berlin.de](mailto:maura.kratz@fu-berlin.de) bis jeweils **Sonntag, 23:59 Uhr** vor der nächsten Sitzung. Die fristgerechte Einreichung der Übungen ist Bestandteil der aktiven und regelmäßigen Teilnahme.
+
+Unter Hausaufgabe findest du Vorbereitungsmaterialien für die jeweils folgende Sitzung — etwa Lesetexte oder Videos, die statistische Grundlagen wiederholen, bevor wir sie in der Sitzung anwenden. Eine Einreichung ist nicht erforderlich. Wer beim Durcharbeiten merkt, dass die Wiederholung nicht nötig ist, kann die Hausaufgabe überspringen
+
+| Sitzung | Thema | Hausaufgabe | Übung | Lösung |
+|:-------:|:------|:------------|:-----:|:------:|
+| 01 | Einführung | Installiere R und R-Studio (siehe Folien) | — | — |
+| 02 | Projekte & Datenimport | Lade dir die Daten ... herunter (siehe Daten) | [Download](uebungen/uebung_02.pdf) | — |
+| 03 | Datensatzüberblick & Quarto | — | — | — |
+| 04 | Data Cleaning | — | — | — |
+| 05 | Deskriptive Statistik – Kennwerte & Visualisierung | — | — | — |
+| 06 | Deskriptive Statistik – Häufigkeits- & Kreuztabellen | — | — | — |
+| 07 | Deskriptive Statistik – Schöne Grafiken | — | — | — |
+| 08 | Deskriptive Statistik – Korrelation & Einfache Lineare Regression | — | — | — |
+| 09 | Inferenzstatistik – Einfache & Multiple Lineare Regression | — | — | — |
+| 10 | Regression Diagnostics | — | — | — |
+| 11 | Logistische Regression | — | — | — |
+
+: {.striped .hover tbl-colwidths="[5,40,25,15,15]"}

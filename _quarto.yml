@@ -1,0 +1,31 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: ""
+  navbar:
+    left:
+      - text: "Willkommen"
+        href: index.qmd
+      - text: "Syllabus"
+        href: syllabus.qmd
+      - text: "Sitzungen"
+        href: sitzungen.qmd
+      - text: "Übungen"
+        href: uebungen.qmd
+      - text: "Daten"
+        href: daten.qmd
+      - text: "Kontakt"
+        href: kontakt.qmd
+    right:
+      - icon: github
+        href: https://github.com/maurakratz/quanti-methoden-website
+  page-footer:
+    center: "Maura Kratz | maura.kratz@fu-berin.de"
+
+format:
+  html:
+    theme: [default, website.scss]
+    toc: true
+    toc-title: "Inhalt"

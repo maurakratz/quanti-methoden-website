@@ -1,0 +1,212 @@
+---
+title: "Daten"
+toc: true
+toc-title: "Datensätze"
+---
+
+Hier findest du eine Sammlung frei bzw. leicht zugänglicher Datensätze. Ich habe versucht, hochqualitative und möglichst niedrigschwellig zugängliche Datensätze zusammenzutragen, auf die zum Üben, zurückgegriffen werden kann. Mit einigen davon werden wir im Kurs beispielhaft arbeiten. Es dürfen aber selbstverständlich auch andere Datensätze für die in diesm Kurs zu erbringenden Prüfungsleistungen verwendet werden! Diese Seite soll lediglich eine Orientierung bieten. Ein Überblick über die Datenlandschaft gehört meiner Erfahrung nach zu den größten Herausforderungen im Politikwissenschaftsstudium - und auch in der politikwissenschaftlichen Forschung.
+
+
+## Daten zur Bundestagswahl 2025 
+
+### kerg2 — Wahlkreisergebnisse Bundestagswahl 2025
+
+Amtliche Endergebnisse der Bundestagswahl 2025 auf Ebene von Bundesgebiet, Bundesländern und allen 299 Wahlkreisen — Erst- und Zweitstimmen für alle Parteien in einem flachen CSV-Format. Vollerhebung aller abgegebenen Stimmen.
+
+**Methodisch relevant für:** Vollerhebung vs. Stichprobe, Aggregatdaten, Data Cleaning, Datenimport, Merging.
+
+::: callout-note
+#### Zugang
+Direkt, ohne Registrierung.
+
+1. [bundeswahlleiterin.de → Bundestagswahl 2025 → Open Data](https://www.bundeswahlleiterin.de/bundestagswahlen/2025/ergebnisse/opendata.html)
+2. Unter „Verzeichnis csv" → `kerg2.csv` herunterladen
+3. Datensatzbeschreibung `btw25_dsb_kerg2.pdf` ebenfalls herunterladen — für das Verständnis der Variablenstruktur unverzichtbar
+:::
+
+
+### Strukturdaten der Wahlkreise — Bundestagswahl 2025
+
+Soziodemografische Merkmale aller 299 Wahlkreise: Bevölkerungsstruktur, Erwerbstätigkeit, Bildung, Einkommen u.a. — zusammengestellt vom Bundeswahlleiter aus amtlichen Statistiken.
+
+**Methodisch relevant für:** Aggregatdaten, Merging über Wahlkreisnummer, Regressionen zum Wahlverhalten (z.B. mit kerg2).
+
+::: callout-note
+#### Zugang
+Direkt, ohne Registrierung.
+
+1. [bundeswahlleiterin.de → Bundestagswahl 2025 → Strukturdaten](https://www.bundeswahlleiterin.de/bundestagswahlen/2025/strukturdaten.html)
+2. Gewünschte Tabellen als CSV herunterladen
+:::
+
+::: callout-tip
+Die Strukturdaten lassen sich direkt über die Wahlkreisnummer mit kerg2 mergen — ideal zum Üben von `dplyr::left_join()` und für Regressionen zum Wahlverhalten.
+:::
+
+
+### Repräsentative Wahlstatistik Bundestagswahl 2025
+
+Amtliche Stichprobenerhebung aus ausgewählten Wahlbezirken. Ermöglicht Aussagen über das Wahlverhalten nach Geschlecht und Altersgruppen — Informationen, die aus den regulären Wahlergebnissen wegen des Wahlgeheimnisses nicht ableitbar sind.
+
+**Methodisch relevant für:** Unterschied Vollerhebung vs. repräsentative Stichprobe, Alters- und Geschlechtereffekte im Wahlverhalten.
+
+::: callout-note
+#### Zugang
+Direkt, ohne Registrierung.
+
+1. [bundeswahlleiterin.de → Bundestagswahl 2025 → Ergebnisse](https://www.bundeswahlleiterin.de/bundestagswahlen/2025/ergebnisse.html)
+2. Unter „Repräsentative Wahlstatistik" → Tabellen und CSV-Dateien herunterladen
+:::
+
+
+## Große Bevölkerungsumfragen 
+
+### ALLBUScompact 2023
+
+Seit 1980 wird alle zwei Jahre eine repräsentative Zufallsstichprobe der deutschen Bevölkerung zu Einstellungen, Verhalten und Sozialstruktur befragt. ALLBUScompact ist die direkt herunterladbare, stärker anonymisierte Version des Scientific-Use-Files. Schwerpunkt 2023: Religion und Weltanschauung; daneben Politik, Ethnozentrismus und soziale Ungleichheit.
+
+**Methodisch relevant für:** Querschnittsanalyse, Stichprobenlogik, Gewichtung (Oversample Ostdeutschland), Regressionsanalyse etc.
+
+::: callout-note
+#### Zugang
+Kostenlos nach Registrierung bei GESIS.
+
+1. Registrierung unter [gesis.org](https://www.gesis.org)
+2. Studie-Nr. **ZA8831** suchen oder direkt: [search.gesis.org/research_data/ZA8831](https://search.gesis.org/research_data/ZA8831)
+3. Nutzungsvertrag akzeptieren → Download als SPSS, Stata oder CSV
+:::
+
+
+
+### ALLBUS-Kumulation (wiederholter Querschnitt)
+
+Die ALLBUS-Kumulation enthält alle Querschnitte seit 1980 und eignet sich für Zeitreihenanalysen. Viele Einzelindikatoren und Itembatterien werden in kurzen Abständen repliziert, sodass Einstellungsveränderungen in der deutschen Bevölkerung über mehrere Jahrzehnte nachvollzogen werden können.
+
+**Methodisch relevant für:** Zeitreihenanalyse, Trendvergleiche, Replikationslogik.
+
+::: callout-note
+#### Zugang
+Kostenlos nach Registrierung bei GESIS — identischer Weg wie ALLBUScompact.
+
+1. Registrierung unter [gesis.org](https://www.gesis.org)
+2. Studie-Nr. **ZA5276** suchen
+3. Nutzungsvertrag akzeptieren → Download als SPSS, Stata oder CSV
+:::
+
+
+### European Social Survey (ESS) — Wiederholter Querschnitt
+
+Biennial erhobene, ländervergleichende Umfrage seit 2002 in ca. 30 europäischen Ländern. Runde 11 (2023/24) liegt vollständig vor. Wichtig: Der ESS ist **kein Paneldatensatz** — jede Runde befragt eine neue Zufallsstichprobe. Er eignet sich für Trendanalysen auf Aggregatebene, nicht für individuelle Längsschnittanalysen.
+
+**Methodisch relevant für:** Wiederholter Querschnitt, Zeitreihenlogik, Gewichtung, Ländervergleich, Harmonisierungsprobleme.
+
+::: callout-note
+#### Zugang
+Kostenlos nach Registrierung.
+
+1. Registrierung unter [ess.sikt.no](https://ess.sikt.no)
+2. Im ESS Data Builder folgende 11 Länder auswählen: **Belgien, Schweiz, Dänemark, Finnland, Frankreich, Vereinigtes Königreich, Irland, Niederlande, Norwegen, Portugal, Slowenien**. Sie bilden ein maximal vergleichbares Zeitreihensample, da sie an allen Runden teilgenommen und auch im Pandemiejahr regulär mit face-to-face-Interviews teilgenommen haben (siehe Hinweis zu Runde 10 unten).
+4. Alle Variablen aus dem **Kernfragebogen** auswählen — rotierende Module ("rotating modules") weglassen
+5. Stata (.dta)-Format auswählen und → herunterladen
+:::
+
+::: callout-important
+#### Runde 10 und ESS10SC
+Runde 10 (2020–22) wurde pandemiebedingt nicht einheitlich erhoben: 9 Länder mussten auf Selbstausfüller (web/postalisch) umstellen — darunter AT, DE, PL, ES und SE. Diese Daten sind als separater Datensatz `ESS10SC` (für "self-completion") verfügbar und mit den anderen Runden nur eingeschränkt vergleichbar (Stichwort:Modeseffekte). Im Data Builder daher **nur `ESS10` (face-to-face)** auswählen. Die 11 empfohlenen Länder haben alle face-to-face erhoben und sind über alle Runden hinweg uneingeschränkt vergleichbar.
+:::
+
+::: callout-important
+#### Harmonisierung ist keine Selbstverständlichkeit
+Auch Kernvariablen können über Runden hinweg Skalenänderungen oder veränderte Filterführung aufweisen. Wir prüfen im Kurs gemeinsam mit R, welche Variablen tatsächlich vergleichbar sind — und lernen dabei, wie man solche Probleme systematisch erkennt und damit umgeht.
+:::
+
+
+### World Values Survey (WVS)
+
+Wiederholte Querschnittserhebung zu Werten, Einstellungen und kulturellen Orientierungen seit 1981, aktuell in Welle 7 (2017–2022). Deckt über 60 Länder aus allen Weltregionen ab und ermöglicht so kulturvergleichende Analysen weit über den OECD-Raum hinaus. Thematische Schwerpunkte: Demokratie, Religion, Geschlechterrollen, Vertrauen, politische Partizipation.
+
+**Methodisch relevant für:** Wiederholter Querschnitt, Wellenstruktur, globaler Ländervergleich, Werteforschung, Harmonisierungsprobleme über Wellen hinweg.
+
+::: callout-note
+#### Zugang
+Kostenlos nach Registrierung.
+
+1. Registrierung unter [worldvaluessurvey.org](https://www.worldvaluessurvey.org/wvs.jsp)
+2. Data & Documentation → Wave 7 → Statistical Data Files → CSV herunterladen
+:::
+
+
+### Eurobarometer
+
+Seit den 1970er-Jahren im Auftrag der Europäischen Kommission erhobene Surveyreihe zu Einstellungen gegenüber der EU, politischen und sozialen Themen. Der Standard-Eurobarometer erscheint zweimal jährlich in allen EU-Mitgliedstaaten; daneben gibt es Spezial- und Flash-Eurobarometer zu Einzelthemen. Mikrodata werden über GESIS archiviert und zugänglich gemacht.
+
+**Methodisch relevant für:** Wiederholter Querschnitt, EU-Ländervergleich, Trendanalysen, Gewichtung, Harmonisierung über lange Zeitreihen.
+
+::: callout-note
+#### Zugang
+Kostenlos nach Registrierung bei GESIS.
+
+1. Registrierung unter [gesis.org](https://www.gesis.org)
+2. GESIS Data Catalogue → Eurobarometer-Studienprofile durchsuchen → Datensatz herunterladen
+3. Überblick über alle Surveyreihen: [gesis.org/eurobarometer-data-service](https://www.gesis.org/en/eurobarometer-data-service)
+:::
+
+::: callout-tip
+#### Globalbarometer-Partner
+Das [Global Barometer Network](https://www.globalbarometer.net/) koordiniert fünf regionale Surveyprogramme — **Afrobarometer**, **Asian Barometer**, **Arab Barometer**, **Latinobarometer** und **Eurasia Barometer** — die in Wellen Einstellungs- und Verhaltensdaten aus Ländern erheben, für die sonst kaum öffentlich zugängliche Surveydaten existieren. Besonders wertvoll für Analysen jenseits des OECD-Raums. Zugang jeweils direkt über die Websites der einzelnen Programme, meist kostenlos nach Registrierung.
+:::
+
+
+## Aggregatdaten und Ländervergleiche
+
+### Quality of Government (QoG)
+
+Das QoG-Dataset der Universität Göteborg aggregiert hunderte Governance- und Entwicklungsindikatoren aus verschiedenen Quellen (World Bank, UN, Freedom House u.a.) in einem einzigen, sauber strukturierten Datensatz — als Querschnitt und als Zeitreihe verfügbar.
+
+**Methodisch relevant für:** Ländervergleich, Zeitreihe, aggregierte Indikatoren, Data Merging über ISO3-Ländercodes.
+
+::: callout-note
+#### Zugang
+Direkt, ohne Registrierung.
+
+[qog.pol.gu.se](https://www.qog.pol.gu.se/data)
+:::
+
+::: callout-tip
+Ebenfalls an der Universität Göteborg entwickelt: **V-Dem (Varieties of Democracy)** — ein eigenständiger Datensatz, der Demokratie mit über 500 eigens erhobenen Indikatoren multidimensional misst. Lässt sich über ISO3-Ländercodes direkt mit QoG mergen. [v-dem.net](https://www.v-dem.net)
+:::
+
+
+### Comparative Political Data Set (CPDS)
+
+Jährliche Länder-Jahr-Daten zu politischen Institutionen, Regierungszusammensetzung und sozioökonomischen Kontextvariablen für 36 OECD- und EU-Mitgliedsstaaten ab 1960. Besonders geeignet für Analysen zur Regierungsideologie, Parteiensystemen und vergleichender Staatstätigkeit.
+
+**Methodisch relevant für:** Länder-Jahr-Panel, Zeitreihenanalyse, Merging mit Umfragedaten über ISO3-Ländercodes, pooled time-series cross-section.
+
+::: callout-note
+#### Zugang
+Direkt, ohne Registrierung.
+
+[cpds-data.org](https://www.cpds-data.org) → Download als Excel oder Stata
+:::
+
+
+::: callout-tip
+#### Electoral System Design Database (ESDD) — IDEA
+Die [ESDD](https://www.idea.int/data-tools/data/electoral-system-design-database) des International IDEA dokumentiert Wahlsysteme weltweit — Wahlformel, Wahlkreisstruktur, Sperrklauseln u.a. Nützlich als Kontextvariable in Ländervergleichen, z.B. in Kombination mit QoG oder CPDS.
+:::
+
+::: callout-tip
+#### IPU Parline — Inter-Parliamentary Union
+Die [IPU Parline Datenbank](https://data.ipu.org/) enthält Daten zu nationalen Parlamenten weltweit: Sitzverteilung, Frauenanteil, Wahltermine, Kammerstruktur. Direkt zugänglich, ohne Registrierung. Gut geeignet zum Üben von Datenimport und Merging über Ländercodes.
+:::
+
+
+## Weitere Datenquellen
+
+Neben den hier aufgeführten großen Bevölkerungsumfragen in Deutschland sei noch das Sozio-Ökonomische Panel (SEOP) genannt. Im Gegnsatz zu den eiderholten Querschnitten (z.B. Wellen beim ESS) werden in "echten" Paneldaten immer dieselben Menschen befragt, was für eine erhöhte Vergleichbarkeit sorgt und damit sauberere Nachzeichnung von Veränderungen ermöglicht. Aufgrund der recht strikten Datennutzungsregularien können wir allerdings in diesem Kurs nicht mit dem SOEP arbeiten. Eine ähnliche, aber frei zugänggliche, Panelbefragung gibt es mit dem LISS in den Niederlanden. Wer also die Arbeit mit Paneldaten auf Individualebene lernen möchte, dem sei dieser Datensatz ans Herz gelegt: 
+
+::: callout-tip
+#### LISS Panel
+Das [LISS Panel](https://www.lissdata.nl) (Longitudinal Internet Studies for the Social Sciences) der Universität Tilburg befragt seit 2007 jährlich dieselben Personen in den Niederlanden — ein echtes Haushaltspanel. Im Kurs dient es als Anschauungsbeispiel für Panellogik, within-person-Veränderungen und Attrition. Der Datensatz ist modular aufgebaut und wird über eine Personen-ID gemergt. Kostenlos nach Registrierung unter [lissdata.nl](https://www.lissdata.nl).
+:::

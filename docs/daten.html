@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Daten</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-f9cc888831487abb561d9bc549cd22e4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Willkommen</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./syllabus.html"> 
+<span class="menu-text">Syllabus</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./sitzungen.html"> 
+<span class="menu-text">Sitzungen</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./uebungen.html"> 
+<span class="menu-text">Übungen</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./daten.html" aria-current="page"> 
+<span class="menu-text">Daten</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./kontakt.html"> 
+<span class="menu-text">Kontakt</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/maurakratz/quanti-methoden-website"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Datensätze</h2>
+   
+  <ul>
+  <li><a href="#daten-zur-bundestagswahl-2025" id="toc-daten-zur-bundestagswahl-2025" class="nav-link active" data-scroll-target="#daten-zur-bundestagswahl-2025">Daten zur Bundestagswahl 2025</a>
+  <ul class="collapse">
+  <li><a href="#kerg2-wahlkreisergebnisse-bundestagswahl-2025" id="toc-kerg2-wahlkreisergebnisse-bundestagswahl-2025" class="nav-link" data-scroll-target="#kerg2-wahlkreisergebnisse-bundestagswahl-2025">kerg2 — Wahlkreisergebnisse Bundestagswahl 2025</a></li>
+  <li><a href="#strukturdaten-der-wahlkreise-bundestagswahl-2025" id="toc-strukturdaten-der-wahlkreise-bundestagswahl-2025" class="nav-link" data-scroll-target="#strukturdaten-der-wahlkreise-bundestagswahl-2025">Strukturdaten der Wahlkreise — Bundestagswahl 2025</a></li>
+  <li><a href="#repräsentative-wahlstatistik-bundestagswahl-2025" id="toc-repräsentative-wahlstatistik-bundestagswahl-2025" class="nav-link" data-scroll-target="#repräsentative-wahlstatistik-bundestagswahl-2025">Repräsentative Wahlstatistik Bundestagswahl 2025</a></li>
+  </ul></li>
+  <li><a href="#große-bevölkerungsumfragen" id="toc-große-bevölkerungsumfragen" class="nav-link" data-scroll-target="#große-bevölkerungsumfragen">Große Bevölkerungsumfragen</a>
+  <ul class="collapse">
+  <li><a href="#allbuscompact-2023" id="toc-allbuscompact-2023" class="nav-link" data-scroll-target="#allbuscompact-2023">ALLBUScompact 2023</a></li>
+  <li><a href="#allbus-kumulation-wiederholter-querschnitt" id="toc-allbus-kumulation-wiederholter-querschnitt" class="nav-link" data-scroll-target="#allbus-kumulation-wiederholter-querschnitt">ALLBUS-Kumulation (wiederholter Querschnitt)</a></li>
+  <li><a href="#european-social-survey-ess-wiederholter-querschnitt" id="toc-european-social-survey-ess-wiederholter-querschnitt" class="nav-link" data-scroll-target="#european-social-survey-ess-wiederholter-querschnitt">European Social Survey (ESS) — Wiederholter Querschnitt</a></li>
+  <li><a href="#world-values-survey-wvs" id="toc-world-values-survey-wvs" class="nav-link" data-scroll-target="#world-values-survey-wvs">World Values Survey (WVS)</a></li>
+  <li><a href="#eurobarometer" id="toc-eurobarometer" class="nav-link" data-scroll-target="#eurobarometer">Eurobarometer</a></li>
+  </ul></li>
+  <li><a href="#aggregatdaten-und-ländervergleiche" id="toc-aggregatdaten-und-ländervergleiche" class="nav-link" data-scroll-target="#aggregatdaten-und-ländervergleiche">Aggregatdaten und Ländervergleiche</a>
+  <ul class="collapse">
+  <li><a href="#quality-of-government-qog" id="toc-quality-of-government-qog" class="nav-link" data-scroll-target="#quality-of-government-qog">Quality of Government (QoG)</a></li>
+  <li><a href="#comparative-political-data-set-cpds" id="toc-comparative-political-data-set-cpds" class="nav-link" data-scroll-target="#comparative-political-data-set-cpds">Comparative Political Data Set (CPDS)</a></li>
+  </ul></li>
+  <li><a href="#weitere-datenquellen" id="toc-weitere-datenquellen" class="nav-link" data-scroll-target="#weitere-datenquellen">Weitere Datenquellen</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Daten</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Hier findest du eine Sammlung frei bzw. leicht zugänglicher Datensätze. Ich habe versucht, hochqualitative und möglichst niedrigschwellig zugängliche Datensätze zusammenzutragen, auf die zum Üben, zurückgegriffen werden kann. Mit einigen davon werden wir im Kurs beispielhaft arbeiten. Es dürfen aber selbstverständlich auch andere Datensätze für die in diesm Kurs zu erbringenden Prüfungsleistungen verwendet werden! Diese Seite soll lediglich eine Orientierung bieten. Ein Überblick über die Datenlandschaft gehört meiner Erfahrung nach zu den größten Herausforderungen im Politikwissenschaftsstudium - und auch in der politikwissenschaftlichen Forschung.</p>
+<section id="daten-zur-bundestagswahl-2025" class="level2">
+<h2 class="anchored" data-anchor-id="daten-zur-bundestagswahl-2025">Daten zur Bundestagswahl 2025</h2>
+<section id="kerg2-wahlkreisergebnisse-bundestagswahl-2025" class="level3">
+<h3 class="anchored" data-anchor-id="kerg2-wahlkreisergebnisse-bundestagswahl-2025">kerg2 — Wahlkreisergebnisse Bundestagswahl 2025</h3>
+<p>Amtliche Endergebnisse der Bundestagswahl 2025 auf Ebene von Bundesgebiet, Bundesländern und allen 299 Wahlkreisen — Erst- und Zweitstimmen für alle Parteien in einem flachen CSV-Format. Vollerhebung aller abgegebenen Stimmen.</p>
+<p><strong>Methodisch relevant für:</strong> Vollerhebung vs.&nbsp;Stichprobe, Aggregatdaten, Data Cleaning, Datenimport, Merging.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Zugang
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Direkt, ohne Registrierung.</p>
+<ol type="1">
+<li><a href="https://www.bundeswahlleiterin.de/bundestagswahlen/2025/ergebnisse/opendata.html">bundeswahlleiterin.de → Bundestagswahl 2025 → Open Data</a></li>
+<li>Unter „Verzeichnis csv” → <code>kerg2.csv</code> herunterladen</li>
+<li>Datensatzbeschreibung <code>btw25_dsb_kerg2.pdf</code> ebenfalls herunterladen — für das Verständnis der Variablenstruktur unverzichtbar</li>
+</ol>
+</div>
+</div>
+</section>
+<section id="strukturdaten-der-wahlkreise-bundestagswahl-2025" class="level3">
+<h3 class="anchored" data-anchor-id="strukturdaten-der-wahlkreise-bundestagswahl-2025">Strukturdaten der Wahlkreise — Bundestagswahl 2025</h3>
+<p>Soziodemografische Merkmale aller 299 Wahlkreise: Bevölkerungsstruktur, Erwerbstätigkeit, Bildung, Einkommen u.a. — zusammengestellt vom Bundeswahlleiter aus amtlichen Statistiken.</p>
+<p><strong>Methodisch relevant für:</strong> Aggregatdaten, Merging über Wahlkreisnummer, Regressionen zum Wahlverhalten (z.B. mit kerg2).</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Zugang
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Direkt, ohne Registrierung.</p>
+<ol type="1">
+<li><a href="https://www.bundeswahlleiterin.de/bundestagswahlen/2025/strukturdaten.html">bundeswahlleiterin.de → Bundestagswahl 2025 → Strukturdaten</a></li>
+<li>Gewünschte Tabellen als CSV herunterladen</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Die Strukturdaten lassen sich direkt über die Wahlkreisnummer mit kerg2 mergen — ideal zum Üben von <code>dplyr::left_join()</code> und für Regressionen zum Wahlverhalten.</p>
+</div>
+</div>
+</section>
+<section id="repräsentative-wahlstatistik-bundestagswahl-2025" class="level3">
+<h3 class="anchored" data-anchor-id="repräsentative-wahlstatistik-bundestagswahl-2025">Repräsentative Wahlstatistik Bundestagswahl 2025</h3>
+<p>Amtliche Stichprobenerhebung aus ausgewählten Wahlbezirken. Ermöglicht Aussagen über das Wahlverhalten nach Geschlecht und Altersgruppen — Informationen, die aus den regulären Wahlergebnissen wegen des Wahlgeheimnisses nicht ableitbar sind.</p>
+<p><strong>Methodisch relevant für:</strong> Unterschied Vollerhebung vs.&nbsp;repräsentative Stichprobe, Alters- und Geschlechtereffekte im Wahlverhalten.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Zugang
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Direkt, ohne Registrierung.</p>
+<ol type="1">
+<li><a href="https://www.bundeswahlleiterin.de/bundestagswahlen/2025/ergebnisse.html">bundeswahlleiterin.de → Bundestagswahl 2025 → Ergebnisse</a></li>
+<li>Unter „Repräsentative Wahlstatistik” → Tabellen und CSV-Dateien herunterladen</li>
+</ol>
+</div>
+</div>
+</section>
+</section>
+<section id="große-bevölkerungsumfragen" class="level2">
+<h2 class="anchored" data-anchor-id="große-bevölkerungsumfragen">Große Bevölkerungsumfragen</h2>
+<section id="allbuscompact-2023" class="level3">
+<h3 class="anchored" data-anchor-id="allbuscompact-2023">ALLBUScompact 2023</h3>
+<p>Seit 1980 wird alle zwei Jahre eine repräsentative Zufallsstichprobe der deutschen Bevölkerung zu Einstellungen, Verhalten und Sozialstruktur befragt. ALLBUScompact ist die direkt herunterladbare, stärker anonymisierte Version des Scientific-Use-Files. Schwerpunkt 2023: Religion und Weltanschauung; daneben Politik, Ethnozentrismus und soziale Ungleichheit.</p>
+<p><strong>Methodisch relevant für:</strong> Querschnittsanalyse, Stichprobenlogik, Gewichtung (Oversample Ostdeutschland), Regressionsanalyse etc.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Zugang
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Kostenlos nach Registrierung bei GESIS.</p>
+<ol type="1">
+<li>Registrierung unter <a href="https://www.gesis.org">gesis.org</a></li>
+<li>Studie-Nr. <strong>ZA8831</strong> suchen oder direkt: <a href="https://search.gesis.org/research_data/ZA8831">search.gesis.org/research_data/ZA8831</a></li>
+<li>Nutzungsvertrag akzeptieren → Download als SPSS, Stata oder CSV</li>
+</ol>
+</div>
+</div>
+</section>
+<section id="allbus-kumulation-wiederholter-querschnitt" class="level3">
+<h3 class="anchored" data-anchor-id="allbus-kumulation-wiederholter-querschnitt">ALLBUS-Kumulation (wiederholter Querschnitt)</h3>
+<p>Die ALLBUS-Kumulation enthält alle Querschnitte seit 1980 und eignet sich für Zeitreihenanalysen. Viele Einzelindikatoren und Itembatterien werden in kurzen Abständen repliziert, sodass Einstellungsveränderungen in der deutschen Bevölkerung über mehrere Jahrzehnte nachvollzogen werden können.</p>
+<p><strong>Methodisch relevant für:</strong> Zeitreihenanalyse, Trendvergleiche, Replikationslogik.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Zugang
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Kostenlos nach Registrierung bei GESIS — identischer Weg wie ALLBUScompact.</p>
+<ol type="1">
+<li>Registrierung unter <a href="https://www.gesis.org">gesis.org</a></li>
+<li>Studie-Nr. <strong>ZA5276</strong> suchen</li>
+<li>Nutzungsvertrag akzeptieren → Download als SPSS, Stata oder CSV</li>
+</ol>
+</div>
+</div>
+</section>
+<section id="european-social-survey-ess-wiederholter-querschnitt" class="level3">
+<h3 class="anchored" data-anchor-id="european-social-survey-ess-wiederholter-querschnitt">European Social Survey (ESS) — Wiederholter Querschnitt</h3>
+<p>Biennial erhobene, ländervergleichende Umfrage seit 2002 in ca. 30 europäischen Ländern. Runde 11 (2023/24) liegt vollständig vor. Wichtig: Der ESS ist <strong>kein Paneldatensatz</strong> — jede Runde befragt eine neue Zufallsstichprobe. Er eignet sich für Trendanalysen auf Aggregatebene, nicht für individuelle Längsschnittanalysen.</p>
+<p><strong>Methodisch relevant für:</strong> Wiederholter Querschnitt, Zeitreihenlogik, Gewichtung, Ländervergleich, Harmonisierungsprobleme.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Zugang
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Kostenlos nach Registrierung.</p>
+<ol type="1">
+<li>Registrierung unter <a href="https://ess.sikt.no">ess.sikt.no</a></li>
+<li>Im ESS Data Builder folgende 11 Länder auswählen: <strong>Belgien, Schweiz, Dänemark, Finnland, Frankreich, Vereinigtes Königreich, Irland, Niederlande, Norwegen, Portugal, Slowenien</strong>. Sie bilden ein maximal vergleichbares Zeitreihensample, da sie an allen Runden teilgenommen und auch im Pandemiejahr regulär mit face-to-face-Interviews teilgenommen haben (siehe Hinweis zu Runde 10 unten).</li>
+<li>Alle Variablen aus dem <strong>Kernfragebogen</strong> auswählen — rotierende Module (“rotating modules”) weglassen</li>
+<li>Stata (.dta)-Format auswählen und → herunterladen</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Runde 10 und ESS10SC
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Runde 10 (2020–22) wurde pandemiebedingt nicht einheitlich erhoben: 9 Länder mussten auf Selbstausfüller (web/postalisch) umstellen — darunter AT, DE, PL, ES und SE. Diese Daten sind als separater Datensatz <code>ESS10SC</code> (für “self-completion”) verfügbar und mit den anderen Runden nur eingeschränkt vergleichbar (Stichwort:Modeseffekte). Im Data Builder daher <strong>nur <code>ESS10</code> (face-to-face)</strong> auswählen. Die 11 empfohlenen Länder haben alle face-to-face erhoben und sind über alle Runden hinweg uneingeschränkt vergleichbar.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Harmonisierung ist keine Selbstverständlichkeit
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Auch Kernvariablen können über Runden hinweg Skalenänderungen oder veränderte Filterführung aufweisen. Wir prüfen im Kurs gemeinsam mit R, welche Variablen tatsächlich vergleichbar sind — und lernen dabei, wie man solche Probleme systematisch erkennt und damit umgeht.</p>
+</div>
+</div>
+</section>
+<section id="world-values-survey-wvs" class="level3">
+<h3 class="anchored" data-anchor-id="world-values-survey-wvs">World Values Survey (WVS)</h3>
+<p>Wiederholte Querschnittserhebung zu Werten, Einstellungen und kulturellen Orientierungen seit 1981, aktuell in Welle 7 (2017–2022). Deckt über 60 Länder aus allen Weltregionen ab und ermöglicht so kulturvergleichende Analysen weit über den OECD-Raum hinaus. Thematische Schwerpunkte: Demokratie, Religion, Geschlechterrollen, Vertrauen, politische Partizipation.</p>
+<p><strong>Methodisch relevant für:</strong> Wiederholter Querschnitt, Wellenstruktur, globaler Ländervergleich, Werteforschung, Harmonisierungsprobleme über Wellen hinweg.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Zugang
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Kostenlos nach Registrierung.</p>
+<ol type="1">
+<li>Registrierung unter <a href="https://www.worldvaluessurvey.org/wvs.jsp">worldvaluessurvey.org</a></li>
+<li>Data &amp; Documentation → Wave 7 → Statistical Data Files → CSV herunterladen</li>
+</ol>
+</div>
+</div>
+</section>
+<section id="eurobarometer" class="level3">
+<h3 class="anchored" data-anchor-id="eurobarometer">Eurobarometer</h3>
+<p>Seit den 1970er-Jahren im Auftrag der Europäischen Kommission erhobene Surveyreihe zu Einstellungen gegenüber der EU, politischen und sozialen Themen. Der Standard-Eurobarometer erscheint zweimal jährlich in allen EU-Mitgliedstaaten; daneben gibt es Spezial- und Flash-Eurobarometer zu Einzelthemen. Mikrodata werden über GESIS archiviert und zugänglich gemacht.</p>
+<p><strong>Methodisch relevant für:</strong> Wiederholter Querschnitt, EU-Ländervergleich, Trendanalysen, Gewichtung, Harmonisierung über lange Zeitreihen.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Zugang
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Kostenlos nach Registrierung bei GESIS.</p>
+<ol type="1">
+<li>Registrierung unter <a href="https://www.gesis.org">gesis.org</a></li>
+<li>GESIS Data Catalogue → Eurobarometer-Studienprofile durchsuchen → Datensatz herunterladen</li>
+<li>Überblick über alle Surveyreihen: <a href="https://www.gesis.org/en/eurobarometer-data-service">gesis.org/eurobarometer-data-service</a></li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Globalbarometer-Partner
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Das <a href="https://www.globalbarometer.net/">Global Barometer Network</a> koordiniert fünf regionale Surveyprogramme — <strong>Afrobarometer</strong>, <strong>Asian Barometer</strong>, <strong>Arab Barometer</strong>, <strong>Latinobarometer</strong> und <strong>Eurasia Barometer</strong> — die in Wellen Einstellungs- und Verhaltensdaten aus Ländern erheben, für die sonst kaum öffentlich zugängliche Surveydaten existieren. Besonders wertvoll für Analysen jenseits des OECD-Raums. Zugang jeweils direkt über die Websites der einzelnen Programme, meist kostenlos nach Registrierung.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="aggregatdaten-und-ländervergleiche" class="level2">
+<h2 class="anchored" data-anchor-id="aggregatdaten-und-ländervergleiche">Aggregatdaten und Ländervergleiche</h2>
+<section id="quality-of-government-qog" class="level3">
+<h3 class="anchored" data-anchor-id="quality-of-government-qog">Quality of Government (QoG)</h3>
+<p>Das QoG-Dataset der Universität Göteborg aggregiert hunderte Governance- und Entwicklungsindikatoren aus verschiedenen Quellen (World Bank, UN, Freedom House u.a.) in einem einzigen, sauber strukturierten Datensatz — als Querschnitt und als Zeitreihe verfügbar.</p>
+<p><strong>Methodisch relevant für:</strong> Ländervergleich, Zeitreihe, aggregierte Indikatoren, Data Merging über ISO3-Ländercodes.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Zugang
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Direkt, ohne Registrierung.</p>
+<p><a href="https://www.qog.pol.gu.se/data">qog.pol.gu.se</a></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Ebenfalls an der Universität Göteborg entwickelt: <strong>V-Dem (Varieties of Democracy)</strong> — ein eigenständiger Datensatz, der Demokratie mit über 500 eigens erhobenen Indikatoren multidimensional misst. Lässt sich über ISO3-Ländercodes direkt mit QoG mergen. <a href="https://www.v-dem.net">v-dem.net</a></p>
+</div>
+</div>
+</section>
+<section id="comparative-political-data-set-cpds" class="level3">
+<h3 class="anchored" data-anchor-id="comparative-political-data-set-cpds">Comparative Political Data Set (CPDS)</h3>
+<p>Jährliche Länder-Jahr-Daten zu politischen Institutionen, Regierungszusammensetzung und sozioökonomischen Kontextvariablen für 36 OECD- und EU-Mitgliedsstaaten ab 1960. Besonders geeignet für Analysen zur Regierungsideologie, Parteiensystemen und vergleichender Staatstätigkeit.</p>
+<p><strong>Methodisch relevant für:</strong> Länder-Jahr-Panel, Zeitreihenanalyse, Merging mit Umfragedaten über ISO3-Ländercodes, pooled time-series cross-section.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Zugang
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Direkt, ohne Registrierung.</p>
+<p><a href="https://www.cpds-data.org">cpds-data.org</a> → Download als Excel oder Stata</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Electoral System Design Database (ESDD) — IDEA
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Die <a href="https://www.idea.int/data-tools/data/electoral-system-design-database">ESDD</a> des International IDEA dokumentiert Wahlsysteme weltweit — Wahlformel, Wahlkreisstruktur, Sperrklauseln u.a. Nützlich als Kontextvariable in Ländervergleichen, z.B. in Kombination mit QoG oder CPDS.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>IPU Parline — Inter-Parliamentary Union
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Die <a href="https://data.ipu.org/">IPU Parline Datenbank</a> enthält Daten zu nationalen Parlamenten weltweit: Sitzverteilung, Frauenanteil, Wahltermine, Kammerstruktur. Direkt zugänglich, ohne Registrierung. Gut geeignet zum Üben von Datenimport und Merging über Ländercodes.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="weitere-datenquellen" class="level2">
+<h2 class="anchored" data-anchor-id="weitere-datenquellen">Weitere Datenquellen</h2>
+<p>Neben den hier aufgeführten großen Bevölkerungsumfragen in Deutschland sei noch das Sozio-Ökonomische Panel (SEOP) genannt. Im Gegnsatz zu den eiderholten Querschnitten (z.B. Wellen beim ESS) werden in “echten” Paneldaten immer dieselben Menschen befragt, was für eine erhöhte Vergleichbarkeit sorgt und damit sauberere Nachzeichnung von Veränderungen ermöglicht. Aufgrund der recht strikten Datennutzungsregularien können wir allerdings in diesem Kurs nicht mit dem SOEP arbeiten. Eine ähnliche, aber frei zugänggliche, Panelbefragung gibt es mit dem LISS in den Niederlanden. Wer also die Arbeit mit Paneldaten auf Individualebene lernen möchte, dem sei dieser Datensatz ans Herz gelegt:</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>LISS Panel
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Das <a href="https://www.lissdata.nl">LISS Panel</a> (Longitudinal Internet Studies for the Social Sciences) der Universität Tilburg befragt seit 2007 jährlich dieselben Personen in den Niederlanden — ein echtes Haushaltspanel. Im Kurs dient es als Anschauungsbeispiel für Panellogik, within-person-Veränderungen und Attrition. Der Datensatz ist modular aufgebaut und wird über eine Personen-ID gemergt. Kostenlos nach Registrierung unter <a href="https://www.lissdata.nl">lissdata.nl</a>.</p>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Maura Kratz | maura.kratz@fu-berin.de</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

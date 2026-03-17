@@ -1,0 +1,69 @@
+/*-- scss:rules --*/
+
+/* 1. Titelfolie */
+.title-slide {
+  background-color: #CCFF00 !important;
+  color: #000 !important;
+}
+
+/* Grüner Balken */
+/* Den Balken (h2) an die Folienbreite anpassen */
+.reveal h2 {
+  background-color: #CCFF00 !important;
+  padding: 10px 20px !important;
+  display: block !important;
+  width: 100% !important; /* Nutzt die volle Breite des Slide-Containers */
+  box-sizing: border-box !important;
+  color: #000 !important;
+}
+
+/* 2. Links */
+.reveal a {
+  color: #0056B3 !important;
+  text-decoration: underline;
+}
+
+/* 3. Code-Design:*/
+code,
+pre code,
+.reveal code{
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace !important;
+  color: #2C3E50 !important;
+  font-size: 22px !important;
+  background-color: #EEF2E9 !important; /* Der graue Textmarker-Effekt */
+  padding: 0.1em 0.3em !important;
+  border-radius: 3px !important;
+}
+
+/* Entfernt die Boxen und Rahmen um die Code-Blöcke */
+.reveal pre,
+.reveal div.sourceCode,
+.reveal pre.code-wrapper {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  margin: 10px 0 !important;
+  padding: 0 !important;
+}
+
+/* Verhindert, dass Zeilen in Chunks den Hintergrund unterbrechen */
+.reveal pre code {
+  display: inline-block !important; /* Lässt den Hintergrund um den gesamten Block fließen */
+  width: 100% !important;
+  padding: 10px !important;
+}
+
+/* callout hab ich nicht hinbekommen
+
+/* 5. Footer: Kursiv und klein */
+.reveal .footer {
+  font-size: 0.4em !important;
+  font-style: italic !important;
+  color: #444 !important;
+}
+
+/* 6. Globale Textgröße */
+.reveal .slides {
+  font-size: 0.85em;
+}
+

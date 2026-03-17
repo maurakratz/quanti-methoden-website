@@ -1,0 +1,101 @@
+/*-- scss:defaults --*/
+
+/* Ein moderner, "akademischer" Font-Stack */
+/* 'Inter' ist der Goldstandard für saubere Interfaces, 'Georgia' für einen Hauch Klassik */
+$font-family-sans-serif: "Georgia", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+$font-family-base: $font-family-sans-serif;
+$headings-font-family: "Inter", sans-serif;
+
+/* Maximale Breite des Textkörpers erhöhen */
+$content-width: 1000px;
+/* Abstand zu den Seitenrändern bei kleineren Bildschirmen */
+$grid-gutter-width: 3rem;
+
+
+/*-- scss:rules --*/
+
+/* Hauptcontainer zentrieren */
+#quarto-content {
+  max-width: $content-width;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 2rem; /* Zusätzlicher Puffer links und rechts */
+}
+
+
+header.quarto-title-block {
+  margin-bottom: 2.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1.5px solid #003366;
+  text-align: left !important;
+
+  .title {
+    font-family: "Inter", sans-serif !important;
+    font-weight: 700;
+    font-size: 2rem;
+    letter-spacing: -0.02em; /* Etwas engerer Zeichenabstand für modernen Look */
+    color: #003366;
+    margin-bottom: 0.3rem;
+    margin-top: 0.5rem;
+    text-align: left !important;
+  }
+
+  .subtitle {
+    font-family: $font-family-sans-serif !important;
+    font-weight: 500;
+    font-size: 1.2rem;
+    color: #003366;
+    line-height: 1.4;
+    margin-top: 0;
+    margin-bottom: 0;
+    text-align: left !important;
+  }
+
+  .description p {
+    line-height: 0.5 !important;
+    font-family: $font-family-sans-serif !important;
+    color: #333;
+    margin: 0 !important;
+  }
+}
+
+/* Metadaten-Bereich: Autor links, Datum rechts */
+.quarto-title-meta {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  align-items: baseline !important;
+  margin-top: 0rem !important;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #333;
+}
+
+/* Autor */
+.quarto-title-meta-author {
+  flex: 1;
+  .quarto-title-meta-contents {
+    margin: 0 !important;
+    font-size: 1.1rem !important;
+    font-weight: 400;
+  }
+}
+
+/* Datum (Stand: ...) */
+.quarto-title-meta-item {
+  font-size: 1.1rem !important;
+  text-align: right;
+  font-variant-numeric: tabular-nums; /* Zahlen stehen sauber untereinander */
+  color: #333;
+}
+
+/* Labels ("Autor", etc.) restlos entfernen */
+.quarto-title-meta-heading {
+  display: none !important;
+}
+
+/* Blocksatz für alle normalen Textabschnitte */
+p {
+  text-align: justify;
+  hyphens: auto; /* Aktiviert automatische Silbentrennung */
+}

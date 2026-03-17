@@ -1,0 +1,29 @@
+---
+title: "Kontakt"
+toc: false
+---
+
+::::::: columns
+:::: {.column width="70%"}
+**Maura Kratz**\
+Otto-Suhr-Institut für Politikwissenschaft\
+Freie Universität Berlin
+
+::: {style="line-height: 1.1;"}
+{{< fa at >}} [maura.kratz\@fu-berlin.de](mailto:maura.kratz@fu-berlin.de)
+
+{{< fa globe>}} [Webseite der Freien Universität Berlin](https://www.polsoz.fu-berlin.de/polwiss/forschung/international/de-fr/Team/Kratz/index.html)
+:::
+
+**Sprechstunde**
+
+Im Sommersemester 2026 findet meine reguläre Sprechstunde mittwochs, 10:00–11:00 Uhr s.t. statt. Bitte vorab per E-Mail einen Termin vereinbaren und das Anliegen kurz schildern. Andere Zeiten und Online-Termine sind nach Absprache möglich.
+::::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="25%"}
+![](images/clipboard-1762980305.png)
+:::
+:::::::

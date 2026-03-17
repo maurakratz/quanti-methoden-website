@@ -1,0 +1,115 @@
+---
+title: "Übung 02: Datenimport & Datensatzüberblick"
+subtitle: "Politik vermessen: Quantitative Methoden mit R | SoSe 2026"
+author: "Vorname Nachname"
+date: today
+date-format: "DD.MM.YYYY"
+format:
+  html:
+    toc: true
+    toc-title: "Inhalt"
+    self-contained: true
+    theme: default
+  pdf:
+    pdf-engine: lualatex
+    latex-auto-install: true
+    toc: true
+    toc-title: "Inhalt"
+execute:
+  warning: false
+  message: false
+---
+
+Denkt daran: um als PFD rendern zu können, müsst ihr einmalig in der Konsole `tinytex::install_tinytex()` ausführen, damit die nötige Software (LaTeX) für die PDF-Erstellung installiert wird. Alternativ `quarto install tinytex` im Terminal eingeben. Danach könnt ihr die Übung sowohl als HTML als auch als PDF rendern.
+
+# Setup
+
+```{r}
+library(tidyverse)
+library(rio)
+library(janitor)
+library(labelled)
+library(summarytools)
+```
+
+# Aufgabe 1: Daten importieren
+
+Die Datei `kerg2_00413.csv` enthält die amtlichen Wahlergebnisse der Bundestagswahl 2025.
+Wir importieren sie zunächst mit Standardeinstellungen — und stellen dabei fest, dass etwas
+nicht stimmt.
+
+```{r}
+btw_2025_ergebnisse_raw <- rio::import("../data/kerg2_00413.csv",
+                                       sep  = ";",
+                                       dec  = ",",
+                                       skip = 9) |>
+  janitor::clean_names()
+```
+
+# Aufgabe 2: Datensatz aufbereiten
+
+Zunächst prüfen wir, ob in der Spalte `bemerkung` relevante Informationen stehen:
+
+```{r}
+btw_2025_ergebnisse_raw |>
+  dplyr::distinct(bemerkung)
+```
+
+Die Spalte enthält keine relevanten Einträge und kann entfernt werden:
+
+```{r}
+btw_2025_ergebnisse <- btw_2025_ergebnisse_raw |>
+  dplyr::select(-bemerkung)
+```
+
+# Aufgabe 3: Variablenlabels vergeben
+
+Für eine bessere Lesbarkeit vergeben wir Variablenlabels. Labels beschreiben den Inhalt
+einer Variable und werden z.B. in Tabellen und Grafiken angezeigt.
+
+```{r}
+labels_btw_2025_ergebnisse <- list(
+  wahlart            = "Wahlart: Bundes-, Landes-, Kommunalwahl",
+  wahltag            = "Datum des Wahltags",
+  gebietsart         = "Gebietsart: Bundesland, Wahlkreis oder gesamtes Staatsgebiet",
+  gebietsnummer      = "Gebietsnummer",
+  gebietsname        = "Gebietsname",
+  ueg_gebietsart     = "Übergeordnete Gebietsart",
+  ueg_gebietsnummer  = "Übergeordnete Gebietsnummer",
+  gruppenart         = "Gruppenart: Partei, Einzelbewerber, System",
+  gruppenname        = "Gruppenname, z.B. Parteiname",
+  gruppenreihenfolge = "Reihenfolge der Gruppe",
+  stimme             = "Stimmart: Erst- oder Zweitstimme",
+  anzahl             = "Anzahl Stimmen",
+  prozent            = "Stimmenanteil in Prozent",
+  vorp_anzahl        = "Anzahl Stimmen bei vorhergehender Wahl",
+  vorp_prozent       = "Stimmenanteil bei vorhergehender Wahl in Prozent",
+  diff_prozent       = "Veränderung zur vorhergehenden Wahl in Prozent",
+  diff_prozent_pkt   = "Veränderung zur vorhergehenden Wahl in Prozentpunkten",
+  gewahlt            = "Gewählt: Parteiname"
+)
+
+btw_2025_ergebnisse <- btw_2025_ergebnisse |>
+  labelled::set_variable_labels(.labels = labels_btw_2025_ergebnisse,
+                                .strict = FALSE)
+```
+
+# Aufgabe 4: Datensatzüberblick
+
+Abschließend verschaffen wir uns einen Überblick über den aufbereiteten Datensatz. Denk daran, die graph column auszuschalten, da sie nichtkorrekt dargestellt wird. 
+
+```{r}
+#| results: asis
+
+summarytools::dfSummary(btw_2025_ergebnisse,
+                        plain.ascii  = FALSE,
+                        style        = "grid",
+                        na.col       = FALSE,
+                        graph.col    = FALSE,
+                        method       = "render")
+```
+
+Der Datensatz enthält `r nrow(btw_2025_ergebnisse)` Zeilen und
+`r ncol(btw_2025_ergebnisse)` Spalten. Jede Zeile entspricht einem Ergebnis einer
+Partei in einem Gebiet (Wahlkreis, Bundesland oder Bundesgebiet) für eine Stimmart
+(Erst- oder Zweitstimme).
