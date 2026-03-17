@@ -7,19 +7,18 @@ Hier findest du die Folien und R-Skripte zu jeder Sitzung. Folien sind als HTML 
 
 | Sitzung | Datum | Thema | Schlüsselbegriffe | Pakete | Folien | Skript |
 |:-------:|:------|:------|:------------------|:-------|:------:|:------:|
-| 01 | 14.04.2026 | Einführung | Datenanalyse, R, RStudio | `base` | [HTML](slides/sitzung_01.html) / [PDF](slides/sitzung_01.pdf) | — |
-| 02 | 21.04.2026 | Projekte & Datenimport | Arbeitsverzeichnis, Ordnerstruktur, Datensatz ansehen, variable names, variable labels, Variablenübersicht  | `rio`, `janitor`, `labelled`, `summarytools` | [HTML](slides/sitzung_02.html) / [PDF](slides/sitzung_02.pdf) | [R](scripts/sitzung_02.R) |
-| 03 | 28.04.2026 | Dataset Merging | Master, unterschiedliche Joins | `dplyr::mutate()`, `dplyr::case_when()`, `dplyr::left_join()` | — | — |
-| 04 | 05.05.2026 | Data Cleaning | Auswählen, Umbennenen, Filtern, Rekodieren, Fehlende Werte | `dplyr::filter()`, `dplyr::select()`, `dplyr::count()` `tidyr:::pivot_wider()` | — | — |
-| 05 | 12.05.2026 | Quarto; Deskriptive Statistik – Kennwerte & Visualisierung | Mittelwert, Median, Streuung | `base`, `dplyr`, `ggplot2` | — | — | 
-| 06 | 19.05.2026 | Deskriptive Statistik – Häufigkeits- & Kreuztabellen | Häufigkeiten, Kreuztabellen | `janitor` | — | — | 
-| 07 | 26.05.2026 | Deskriptive Statistik – Schöne Grafiken | Grammar of Graphics, Visualisierung | `ggplot2`, `dplyr` | — | — | 
-| 08 | 02.06.2026 | Deskriptive Statistik – Korrelation & Einfache Lineare Regression | Korrelation, Streudiagramm, OLS | `corrr`, `texreg` | — | — | 
-| 09 | 09.06.2026 | Inferenzstatistik – Einfache & Multiple Lineare Regression | Regressionskoeffizienten, p-Wert, R² | `stats`, `performance` | — | — |
-| 10 | 16.06.2026 | Regression Diagnostics | Residuen, Heteroskedastizität, Ausreißer | `stats`, `performance` | — | — | 
-| 11 | 23.06.2026 | Logistische Regression | Odds Ratio, binäre AV | `stats`, `performance` | — | — | 
-| 12 | 30.06.2026 | Varianzanalyse (ANOVA) | — | — | — | — | 
-| 13 | 07.07.2026 | — | — | — | — | — | 
-| 14 | 14.07.2026 | — | — | — | — | — | 
-
+| 01 | 14.04.2026 | Einführung | Datenanalyse, R, RStudio | `base` | [HTML](slides/sitzung_01.html) / [PDF](slides/sitzung_01.pdf) | [R](scripts/sitzung_01.R) |
+| 02 | 21.04.2026 | Projekte & Datenimport | Arbeitsverzeichnis, Ordnerstruktur, Datensatz ansehen, variable names, variable labels, Variablenübersicht | `rio`, `janitor`, `labelled`, `summarytools` | [HTML](slides/sitzung_02.html) / [PDF](slides/sitzung_02.pdf) | [R](scripts/sitzung_02.R) |
+| 03 | 28.04.2026 | Dataset Merging | Master, unterschiedliche Joins | `dplyr::mutate()`, `dplyr::case_when()`, `dplyr::left_join()` | [HTML](slides/sitzung_03.html) / [PDF](slides/sitzung_03.pdf) | [R](scripts/sitzung_03.R) |
+| 04 | 05.05.2026 | Data Cleaning | Auswählen, Umbennenen, Filtern, Rekodieren, Fehlende Werte | `dplyr::filter()`, `dplyr::select()`, `dplyr::count()` `tidyr:::pivot_wider()` | [HTML](slides/sitzung_04.html) / [PDF](slides/sitzung_04.pdf) | [R](scripts/sitzung_04.R) |
+| 05 | 12.05.2026 | Quarto; Deskriptive Statistik – Kennwerte & Visualisierung | Mittelwert, Median, Streuung | `base`, `dplyr`, `ggplot2` | [HTML](slides/sitzung_05.html) / [PDF](slides/sitzung_05.pdf) | [R](scripts/sitzung_05.R) |
+| 06 | 19.05.2026 | Deskriptive Statistik – Häufigkeits- & Kreuztabellen | Häufigkeiten, Kreuztabellen | `janitor` | [HTML](slides/sitzung_06.html) / [PDF](slides/sitzung_06.pdf) | [R](scripts/sitzung_06.R) |
+| 07 | 26.05.2026 | Deskriptive Statistik – Schöne Grafiken | Grammar of Graphics, Visualisierung | `ggplot2`, `dplyr` | [HTML](slides/sitzung_07.html) / [PDF](slides/sitzung_07.pdf) | [R](scripts/sitzung_07.R) |
+| 08 | 02.06.2026 | Deskriptive Statistik – Korrelation & Einfache Lineare Regression | Korrelation, Streudiagramm, OLS | `corrr`, `texreg` | [HTML](slides/sitzung_08.html) / [PDF](slides/sitzung_08.pdf) | [R](scripts/sitzung_08.R) |
+| 09 | 09.06.2026 | Inferenzstatistik – Einfache & Multiple Lineare Regression | Regressionskoeffizienten, p-Wert, R² | `stats`, `performance` | [HTML](slides/sitzung_09.html) / [PDF](slides/sitzung_09.pdf) | [R](scripts/sitzung_09.R) |
+| 10 | 16.06.2026 | Regression Diagnostics | Residuen, Heteroskedastizität, Ausreißer | `stats`, `performance` | [HTML](slides/sitzung_10.html) / [PDF](slides/sitzung_10.pdf) | [R](scripts/sitzung_10.R) |
+| 11 | 23.06.2026 | Logistische Regression | Odds Ratio, binäre AV | `stats`, `performance` | [HTML](slides/sitzung_11.html) / [PDF](slides/sitzung_11.pdf) | [R](scripts/sitzung_11.R) |
+| 12 | 30.06.2026 | Varianzanalyse (ANOVA) | — | — | [HTML](slides/sitzung_12.html) / [PDF](slides/sitzung_12.pdf) | [R](scripts/sitzung_12.R) |
+| 13 | 07.07.2026 | — | — | — | [HTML](slides/sitzung_13.html) / [PDF](slides/sitzung_13.pdf) | [R](scripts/sitzung_13.R) |
+| 14 | 14.07.2026 | — | — | — | [HTML](slides/sitzung_14.html) / [PDF](slides/sitzung_14.pdf) | [R](scripts/sitzung_14.R) |
 : {.striped .hover tbl-colwidths="[5,10,22,25,18,10,10]"}

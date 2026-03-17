@@ -15,7 +15,7 @@ der Freien Universität Berlin (SoSe 2026).
 ## Website
 
 Die Kurswebseite ist erreichbar unter:  
-[https://maurakratz.github.io/rkurs](https://maurakratz.github.io/rkurs)
+[https://maurakratz.github.io/rkurs](https://maurakratz.github.io/quanti-methoden-website)
 
 ## Kontakt
 
