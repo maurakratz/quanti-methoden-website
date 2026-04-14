@@ -20,7 +20,7 @@ Amtliche Endergebnisse der Bundestagswahl 2025 auf Ebene von Bundesgebiet, Bunde
 Direkt, ohne Registrierung.
 
 1. [bundeswahlleiterin.de → Bundestagswahl 2025 → Open Data](https://www.bundeswahlleiterin.de/bundestagswahlen/2025/ergebnisse/opendata.html)
-2. Unter „Verzeichnis csv" → `kerg2.csv` herunterladen
+2. Dem Link im "Verzeichnis csv" folgen und die aktuellste Version von `kerg2.csv` herunterladen
 3. Datensatzbeschreibung `btw25_dsb_kerg2.pdf` ebenfalls herunterladen — für das Verständnis der Variablenstruktur unverzichtbar
 :::
 
