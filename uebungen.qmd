@@ -3,9 +3,9 @@ title: "Übungen"
 toc: false
 ---
 
-Jede Woche gibt es eine kleine Übungsaufgabe zur Vertiefung des Gelernten. Die Abgabe erfolgt per E-Mail an [maura.kratz@fu-berlin.de](mailto:maura.kratz@fu-berlin.de) bis jeweils **Sonntag, 23:59 Uhr** vor der nächsten Sitzung. Die fristgerechte Einreichung der Übungen ist Bestandteil der aktiven und regelmäßigen Teilnahme.
+Jede Woche gibt es eine kleine Übungsaufgabe zur Vertiefung des Gelernten. Die Abgabe erfolgt auf [Blackboard](https://fu-berlin.blackboard.com) im Reiter "Abgaben" bis jeweils **Sonntag, 23:59 Uhr** vor der nächsten Sitzung. Sollte es unerwartet zu Problemen mit Blackboard kommen, kann die Übung auch per E-Mail an [maura.kratz@fu-berlin.de](mailto:maura.kratz@fu-berlin.de) eingereicht werden. Die fristgerechte Einreichung der Übungen ist Bestandteil der aktiven und regelmäßigen Teilnahme. 
 
-Unter Hausaufgabe findest du Vorbereitungsmaterialien für die jeweils folgende Sitzung — etwa Lesetexte oder Videos, die statistische Grundlagen wiederholen, bevor wir sie in der Sitzung anwenden. Eine Einreichung ist nicht erforderlich. Wer beim Durcharbeiten merkt, dass die Wiederholung nicht nötig ist, kann die Hausaufgabe überspringen
+Unter Hausaufgabe findest du Vorbereitungsmaterialien für die jeweils folgende Sitzung — etwa Lektüre oder Videos, die statistische Grundlagen wiederholen, bevor wir sie in der Sitzung anwenden. Eine Einreichung ist nicht erforderlich. Wer beim Durcharbeiten merkt, dass die Wiederholung nicht nötig ist, kann die Hausaufgabe überspringen.
 
 | Sitzung | Thema | Hausaufgabe | Übung | Lösung |
 |:-------:|:------|:------------|:-----:|:------:|
