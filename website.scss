@@ -117,6 +117,30 @@ p {
   line-height: 1.75;
 }
 
+/* Tabellen */
+/* Tabellen-Regeln basierend auf Inhalt statt Position */
+table td {
+  /* Grundsätzlich: Erlaube Umbrüche an Leerzeichen (für Themen/Beschreibungen) */
+  white-space: normal;
+  word-break: normal;
+  overflow-wrap: break-word; /* Bricht extrem lange Wörter nur im Notfall */
+  hyphens: none;
+  min-width: 100px; /* Verhindert, dass Spalten zu "dünnen Strichen" gequetscht werden */
+}
+
+/* Spezial-Schutz für Links und Code (Dateinamen) */
+/* Das betrifft deine [Download]- und [R-Skript]-Links automatisch */
+table td a,
+table td code {
+  white-space: nowrap;
+}
+
+/* Kopfzeilen sollen auch nicht umbrechen, damit die Tabelle oben sauber bleibt */
+table th {
+  white-space: nowrap;
+  background-color: #f8f9fa;
+}
+
 /* Links */
 a {
   text-decoration: none;

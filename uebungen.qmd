@@ -10,7 +10,7 @@ Unter Hausaufgabe findest du Vorbereitungsmaterialien für die jeweils folgende 
 | Sitzung | Thema | Hausaufgabe | Übung | Lösung |
 |:-------:|:------|:------------|:-----:|:------:|
 | 01 | Einführung | Installiere R und R-Studio (siehe Folien) | — | — |
-| 02 | Projekte & Datenimport | Lade dir die Wahlkreisergebnisse der Bundestagswahl 2025 als datensatz herunter (siehe Daten) | [Download](uebungen/uebung_01_datenimport.pdf) | — |
+| 02 | Projekte & Datenimport | Lade dir die Wahlkreisergebnisse der Bundestagswahl 2025 als datensatz herunter (siehe Daten) | [Übung_01](uebungen/uebung_01_datenimport.R) | — |
 | 03 | Dataset Merging | — | [Download](uebungen/uebung_2_datenimport.qmd) | — |
 | 04 | Data Cleaning | — | [Download](uebungen/uebung_03.qmd) | — |
 | 05 | Quarto; Deskriptive Statistik – Kennwerte & Visualisierung | — | [Download](uebungen/uebung_04.qmd) | — |
@@ -23,4 +23,4 @@ Unter Hausaufgabe findest du Vorbereitungsmaterialien für die jeweils folgende 
 | 12 | Varianzanalyse (ANOVA) | — | [Download](uebungen/uebung_11.qmd) | — |
 | 13 | — | — | — | — |
 | 14 | — | — | — | — |
-: {.striped .hover tbl-colwidths="[5,40,25,15,15]"}
+: {.striped .hover tbl-colwidths="[5,25,40,15,15]"}
