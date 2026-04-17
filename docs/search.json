@@ -11,7 +11,175 @@
     "href": "uebungen/uebung_02_beispiel.html",
     "title": "Übung 02: Datenimport & Datensatzüberblick",
     "section": "",
-    "text": "Denkt daran: um als PFD rendern zu können, müsst ihr einmalig in der Konsole tinytex::install_tinytex() ausführen, damit die nötige Software (LaTeX) für die PDF-Erstellung installiert wird. Alternativ quarto install tinytex im Terminal eingeben. Danach könnt ihr die Übung sowohl als HTML als auch als PDF rendern.\n\nSetup\n\nlibrary(tidyverse)\nlibrary(rio)\nlibrary(janitor)\nlibrary(labelled)\nlibrary(summarytools)\n\n\n\nAufgabe 1: Daten importieren\nDie Datei kerg2_00413.csv enthält die amtlichen Wahlergebnisse der Bundestagswahl 2025. Wir importieren sie zunächst mit Standardeinstellungen — und stellen dabei fest, dass etwas nicht stimmt.\n\nbtw_2025_ergebnisse_raw &lt;- rio::import(\"../data/kerg2_00413.csv\",\n                                       sep  = \";\",\n                                       dec  = \",\",\n                                       skip = 9) |&gt;\n  janitor::clean_names()\n\n\n\nAufgabe 2: Datensatz aufbereiten\nZunächst prüfen wir, ob in der Spalte bemerkung relevante Informationen stehen:\n\nbtw_2025_ergebnisse_raw |&gt;\n  dplyr::distinct(bemerkung)\n\n  bemerkung\n1        NA\n\n\nDie Spalte enthält keine relevanten Einträge und kann entfernt werden:\n\nbtw_2025_ergebnisse &lt;- btw_2025_ergebnisse_raw |&gt;\n  dplyr::select(-bemerkung)\n\n\n\nAufgabe 3: Variablenlabels vergeben\nFür eine bessere Lesbarkeit vergeben wir Variablenlabels. Labels beschreiben den Inhalt einer Variable und werden z.B. in Tabellen und Grafiken angezeigt.\n\nlabels_btw_2025_ergebnisse &lt;- list(\n  wahlart            = \"Wahlart: Bundes-, Landes-, Kommunalwahl\",\n  wahltag            = \"Datum des Wahltags\",\n  gebietsart         = \"Gebietsart: Bundesland, Wahlkreis oder gesamtes Staatsgebiet\",\n  gebietsnummer      = \"Gebietsnummer\",\n  gebietsname        = \"Gebietsname\",\n  ueg_gebietsart     = \"Übergeordnete Gebietsart\",\n  ueg_gebietsnummer  = \"Übergeordnete Gebietsnummer\",\n  gruppenart         = \"Gruppenart: Partei, Einzelbewerber, System\",\n  gruppenname        = \"Gruppenname, z.B. Parteiname\",\n  gruppenreihenfolge = \"Reihenfolge der Gruppe\",\n  stimme             = \"Stimmart: Erst- oder Zweitstimme\",\n  anzahl             = \"Anzahl Stimmen\",\n  prozent            = \"Stimmenanteil in Prozent\",\n  vorp_anzahl        = \"Anzahl Stimmen bei vorhergehender Wahl\",\n  vorp_prozent       = \"Stimmenanteil bei vorhergehender Wahl in Prozent\",\n  diff_prozent       = \"Veränderung zur vorhergehenden Wahl in Prozent\",\n  diff_prozent_pkt   = \"Veränderung zur vorhergehenden Wahl in Prozentpunkten\",\n  gewahlt            = \"Gewählt: Parteiname\"\n)\n\nbtw_2025_ergebnisse &lt;- btw_2025_ergebnisse |&gt;\n  labelled::set_variable_labels(.labels = labels_btw_2025_ergebnisse,\n                                .strict = FALSE)\n\n\n\nAufgabe 4: Datensatzüberblick\nAbschließend verschaffen wir uns einen Überblick über den aufbereiteten Datensatz. Denk daran, die graph column auszuschalten, da sie nichtkorrekt dargestellt wird.\nsummarytools::dfSummary(btw_2025_ergebnisse,\n                        plain.ascii  = FALSE,\n                        style        = \"grid\",\n                        na.col       = FALSE,\n                        graph.col    = FALSE,\n                        method       = \"render\")\n\nData Frame Summary\n\nbtw_2025_ergebnisse\nDimensions: 15617 x 18\nDuplicates: 0\n\n\n\n\n\n\n\n\n\n\n\nNo\nVariable\nLabel\nStats / Values\nFreqs (% of Valid)\nValid\n\n\n\n\n1\nwahlart\n[character]\nWahlart: Bundes-, Landes-, Kommunalwahl\n1. BT\n15617 (100.0%)\n15617\n(100.0%)\n\n\n2\nwahltag\n[character]\nDatum des Wahltags\n1. 23.02.2025\n15617 (100.0%)\n15617\n(100.0%)\n\n\n3\ngebietsart\n[character]\nGebietsart: Bundesland, Wahlkreis oder gesamtes Staatsgebiet\n1. Bund\n2. Land\n3. Wahlkreis\n67 ( 0.4%)\n774 ( 5.0%)\n14776 (94.6%)\n15617\n(100.0%)\n\n\n4\ngebietsnummer\n[integer]\nGebietsnummer\nMean (sd) : 143.5 (87.7)\nmin &lt; med &lt; max:\n1 &lt; 140 &lt; 299\nIQR (CV) : 149 (0.6)\n299 distinct values\n15617\n(100.0%)\n\n\n5\ngebietsname\n[character]\nGebietsname\n1. Bundesgebiet\n2. Berlin-Friedrichshain-Kre\n3. Berlin-Tempelhof-Schönebe\n4. Dortmund I\n5. Duisburg II\n6. Gütersloh I\n7. Köln II\n8. Märkischer Kreis II\n9. Olpe – Märkischer Kreis I\n10. Recklinghausen II\n[ 306 others ]\n67 ( 0.4%)\n58 ( 0.4%)\n58 ( 0.4%)\n58 ( 0.4%)\n58 ( 0.4%)\n58 ( 0.4%)\n58 ( 0.4%)\n58 ( 0.4%)\n58 ( 0.4%)\n58 ( 0.4%)\n15028 (96.2%)\n15617\n(100.0%)\n\n\n6\nueg_gebietsart\n[character]\nÜbergeordnete Gebietsart\n1. (Empty string)\n2. BUND\n3. LAND\n67 ( 0.4%)\n774 ( 5.0%)\n14776 (94.6%)\n15617\n(100.0%)\n\n\n7\nueg_gebietsnummer\n[integer]\nÜbergeordnete Gebietsnummer\nMean (sd) : 12 (20.2)\nmin &lt; med &lt; max:\n1 &lt; 8 &lt; 99\nIQR (CV) : 4 (1.7)\n17 distinct values\n15550\n(99.6%)\n\n\n8\ngruppenart\n[character]\nGruppenart: Partei, Einzelbewerber, System\n1. Einzelbewerber/Wählergrup\n2. Partei\n3. System-Gruppe\n139 ( 0.9%)\n12950 (82.9%)\n2528 (16.2%)\n15617\n(100.0%)\n\n\n9\ngruppenname\n[character]\nGruppenname, z.B. Parteiname\n1. AfD\n2. BSW\n3. BÜNDNIS DEUTSCHLAND\n4. Die Linke\n5. Die PARTEI\n6. FDP\n7. FREIE WÄHLER\n8. GRÜNE\n9. Gültige\n10. MLPD\n[ 87 others ]\n632 ( 4.0%)\n632 ( 4.0%)\n632 ( 4.0%)\n632 ( 4.0%)\n632 ( 4.0%)\n632 ( 4.0%)\n632 ( 4.0%)\n632 ( 4.0%)\n632 ( 4.0%)\n632 ( 4.0%)\n9297 (59.5%)\n15617\n(100.0%)\n\n\n10\ngruppenreihenfolge\n[integer]\nReihenfolge der Gruppe\nMean (sd) : 49.4 (195.4)\nmin &lt; med &lt; max:\n-4 &lt; 10 &lt; 1000\nIQR (CV) : 12 (4)\n35 distinct values\n15617\n(100.0%)\n\n\n11\nstimme\n[integer]\nStimmart: Erst- oder Zweitstimme\nMin : 1\nMean : 1.5\nMax : 2\n1 : 7500 (50.1%)\n2 : 7485 (49.9%)\n14985\n(96.0%)\n\n\n12\nanzahl\n[integer]\nAnzahl Stimmen\nMean (sd) : 95245.1 (1163500)\nmin &lt; med &lt; max:\n8 &lt; 7381 &lt; 60510631\nIQR (CV) : 35360.5 (12.2)\n7493 distinct values\n9747\n(62.4%)\n\n\n13\nprozent\n[numeric]\nStimmenanteil in Prozent\nMean (sd) : 16.2 (27.8)\nmin &lt; med &lt; max:\n0 &lt; 3.6 &lt; 99.8\nIQR (CV) : 17.3 (1.7)\n9418 distinct values\n9431\n(60.4%)\n\n\n14\nvorp_anzahl\n[integer]\nAnzahl Stimmen bei vorhergehender Wahl\nMean (sd) : 76920.9 (1028519)\nmin &lt; med &lt; max:\n0 &lt; 3312 &lt; 61172771\nIQR (CV) : 26356 (13.4)\n7817 distinct values\n11459\n(73.4%)\n\n\n15\nvorp_prozent\n[numeric]\nStimmenanteil bei vorhergehender Wahl in Prozent\nMean (sd) : 13.5 (25.6)\nmin &lt; med &lt; max:\n0 &lt; 1.6 &lt; 99.7\nIQR (CV) : 12.4 (1.9)\n11020 distinct values\n11143\n(71.4%)\n\n\n16\ndiff_prozent\n[numeric]\nVeränderung zur vorhergehenden Wahl in Prozent\nMean (sd) : 17 (93.3)\nmin &lt; med &lt; max:\n-99.4 &lt; -1.6 &lt; 3786.8\nIQR (CV) : 59.7 (5.5)\n8415 distinct values\n8523\n(54.6%)\n\n\n17\ndiff_prozent_pkt\n[numeric]\nVeränderung zur vorhergehenden Wahl in Prozentpunkten\nMean (sd) : 0 (4.3)\nmin &lt; med &lt; max:\n-23.1 &lt; -0.2 &lt; 26.4\nIQR (CV) : 1.4 (-123)\n11027 distinct values\n11143\n(71.4%)\n\n\n18\ngewahlt\n[character]\nGewählt: Parteiname\n1. (Empty string)\n2. –\n3. AfD\n4. CDU\n5. CSU\n6. Die Linke\n7. GRÜNE\n8. SPD\n841 ( 5.4%)\n1098 ( 7.0%)\n1944 (12.4%)\n6398 (41.0%)\n2224 (14.2%)\n316 ( 2.0%)\n612 ( 3.9%)\n2184 (14.0%)\n15617\n(100.0%)\n\n\n\nDer Datensatz enthält 15617 Zeilen und 18 Spalten. Jede Zeile entspricht einem Ergebnis einer Partei in einem Gebiet (Wahlkreis, Bundesland oder Bundesgebiet) für eine Stimmart (Erst- oder Zweitstimme)."
+    "text": "Denkt daran: um als PFD rendern zu können, müsst ihr einmalig in der Konsole tinytex::install_tinytex() ausführen, damit die nötige Software (LaTeX) für die PDF-Erstellung installiert wird. Alternativ quarto install tinytex im Terminal eingeben. Danach könnt ihr die Übung sowohl als HTML als auch als PDF rendern.\n\nSetup\n\nlibrary(tidyverse)\nlibrary(rio)\nlibrary(janitor)\nlibrary(labelled)\nlibrary(summarytools)\n\n\n\nAufgabe 1: Daten importieren\nDie Datei kerg2.csv enthält die amtlichen Wahlergebnisse der Bundestagswahl 2025. Wir importieren sie zunächst mit Standardeinstellungen — und stellen dabei fest, dass etwas nicht stimmt.\n\nbtw_2025_ergebnisse_raw &lt;- rio::import(\"../data/kerg2.csv\",\n                                       sep  = \";\",\n                                       dec  = \",\",\n                                       skip = 9) |&gt;\n  janitor::clean_names()\n\n\n\nAufgabe 2: Datensatz aufbereiten\nZunächst prüfen wir, ob in der Spalte bemerkung relevante Informationen stehen:\n\nbtw_2025_ergebnisse_raw |&gt;\n  dplyr::distinct(bemerkung)\n\n  bemerkung\n1        NA\n\n\nDie Spalte enthält keine relevanten Einträge und kann entfernt werden:\n\nbtw_2025_ergebnisse &lt;- btw_2025_ergebnisse_raw |&gt;\n  dplyr::select(-bemerkung)\n\n\n\nAufgabe 3: Variablenlabels vergeben\nFür eine bessere Lesbarkeit vergeben wir Variablenlabels. Labels beschreiben den Inhalt einer Variable und werden z.B. in Tabellen und Grafiken angezeigt.\n\nlabels_btw_2025_ergebnisse &lt;- list(\n  wahlart            = \"Wahlart: Bundes-, Landes-, Kommunalwahl\",\n  wahltag            = \"Datum des Wahltags\",\n  gebietsart         = \"Gebietsart: Bundesland, Wahlkreis oder gesamtes Staatsgebiet\",\n  gebietsnummer      = \"Gebietsnummer\",\n  gebietsname        = \"Gebietsname\",\n  ueg_gebietsart     = \"Übergeordnete Gebietsart\",\n  ueg_gebietsnummer  = \"Übergeordnete Gebietsnummer\",\n  gruppenart         = \"Gruppenart: Partei, Einzelbewerber, System\",\n  gruppenname        = \"Gruppenname, z.B. Parteiname\",\n  gruppenreihenfolge = \"Reihenfolge der Gruppe\",\n  stimme             = \"Stimmart: Erst- oder Zweitstimme\",\n  anzahl             = \"Anzahl Stimmen\",\n  prozent            = \"Stimmenanteil in Prozent\",\n  vorp_anzahl        = \"Anzahl Stimmen bei vorhergehender Wahl\",\n  vorp_prozent       = \"Stimmenanteil bei vorhergehender Wahl in Prozent\",\n  diff_prozent       = \"Veränderung zur vorhergehenden Wahl in Prozent\",\n  diff_prozent_pkt   = \"Veränderung zur vorhergehenden Wahl in Prozentpunkten\",\n  gewahlt            = \"Gewählt: Parteiname\"\n)\n\nbtw_2025_ergebnisse &lt;- btw_2025_ergebnisse |&gt;\n  labelled::set_variable_labels(.labels = labels_btw_2025_ergebnisse,\n                                .strict = FALSE)\n\n\n\nAufgabe 4: Datensatzüberblick\nAbschließend verschaffen wir uns einen Überblick über den aufbereiteten Datensatz. Denk daran, die graph column auszuschalten, da sie nichtkorrekt dargestellt wird.\nsummarytools::dfSummary(btw_2025_ergebnisse,\n                        plain.ascii  = FALSE,\n                        style        = \"grid\",\n                        na.col       = FALSE,\n                        graph.col    = FALSE,\n                        method       = \"render\")\n\nData Frame Summary\n\nbtw_2025_ergebnisse\nDimensions: 15617 x 18\nDuplicates: 0\n\n\n\n\n\n\n\n\n\n\n\nNo\nVariable\nLabel\nStats / Values\nFreqs (% of Valid)\nValid\n\n\n\n\n1\nwahlart\n[character]\nWahlart: Bundes-, Landes-, Kommunalwahl\n1. BT\n15617 (100.0%)\n15617\n(100.0%)\n\n\n2\nwahltag\n[character]\nDatum des Wahltags\n1. 23.02.2025\n15617 (100.0%)\n15617\n(100.0%)\n\n\n3\ngebietsart\n[character]\nGebietsart: Bundesland, Wahlkreis oder gesamtes Staatsgebiet\n1. Bund\n2. Land\n3. Wahlkreis\n67 ( 0.4%)\n774 ( 5.0%)\n14776 (94.6%)\n15617\n(100.0%)\n\n\n4\ngebietsnummer\n[integer]\nGebietsnummer\nMean (sd) : 143.5 (87.7)\nmin &lt; med &lt; max:\n1 &lt; 140 &lt; 299\nIQR (CV) : 149 (0.6)\n299 distinct values\n15617\n(100.0%)\n\n\n5\ngebietsname\n[character]\nGebietsname\n1. Bundesgebiet\n2. Berlin-Friedrichshain-Kre\n3. Berlin-Tempelhof-Schönebe\n4. Dortmund I\n5. Duisburg II\n6. Gütersloh I\n7. Köln II\n8. Märkischer Kreis II\n9. Olpe – Märkischer Kreis I\n10. Recklinghausen II\n[ 306 others ]\n67 ( 0.4%)\n58 ( 0.4%)\n58 ( 0.4%)\n58 ( 0.4%)\n58 ( 0.4%)\n58 ( 0.4%)\n58 ( 0.4%)\n58 ( 0.4%)\n58 ( 0.4%)\n58 ( 0.4%)\n15028 (96.2%)\n15617\n(100.0%)\n\n\n6\nueg_gebietsart\n[character]\nÜbergeordnete Gebietsart\n1. (Empty string)\n2. BUND\n3. LAND\n67 ( 0.4%)\n774 ( 5.0%)\n14776 (94.6%)\n15617\n(100.0%)\n\n\n7\nueg_gebietsnummer\n[integer]\nÜbergeordnete Gebietsnummer\nMean (sd) : 12 (20.2)\nmin &lt; med &lt; max:\n1 &lt; 8 &lt; 99\nIQR (CV) : 4 (1.7)\n17 distinct values\n15550\n(99.6%)\n\n\n8\ngruppenart\n[character]\nGruppenart: Partei, Einzelbewerber, System\n1. Einzelbewerber/Wählergrup\n2. Partei\n3. System-Gruppe\n139 ( 0.9%)\n12950 (82.9%)\n2528 (16.2%)\n15617\n(100.0%)\n\n\n9\ngruppenname\n[character]\nGruppenname, z.B. Parteiname\n1. AfD\n2. BSW\n3. BÜNDNIS DEUTSCHLAND\n4. Die Linke\n5. Die PARTEI\n6. FDP\n7. FREIE WÄHLER\n8. GRÜNE\n9. Gültige\n10. MLPD\n[ 87 others ]\n632 ( 4.0%)\n632 ( 4.0%)\n632 ( 4.0%)\n632 ( 4.0%)\n632 ( 4.0%)\n632 ( 4.0%)\n632 ( 4.0%)\n632 ( 4.0%)\n632 ( 4.0%)\n632 ( 4.0%)\n9297 (59.5%)\n15617\n(100.0%)\n\n\n10\ngruppenreihenfolge\n[integer]\nReihenfolge der Gruppe\nMean (sd) : 49.4 (195.4)\nmin &lt; med &lt; max:\n-4 &lt; 10 &lt; 1000\nIQR (CV) : 12 (4)\n35 distinct values\n15617\n(100.0%)\n\n\n11\nstimme\n[integer]\nStimmart: Erst- oder Zweitstimme\nMin : 1\nMean : 1.5\nMax : 2\n1 : 7500 (50.1%)\n2 : 7485 (49.9%)\n14985\n(96.0%)\n\n\n12\nanzahl\n[integer]\nAnzahl Stimmen\nMean (sd) : 95245.1 (1163500)\nmin &lt; med &lt; max:\n8 &lt; 7381 &lt; 60510631\nIQR (CV) : 35360.5 (12.2)\n7493 distinct values\n9747\n(62.4%)\n\n\n13\nprozent\n[numeric]\nStimmenanteil in Prozent\nMean (sd) : 16.2 (27.8)\nmin &lt; med &lt; max:\n0 &lt; 3.6 &lt; 99.8\nIQR (CV) : 17.3 (1.7)\n9418 distinct values\n9431\n(60.4%)\n\n\n14\nvorp_anzahl\n[integer]\nAnzahl Stimmen bei vorhergehender Wahl\nMean (sd) : 76920.9 (1028519)\nmin &lt; med &lt; max:\n0 &lt; 3312 &lt; 61172771\nIQR (CV) : 26356 (13.4)\n7817 distinct values\n11459\n(73.4%)\n\n\n15\nvorp_prozent\n[numeric]\nStimmenanteil bei vorhergehender Wahl in Prozent\nMean (sd) : 13.5 (25.6)\nmin &lt; med &lt; max:\n0 &lt; 1.6 &lt; 99.7\nIQR (CV) : 12.4 (1.9)\n11020 distinct values\n11143\n(71.4%)\n\n\n16\ndiff_prozent\n[numeric]\nVeränderung zur vorhergehenden Wahl in Prozent\nMean (sd) : 17 (93.3)\nmin &lt; med &lt; max:\n-99.4 &lt; -1.6 &lt; 3786.8\nIQR (CV) : 59.7 (5.5)\n8415 distinct values\n8523\n(54.6%)\n\n\n17\ndiff_prozent_pkt\n[numeric]\nVeränderung zur vorhergehenden Wahl in Prozentpunkten\nMean (sd) : 0 (4.3)\nmin &lt; med &lt; max:\n-23.1 &lt; -0.2 &lt; 26.4\nIQR (CV) : 1.4 (-123)\n11027 distinct values\n11143\n(71.4%)\n\n\n18\ngewahlt\n[character]\nGewählt: Parteiname\n1. (Empty string)\n2. –\n3. AfD\n4. CDU\n5. CSU\n6. Die Linke\n7. GRÜNE\n8. SPD\n841 ( 5.4%)\n1098 ( 7.0%)\n1944 (12.4%)\n6398 (41.0%)\n2224 (14.2%)\n316 ( 2.0%)\n612 ( 3.9%)\n2184 (14.0%)\n15617\n(100.0%)\n\n\n\nDer Datensatz enthält 15617 Zeilen und 18 Spalten. Jede Zeile entspricht einem Ergebnis einer Partei in einem Gebiet (Wahlkreis, Bundesland oder Bundesgebiet) für eine Stimmart (Erst- oder Zweitstimme)."
+  },
+  {
+    "objectID": "slides/sitzung_04.html#willkommen-zurück",
+    "href": "slides/sitzung_04.html#willkommen-zurück",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Willkommen zurück!",
+    "text": "Willkommen zurück!"
+  },
+  {
+    "objectID": "slides/sitzung_04.html#datenanalyse-workflow",
+    "href": "slides/sitzung_04.html#datenanalyse-workflow",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Datenanalyse-Workflow",
+    "text": "Datenanalyse-Workflow"
+  },
+  {
+    "objectID": "slides/sitzung_04.html#pakete",
+    "href": "slides/sitzung_04.html#pakete",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Pakete",
+    "text": "Pakete\n\n\n\nEinige Funktionen sind bereits in base R enthalten\nFür andere müssen zusätzliche Pakete geladen werden\nPakete sind Bündel unterschiedlicher Funktionen\nBase R reicht oft nur für sehr basale Operationen und Visualisierungen, für alles andere werden Pakete benötigt"
+  },
+  {
+    "objectID": "slides/sitzung_04.html#summarytools-paket",
+    "href": "slides/sitzung_04.html#summarytools-paket",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "summarytools-Paket",
+    "text": "summarytools-Paket\n\n\n\n\n\n\n\n\nFunktion\nBeschreibung\nGeeignet für\n\n\n\n\ndfSummary()\nÜbersicht über alle Variablen (Klasse, fehlende Werte, Verteilungen, etc.)\nSchnelle Gesamtübersicht eines Datensatzes\n\n\nfreq()\nHäufigkeitstabellen\nEinfache Verteilungen kategorialer Variablen\n\n\ndescr()\nDeskriptive Statistik (Mittelwert, Median, SD, etc.)\nBasisanalyse numerischer Variablen\n\n\nctable()\nKreuztabellen mit Prozenten und optionalen Tests (z. B. Chi²)\nZusammenhang zwischen zweikategorialen Variablen\n\n\n\n\nbtw_2025_ergebnisse %&gt;%\n  summarytools::dfSummary(na.col = FALSE) %&gt;% # missings-Spalte ausblenden\n  summarytools::view(file = \"./data/btw_2025_ergebnisse_uebersicht.html\") # speichern"
+  },
+  {
+    "objectID": "slides/sitzung_04.html#pipes",
+    "href": "slides/sitzung_04.html#pipes",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Pipes",
+    "text": "Pipes\n\nZwei Optionen: Base R pipe: |&gt; ODER magrittr pipe: %&gt;%\nDie Default-Pipe kann über Global Options eingestellt werden\nZum Einfügen: eintippen oder Strg + Shift + M\nStilregeln:\n\nImmer Leerzeichen vor der Pipe\nImmer neue Zeile danach\n\n\n\nbtw_2025_ergebnisse %&gt;%\n  dplyr::filter(jahr == 2025) %&gt;%\n  dplyr::select(partei, zweitstimmen)"
+  },
+  {
+    "objectID": "slides/sitzung_04.html#datentransformation-mit-dplyr",
+    "href": "slides/sitzung_04.html#datentransformation-mit-dplyr",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Datentransformation mit dplyr",
+    "text": "Datentransformation mit dplyr\n\n\n\n\n\n\n\n\nBefehl\nBeschreibung\nBsp\n\n\n\n\nrename()\nSpaltennamen ändern\ndf %&gt;% rename(neu = alt)\n\n\nselect()\nVariablen auswählen\ndf %&gt;% select(var1, var2)\n\n\nslice()\nZeilen nach Position auswählen\ndf %&gt;% slice(1:10)\n\n\nfilter()\nZeilen nach Werten filtern\ndf %&gt;% filter(jahr == 2025)\n\n\narrange()\nZeilen sortieren\ndf %&gt;% arrange(desc(stimmen))\n\n\nrelocate()\nSpaltenreihenfolge ändern\ndf %&gt;% relocate(var1, .before = var2)"
+  },
+  {
+    "objectID": "slides/sitzung_04.html#datentransformation-mit-mit-dplyr",
+    "href": "slides/sitzung_04.html#datentransformation-mit-mit-dplyr",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Datentransformation mit mit dplyr",
+    "text": "Datentransformation mit mit dplyr\n\n\n\n\n\n\n\n\nBefehl\nBeschreibung\nBsp\n\n\n\n\nmutate()\nNeue Variablen hinzufügen\ndf %&gt;% mutate(anteil = stimmen / sum(stimmen))\n\n\nsummarise()\nMehrere Werte zusammenfassen\ndf %&gt;% summarise(mean(stimmen))\n\n\ncount()\nHäufigkeiten zählen\ndf %&gt;% count(partei)\n\n\ngroup_by()\nOperationen gruppenweise ausführen\ndf %&gt;% group_by(partei) %&gt;% summarise(mean(stimmen))"
+  },
+  {
+    "objectID": "slides/sitzung_04.html#datentransformation-mit-mit-tidyr",
+    "href": "slides/sitzung_04.html#datentransformation-mit-mit-tidyr",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Datentransformation mit mit tidyr",
+    "text": "Datentransformation mit mit tidyr\n\n\n\n\n\n\n\n\nBefehl\nBeschreibung\nBsp\n\n\n\n\npivot_longer()\nBreites Format in langes umwandeln\ndf %&gt;% pivot_longer(cols = -id, names_to = \"var\", values_to = \"val\")\n\n\npivot_wider()\nLanges Format in breites umwandeln\ndf %&gt;% pivot_wider(names_from = var, values_from = val)\n\n\ndrop_na()\nZeilen mit fehlenden Werten entfernen\ndf %&gt;% drop_na(var1)"
+  },
+  {
+    "objectID": "slides/sitzung_04.html#variablen-skalenniveaus",
+    "href": "slides/sitzung_04.html#variablen-skalenniveaus",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Variablen & Skalenniveaus",
+    "text": "Variablen & Skalenniveaus\nDie abhängige Variable (AV) ist diejenige Variable, deren Veränderung im Zusammenhang mit einer oder mehrerer unabhängiger Variablen (UV) gemessen wird.\nBsp.:\n\nKonzentrationsfähigkeit der Studierenden  Temperatur im Raum\nLeistung des Dozenten  Anwesenheit der Studierenden im Seminar?\nHomeoffice  Arbeitsmotivation der Mitarbeiter*innen"
+  },
+  {
+    "objectID": "slides/sitzung_04.html#variablen-und-skalenniveaus",
+    "href": "slides/sitzung_04.html#variablen-und-skalenniveaus",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Variablen und Skalenniveaus",
+    "text": "Variablen und Skalenniveaus\n\n\n\n\n\n\n\n\n\n\nSkalenniveau\nVariablentyp\nMögliche Aussagen\nBeispiel(e)\nOperationen\n\n\n\n\nNominal\nKategorial\nGleichheit / Verschiedenheit\nDiagnosen, Religion\n\\(=, \\neq\\)\n\n\nOrdinal\nKategorial\nRangfolge\nSchulabschlüsse\n\\(=, \\neq, &lt;, &gt;\\)\n\n\nIntervall\nMetrisch\nAbstände\nTemperatur (°C), IQ\n\\(+, -\\)\n\n\nVerhältnis\nMetrisch\nVerhältnisse\nEinkommen, Alter\n\\(*, /\\)"
+  },
+  {
+    "objectID": "slides/sitzung_04.html#minute-cards",
+    "href": "slides/sitzung_04.html#minute-cards",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Minute Cards",
+    "text": "Minute Cards\nBitte füllt die Minute Cards für die heutige Sitzung aus. Das sollt enicht länger als 3 Minuten dauern. Vielen Dank für eure Mitarbeit!"
+  },
+  {
+    "objectID": "slides/sitzung_02.html#willkommen-zurück",
+    "href": "slides/sitzung_02.html#willkommen-zurück",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Willkommen zurück!",
+    "text": "Willkommen zurück!"
+  },
+  {
+    "objectID": "slides/sitzung_02.html#die-r-studio-arbeitsumgebung",
+    "href": "slides/sitzung_02.html#die-r-studio-arbeitsumgebung",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Die R-Studio-Arbeitsumgebung",
+    "text": "Die R-Studio-Arbeitsumgebung\nBisher sieht es bei euch vermutlich etwa so aus:"
+  },
+  {
+    "objectID": "slides/sitzung_02.html#die-r-studio-arbeitsumgebung-1",
+    "href": "slides/sitzung_02.html#die-r-studio-arbeitsumgebung-1",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Die R-Studio-Arbeitsumgebung",
+    "text": "Die R-Studio-Arbeitsumgebung\nDa wir in R-Studio aber immer mit Skripten arbeiten, sieht die Oberfläche typischerweise so aus:"
+  },
+  {
+    "objectID": "slides/sitzung_02.html#einstellungen",
+    "href": "slides/sitzung_02.html#einstellungen",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Einstellungen",
+    "text": "Einstellungen\n\n\n\nTools → Global Options\nBitte die Optionen zum Workspace deaktivieren: Häkchen nicht setzen und im drop-down-Menü “never” wählen\nmehr Infos zu den Einstellungen im User Guide"
+  },
+  {
+    "objectID": "slides/sitzung_02.html#ordner-und-pfade",
+    "href": "slides/sitzung_02.html#ordner-und-pfade",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Ordner und Pfade",
+    "text": "Ordner und Pfade\n\n\n\nWir müssen R sagen, wo es Datensätze einlesen und Ergebnisse ablegen soll\nDazu ist es sinnvoll in Projekten zu arbeiten (1 Projekt pro Kurs/ Hausarbeit/ Forschungsprojekt)\nSo müssen nicht immer lange, nicht reproduzierbare absolute Pfade angegeben werden\nUnd es muss nicht immer explizit der Arbeitsordner mit setwd(\"Pfad-zum-Ordner\") festgelegt werden\nEin Projekt legt einen Ordner als Standard-Arbeitsordner fest\nVon dort aus können dann unterschiedliche Unterordner mit relativen Pfaden angesteuert werden:\n\n\ndata_1 &lt;- rio::import(\"./data/dataset_1.csv\")\n\n\nR_Kurs/\n├── R_Kurs.Rproj\n├── data/\n│   └── bspdaten.csv\n├── slides/\n│   └── sitzung_01.pdf\n├── skripte/\n│   └── 02_analyse.R\n├── uebungen/\n│   └── uebung_01.R\n└── output/\n    ├── grafik_01.png\n    └── tabelle_01.docx\n\n\n\n\n\n\nImportant\n\n\nNiemals ein Leerzeichen in Ordner- oder Dateinamen!"
+  },
+  {
+    "objectID": "slides/sitzung_02.html#die-wichtigsten-keyboard-shortcuts",
+    "href": "slides/sitzung_02.html#die-wichtigsten-keyboard-shortcuts",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Die wichtigsten Keyboard-Shortcuts",
+    "text": "Die wichtigsten Keyboard-Shortcuts\n\nStr + Enter führt Code aus. Dafür:\n\nentweder den auszuführenden Code markieren\noder den Cursor irgendwo im auszuführenden Code-Chunk platzieren\n\nStr + Shift + S führt das gesamte Skript aus.\nStr + Shift + M fügt die Pipe (%&gt;%) ein\nStr + Shift + L räumt die Console auf"
+  },
+  {
+    "objectID": "slides/sitzung_02.html#guter-stil-im-skript",
+    "href": "slides/sitzung_02.html#guter-stil-im-skript",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Guter Stil im Skript",
+    "text": "Guter Stil im Skript\n\n\n\nerkläre, was du tust in # Kommentaren\nbenne Objekte ausschließlich mit Kleinbuchstaben und trenne Wörter mit _\ni_use_snake_case \notherPeopleUseCamelCase \nsome.people.use.periods \nAnd_aFew.People_RENOUNCEconvention\nunterteile dein Skript in Sektionen\n# Load data --------------------------------------\n\n# Plot data --------------------------------------\n\n\n\n\n\n\n\n\n\nNote\n\n\nMehr dazu\nim Tidyverse-Styleguide und im eBook R For Data Science."
+  },
+  {
+    "objectID": "slides/sitzung_02.html#guter-stil-im-code",
+    "href": "slides/sitzung_02.html#guter-stil-im-code",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Guter Stil im Code",
+    "text": "Guter Stil im Code\n\nLeerzeichen vor Operatoren (außer ^), vor %&gt;% und vor + in ggplot2-Befehlen\nkeine Leerzeichen vor oder nach Klammern\nneue Argumente/ Befehle kommen in eine neue Zeile\nPipes sollten grundsätzlich das letzte in einer Codezeile sein\neine Pipe sollte nicht länger als 10-15 Zeilen sein"
+  },
+  {
+    "objectID": "slides/sitzung_02.html#basic-r-syntax",
+    "href": "slides/sitzung_02.html#basic-r-syntax",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Basic R-Syntax",
+    "text": "Basic R-Syntax\n\n# für Kommentare, also Beschreibungen\n&lt;- um etwas einem R-Objekt zuzuweisen\n[] um Positionen anzugeben\nDurch Drücken der Tab-Taste erhältst du Vorschläge zur Vervollständigung\n%&gt;% bzw. Str. + Shift + M um mehrere Befehle mittels Pipe zu verketten\nAufbau von Befehlen: command_name(argument1 = value1, argument2 = value2, ...)"
+  },
+  {
+    "objectID": "slides/sitzung_02.html#wo-bekomme-ich-hilfe",
+    "href": "slides/sitzung_02.html#wo-bekomme-ich-hilfe",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Wo bekomme ich Hilfe?",
+    "text": "Wo bekomme ich Hilfe?\n\n\n\nDirekt in R-Studio\n\n?befehl(), z.B. ?mean()\n?paket, z.B. ?dplyr\n??\"stichwort\", z.B. ??\"mean\"\n\nVon Kommiliton*innen\nVon mir während der Sitzung und/ oder in Sprechstunden"
+  },
+  {
+    "objectID": "slides/sitzung_02.html#wo-bekomme-ich-hilfe-1",
+    "href": "slides/sitzung_02.html#wo-bekomme-ich-hilfe-1",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Wo bekomme ich Hilfe ?",
+    "text": "Wo bekomme ich Hilfe ?\n\nOnline\n\nbei RStudio/Posit\nüber die von Google betriebene Suchmaschine Rseek\nauf der CRAN-Webseite unter “Manuals” gibt es hilfreiche Einstiegshandbücher\nauf Datacamp für einen schnellen Überblick über Basics\nin den Ressourcen im Syllabus"
+  },
+  {
+    "objectID": "slides/sitzung_02.html#datenanalyse-workflow",
+    "href": "slides/sitzung_02.html#datenanalyse-workflow",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Datenanalyse-Workflow",
+    "text": "Datenanalyse-Workflow"
+  },
+  {
+    "objectID": "slides/sitzung_02.html#minute-cards",
+    "href": "slides/sitzung_02.html#minute-cards",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Minute Cards",
+    "text": "Minute Cards\nBitte füllt die Minute Cards für die heutige Sitzung aus. Das sollt enicht länger als 3 Minuten dauern. Vielen Dank für eure Mitarbeit!"
   },
   {
     "objectID": "sitzungen.html",
@@ -75,230 +243,6 @@
     "title": "",
     "section": "",
     "text": "Attribution 4.0 International\n=======================================================================\nCreative Commons Corporation (“Creative Commons”) is not a law firm and does not provide legal services or legal advice. Distribution of Creative Commons public licenses does not create a lawyer-client or other relationship. Creative Commons makes its licenses and related information available on an “as-is” basis. Creative Commons gives no warranties regarding its licenses, any material licensed under their terms and conditions, or any related information. Creative Commons disclaims all liability for damages resulting from their use to the fullest extent possible.\nUsing Creative Commons Public Licenses\nCreative Commons public licenses provide a standard set of terms and conditions that creators and other rights holders may use to share original works of authorship and other material subject to copyright and certain other rights specified in the public license below. The following considerations are for informational purposes only, are not exhaustive, and do not form part of our licenses.\n Considerations for licensors: Our public licenses are\n intended for use by those authorized to give the public\n permission to use material in ways otherwise restricted by\n copyright and certain other rights. Our licenses are\n irrevocable. Licensors should read and understand the terms\n and conditions of the license they choose before applying it.\n Licensors should also secure all rights necessary before\n applying our licenses so that the public can reuse the\n material as expected. Licensors should clearly mark any\n material not subject to the license. This includes other CC-\n licensed material, or material used under an exception or\n limitation to copyright. More considerations for licensors:\nwiki.creativecommons.org/Considerations_for_licensors\n\n Considerations for the public: By using one of our public\n licenses, a licensor grants the public permission to use the\n licensed material under specified terms and conditions. If\n the licensor's permission is not necessary for any reason--for\n example, because of any applicable exception or limitation to\n copyright--then that use is not regulated by the license. Our\n licenses grant only permissions under copyright and certain\n other rights that a licensor has authority to grant. Use of\n the licensed material may still be restricted for other\n reasons, including because others have copyright or other\n rights in the material. A licensor may make special requests,\n such as asking that all changes be marked or described.\n Although not required by our licenses, you are encouraged to\n respect those requests where reasonable. More considerations\n for the public: \nwiki.creativecommons.org/Considerations_for_licensees\n=======================================================================\nCreative Commons Attribution 4.0 International Public License\nBy exercising the Licensed Rights (defined below), You accept and agree to be bound by the terms and conditions of this Creative Commons Attribution 4.0 International Public License (“Public License”). To the extent this Public License may be interpreted as a contract, You are granted the Licensed Rights in consideration of Your acceptance of these terms and conditions, and the Licensor grants You such rights in consideration of benefits the Licensor receives from making the Licensed Material available under these terms and conditions.\nSection 1 – Definitions.\n\nAdapted Material means material subject to Copyright and Similar Rights that is derived from or based upon the Licensed Material and in which the Licensed Material is translated, altered, arranged, transformed, or otherwise modified in a manner requiring permission under the Copyright and Similar Rights held by the Licensor. For purposes of this Public License, where the Licensed Material is a musical work, performance, or sound recording, Adapted Material is always produced where the Licensed Material is synched in timed relation with a moving image.\nAdapter’s License means the license You apply to Your Copyright and Similar Rights in Your contributions to Adapted Material in accordance with the terms and conditions of this Public License.\nCopyright and Similar Rights means copyright and/or similar rights closely related to copyright including, without limitation, performance, broadcast, sound recording, and Sui Generis Database Rights, without regard to how the rights are labeled or categorized. For purposes of this Public License, the rights specified in Section 2(b)(1)-(2) are not Copyright and Similar Rights.\nEffective Technological Measures means those measures that, in the absence of proper authority, may not be circumvented under laws fulfilling obligations under Article 11 of the WIPO Copyright Treaty adopted on December 20, 1996, and/or similar international agreements.\nExceptions and Limitations means fair use, fair dealing, and/or any other exception or limitation to Copyright and Similar Rights that applies to Your use of the Licensed Material.\nLicensed Material means the artistic or literary work, database, or other material to which the Licensor applied this Public License.\nLicensed Rights means the rights granted to You subject to the terms and conditions of this Public License, which are limited to all Copyright and Similar Rights that apply to Your use of the Licensed Material and that the Licensor has authority to license.\nLicensor means the individual(s) or entity(ies) granting rights under this Public License.\nShare means to provide material to the public by any means or process that requires permission under the Licensed Rights, such as reproduction, public display, public performance, distribution, dissemination, communication, or importation, and to make material available to the public including in ways that members of the public may access the material from a place and at a time individually chosen by them.\nSui Generis Database Rights means rights other than copyright resulting from Directive 96/9/EC of the European Parliament and of the Council of 11 March 1996 on the legal protection of databases, as amended and/or succeeded, as well as other essentially equivalent rights anywhere in the world.\nYou means the individual or entity exercising the Licensed Rights under this Public License. Your has a corresponding meaning.\n\nSection 2 – Scope.\n\nLicense grant.\n\nSubject to the terms and conditions of this Public License, the Licensor hereby grants You a worldwide, royalty-free, non-sublicensable, non-exclusive, irrevocable license to exercise the Licensed Rights in the Licensed Material to:\n\nreproduce and Share the Licensed Material, in whole or in part; and\nproduce, reproduce, and Share Adapted Material.\n\nExceptions and Limitations. For the avoidance of doubt, where Exceptions and Limitations apply to Your use, this Public License does not apply, and You do not need to comply with its terms and conditions.\nTerm. The term of this Public License is specified in Section 6(a).\nMedia and formats; technical modifications allowed. The Licensor authorizes You to exercise the Licensed Rights in all media and formats whether now known or hereafter created, and to make technical modifications necessary to do so. The Licensor waives and/or agrees not to assert any right or authority to forbid You from making technical modifications necessary to exercise the Licensed Rights, including technical modifications necessary to circumvent Effective Technological Measures. For purposes of this Public License, simply making modifications authorized by this Section 2(a)\n\nnever produces Adapted Material.\n\nDownstream recipients.\n\nOffer from the Licensor – Licensed Material. Every recipient of the Licensed Material automatically receives an offer from the Licensor to exercise the Licensed Rights under the terms and conditions of this Public License.\nNo downstream restrictions. You may not offer or impose any additional or different terms or conditions on, or apply any Effective Technological Measures to, the Licensed Material if doing so restricts exercise of the Licensed Rights by any recipient of the Licensed Material.\n\nNo endorsement. Nothing in this Public License constitutes or may be construed as permission to assert or imply that You are, or that Your use of the Licensed Material is, connected with, or sponsored, endorsed, or granted official status by, the Licensor or others designated to receive attribution as provided in Section 3(a)(1)(A)(i).\n\nOther rights.\n\nMoral rights, such as the right of integrity, are not licensed under this Public License, nor are publicity, privacy, and/or other similar personality rights; however, to the extent possible, the Licensor waives and/or agrees not to assert any such rights held by the Licensor to the limited extent necessary to allow You to exercise the Licensed Rights, but not otherwise.\nPatent and trademark rights are not licensed under this Public License.\nTo the extent possible, the Licensor waives any right to collect royalties from You for the exercise of the Licensed Rights, whether directly or through a collecting society under any voluntary or waivable statutory or compulsory licensing scheme. In all other cases the Licensor expressly reserves any right to collect such royalties.\n\n\nSection 3 – License Conditions.\nYour exercise of the Licensed Rights is expressly made subject to the following conditions.\n\nAttribution.\n\nIf You Share the Licensed Material (including in modified form), You must:\n\nretain the following if it is supplied by the Licensor with the Licensed Material:\n\nidentification of the creator(s) of the Licensed Material and any others designated to receive attribution, in any reasonable manner requested by the Licensor (including by pseudonym if designated);\na copyright notice;\na notice that refers to this Public License;\na notice that refers to the disclaimer of warranties;\na URI or hyperlink to the Licensed Material to the extent reasonably practicable;\n\nindicate if You modified the Licensed Material and retain an indication of any previous modifications; and\nindicate the Licensed Material is licensed under this Public License, and include the text of, or the URI or hyperlink to, this Public License.\n\nYou may satisfy the conditions in Section 3(a)(1) in any reasonable manner based on the medium, means, and context in which You Share the Licensed Material. For example, it may be reasonable to satisfy the conditions by providing a URI or hyperlink to a resource that includes the required information.\nIf requested by the Licensor, You must remove any of the information required by Section 3(a)(1)(A) to the extent reasonably practicable.\nIf You Share Adapted Material You produce, the Adapter’s License You apply must not prevent recipients of the Adapted Material from complying with this Public License.\n\n\nSection 4 – Sui Generis Database Rights.\nWhere the Licensed Rights include Sui Generis Database Rights that apply to Your use of the Licensed Material:\n\nfor the avoidance of doubt, Section 2(a)(1) grants You the right to extract, reuse, reproduce, and Share all or a substantial portion of the contents of the database;\nif You include all or a substantial portion of the database contents in a database in which You have Sui Generis Database Rights, then the database in which You have Sui Generis Database Rights (but not its individual contents) is Adapted Material; and\nYou must comply with the conditions in Section 3(a) if You Share all or a substantial portion of the contents of the database.\n\nFor the avoidance of doubt, this Section 4 supplements and does not replace Your obligations under this Public License where the Licensed Rights include other Copyright and Similar Rights.\nSection 5 – Disclaimer of Warranties and Limitation of Liability.\n\nUNLESS OTHERWISE SEPARATELY UNDERTAKEN BY THE LICENSOR, TO THE EXTENT POSSIBLE, THE LICENSOR OFFERS THE LICENSED MATERIAL AS-IS AND AS-AVAILABLE, AND MAKES NO REPRESENTATIONS OR WARRANTIES OF ANY KIND CONCERNING THE LICENSED MATERIAL, WHETHER EXPRESS, IMPLIED, STATUTORY, OR OTHER. THIS INCLUDES, WITHOUT LIMITATION, WARRANTIES OF TITLE, MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, NON-INFRINGEMENT, ABSENCE OF LATENT OR OTHER DEFECTS, ACCURACY, OR THE PRESENCE OR ABSENCE OF ERRORS, WHETHER OR NOT KNOWN OR DISCOVERABLE. WHERE DISCLAIMERS OF WARRANTIES ARE NOT ALLOWED IN FULL OR IN PART, THIS DISCLAIMER MAY NOT APPLY TO YOU.\nTO THE EXTENT POSSIBLE, IN NO EVENT WILL THE LICENSOR BE LIABLE TO YOU ON ANY LEGAL THEORY (INCLUDING, WITHOUT LIMITATION, NEGLIGENCE) OR OTHERWISE FOR ANY DIRECT, SPECIAL, INDIRECT, INCIDENTAL, CONSEQUENTIAL, PUNITIVE, EXEMPLARY, OR OTHER LOSSES, COSTS, EXPENSES, OR DAMAGES ARISING OUT OF THIS PUBLIC LICENSE OR USE OF THE LICENSED MATERIAL, EVEN IF THE LICENSOR HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH LOSSES, COSTS, EXPENSES, OR DAMAGES. WHERE A LIMITATION OF LIABILITY IS NOT ALLOWED IN FULL OR IN PART, THIS LIMITATION MAY NOT APPLY TO YOU.\nThe disclaimer of warranties and limitation of liability provided above shall be interpreted in a manner that, to the extent possible, most closely approximates an absolute disclaimer and waiver of all liability.\n\nSection 6 – Term and Termination.\n\nThis Public License applies for the term of the Copyright and Similar Rights licensed here. However, if You fail to comply with this Public License, then Your rights under this Public License terminate automatically.\nWhere Your right to use the Licensed Material has terminated under Section 6(a), it reinstates:\n\nautomatically as of the date the violation is cured, provided it is cured within 30 days of Your discovery of the violation; or\nupon express reinstatement by the Licensor.\n\nFor the avoidance of doubt, this Section 6(b) does not affect any right the Licensor may have to seek remedies for Your violations of this Public License.\nFor the avoidance of doubt, the Licensor may also offer the Licensed Material under separate terms or conditions or stop distributing the Licensed Material at any time; however, doing so will not terminate this Public License.\nSections 1, 5, 6, 7, and 8 survive termination of this Public License.\n\nSection 7 – Other Terms and Conditions.\n\nThe Licensor shall not be bound by any additional or different terms or conditions communicated by You unless expressly agreed.\nAny arrangements, understandings, or agreements regarding the Licensed Material not stated herein are separate from and independent of the terms and conditions of this Public License.\n\nSection 8 – Interpretation.\n\nFor the avoidance of doubt, this Public License does not, and shall not be interpreted to, reduce, limit, restrict, or impose conditions on any use of the Licensed Material that could lawfully be made without permission under this Public License.\nTo the extent possible, if any provision of this Public License is deemed unenforceable, it shall be automatically reformed to the minimum extent necessary to make it enforceable. If the provision cannot be reformed, it shall be severed from this Public License without affecting the enforceability of the remaining terms and conditions.\nNo term or condition of this Public License will be waived and no failure to comply consented to unless expressly agreed to by the Licensor.\nNothing in this Public License constitutes or may be interpreted as a limitation upon, or waiver of, any privileges and immunities that apply to the Licensor or You, including from the legal processes of any jurisdiction or authority.\n\n=======================================================================\nCreative Commons is not a party to its public licenses. Notwithstanding, Creative Commons may elect to apply one of its public licenses to material it publishes and in those instances will be considered the “Licensor.” The text of the Creative Commons public licenses is dedicated to the public domain under the CC0 Public Domain Dedication. Except for the limited purpose of indicating that material is shared under a Creative Commons public license or as otherwise permitted by the Creative Commons policies published at creativecommons.org/policies, Creative Commons does not authorize the use of the trademark “Creative Commons” or any other trademark or logo of Creative Commons without its prior written consent including, without limitation, in connection with any unauthorized modifications to any of its public licenses or any other arrangements, understandings, or agreements concerning use of licensed material. For the avoidance of doubt, this paragraph does not form part of the public licenses.\nCreative Commons may be contacted at creativecommons.org."
-  },
-  {
-    "objectID": "syllabus.html#vorläufiger-zeitplan",
-    "href": "syllabus.html#vorläufiger-zeitplan",
-    "title": "SYLLABUS",
-    "section": "Vorläufiger Zeitplan",
-    "text": "Vorläufiger Zeitplan"
-  },
-  {
-    "objectID": "syllabus.html#vorläufiger-zeitplan-1",
-    "href": "syllabus.html#vorläufiger-zeitplan-1",
-    "title": "SYLLABUS",
-    "section": "Vorläufiger Zeitplan",
-    "text": "Vorläufiger Zeitplan\n\n\n\n\n\n\n\n\nWoche\nDatum\nThema\n\n\n\n\n01\nDi, 14.04.2026, 10:00-12:00 c.t.\nEinführung\n\n\n02\nDi, 21.04.2026, 10:00-12:00 c.t.\nProjekte & Datenimport & Datensatzüberblick\n\n\n03\nDi, 28.04.2026, 10:00-12:00 c.t.\nData Cleaning & Data Wrangling\n\n\n04\nDi, 05.05.2026, 10:00-12:00 c.t.\nDataset Merging\n\n\n05\nDi, 12.05.2026, 10:00-12:00 c.t.\nDeskriptive Statistik – Kennwerte & Visualisierung\n\n\n06\nDi, 19.05.2026, 10:00-12:00 c.t.\nDeskriptive Statistik – Häufigkeitstabellen, Kreuztabellen\n\n\n07\nDi, 26.05.2026, 10:00-12:00 c.t.\nDeskriptive Statistik – Schöne Grafiken\n\n\n08\nDi, 02.06.2026, 10:00-12:00 c.t.\nDeskriptive Statistik – Korrelation & Einfache Lineare Regression\n\n\n09\nDi, 09.06.2026, 10:00-12:00 c.t.\nInferenzstatistik – Einfache & Multiple Lineare Regression\n\n\n10\nDi, 16.06.2026, 10:00-12:00 c.t. \nRegression Diagnostics\n\n\n11\nDi, 23.06.2026, 10:00-12:00 c.t. \nLogistische Regression\n\n\n12\nDi, 30.06.2026, 10:00-12:00 c.t.\n—\n\n\n13\nDi, 07.07.2026, 10:00-12:00 c.t.\n—\n\n\n14\nDi, 14.07.2026, 10:00-12:00 c.t.\n—"
-  },
-  {
-    "objectID": "syllabus.html#regelmäßige-und-aktive-teilnahme",
-    "href": "syllabus.html#regelmäßige-und-aktive-teilnahme",
-    "title": "SYLLABUS",
-    "section": "Regelmäßige und aktive Teilnahme",
-    "text": "Regelmäßige und aktive Teilnahme\nDie regelmäßige und aktive Teilnahme am Kurs ist Voraussetzung zum Ablegen einer Prüfungsleistung. Die Bescheinigung erfolgt auf Grundlage dreier Kriterien:\n\naktives Einbringen in den Sitzungen\nLektüre der Vorbereitungstexte bzw. anderweitige Bearbeitung zur Verfügung gestellter Vorbereitungsmaterialien.\nBearbeitung und fristgerechte Abgabe der wöchentlichen Übungsaufgaben, die eine systematische Wiederholung des Gelernten sicherstellen."
-  },
-  {
-    "objectID": "syllabus.html#prüfungsleistung",
-    "href": "syllabus.html#prüfungsleistung",
-    "title": "SYLLABUS",
-    "section": "Prüfungsleistung",
-    "text": "Prüfungsleistung\nDie Prüfungsleistung besteht aus einer reproduzierbaren Datenanalyse. Es kann entweder eine vollständige, empirische Hausarbeit im Umfang von 4.500 Wörtern verfasst werden, oder ein empirischer Analysebericht (“Data Analysis Report”) von circa 2.500 Wörtern das entspricht, inklusive Grafiken und Tabellen, etwa 10 Seiten in Arial 11 bei 1,5-zeiligem Zeilenabstand. Ein Data Analysis Report legt, im Vergleich zu einer Hausarbeit, den Fokus stärker auf die Datenanalyse und die Interpretation der (vorläufigen) Ergebnisse. Theoretische Grundlagen, Hinführung und Sachkenntnisse müssen hingegen weniger detailliert sein. Das Format ist vor allem zur Vorbereitung von Forschungspublikationen gängig. Einige politikwissenschaftliche Zeitschriften bieten mit der Rubrik “Research Note” eine ähnliche Rubrik an - wobei Einreichungen dieses Typs umfangreicher sind, als die in diesem Kurs zu erbringende Prüfungsleistung.\n\n\n\n\n\n\nImportantDeadline\n\n\n\nDie Abgabe der Prüfungsleistung erfolgt, sofern nicht individuell anders mit der Dozentin abgesprochen, bis zum 30.08.2026."
-  },
-  {
-    "objectID": "syllabus.html#empfehlungen-und-weiterführendes-material",
-    "href": "syllabus.html#empfehlungen-und-weiterführendes-material",
-    "title": "SYLLABUS",
-    "section": "Empfehlungen und weiterführendes Material",
-    "text": "Empfehlungen und weiterführendes Material\nZur Anwendung in R und R-Studio\n\nDiehl, Yannick, und Daniel Moosdorf. 2022. „R Workshop - Sozialwissenschaften“. E-Book. Mai 14. https://rloesung.github.io/RWorkshop/. Gut zum Auffrischen von bspw. tidyverse-Paketen und -Befehlen.\nMasch, Lena, Kimon Kieslich, Katharina Huseljić, Marco Wähner, und Johann-Sebastian Neef. 2021. R - Ein Einführungsskript. HHU. Ein tolles begleitendes Skript zur Einführung in die Datenanlyse mit R und R-Studio.\nStockemer, Daniel, und Jean-Nicolas Bordeleau. 2023. Quantitative Methods for the Social Sciences: A Practical Introduction with Examples in R. Second edition. Springer Texts in Political Science and International Relations. Springer International Publishing AG. https://doi.org/10.1007/978-3-031-34583-8. Kapitel 6 bis 9 bieten Möglichkeit zur Vertiefung inferenzstatistischer Verfahren in R..\nWagemann, Claudius, Achim Goerres, und Markus B. Siewert, Hrsg. 2020. Handbuch Methoden der Politikwissenschaft. 1st ed. 2020. Springer eBook Collection. Springer Fachmedien Wiesbaden. https://doi.org/10.1007/978-3-658-16936-7. Eines meiner Lieblingsreferenzwerke, das ich regelmäßig selbst aufschlage. Die Kapitel zu Regressionen und Mehrebenenmodellen bieten einen präzisen, fundierten und vollständigen Überblick.\nWalther, Björn. 2026. R Tutorials. https://bjoernwalther.com/tutorials-fuer-r/. Eine tolle Webseite mit Tutorials in form von R-Skripten zu unterschiedlichen Operationen der Datenanalyse mit dazugehörigen YouTube-Videos.\nWickham, Hadley, Mine Çetinkaya-Rundel, und Garrett Grolemund. 2024. R für Data Science: Daten Importieren, bereinigen, umformen und visualisieren. 2. aktualisierte und Erweiterte Auflage. Übersetzt von Frank Langenau. O’Reilly. Ein tolles Werk zum Arbeiten in R, herausgegeben von einem der Erfinder des Tidyverse. Frei zugänglich als E-Book.)\nWickham, Hadley, Danielle Navarro, und Thomas Lin Pedersen. 2025. „ggplot2: Elegant Graphics for Data Analysis (3e)“. On-line-book. https://ggplot2-book.org/. Spezifischer zum ggplot2-Paket und der Grammar of Graphics.\n\nZu Statistik\n\n? Behnke, Joachim, und Nathalie Behnke. 2006. Grundlagen der statistischen Datenanalyse: eine Einführung für Politikwissenschaftler. Grundwissen Politik 41. VS Verlag für Sozialwissenschaften. Ein klassisches Statistik-Lehrbuch für die Basics.\nBühner, Markus. 2017. Statistik für Psychologen und Sozialwissenschaftler. 2., Aktualisierte und Erweiterte Auflage. With Pearson Studium und Matthias Ziegler. ps Psychologie. Pearson. Ein etwas ausführlicheres Statistik-Lehrbuch. In dieser zweiten, überarbeiteten Auflage mit Anwendungsfällen nicht nur in SPSS, sondern auch in R.\n? Gehring, Uwe W., und Cornelia Weins. 2010. Grundkurs Statistik für Politologen und Soziologen. VS Verlag für Sozialwissenschaften. https://doi.org/10.1007/978-3-531-91879-2. Und noch eins.\nField, Andy, und James Iles. 2022. An Adventure in Statistics: The Reality Enigma. Second edition. SAGE Edge. SAGE. Ein kreatives lehrbuch, das Statistik anhand einer SciFi-Geschichte quasi nebenbei erklärt.\nJesussek, Mathias, und Hannah Volk-Jesussek. 2024. Statistik leichtgemacht: Eine verständliche Einführung. 4. Aufl. Graz. Eine tatsächlich sehr verständliche Einführung - es sollte nur die DATAtab-Werbung ignoriert werden ;).\n? Niederer, Rudolf, Fabian Heimsch, und Peter Zöfel. 2018. Statistik im Klartext: für Psychologen, Wirtschafts- und Sozialwissenschaftler. Ein klassisches Lehrbuch für die Grundlagen der Inferenzstatistik).\nPaul, Melanie. 2024. Schließende Statistik einfach erklärt! von Null auf Statistik-Profi mit Schritt-für-Schritt-Anleitungen. Melanie Paul. Ein originelles Lehrbuch für die Grundlagen der Inferenzstatistik - für alle, die Glitzer und Pink mögen.).\nPlaning, Patrick. 2022. Statistik Grundlagen: Das interaktive Lehrbuch mit über 150 YouTube-Videos rund um die Burgerkette FIVE PROFS. Illustriert von Ilena Becic. With Ilena Becic. Planing Publishing. https://statistikgrundlagen.de/ebook/front-matter/introduction-2/. Ein tolles E-Book für’s schnelle Nachschlagen zu Visualisierungen, deskriptiver Statistik und Inferenzstatistik, gespickt mit Youtube-Videos zur Erklärung.\nWolf, Christof, und Henning Best, Hrsg. 2010. Handbuch der sozialwissenschaftlichen Datenanalyse. 1. Aufl. VS Verlag für Sozialwissenschaften. Eine sehr hilfreiche Übersicht zu unterschiedlichen Bereichen der quantitativen Datensanalyse, in dem wunderbar einzelne Kapitel zur punktuellen Vertiefung gelesen werden können."
-  },
-  {
-    "objectID": "uebungen/uebung_vorlage.html",
-    "href": "uebungen/uebung_vorlage.html",
-    "title": "Übung XX: [Titel der Übung]",
-    "section": "",
-    "text": "Setup\n\n# Pakete laden\nlibrary(tidyverse)\nlibrary(rio)\nlibrary(janitor)\nlibrary(labelled)\nlibrary(summarytools)\n\n\n\nAufgabe 1: [Titel]\n[Kurze Beschreibung was in dieser Aufgabe gemacht wird.]\n\n# Code hier\n\n[Kurze Interpretation / Antwort in eigenen Worten.]\n\n\nAufgabe 2: [Titel]\n[Kurze Beschreibung was in dieser Aufgabe gemacht wird.]\n\n# Code hier\n\n[Kurze Interpretation / Antwort in eigenen Worten.]\n\n\nAufgabe 3: [Titel]\n[Kurze Beschreibung was in dieser Aufgabe gemacht wird.]\n\n# Code hier\n\n[Kurze Interpretation / Antwort in eigenen Worten.]"
-  },
-  {
-    "objectID": "slides/sitzung_04.html#willkommen-zurück",
-    "href": "slides/sitzung_04.html#willkommen-zurück",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "Willkommen zurück!",
-    "text": "Willkommen zurück!"
-  },
-  {
-    "objectID": "slides/sitzung_04.html#datenanalyse-workflow",
-    "href": "slides/sitzung_04.html#datenanalyse-workflow",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "Datenanalyse-Workflow",
-    "text": "Datenanalyse-Workflow"
-  },
-  {
-    "objectID": "slides/sitzung_04.html#pakete",
-    "href": "slides/sitzung_04.html#pakete",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "Pakete",
-    "text": "Pakete\n\n\n\nEinige Funktionen sind bereits in base R enthalten\nFür andere müssen zusätzliche Pakete geladen werden\nPakete sind Bündel unterschiedlicher Funktionen\nBase R reicht oft nur für sehr basale Operationen und Visualisierungen, für alles andere werden Pakete benötigt"
-  },
-  {
-    "objectID": "slides/sitzung_04.html#summarytools-paket",
-    "href": "slides/sitzung_04.html#summarytools-paket",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "summarytools-Paket",
-    "text": "summarytools-Paket\n\n\n\n\n\n\n\n\nFunktion\nBeschreibung\nGeeignet für\n\n\n\n\ndfSummary()\nÜbersicht über alle Variablen (Klasse, fehlende Werte, Verteilungen, etc.)\nSchnelle Gesamtübersicht eines Datensatzes\n\n\nfreq()\nHäufigkeitstabellen\nEinfache Verteilungen kategorialer Variablen\n\n\ndescr()\nDeskriptive Statistik (Mittelwert, Median, SD, etc.)\nBasisanalyse numerischer Variablen\n\n\nctable()\nKreuztabellen mit Prozenten und optionalen Tests (z. B. Chi²)\nZusammenhang zwischen zweikategorialen Variablen\n\n\n\n\nbtw_2025_ergebnisse %&gt;%\n  summarytools::dfSummary(na.col = FALSE) %&gt;% # missings-Spalte ausblenden\n  summarytools::view(file = \"./data/btw_2025_ergebnisse_uebersicht.html\") # speichern"
-  },
-  {
-    "objectID": "slides/sitzung_04.html#pipes",
-    "href": "slides/sitzung_04.html#pipes",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "Pipes",
-    "text": "Pipes\n\nZwei Optionen: Base R pipe: |&gt; ODER magrittr pipe: %&gt;%\nDie Default-Pipe kann über Global Options eingestellt werden\nZum Einfügen: eintippen oder Strg + Shift + M\nStilregeln:\n\nImmer Leerzeichen vor der Pipe\nImmer neue Zeile danach\n\n\n\nbtw_2025_ergebnisse %&gt;%\n  dplyr::filter(jahr == 2025) %&gt;%\n  dplyr::select(partei, zweitstimmen)"
-  },
-  {
-    "objectID": "slides/sitzung_04.html#datentransformation-mit-dplyr",
-    "href": "slides/sitzung_04.html#datentransformation-mit-dplyr",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "Datentransformation mit dplyr",
-    "text": "Datentransformation mit dplyr\n\n\n\n\n\n\n\n\nBefehl\nBeschreibung\nBsp\n\n\n\n\nrename()\nSpaltennamen ändern\ndf %&gt;% rename(neu = alt)\n\n\nselect()\nVariablen auswählen\ndf %&gt;% select(var1, var2)\n\n\nslice()\nZeilen nach Position auswählen\ndf %&gt;% slice(1:10)\n\n\nfilter()\nZeilen nach Werten filtern\ndf %&gt;% filter(jahr == 2025)\n\n\narrange()\nZeilen sortieren\ndf %&gt;% arrange(desc(stimmen))\n\n\nrelocate()\nSpaltenreihenfolge ändern\ndf %&gt;% relocate(var1, .before = var2)"
-  },
-  {
-    "objectID": "slides/sitzung_04.html#datentransformation-mit-mit-dplyr",
-    "href": "slides/sitzung_04.html#datentransformation-mit-mit-dplyr",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "Datentransformation mit mit dplyr",
-    "text": "Datentransformation mit mit dplyr\n\n\n\n\n\n\n\n\nBefehl\nBeschreibung\nBsp\n\n\n\n\nmutate()\nNeue Variablen hinzufügen\ndf %&gt;% mutate(anteil = stimmen / sum(stimmen))\n\n\nsummarise()\nMehrere Werte zusammenfassen\ndf %&gt;% summarise(mean(stimmen))\n\n\ncount()\nHäufigkeiten zählen\ndf %&gt;% count(partei)\n\n\ngroup_by()\nOperationen gruppenweise ausführen\ndf %&gt;% group_by(partei) %&gt;% summarise(mean(stimmen))"
-  },
-  {
-    "objectID": "slides/sitzung_04.html#datentransformation-mit-mit-tidyr",
-    "href": "slides/sitzung_04.html#datentransformation-mit-mit-tidyr",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "Datentransformation mit mit tidyr",
-    "text": "Datentransformation mit mit tidyr\n\n\n\n\n\n\n\n\nBefehl\nBeschreibung\nBsp\n\n\n\n\npivot_longer()\nBreites Format in langes umwandeln\ndf %&gt;% pivot_longer(cols = -id, names_to = \"var\", values_to = \"val\")\n\n\npivot_wider()\nLanges Format in breites umwandeln\ndf %&gt;% pivot_wider(names_from = var, values_from = val)\n\n\ndrop_na()\nZeilen mit fehlenden Werten entfernen\ndf %&gt;% drop_na(var1)"
-  },
-  {
-    "objectID": "slides/sitzung_04.html#änderungen-überprüfen---3-optionen",
-    "href": "slides/sitzung_04.html#änderungen-überprüfen---3-optionen",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "Änderungen überprüfen - 3 Optionen",
-    "text": "Änderungen überprüfen - 3 Optionen\n1. In der Console ansehen\n\nSinnvoll zum Testen, kann aber schnell unübersichtlich werden bei großen Datensätzen\nÄnderungen werden nirgends gespeichert\n\n\n\nbtw_2025_ergebnisse %&gt;%\n  dplyr::select(gebietsart, gebietsnummer, gruppenname, stimme, prozent, gewahlt) %&gt;%\n  head(10)\n\n   gebietsart gebietsnummer     gruppenname stimme   prozent gewahlt\n1        Bund            99 Wahlberechtigte     NA        NA        \n2        Bund            99        Wählende     NA 82.512200        \n3        Bund            99       Ungültige      1  0.847738        \n4        Bund            99       Ungültige      2  0.559080        \n5        Bund            99         Gültige      1 99.152262        \n6        Bund            99         Gültige      2 99.440920        \n7        Bund            99             SPD      1 20.071417        \n8        Bund            99             SPD      2 16.413301        \n9        Bund            99             CDU      1 25.460226        \n10       Bund            99             CDU      2 22.550824"
-  },
-  {
-    "objectID": "slides/sitzung_04.html#long-vs.-wide",
-    "href": "slides/sitzung_04.html#long-vs.-wide",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "Long vs. Wide",
-    "text": "Long vs. Wide\nLong-Format ist sinnvoll für:\n\nggplot2 – erwartet fast immer Long\ngroup_by() + summarise()\nRegressionsmodelle\n\nWide-Format ist sinnvoll für:\n\nKorrelationsmatrizen (eine Zeile pro Beobachtungseinheit)\nVergleichstabellen (Erst- vs. Zweitstimme nebeneinander)\nExport nach Excel"
-  },
-  {
-    "objectID": "slides/sitzung_04.html#minute-cards",
-    "href": "slides/sitzung_04.html#minute-cards",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "Minute Cards",
-    "text": "Minute Cards\nBitte füllt die Minute Cards für die heutige Sitzung aus. Das sollt enicht länger als 3 Minuten dauern. Vielen Dank für eure Mitarbeit!"
-  },
-  {
-    "objectID": "slides/sitzung_04.html#änderungen-überprüfen---3-optionen-1",
-    "href": "slides/sitzung_04.html#änderungen-überprüfen---3-optionen-1",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "Änderungen überprüfen - 3 Optionen",
-    "text": "Änderungen überprüfen - 3 Optionen\n2. “Nur kurz schauen”\n\nDaten werden in einem neuen Tab geöffnet.\nUmgeht das Unübersichtlichkeitsproblem.\nNervt aber ggf. später, wenn das Skript von oben bis unten ausgeführt wird (“Source”-button).\n\n\n\nbtw_2025_ergebnisse %&gt;%\n  dplyr::filter(gebietsart != \"Einzelbewerber/Wählergruppe\") %&gt;%\n  View()"
-  },
-  {
-    "objectID": "slides/sitzung_04.html#änderungen-überprüfen---3-optionen-2",
-    "href": "slides/sitzung_04.html#änderungen-überprüfen---3-optionen-2",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "Änderungen überprüfen - 3 Optionen",
-    "text": "Änderungen überprüfen - 3 Optionen\n3. Speichern oder Überschreiben\n\nviele unterschiedliche Objekte zu speichern kann unübersichtlich werden\naber einmal überschriebene Daten schwieriger zurückzuholen\n\n\n\nbtw_2025_ergebnisse_be &lt;-  btw_2025_ergebnisse %&gt;%\n  dplyr::filter(gebietsname == \"Berlin\")\n\n\nbtw_2025_ergebnisse &lt;- btw_2025_ergebnisse %&gt;%\n  dplyr::rename(\n    uberg_gebietsart = ueg_gebietsart, # neuer_name = alter_name\n    uberg_gebietsnr = ueg_gebietsnummer)"
-  },
-  {
-    "objectID": "slides/sitzung_03_data-wrangling.html#willkommen-zurück",
-    "href": "slides/sitzung_03_data-wrangling.html#willkommen-zurück",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "Willkommen zurück!",
-    "text": "Willkommen zurück!"
-  },
-  {
-    "objectID": "slides/sitzung_03_data-wrangling.html#datenanalyse-workflow",
-    "href": "slides/sitzung_03_data-wrangling.html#datenanalyse-workflow",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "Datenanalyse-Workflow",
-    "text": "Datenanalyse-Workflow"
-  },
-  {
-    "objectID": "slides/sitzung_03_data-wrangling.html#pakete",
-    "href": "slides/sitzung_03_data-wrangling.html#pakete",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "Pakete",
-    "text": "Pakete\n\n\n\nEinige Funktionen sind bereits in base R enthalten\nFür andere müssen zusätzliche Pakete geladen werden\nPakete sind Bündel unterschiedlicher Funktionen\nBase R reicht oft nur für sehr basale Operationen und Visualisierungen, für alles andere werden Pakete benötigt"
-  },
-  {
-    "objectID": "slides/sitzung_03_data-wrangling.html#summarytools-paket",
-    "href": "slides/sitzung_03_data-wrangling.html#summarytools-paket",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "summarytools-Paket",
-    "text": "summarytools-Paket\n\n\n\n\n\n\n\n\nFunktion\nBeschreibung\nGeeignet für\n\n\n\n\ndfSummary()\nÜbersicht über alle Variablen (Klasse, fehlende Werte, Verteilungen, etc.)\nSchnelle Gesamtübersicht eines Datensatzes\n\n\nfreq()\nHäufigkeitstabellen\nEinfache Verteilungen kategorialer Variablen\n\n\ndescr()\nDeskriptive Statistik (Mittelwert, Median, SD, etc.)\nBasisanalyse numerischer Variablen\n\n\nctable()\nKreuztabellen mit Prozenten und optionalen Tests (z. B. Chi²)\nZusammenhang zwischen zweikategorialen Variablen\n\n\n\n\nbtw_2025_ergebnisse %&gt;%\n  summarytools::dfSummary(na.col = FALSE) %&gt;% # missings-Spalte ausblenden\n  summarytools::view(file = \"./data/btw_2025_ergebnisse_uebersicht.html\") # speichern"
-  },
-  {
-    "objectID": "slides/sitzung_03_data-wrangling.html#pipes",
-    "href": "slides/sitzung_03_data-wrangling.html#pipes",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "Pipes",
-    "text": "Pipes\n\nZwei Optionen: Base R pipe: |&gt; ODER magrittr pipe: %&gt;%\nDie Default-Pipe kann über Global Options eingestellt werden\nZum Einfügen: eintippen oder Strg + Shift + M\nStilregeln:\n\nImmer Leerzeichen vor der Pipe\nImmer neue Zeile danach\n\n\n\nbtw_2025_ergebnisse %&gt;%\n  dplyr::filter(jahr == 2025) %&gt;%\n  dplyr::select(partei, zweitstimmen)"
-  },
-  {
-    "objectID": "slides/sitzung_03_data-wrangling.html#datentransformation-mit-dplyr",
-    "href": "slides/sitzung_03_data-wrangling.html#datentransformation-mit-dplyr",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "Datentransformation mit dplyr",
-    "text": "Datentransformation mit dplyr\n\n\n\n\n\n\n\n\nBefehl\nBeschreibung\nBsp\n\n\n\n\nrename()\nSpaltennamen ändern\ndf %&gt;% rename(neu = alt)\n\n\nselect()\nVariablen auswählen\ndf %&gt;% select(var1, var2)\n\n\nslice()\nZeilen nach Position auswählen\ndf %&gt;% slice(1:10)\n\n\nfilter()\nZeilen nach Werten filtern\ndf %&gt;% filter(jahr == 2025)\n\n\nrelocate()\nSpaltenreihenfolge ändern\ndf %&gt;% relocate(var1, .before = var2)"
-  },
-  {
-    "objectID": "slides/sitzung_03_data-wrangling.html#datentransformation-mit-mit-dplyr",
-    "href": "slides/sitzung_03_data-wrangling.html#datentransformation-mit-mit-dplyr",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "Datentransformation mit mit dplyr",
-    "text": "Datentransformation mit mit dplyr\n\n\n\n\n\n\n\n\nBefehl\nBeschreibung\nBsp\n\n\n\n\nmutate()\nNeue Variablen hinzufügen\ndf %&gt;% mutate(anteil = stimmen / sum(stimmen))\n\n\nsummarise()\nMehrere Werte zusammenfassen\ndf %&gt;% summarise(mean(stimmen))\n\n\ncount()\nHäufigkeiten zählen\ndf %&gt;% count(partei)\n\n\ngroup_by()\nOperationen gruppenweise ausführen\ndf %&gt;% group_by(partei) %&gt;% summarise(mean(stimmen))"
-  },
-  {
-    "objectID": "slides/sitzung_03_data-wrangling.html#datentransformation-mit-mit-tidyr",
-    "href": "slides/sitzung_03_data-wrangling.html#datentransformation-mit-mit-tidyr",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "Datentransformation mit mit tidyr",
-    "text": "Datentransformation mit mit tidyr\n\n\n\n\n\n\n\n\nBefehl\nBeschreibung\nBsp\n\n\n\n\npivot_longer()\nBreites Format in langes umwandeln\ndf %&gt;% pivot_longer(cols = -id, names_to = \"var\", values_to = \"val\")\n\n\npivot_wider()\nLanges Format in breites umwandeln\ndf %&gt;% pivot_wider(names_from = var, values_from = val)\n\n\ndrop_na()\nZeilen mit fehlenden Werten entfernen\ndf %&gt;% drop_na(var1)"
-  },
-  {
-    "objectID": "slides/sitzung_03_data-wrangling.html#änderungen-überprüfen---3-optionen",
-    "href": "slides/sitzung_03_data-wrangling.html#änderungen-überprüfen---3-optionen",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "Änderungen überprüfen - 3 Optionen",
-    "text": "Änderungen überprüfen - 3 Optionen\n1. In der Console ansehen\n\nSinnvoll zum Testen, kann aber schnell unübersichtlich werden bei großen Datensätzen\nÄnderungen werden nirgends gespeichert\n\n\n\nbtw_2025_ergebnisse %&gt;%\n  dplyr::select(gebietsart, gebietsnummer, gruppenname, stimme, prozent, gewahlt) %&gt;%\n  head(10)\n\n   gebietsart gebietsnummer     gruppenname stimme   prozent gewahlt\n1        Bund            99 Wahlberechtigte     NA        NA        \n2        Bund            99        Wählende     NA 82.512200        \n3        Bund            99       Ungültige      1  0.847738        \n4        Bund            99       Ungültige      2  0.559080        \n5        Bund            99         Gültige      1 99.152262        \n6        Bund            99         Gültige      2 99.440920        \n7        Bund            99             SPD      1 20.071417        \n8        Bund            99             SPD      2 16.413301        \n9        Bund            99             CDU      1 25.460226        \n10       Bund            99             CDU      2 22.550824"
-  },
-  {
-    "objectID": "slides/sitzung_03_data-wrangling.html#änderungen-überprüfen---3-optionen-1",
-    "href": "slides/sitzung_03_data-wrangling.html#änderungen-überprüfen---3-optionen-1",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "Änderungen überprüfen - 3 Optionen",
-    "text": "Änderungen überprüfen - 3 Optionen\n2. “Nur kurz schauen”\n\nDaten werden in einem neuen Tab geöffnet.\nUmgeht das Unübersichtlichkeitsproblem.\nNervt aber ggf. später, wenn das Skript von oben bis unten ausgeführt wird (“Source”-button).\n\n\n\nbtw_2025_ergebnisse %&gt;%\n  dplyr::filter(gebietsart != \"Einzelbewerber/Wählergruppe\") %&gt;%\n  View()"
-  },
-  {
-    "objectID": "slides/sitzung_03_data-wrangling.html#änderungen-überprüfen---3-optionen-2",
-    "href": "slides/sitzung_03_data-wrangling.html#änderungen-überprüfen---3-optionen-2",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "Änderungen überprüfen - 3 Optionen",
-    "text": "Änderungen überprüfen - 3 Optionen\n3. Speichern oder Überschreiben\n\nviele unterschiedliche Objekte zu speichern kann unübersichtlich werden\naber einmal überschriebene Daten schwieriger zurückzuholen\n\n\n\nbtw_2025_ergebnisse_be &lt;-  btw_2025_ergebnisse %&gt;%\n  dplyr::filter(gebietsname == \"Berlin\")\n\n\nbtw_2025_ergebnisse &lt;- btw_2025_ergebnisse %&gt;%\n  dplyr::rename(\n    uberg_gebietsart = ueg_gebietsart, # neuer_name = alter_name\n    uberg_gebietsnr = ueg_gebietsnummer)"
-  },
-  {
-    "objectID": "slides/sitzung_03_data-wrangling.html#long-vs.-wide",
-    "href": "slides/sitzung_03_data-wrangling.html#long-vs.-wide",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "Long vs. Wide",
-    "text": "Long vs. Wide\nLong-Format ist sinnvoll für:\n\nggplot2 – erwartet fast immer Long\ngroup_by() + summarise()\nRegressionsmodelle\n\nWide-Format ist sinnvoll für:\n\nKorrelationsmatrizen (eine Zeile pro Beobachtungseinheit)\nVergleichstabellen (Erst- vs. Zweitstimme nebeneinander)\nExport nach Excel"
-  },
-  {
-    "objectID": "slides/sitzung_03_data-wrangling.html#minute-cards",
-    "href": "slides/sitzung_03_data-wrangling.html#minute-cards",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "Minute Cards",
-    "text": "Minute Cards\nBitte füllt die Minute Cards für die heutige Sitzung aus. Das sollt enicht länger als 3 Minuten dauern. Vielen Dank für eure Mitarbeit!"
   },
   {
     "objectID": "slides/sitzung_01_einfuehrung.html#wer-bin-ich",
@@ -497,122 +441,129 @@
     "text": "R-Studio öffnen\nWenn du R-Studio das erste Mal öffnest, sieht es in etwa so aus:"
   },
   {
-    "objectID": "slides/sitzung_04.html#variablen-skalenniveaus",
-    "href": "slides/sitzung_04.html#variablen-skalenniveaus",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "Variablen & Skalenniveaus",
-    "text": "Variablen & Skalenniveaus\nDie abhängige Variable (AV) ist diejenige Variable, deren Veränderung im Zusammenhang mit einer oder mehrerer unabhängiger Variablen (UV) gemessen wird.\nBsp.:\n\nKonzentrationsfähigkeit der Studierenden  Temperatur im Raum\nLeistung des Dozenten  Anwesenheit der Studierenden im Seminar?\nHomeoffice  Arbeitsmotivation der Mitarbeiter*innen"
-  },
-  {
-    "objectID": "slides/sitzung_04.html#variablen-und-skalenniveaus",
-    "href": "slides/sitzung_04.html#variablen-und-skalenniveaus",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "Variablen und Skalenniveaus",
-    "text": "Variablen und Skalenniveaus\n\n\n\n\n\n\n\n\n\n\nSkalenniveau\nVariablentyp\nMögliche Aussagen\nBeispiel(e)\nOperationen\n\n\n\n\nNominal\nKategorial\nGleichheit / Verschiedenheit\nDiagnosen, Religion\n\\(=, \\neq\\)\n\n\nOrdinal\nKategorial\nRangfolge\nSchulabschlüsse\n\\(=, \\neq, &lt;, &gt;\\)\n\n\nIntervall\nMetrisch\nAbstände\nTemperatur (°C), IQ\n\\(+, -\\)\n\n\nVerhältnis\nMetrisch\nVerhältnisse\nEinkommen, Alter\n\\(*, /\\)"
-  },
-  {
-    "objectID": "slides/sitzung_02.html#willkommen-zurück",
-    "href": "slides/sitzung_02.html#willkommen-zurück",
+    "objectID": "slides/sitzung_03_data-wrangling.html#willkommen-zurück",
+    "href": "slides/sitzung_03_data-wrangling.html#willkommen-zurück",
     "title": "Quantitative Methoden mit R & R-Studio",
     "section": "Willkommen zurück!",
     "text": "Willkommen zurück!"
   },
   {
-    "objectID": "slides/sitzung_02.html#die-r-studio-arbeitsumgebung",
-    "href": "slides/sitzung_02.html#die-r-studio-arbeitsumgebung",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "Die R-Studio-Arbeitsumgebung",
-    "text": "Die R-Studio-Arbeitsumgebung\nBisher sieht es bei euch vermutlich etwa so aus:"
-  },
-  {
-    "objectID": "slides/sitzung_02.html#die-r-studio-arbeitsumgebung-1",
-    "href": "slides/sitzung_02.html#die-r-studio-arbeitsumgebung-1",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "Die R-Studio-Arbeitsumgebung",
-    "text": "Die R-Studio-Arbeitsumgebung\nDa wir in R-Studio aber immer mit Skripten arbeiten, sieht die Oberfläche typischerweise so aus:"
-  },
-  {
-    "objectID": "slides/sitzung_02.html#einstellungen",
-    "href": "slides/sitzung_02.html#einstellungen",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "Einstellungen",
-    "text": "Einstellungen\n\n\n\nTools → Global Options\nBitte die Optionen zum Workspace deaktivieren: Häkchen nicht setzen und im drop-down-Menü “never” wählen\nmehr Infos zu den Einstellungen im User Guide"
-  },
-  {
-    "objectID": "slides/sitzung_02.html#ordner-und-pfade",
-    "href": "slides/sitzung_02.html#ordner-und-pfade",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "Ordner und Pfade",
-    "text": "Ordner und Pfade\n\n\n\nWir müssen R sagen, wo es Datensätze einlesen und Ergebnisse ablegen soll\nDazu ist es sinnvoll in Projekten zu arbeiten (1 Projekt pro Kurs/ Hausarbeit/ Forschungsprojekt)\nSo müssen nicht immer lange, nicht reproduzierbare absolute Pfade angegeben werden\nUnd es muss nicht immer explizit der Arbeitsordner mit setwd(\"Pfad-zum-Ordner\") festgelegt werden\nEin Projekt legt einen Ordner als Standard-Arbeitsordner fest\nVon dort aus können dann unterschiedliche Unterordner mit relativen Pfaden angesteuert werden:\n\n\ndata_1 &lt;- rio::import(\"./data/dataset_1.csv\")\n\n\nR_Kurs/\n├── R_Kurs.Rproj\n├── data/\n│   └── bspdaten.csv\n├── slides/\n│   └── sitzung_01.pdf\n├── skripte/\n│   └── 02_analyse.R\n├── uebungen/\n│   └── uebung_01.R\n└── output/\n    ├── grafik_01.png\n    └── tabelle_01.docx\n\n\n\n\n\n\nImportant\n\n\nNiemals ein Leerzeichen in Ordner- oder Dateinamen!"
-  },
-  {
-    "objectID": "slides/sitzung_02.html#die-wichtigsten-keyboard-shortcuts",
-    "href": "slides/sitzung_02.html#die-wichtigsten-keyboard-shortcuts",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "Die wichtigsten Keyboard-Shortcuts",
-    "text": "Die wichtigsten Keyboard-Shortcuts\n\nStr + Enter führt Code aus. Dafür:\n\nentweder den auszuführenden Code markieren\noder den Cursor irgendwo im auszuführenden Code-Chunk platzieren\n\nStr + Shift + S führt das gesamte Skript aus.\nStr + Shift + M fügt die Pipe (%&gt;%) ein\nStr + Shift + L räumt die Console auf"
-  },
-  {
-    "objectID": "slides/sitzung_02.html#guter-stil-im-skript",
-    "href": "slides/sitzung_02.html#guter-stil-im-skript",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "Guter Stil im Skript",
-    "text": "Guter Stil im Skript\n\n\n\nerkläre, was du tust in # Kommentaren\nbenne Objekte ausschließlich mit Kleinbuchstaben und trenne Wörter mit _\ni_use_snake_case \notherPeopleUseCamelCase \nsome.people.use.periods \nAnd_aFew.People_RENOUNCEconvention\nunterteile dein Skript in Sektionen\n# Load data --------------------------------------\n\n# Plot data --------------------------------------\n\n\n\n\n\n\n\n\n\nNote\n\n\nMehr dazu\nim Tidyverse-Styleguide und im eBook R For Data Science."
-  },
-  {
-    "objectID": "slides/sitzung_02.html#guter-stil-im-code",
-    "href": "slides/sitzung_02.html#guter-stil-im-code",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "Guter Stil im Code",
-    "text": "Guter Stil im Code\n\nLeerzeichen vor Operatoren (außer ^), vor %&gt;% und vor + in ggplot2-Befehlen\nkeine Leerzeichen vor oder nach Klammern\nneue Argumente/ Befehle kommen in eine neue Zeile\nPipes sollten grundsätzlich das letzte in einer Codezeile sein\neine Pipe sollte nicht länger als 10-15 Zeilen sein"
-  },
-  {
-    "objectID": "slides/sitzung_02.html#basic-r-syntax",
-    "href": "slides/sitzung_02.html#basic-r-syntax",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "Basic R-Syntax",
-    "text": "Basic R-Syntax\n\n# für Kommentare, also Beschreibungen\n&lt;- um etwas einem R-Objekt zuzuweisen\n[] um Positionen anzugeben\nDurch Drücken der Tab-Taste erhältst du Vorschläge zur Vervollständigung\n%&gt;% bzw. Str. + Shift + M um mehrere Befehle mittels Pipe zu verketten\nAufbau von Befehlen: command_name(argument1 = value1, argument2 = value2, ...)"
-  },
-  {
-    "objectID": "slides/sitzung_02.html#funktionen",
-    "href": "slides/sitzung_02.html#funktionen",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "Funktionen",
-    "text": "Funktionen\nfunction_name(argument1 = value1, argument2 = value2, ...)"
-  },
-  {
-    "objectID": "slides/sitzung_02.html#nützliche-befehle",
-    "href": "slides/sitzung_02.html#nützliche-befehle",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "Nützliche Befehle",
-    "text": "Nützliche Befehle\n\nls() zeigt alle Objekte\nrm() für “remove” löscht ein Objekt\n\n\n\n\n\n\n\n\nBefehle ausführen\n\n\nStr + Enter führt den Befehl aus. Dafür:\n\nentweder den auszuführenden Code markieren\noder den Cursor irgendwo im auszuführenden Code-Chunk platzieren\n\n\n\n\n\n\n\n\n\n\n\n\nSkript ausführen\n\n\nStr + Shift + S führt das gesamte Skript aus"
-  },
-  {
-    "objectID": "slides/sitzung_02.html#wo-bekomme-ich-hilfe",
-    "href": "slides/sitzung_02.html#wo-bekomme-ich-hilfe",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "Wo bekomme ich Hilfe?",
-    "text": "Wo bekomme ich Hilfe?\n\n\n\nDirekt in R-Studio\n\n?befehl(), z.B. ?mean()\n?paket, z.B. ?dplyr\n??\"stichwort\", z.B. ??\"mean\"\n\nVon Kommiliton*innen\nVon mir während der Sitzung und/ oder in Sprechstunden"
-  },
-  {
-    "objectID": "slides/sitzung_02.html#wo-bekomme-ich-hilfe-1",
-    "href": "slides/sitzung_02.html#wo-bekomme-ich-hilfe-1",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "Wo bekomme ich Hilfe ?",
-    "text": "Wo bekomme ich Hilfe ?\n\nOnline\n\nbei RStudio/Posit\nüber die von Google betriebene Suchmaschine Rseek\nauf der CRAN-Webseite unter “Manuals” gibt es hilfreiche Einstiegshandbücher\nauf Datacamp für einen schnellen Überblick über Basics\nin den Ressourcen im Syllabus"
-  },
-  {
-    "objectID": "slides/sitzung_02.html#datenanalyse-workflow",
-    "href": "slides/sitzung_02.html#datenanalyse-workflow",
+    "objectID": "slides/sitzung_03_data-wrangling.html#datenanalyse-workflow",
+    "href": "slides/sitzung_03_data-wrangling.html#datenanalyse-workflow",
     "title": "Quantitative Methoden mit R & R-Studio",
     "section": "Datenanalyse-Workflow",
     "text": "Datenanalyse-Workflow"
   },
   {
-    "objectID": "slides/sitzung_02.html#minute-cards",
-    "href": "slides/sitzung_02.html#minute-cards",
+    "objectID": "slides/sitzung_03_data-wrangling.html#pakete",
+    "href": "slides/sitzung_03_data-wrangling.html#pakete",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Pakete",
+    "text": "Pakete\n\n\n\nEinige Funktionen sind bereits in base R enthalten\nFür andere müssen zusätzliche Pakete geladen werden\nPakete sind Bündel unterschiedlicher Funktionen\nBase R reicht oft nur für sehr basale Operationen und Visualisierungen, für alles andere werden Pakete benötigt"
+  },
+  {
+    "objectID": "slides/sitzung_03_data-wrangling.html#summarytools-paket",
+    "href": "slides/sitzung_03_data-wrangling.html#summarytools-paket",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "summarytools-Paket",
+    "text": "summarytools-Paket\n\n\n\n\n\n\n\n\nFunktion\nBeschreibung\nGeeignet für\n\n\n\n\ndfSummary()\nÜbersicht über alle Variablen (Klasse, fehlende Werte, Verteilungen, etc.)\nSchnelle Gesamtübersicht eines Datensatzes\n\n\nfreq()\nHäufigkeitstabellen\nEinfache Verteilungen kategorialer Variablen\n\n\ndescr()\nDeskriptive Statistik (Mittelwert, Median, SD, etc.)\nBasisanalyse numerischer Variablen\n\n\nctable()\nKreuztabellen mit Prozenten und optionalen Tests (z. B. Chi²)\nZusammenhang zwischen zweikategorialen Variablen\n\n\n\n\nbtw_2025_ergebnisse %&gt;%\n  summarytools::dfSummary(na.col = FALSE) %&gt;% # missings-Spalte ausblenden\n  summarytools::view(file = \"./data/btw_2025_ergebnisse_uebersicht.html\") # speichern"
+  },
+  {
+    "objectID": "slides/sitzung_03_data-wrangling.html#pipes",
+    "href": "slides/sitzung_03_data-wrangling.html#pipes",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Pipes",
+    "text": "Pipes\n\nZwei Optionen: Base R pipe: |&gt; ODER magrittr pipe: %&gt;%\nDie Default-Pipe kann über Global Options eingestellt werden\nZum Einfügen: eintippen oder Strg + Shift + M\nStilregeln:\n\nImmer Leerzeichen vor der Pipe\nImmer neue Zeile danach\n\n\n\nbtw_2025_ergebnisse %&gt;%\n  dplyr::filter(jahr == 2025) %&gt;%\n  dplyr::select(partei, zweitstimmen)"
+  },
+  {
+    "objectID": "slides/sitzung_03_data-wrangling.html#datentransformation-mit-dplyr",
+    "href": "slides/sitzung_03_data-wrangling.html#datentransformation-mit-dplyr",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Datentransformation mit dplyr",
+    "text": "Datentransformation mit dplyr\n\n\n\n\n\n\n\n\nBefehl\nBeschreibung\nBsp\n\n\n\n\nrename()\nSpaltennamen ändern\ndf %&gt;% rename(neu = alt)\n\n\nselect()\nVariablen auswählen\ndf %&gt;% select(var1, var2)\n\n\nslice()\nZeilen nach Position auswählen\ndf %&gt;% slice(1:10)\n\n\nfilter()\nZeilen nach Werten filtern\ndf %&gt;% filter(jahr == 2025)\n\n\nrelocate()\nSpaltenreihenfolge ändern\ndf %&gt;% relocate(var1, .before = var2)"
+  },
+  {
+    "objectID": "slides/sitzung_03_data-wrangling.html#datentransformation-mit-mit-dplyr",
+    "href": "slides/sitzung_03_data-wrangling.html#datentransformation-mit-mit-dplyr",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Datentransformation mit mit dplyr",
+    "text": "Datentransformation mit mit dplyr\n\n\n\n\n\n\n\n\nBefehl\nBeschreibung\nBsp\n\n\n\n\nmutate()\nNeue Variablen hinzufügen\ndf %&gt;% mutate(anteil = stimmen / sum(stimmen))\n\n\nsummarise()\nMehrere Werte zusammenfassen\ndf %&gt;% summarise(mean(stimmen))\n\n\ncount()\nHäufigkeiten zählen\ndf %&gt;% count(partei)\n\n\ngroup_by()\nOperationen gruppenweise ausführen\ndf %&gt;% group_by(partei) %&gt;% summarise(mean(stimmen))"
+  },
+  {
+    "objectID": "slides/sitzung_03_data-wrangling.html#datentransformation-mit-mit-tidyr",
+    "href": "slides/sitzung_03_data-wrangling.html#datentransformation-mit-mit-tidyr",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Datentransformation mit mit tidyr",
+    "text": "Datentransformation mit mit tidyr\n\n\n\n\n\n\n\n\nBefehl\nBeschreibung\nBsp\n\n\n\n\npivot_longer()\nBreites Format in langes umwandeln\ndf %&gt;% pivot_longer(cols = -id, names_to = \"var\", values_to = \"val\")\n\n\npivot_wider()\nLanges Format in breites umwandeln\ndf %&gt;% pivot_wider(names_from = var, values_from = val)\n\n\ndrop_na()\nZeilen mit fehlenden Werten entfernen\ndf %&gt;% drop_na(var1)"
+  },
+  {
+    "objectID": "slides/sitzung_03_data-wrangling.html#änderungen-überprüfen---3-optionen",
+    "href": "slides/sitzung_03_data-wrangling.html#änderungen-überprüfen---3-optionen",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Änderungen überprüfen - 3 Optionen",
+    "text": "Änderungen überprüfen - 3 Optionen\n1. In der Console ansehen\n\nSinnvoll zum Testen, kann aber schnell unübersichtlich werden bei großen Datensätzen\nÄnderungen werden nirgends gespeichert\n\n\n\nbtw_2025_ergebnisse %&gt;%\n  dplyr::select(gebietsart, gebietsnummer, gruppenname, stimme, prozent, gewahlt) %&gt;%\n  head(10)\n\n   gebietsart gebietsnummer     gruppenname stimme   prozent gewahlt\n1        Bund            99 Wahlberechtigte     NA        NA        \n2        Bund            99        Wählende     NA 82.512200        \n3        Bund            99       Ungültige      1  0.847738        \n4        Bund            99       Ungültige      2  0.559080        \n5        Bund            99         Gültige      1 99.152262        \n6        Bund            99         Gültige      2 99.440920        \n7        Bund            99             SPD      1 20.071417        \n8        Bund            99             SPD      2 16.413301        \n9        Bund            99             CDU      1 25.460226        \n10       Bund            99             CDU      2 22.550824"
+  },
+  {
+    "objectID": "slides/sitzung_03_data-wrangling.html#änderungen-überprüfen---3-optionen-1",
+    "href": "slides/sitzung_03_data-wrangling.html#änderungen-überprüfen---3-optionen-1",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Änderungen überprüfen - 3 Optionen",
+    "text": "Änderungen überprüfen - 3 Optionen\n2. “Nur kurz schauen”\n\nDaten werden in einem neuen Tab geöffnet.\nUmgeht das Unübersichtlichkeitsproblem.\nNervt aber ggf. später, wenn das Skript von oben bis unten ausgeführt wird (“Source”-button).\n\n\n\nbtw_2025_ergebnisse %&gt;%\n  dplyr::filter(gebietsart != \"Einzelbewerber/Wählergruppe\") %&gt;%\n  View()"
+  },
+  {
+    "objectID": "slides/sitzung_03_data-wrangling.html#änderungen-überprüfen---3-optionen-2",
+    "href": "slides/sitzung_03_data-wrangling.html#änderungen-überprüfen---3-optionen-2",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Änderungen überprüfen - 3 Optionen",
+    "text": "Änderungen überprüfen - 3 Optionen\n3. Speichern oder Überschreiben\n\nviele unterschiedliche Objekte zu speichern kann unübersichtlich werden\naber einmal überschriebene Daten schwieriger zurückzuholen\n\n\n\nbtw_2025_ergebnisse_be &lt;-  btw_2025_ergebnisse %&gt;%\n  dplyr::filter(gebietsname == \"Berlin\")\n\n\nbtw_2025_ergebnisse &lt;- btw_2025_ergebnisse %&gt;%\n  dplyr::rename(\n    uberg_gebietsart = ueg_gebietsart, # neuer_name = alter_name\n    uberg_gebietsnr = ueg_gebietsnummer)"
+  },
+  {
+    "objectID": "slides/sitzung_03_data-wrangling.html#long-vs.-wide",
+    "href": "slides/sitzung_03_data-wrangling.html#long-vs.-wide",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Long vs. Wide",
+    "text": "Long vs. Wide\nLong-Format ist sinnvoll für:\n\nggplot2 – erwartet fast immer Long\ngroup_by() + summarise()\nRegressionsmodelle\n\nWide-Format ist sinnvoll für:\n\nKorrelationsmatrizen (eine Zeile pro Beobachtungseinheit)\nVergleichstabellen (Erst- vs. Zweitstimme nebeneinander)\nExport nach Excel"
+  },
+  {
+    "objectID": "slides/sitzung_03_data-wrangling.html#minute-cards",
+    "href": "slides/sitzung_03_data-wrangling.html#minute-cards",
     "title": "Quantitative Methoden mit R & R-Studio",
     "section": "Minute Cards",
     "text": "Minute Cards\nBitte füllt die Minute Cards für die heutige Sitzung aus. Das sollt enicht länger als 3 Minuten dauern. Vielen Dank für eure Mitarbeit!"
+  },
+  {
+    "objectID": "syllabus.html#vorläufiger-zeitplan",
+    "href": "syllabus.html#vorläufiger-zeitplan",
+    "title": "SYLLABUS",
+    "section": "Vorläufiger Zeitplan",
+    "text": "Vorläufiger Zeitplan\n\n\n\n\n\n\n\n\nWoche\nDatum\nThema\n\n\n\n\n01\nDi, 14.04.2026, 10:00-12:00 c.t.\nEinführung\n\n\n02\nDi, 21.04.2026, 10:00-12:00 c.t.\nProjekte & Datenimport & Datensatzüberblick\n\n\n03\nDi, 28.04.2026, 10:00-12:00 c.t.\nData Cleaning & Data Wrangling\n\n\n04\nDi, 05.05.2026, 10:00-12:00 c.t.\nDataset Merging\n\n\n05\nDi, 12.05.2026, 10:00-12:00 c.t.\nDeskriptive Statistik – Kennwerte & Visualisierung\n\n\n06\nDi, 19.05.2026, 10:00-12:00 c.t.\nDeskriptive Statistik – Häufigkeitstabellen, Kreuztabellen\n\n\n07\nDi, 26.05.2026, 10:00-12:00 c.t.\nDeskriptive Statistik – Schöne Grafiken\n\n\n08\nDi, 02.06.2026, 10:00-12:00 c.t.\nDeskriptive Statistik – Korrelation & Einfache Lineare Regression\n\n\n09\nDi, 09.06.2026, 10:00-12:00 c.t.\nInferenzstatistik – Einfache & Multiple Lineare Regression\n\n\n10\nDi, 16.06.2026, 10:00-12:00 c.t. \nRegression Diagnostics\n\n\n11\nDi, 23.06.2026, 10:00-12:00 c.t. \nLogistische Regression\n\n\n12\nDi, 30.06.2026, 10:00-12:00 c.t.\n—\n\n\n13\nDi, 07.07.2026, 10:00-12:00 c.t.\n—\n\n\n14\nDi, 14.07.2026, 10:00-12:00 c.t.\n—"
+  },
+  {
+    "objectID": "syllabus.html#regelmäßige-und-aktive-teilnahme",
+    "href": "syllabus.html#regelmäßige-und-aktive-teilnahme",
+    "title": "SYLLABUS",
+    "section": "Regelmäßige und aktive Teilnahme",
+    "text": "Regelmäßige und aktive Teilnahme\nDie regelmäßige und aktive Teilnahme am Kurs ist Voraussetzung zum Ablegen einer Prüfungsleistung. Die Bescheinigung erfolgt auf Grundlage dreier Kriterien:\n\naktives Einbringen in den Sitzungen\nLektüre der Vorbereitungstexte bzw. anderweitige Bearbeitung zur Verfügung gestellter Vorbereitungsmaterialien.\nBearbeitung und fristgerechte Abgabe der wöchentlichen Übungsaufgaben, die eine systematische Wiederholung des Gelernten sicherstellen."
+  },
+  {
+    "objectID": "syllabus.html#prüfungsleistung",
+    "href": "syllabus.html#prüfungsleistung",
+    "title": "SYLLABUS",
+    "section": "Prüfungsleistung",
+    "text": "Prüfungsleistung\nDie Prüfungsleistung besteht aus einer reproduzierbaren Datenanalyse. Es kann entweder eine vollständige, empirische Hausarbeit im Umfang von 4.500 Wörtern verfasst werden, oder ein empirischer Analysebericht (“Data Analysis Report”) von circa 2.500 Wörtern das entspricht, inklusive Grafiken und Tabellen, etwa 10 Seiten in Arial 11 bei 1,5-zeiligem Zeilenabstand. Ein Data Analysis Report legt, im Vergleich zu einer Hausarbeit, den Fokus stärker auf die Datenanalyse und die Interpretation der (vorläufigen) Ergebnisse. Theoretische Grundlagen, Hinführung und Sachkenntnisse müssen hingegen weniger detailliert sein. Das Format ist vor allem zur Vorbereitung von Forschungspublikationen gängig. Einige politikwissenschaftliche Zeitschriften bieten mit der Rubrik “Research Note” eine ähnliche Rubrik an - wobei Einreichungen dieses Typs umfangreicher sind, als die in diesem Kurs zu erbringende Prüfungsleistung.\n\n\n\n\n\n\nImportantDeadline\n\n\n\nDie Abgabe der Prüfungsleistung erfolgt, sofern nicht individuell anders mit der Dozentin abgesprochen, bis zum 30.08.2026."
+  },
+  {
+    "objectID": "syllabus.html#empfehlungen-und-weiterführendes-material",
+    "href": "syllabus.html#empfehlungen-und-weiterführendes-material",
+    "title": "SYLLABUS",
+    "section": "Empfehlungen und weiterführendes Material",
+    "text": "Empfehlungen und weiterführendes Material\nZur Anwendung in R und R-Studio\n\nDiehl, Yannick, und Daniel Moosdorf. 2022. „R Workshop - Sozialwissenschaften“. E-Book. Mai 14. https://rloesung.github.io/RWorkshop/. Gut zum Auffrischen von bspw. tidyverse-Paketen und -Befehlen.\nMasch, Lena, Kimon Kieslich, Katharina Huseljić, Marco Wähner, und Johann-Sebastian Neef. 2021. R - Ein Einführungsskript. HHU. Ein tolles begleitendes Skript zur Einführung in die Datenanlyse mit R und R-Studio.\nStockemer, Daniel, und Jean-Nicolas Bordeleau. 2023. Quantitative Methods for the Social Sciences: A Practical Introduction with Examples in R. Second edition. Springer Texts in Political Science and International Relations. Springer International Publishing AG. https://doi.org/10.1007/978-3-031-34583-8. Kapitel 6 bis 9 bieten Möglichkeit zur Vertiefung inferenzstatistischer Verfahren in R..\nWagemann, Claudius, Achim Goerres, und Markus B. Siewert, Hrsg. 2020. Handbuch Methoden der Politikwissenschaft. 1st ed. 2020. Springer eBook Collection. Springer Fachmedien Wiesbaden. https://doi.org/10.1007/978-3-658-16936-7. Eines meiner Lieblingsreferenzwerke, das ich regelmäßig selbst aufschlage. Die Kapitel zu Regressionen und Mehrebenenmodellen bieten einen präzisen, fundierten und vollständigen Überblick.\nWalther, Björn. 2026. R Tutorials. https://bjoernwalther.com/tutorials-fuer-r/. Eine tolle Webseite mit Tutorials in form von R-Skripten zu unterschiedlichen Operationen der Datenanalyse mit dazugehörigen YouTube-Videos.\nWickham, Hadley, Mine Çetinkaya-Rundel, und Garrett Grolemund. 2024. R für Data Science: Daten Importieren, bereinigen, umformen und visualisieren. 2. aktualisierte und Erweiterte Auflage. Übersetzt von Frank Langenau. O’Reilly. Ein tolles Werk zum Arbeiten in R, herausgegeben von einem der Erfinder des Tidyverse. Frei zugänglich als E-Book.)\nWickham, Hadley, Danielle Navarro, und Thomas Lin Pedersen. 2025. „ggplot2: Elegant Graphics for Data Analysis (3e)“. On-line-book. https://ggplot2-book.org/. Spezifischer zum ggplot2-Paket und der Grammar of Graphics.\n\nZu Statistik\n\n? Behnke, Joachim, und Nathalie Behnke. 2006. Grundlagen der statistischen Datenanalyse: eine Einführung für Politikwissenschaftler. Grundwissen Politik 41. VS Verlag für Sozialwissenschaften. Ein klassisches Statistik-Lehrbuch für die Basics.\nBühner, Markus. 2017. Statistik für Psychologen und Sozialwissenschaftler. 2., Aktualisierte und Erweiterte Auflage. With Pearson Studium und Matthias Ziegler. ps Psychologie. Pearson. Ein etwas ausführlicheres Statistik-Lehrbuch. In dieser zweiten, überarbeiteten Auflage mit Anwendungsfällen nicht nur in SPSS, sondern auch in R.\n? Gehring, Uwe W., und Cornelia Weins. 2010. Grundkurs Statistik für Politologen und Soziologen. VS Verlag für Sozialwissenschaften. https://doi.org/10.1007/978-3-531-91879-2. Und noch eins.\nField, Andy, und James Iles. 2022. An Adventure in Statistics: The Reality Enigma. Second edition. SAGE Edge. SAGE. Ein kreatives lehrbuch, das Statistik anhand einer SciFi-Geschichte quasi nebenbei erklärt.\nJesussek, Mathias, und Hannah Volk-Jesussek. 2024. Statistik leichtgemacht: Eine verständliche Einführung. 4. Aufl. Graz. Eine tatsächlich sehr verständliche Einführung - es sollte nur die DATAtab-Werbung ignoriert werden ;).\n? Niederer, Rudolf, Fabian Heimsch, und Peter Zöfel. 2018. Statistik im Klartext: für Psychologen, Wirtschafts- und Sozialwissenschaftler. Ein klassisches Lehrbuch für die Grundlagen der Inferenzstatistik).\nPaul, Melanie. 2024. Schließende Statistik einfach erklärt! von Null auf Statistik-Profi mit Schritt-für-Schritt-Anleitungen. Melanie Paul. Ein originelles Lehrbuch für die Grundlagen der Inferenzstatistik - für alle, die Glitzer und Pink mögen.).\nPlaning, Patrick. 2022. Statistik Grundlagen: Das interaktive Lehrbuch mit über 150 YouTube-Videos rund um die Burgerkette FIVE PROFS. Illustriert von Ilena Becic. With Ilena Becic. Planing Publishing. https://statistikgrundlagen.de/ebook/front-matter/introduction-2/. Ein tolles E-Book für’s schnelle Nachschlagen zu Visualisierungen, deskriptiver Statistik und Inferenzstatistik, gespickt mit Youtube-Videos zur Erklärung.\nWolf, Christof, und Henning Best, Hrsg. 2010. Handbuch der sozialwissenschaftlichen Datenanalyse. 1. Aufl. VS Verlag für Sozialwissenschaften. Eine sehr hilfreiche Übersicht zu unterschiedlichen Bereichen der quantitativen Datensanalyse, in dem wunderbar einzelne Kapitel zur punktuellen Vertiefung gelesen werden können."
+  },
+  {
+    "objectID": "uebungen/uebung_vorlage.html",
+    "href": "uebungen/uebung_vorlage.html",
+    "title": "Übung XX: [Titel der Übung]",
+    "section": "",
+    "text": "Setup\n\n# Pakete laden\nlibrary(tidyverse)\nlibrary(rio)\nlibrary(janitor)\nlibrary(labelled)\nlibrary(summarytools)\n\n\n\nAufgabe 1: [Titel]\n[Kurze Beschreibung was in dieser Aufgabe gemacht wird.]\n\n# Code hier\n\n[Kurze Interpretation / Antwort in eigenen Worten.]\n\n\nAufgabe 2: [Titel]\n[Kurze Beschreibung was in dieser Aufgabe gemacht wird.]\n\n# Code hier\n\n[Kurze Interpretation / Antwort in eigenen Worten.]\n\n\nAufgabe 3: [Titel]\n[Kurze Beschreibung was in dieser Aufgabe gemacht wird.]\n\n# Code hier\n\n[Kurze Interpretation / Antwort in eigenen Worten.]"
   }
 ]

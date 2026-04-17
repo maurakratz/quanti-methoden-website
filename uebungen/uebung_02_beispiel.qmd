@@ -20,7 +20,10 @@ execute:
   message: false
 ---
 
-Denkt daran: um als PFD rendern zu können, müsst ihr einmalig in der Konsole `tinytex::install_tinytex()` ausführen, damit die nötige Software (LaTeX) für die PDF-Erstellung installiert wird. Alternativ `quarto install tinytex` im Terminal eingeben. Danach könnt ihr die Übung sowohl als HTML als auch als PDF rendern.
+Denkt daran: um als PFD rendern zu können, müsst ihr einmalig in der Konsole `tinytex::install_tinytex()` ausführen, damit die nötige Software (LaTeX) für die PDF-Erstellung installiert wird. Alternativ `quarto install tinytex` im Terminal eingeben. Danach könnt ihr die Übung sowohl was genau macht denn gert::git_push()
+Looking up https credentials for https://github.com/maurakratz/quanti-methoden-website.git
+[status] refs/heads/main: unchanged
+[updated] b847feabf2..b847feabf2 refs/remotes/origin/mainals HTML als auch als PDF rendern.
 
 # Setup
 
@@ -34,12 +37,12 @@ library(summarytools)
 
 # Aufgabe 1: Daten importieren
 
-Die Datei `kerg2_00413.csv` enthält die amtlichen Wahlergebnisse der Bundestagswahl 2025.
+Die Datei `kerg2.csv` enthält die amtlichen Wahlergebnisse der Bundestagswahl 2025.
 Wir importieren sie zunächst mit Standardeinstellungen — und stellen dabei fest, dass etwas
 nicht stimmt.
 
 ```{r}
-btw_2025_ergebnisse_raw <- rio::import("../data/kerg2_00413.csv",
+btw_2025_ergebnisse_raw <- rio::import("../data/kerg2.csv",
                                        sep  = ";",
                                        dec  = ",",
                                        skip = 9) |>

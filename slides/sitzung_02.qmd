@@ -10,9 +10,6 @@ format:
     footer: "Quantitative Methoden mit R & R-Studio | SoSe26 | Maura Kratz"
     incremental: true 
     highlight-style: none
-  pdf:
-    engine: chrome
-    papersize: custom
 editor_options: 
   chunk_output_type: console
 ---
