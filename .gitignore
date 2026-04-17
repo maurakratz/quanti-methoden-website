@@ -5,7 +5,10 @@
 /.quarto/
 *_cache/
 *_files/
+
 data/
+ergebnisse/
+
 .Rproj.user
 .httr-oauth
 .DS_Store

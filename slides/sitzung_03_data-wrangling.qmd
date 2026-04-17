@@ -1,0 +1,253 @@
+---
+title: "Quantitative Methoden mit R & R-Studio"
+subtitle: "Sommersemester 2026 | Sitzung 3"
+author: "Maura Kratz"
+format: 
+  revealjs:
+    self-contained: true
+    theme: [default, fu_slides.scss] 
+    logo: "images/fu-logo-schwarz-RGB-p.png"
+    footer: "Quantitative Methoden mit R & R-Studio | SoSe26 | Maura Kratz"
+    incremental: true 
+    highlight-style: none
+  pdf:
+    engine: chrome
+    papersize: custom
+editor_options: 
+  chunk_output_type: console
+---
+
+## Willkommen zurück!
+
+![](images/clipboard-4994590.png)
+
+# Was heute ansteht:
+
+-   Check-In
+-   Besprechung der Übung 1
+-   Data Cleaning & Wrangling
+
+# Recap
+
+1.  Projektordner anlegen und darin arbeiten {{< fa check >}}
+2.  tidy code und tidy Kommentare schreiben {{< fa check >}}
+3.  Hilfe suchen {{< fa check >}}
+4.  Daten einlesen mit dem *rio*-Paket {{< fa check >}}
+5.  Daten überblicken mit dem *summarytools*-Paket {{< fa check >}}
+
+## Datenanalyse-Workflow
+
+![](images/clipboard-4263712504.png){style="display: block; margin: 0 auto;"}
+
+## Pakete
+
+::::: columns
+::: {.column width="50%"}
+-   Einige Funktionen sind bereits in base R enthalten
+-   Für andere müssen zusätzliche Pakete geladen werden
+-   Pakete sind Bündel unterschiedlicher Funktionen
+-   Base R reicht oft nur für sehr basale Operationen und Visualisierungen, für alles andere werden Pakete benötigt
+:::
+
+::: {.column width="50%"}
+![](images/clipboard-2773888020.png)
+:::
+:::::
+
+## *summarytools*-Paket
+
+| Funktion | Beschreibung | Geeignet für |
+|------------------------|------------------------|------------------------|
+| `dfSummary()` | Übersicht über alle Variablen (Klasse, fehlende Werte, Verteilungen, etc.) | Schnelle Gesamtübersicht eines Datensatzes |
+| `freq()` | Häufigkeitstabellen | Einfache Verteilungen kategorialer Variablen |
+| `descr()` | Deskriptive Statistik (Mittelwert, Median, SD, etc.) | Basisanalyse numerischer Variablen |
+| `ctable()` | Kreuztabellen mit Prozenten und optionalen Tests (z. B. Chi²) | Zusammenhang zwischen zweikategorialen Variablen |
+
+```{r}
+#| eval: false
+#| echo: true
+btw_2025_ergebnisse %>%
+  summarytools::dfSummary(na.col = FALSE) %>% # missings-Spalte ausblenden
+  summarytools::view(file = "./data/btw_2025_ergebnisse_uebersicht.html") # speichern
+```
+
+# Das *tidyverse*-Paketbündel
+
+:::: columns
+::: {.column width="50%"}
+![](images/clipboard-199054296.png)
+:::
+::::
+
+## Pipes
+
+-   Zwei Optionen: Base R pipe: `|>` ODER magrittr pipe: `%>%`
+-   Die Default-Pipe kann über *Global Options* eingestellt werden
+-   Zum Einfügen: eintippen oder `Strg + Shift + M`
+-   Stilregeln:
+    -   Immer Leerzeichen vor der Pipe
+    -   Immer neue Zeile danach
+
+```{r}
+#| eval: false
+#| echo: true
+btw_2025_ergebnisse %>%
+  dplyr::filter(jahr == 2025) %>%
+  dplyr::select(partei, zweitstimmen)
+```
+
+# Hands On - Data Wrangling
+
+![](images/clipboard-797395825.jpeg)
+
+## Datentransformation mit *dplyr*
+
+| Befehl | Beschreibung | Bsp |
+|------------------------|------------------------|------------------------|
+| `rename()` | Spaltennamen ändern | `df %>% rename(neu = alt)` |
+| `select()` | Variablen auswählen | `df %>% select(var1, var2)` |
+| `slice()` | Zeilen nach Position auswählen | `df %>% slice(1:10)` |
+| `filter()` | Zeilen nach Werten filtern | `df %>% filter(jahr == 2025)` |
+| `relocate()` | Spaltenreihenfolge ändern | `df %>% relocate(var1, .before = var2)` |
+
+## Datentransformation mit mit *dplyr*
+
+| Befehl | Beschreibung | Bsp |
+|------------------------|------------------------|------------------------|
+| `mutate()` | Neue Variablen hinzufügen | `df %>% mutate(anteil = stimmen / sum(stimmen))` |
+| `summarise()` | Mehrere Werte zusammenfassen | `df %>% summarise(mean(stimmen))` |
+| `count()` | Häufigkeiten zählen | `df %>% count(partei)` |
+| `group_by()` | Operationen gruppenweise ausführen | `df %>% group_by(partei) %>% summarise(mean(stimmen))` |
+
+## Datentransformation mit mit *tidyr*
+
+| Befehl | Beschreibung | Bsp |
+|------------------------|------------------------|------------------------|
+| `pivot_longer()` | Breites Format in langes umwandeln | `df %>% pivot_longer(cols = -id, names_to = "var", values_to = "val")` |
+| `pivot_wider()` | Langes Format in breites umwandeln | `df %>% pivot_wider(names_from = var, values_from = val)` |
+| `drop_na()` | Zeilen mit fehlenden Werten entfernen | `df %>% drop_na(var1)` |
+
+## Änderungen überprüfen - 3 Optionen
+
+**1. In der Console ansehen**
+
+-   Sinnvoll zum Testen, kann aber schnell unübersichtlich werden bei großen Datensätzen
+
+-   Änderungen werden nirgends gespeichert
+
+::: fragment
+```{r}
+#| eval: true
+#| echo: false
+# Pakete installieren und laden
+library(dplyr)
+library(tidyr)
+
+load("../output/btw_2025_ergebnisse.RData")
+```
+
+```{r}
+#| eval: true
+#| echo: true
+#| style: "max-height: 400px; overflow-y: auto;"
+
+btw_2025_ergebnisse %>%
+  dplyr::select(gebietsart, gebietsnummer, gruppenname, stimme, prozent, gewahlt) %>%
+  head(10)
+
+```
+:::
+
+## Änderungen überprüfen - 3 Optionen
+
+**2. "Nur kurz schauen"**
+
+-   Daten werden in einem neuen Tab geöffnet.
+
+-   Umgeht das Unübersichtlichkeitsproblem.
+
+-   Nervt aber ggf. später, wenn das Skript von oben bis unten ausgeführt wird ("Source"-button).
+
+::: fragment
+```{r}
+#| eval: true
+#| echo: true
+#| style: "max-height: 400px; overflow-y: auto;"
+
+btw_2025_ergebnisse %>%
+  dplyr::filter(gebietsart != "Einzelbewerber/Wählergruppe") %>%
+  View()
+
+```
+:::
+
+## Änderungen überprüfen - 3 Optionen
+
+**3. Speichern oder Überschreiben**
+
+-   viele unterschiedliche Objekte zu speichern kann unübersichtlich werden
+
+-   aber einmal überschriebene Daten schwieriger zurückzuholen
+
+::: fragment
+```{r}
+#| eval: true
+#| echo: true
+#| style: "max-height: 400px; overflow-y: auto;"
+
+btw_2025_ergebnisse_be <-  btw_2025_ergebnisse %>%
+  dplyr::filter(gebietsname == "Berlin")
+```
+
+```{r}
+#| eval: true
+#| echo: true
+#| style: "max-height: 400px; overflow-y: auto;"
+
+btw_2025_ergebnisse <- btw_2025_ergebnisse %>%
+  dplyr::rename(
+    uberg_gebietsart = ueg_gebietsart, # neuer_name = alter_name
+    uberg_gebietsnr = ueg_gebietsnummer)
+```
+:::
+
+## Long vs. Wide
+
+Long-Format ist sinnvoll für:
+
+-   ggplot2 – erwartet fast immer Long
+-   group_by() + summarise()
+-   Regressionsmodelle
+
+Wide-Format ist sinnvoll für:
+
+-   Korrelationsmatrizen (eine Zeile pro Beobachtungseinheit)
+-   Vergleichstabellen (Erst- vs. Zweitstimme nebeneinander)
+-   Export nach Excel
+
+## Minute Cards
+
+Bitte füllt die Minute Cards für die heutige Sitzung aus. Das sollt enicht länger als 3 Minuten dauern. Vielen Dank für eure Mitarbeit!
+
+```{r}
+#| echo: false
+library(qrcode)
+qr <- qrcode::qr_code("https://forms.gle/xScN9nh3n2yjZXXK8")
+plot(qr)
+```
+
+# Vielen Dank und bis kommenden Dienstag!
+
+::: {style="margin-top: 1em;"}
+![](images/clipboard-3542587166.png)
+
+![]()
+:::
+
+::: {style="display: flex; align-items: center; gap: 1em; "}
+![](images/clipboard-2636932712.png){style="width: 140px;"}
+
+**Übung 2** zu "Data Wrangling" bis spätestens Sonntagabend!
+:::
+
+:::::::

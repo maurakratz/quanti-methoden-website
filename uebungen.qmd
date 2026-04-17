@@ -11,8 +11,8 @@ Unter Hausaufgabe findest du Vorbereitungsmaterialien für die jeweils folgende 
 |:-------:|:------|:------------|:-----:|:------:|
 | 01 | Einführung | Installiere R und R-Studio (siehe Folien) | — | — |
 | 02 | Projekte & Datenimport | Lade dir die Wahlkreisergebnisse der Bundestagswahl 2025 als Datensatz herunter (siehe Daten) | [Übung_01](uebungen/uebung_01_datenimport.R) | — |
-| 03 | Dataset Merging | — | [Download](uebungen/uebung_2_datenimport.qmd) | — |
-| 04 | Data Cleaning | — | [Download](uebungen/uebung_03.qmd) | — |
+| 03 | Data Cleaning and Wrangling | — | [Download](uebungen/uebung_2_datenimport.qmd) | — |
+| 04 | Dataset Merging | — | [Download](uebungen/uebung_03.qmd) | — |
 | 05 | Quarto; Deskriptive Statistik – Kennwerte & Visualisierung | — | [Download](uebungen/uebung_04.qmd) | — |
 | 06 | Deskriptive Statistik – Häufigkeits- & Kreuztabellen | — | [Download](uebungen/uebung_05.qmd) | — |
 | 07 | Deskriptive Statistik – Schöne Grafiken | — | [Download](uebungen/uebung_06.qmd) | — |

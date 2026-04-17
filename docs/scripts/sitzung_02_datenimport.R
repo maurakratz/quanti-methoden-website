@@ -154,10 +154,10 @@ library(labelled) # labels setzen und ankleben
   # das speichere ich mir in meinem Data-Ordner ab:
   btw_2025_ergebnisse %>%
     summarytools::dfSummary(na.col = FALSE) %>%
-    summarytools::view(file = "./data/btw_2025_ergebnisse_uebersicht.html")
+    summarytools::view(file = "./output/btw_2025_ergebnisse_uebersicht.html")
 
 
-
+# save(btw_2025_ergebnisse, file = "output/btw_2025_ergebnisse.RData")
 
 
 

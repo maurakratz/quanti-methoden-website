@@ -77,15 +77,6 @@ library(labelled) # labels setzen und ankleben
     # Buchstaben in Kleinbuchstaben umwandelt.
 
 
-  # SNEAK PREVIEW: Ist in Bemerkung etwas wichtiges vermerkt?
-  btw_2025_ergebnisse %>%
-    dplyr::distinct(bemerkung)
-
-  # Nein ,also weg damit:
-  btw_2025_ergebnisse <- btw_2025_ergebnisse %>%
-    dplyr::select (-bemerkung)
-
-
 # 4 Umgang mit Labels -------------------------
 
   # variablennamen ausgeben lassen zum Kopieren
@@ -121,7 +112,7 @@ library(labelled) # labels setzen und ankleben
                                   .strict = FALSE)
 
 
-# 3. Überblick über die Daten ----------------------------
+# 5. Überblick über die Daten ----------------------------
 
   # Ausprägungen einer Variable anzeigen
   btw_2025_ergebnisse %>%
@@ -154,10 +145,12 @@ library(labelled) # labels setzen und ankleben
   # das speichere ich mir in meinem Data-Ordner ab:
   btw_2025_ergebnisse %>%
     summarytools::dfSummary(na.col = FALSE) %>%
-    summarytools::view(file = "./data/btw_2025_ergebnisse_uebersicht.html")
+    summarytools::view(file = "./output/btw_2025_ergebnisse_uebersicht.html")
 
 
+# 6 Datensatz gegebenenfalls speichern
 
+ # save(btw_2025_ergebnisse, file = "output/btw_2025_ergebnisse.RData")
 
 
 

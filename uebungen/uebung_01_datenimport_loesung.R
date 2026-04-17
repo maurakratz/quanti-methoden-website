@@ -27,10 +27,15 @@ btw_2025_strukturdaten <- btw_2025_strukturdaten_raw %>%
 
 
 # Aufgabe 4 ---------------------
-   # Lass dir die Variablennamen ausgeben. Ändere sie zu kurzen, sinnvollen Namen um
-   # (siehe Beispiel). Füge mit labelled::set_variable_labels() den neuen Namen
-   # entsprechende Labels hinzu.
+   # a) Lass dir die Variablennamen ausgeben.
+   # b) Ändere sie zu kurzen, sinnvollen Namen um.
+     # Da wir das noch nicht durchgenommen haben bekommst du unetnn ein Beispiel,
+     # das den rename-Befehl illustriert. Vervollständige den Befehl, indem du
+     # auch die übrigen Varaiblen umbenennst.
+   # c) Füge mit labelled::set_variable_labels() den neuen Namen
+     # entsprechende Labels hinzu.
 
+# a)
 names(btw_2025_strukturdaten)
 
 # a) Zu lange Namen umbenennen
@@ -147,7 +152,7 @@ btw_2025_strukturdaten <- btw_2025_strukturdaten %>%
   # Lass dir mit summarytools eine Datensazübersicht ausgeben.
 btw_2025_strukturdaten %>%
   summarytools::dfSummary(na.col = FALSE) %>%
-  summarytools::view(file = "data/btw_2025_strukturdaten_summary.html")
+  summarytools::view(file = "output/btw_2025_strukturdaten_summary.html")
 
 
 
@@ -165,7 +170,9 @@ btw_2025_strukturdaten_labels <- setNames(
 )
 
 btw_2025_strukturdaten <- btw_2025_strukturdaten %>%
-  labelled::set_variable_labels(.labels = as.list(btw_2025_strukturdaten_labels)) # Vektor in Liste umwandeln, damit labelled damit arbeiten kann
+  labelled::set_variable_labels(.labels = btw_2025_strukturdaten_labels,
+                                .strict = FALSE)
 
+# save(btw_2025_strukturdaten, file = "output/btw_2025_strukturdaten.RData")
 
 

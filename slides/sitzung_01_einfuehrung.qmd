@@ -1,0 +1,362 @@
+---
+title: "Quantitative Methoden mit R & R-Studio"
+subtitle: "Sommersemester 2026 | Sitzung 1"
+author: "Maura Kratz"
+format: 
+  revealjs:
+    self-contained: true
+    theme: [default, fu_slides.scss] 
+    logo: "images/fu-logo-schwarz-RGB-p.png"
+    footer: "Quantitative Methoden mit R & R-Studio | SoSe26 | Maura Kratz"
+    incremental: true 
+    highlight-style: none
+  pdf:
+    pdf-engine: typst
+    papersize: custom
+editor_options: 
+  chunk_output_type: console
+---
+
+# Was heute ansteht:
+
+-   Vorstellungsrunde
+-   Warum computergestützte Datenanalyse lernen?
+-   Warum R?
+-   Was ist R? Was ist R-Studio?
+-   Was erwartet uns in diesem Kurs?
+-   Was ist bis kommenden Dienstag zu tun?
+
+# Vorstellungsrunde
+
+## Wer bin ich?
+
+::::: columns
+::: {.column width="70%"}
+-   Maura Kratz
+
+-   AB Vergleich politischer Systeme mit Schwerpunkt DE und FR
+
+-   Dissertation zu Themen der politischen Ungleichheit und Repräsentation
+
+-   2020 BA in Sciences Politiques an SciencesPo Paris
+
+-   2023 MA in Affaires Internationales & Politiwissenschaft an der SciencesPo und der FU
+
+-   Seit 2023 WiMi und Promovendin
+
+-   **Wie wollen wir uns ansprechen?**
+:::
+
+::: {.column width="30%"}
+![](images/clipboard-1762980305.png)
+:::
+:::::
+
+## Wer seid ihr?
+
+**Sitznachbar\*in kennenlernen**
+
+::::: columns
+::: {.column width="60%"}
+1.  Worauf freust Du dich in diesem Semester am meisten (außerhalb der Uni)?
+2.  Welches Thema (egal welches!) hat dich zuletzt begeistert?
+3.  Was ist die letzte richtig gute Serie, die Du geschaut hast?
+4.  Wie lange hast du heute zur Uni gebraucht und mit welchem Verkehrsmittel warst du unterwegs?
+:::
+
+::: {.column width="40%"}
+![](images/clipboard-1309927678.png)
+:::
+:::::
+
+## Wer seid ihr?
+
+**Zwei Wahrheiten, eine Lüge**
+
+::::: columns
+::: {.column width="60%"}
+1.  Jede\*r notiert drei Aussagen über sich selbst: Zwei wahre und eine erfundene.
+2.  Wer den Ball zugeworfen bekommt stellt die drei Aussagen vor.
+3.  Wir stimmen gemeinsam ab, welche der drei Aussagen wir für die erfundene halten.
+4.  Auflösung.
+:::
+
+::: {.column width="40%"}
+![](images/clipboard-4211904011.png)
+:::
+:::::
+
+## Wer seid ihr?
+
+**Es steht auf wer…**
+
+::::: columns
+::: {.column width="60%"}
+1.  … eine Sprache spricht, die nicht Deutsch, Englisch oder Französisch ist.
+2.  … aktuell mehr als 20 Tabs im Browser geöffnet hat.
+3.  … Pflanzen zu Hause erfolgreich am Leben erhält.
+4.  … dieselbe Serie schon mehr als dreimal komplett durchgeschaut hat.
+:::
+
+::: {.column width="40%"}
+![](images/clipboard-821287275.png)
+:::
+:::::
+
+## Wer seid ihr?
+
+**Es steht auf wer…**
+
+::::: columns
+::: {.column width="60%"}
+1.  … lieber Hörbücher/Podcasts hört, anstatt selbst zu lesen.
+2.  … am besten/ liebsten nach 22 Uhr lernt.
+3.  … bei Gruppenarbeiten tendenziell das Gefühl hat 80% der Arbeit allein zu machen.
+4.  … schon einmal eine Datei Hausarbeit_final_FINAL_jetzt_wirklich_v2 (oder so ähnlich) genannt hat.
+:::
+
+::: {.column width="40%"}
+![](images/clipboard-821287275.png)
+:::
+:::::
+
+# Warum computergestützte Datenanalyse lernen?
+
+## Wir sind umgeben von Daten
+
+::::: columns
+::: {.column width="70%"}
+![](images/clipboard-4179089647.png){width="80%"}
+:::
+
+::: {.column width="30%"}
+![](images/clipboard-361288377.jpeg){width="80%"}
+:::
+:::::
+
+## Daten helfen uns, soziale Phänomene zu begreifen
+
+![](images/clipboard-1015560988.png)
+
+## Daten können aber auch täuschen
+
+::::::: columns
+:::: {.column width="50%"}
+![](images/clipboard-632775894.png)
+
+![](images/clipboard-89700633.png)
+
+::: {style="font-size: 0.45em; color: gray; margin-top: auto;"}
+Quelle: [ZDFheute, 17.01.2026](https://www.zdfheute.de/politik/deutschland/krankmeldung-krankenstand-merz-kritik-100.html)
+:::
+::::
+
+:::: {.column width="50%"}
+![](images/clipboard-2221624035.png)
+
+::: {style="font-size: 0.45em; color: gray; margin-top: auto;"}
+Quelle: [Mediendienst Integration, 05.03.2026](https://mediendienst-integration.de/kriminalitaet/kriminalitaet-in-den-medien/berichten-medien-oefter-ueber-straftaten-von-auslaendern-als-von-deutschen/)
+:::
+::::
+:::::::
+
+## Die Menge zu überblickender Daten wird immer größer
+
+::: {layout-ncol="2"}
+![Quelle: Die Zeit.](images/clipboard-2783348551.png)
+
+![](images/clipboard-185138689.png)
+:::
+
+## Datenkompetenz wird immer wichtiger
+
+![](images/clipboard-2313191753.png)
+
+## Auch in der Politikwissenschaft
+
+::: {layout-ncol="2"}
+![](images/clipboard-2119200647.gif)
+
+![](images/clipboard-4096817885.gif)
+:::
+
+::: {style="text-align: left; font-size: 0.5em;margin-top: -20px;"}
+Quelle: Monroe, Kristen Renwick, William Chiu, Adam Martin und Bridgette Portman. 2009. What Is Political Psychology? Perspectives on Politics 7, Nr. 4 (Dezember): 859–882. doi:10.1017/S153759270999185X.
+:::
+
+# Aber warum ausgerechnet R für die computergestützte Datenanlyse nutzen?
+
+::::: columns
+::: {.column width="70%"}
+:::
+
+::: {.column width="30%"}
+![](images/clipboard-1140099105.png)
+:::
+:::::
+
+## Gängige Statistik-Software
+
+![](images/clipboard-1095058137.png)
+
+## 
+
+![](images/clipboard-3390527468.png){width="60%"}
+
+## Warum R?
+
+-   kostenlos & für alle zugänglich {{< fa thumbs-up >}}
+-   kann (fast) alles → flexibel erweiterbar mit Paketen {{< fa thumbs-up >}}
+-   reproduzierbar & transparent durch R-Skripte {{< fa thumbs-up >}}
+-   gut in andere Programme integrierbar {{< fa thumbs-up >}}
+-   versionierbar durch Git und GitHub {{< fa thumbs-up >}}
+-   open-source → große Community {{< fa thumbs-up >}}
+-   Programmierkenntnisse erforderlich, daher weniger nutzer\*innenfreundlich {{< fa thumbs-down >}}
+
+## R-Kenntnisse sind gefragt
+
+::::: columns
+::: {.column width="60%" style="font-size: 0.7em;"}
+-   klassische Berufsfelder für PoWi-Absolvent\*innen: politische INstitutionen, Beratung, Verwaltung, Medien, NGOs, Projektmanagement ...
+-   sie alle haben gemein, dass die Bedeutung evidenzbasierter und Entscheidungen zunimmt
+-   R und Python für komplexe Datenanalysen
+-   Zeitalter der AI → Data Science, Computational Science und maschinelles Lernen
+:::
+
+::: {.column width="40%" style="text-align: right"}
+![](images/clipboard-492210661.png)
+:::
+:::::
+
+# Was sind R und R-Studio eigentlich?
+
+## Was sind R und R-Studio?
+
+-   R ist eine Skriptsprache ( = „einfache“ Programmiersprache)
+-   Ein Skript ist eine Abfolge von Befehlen
+-   RStudio ist eine „Integrierte Entwicklungsumgebung” (integrated development environment,IDE) für die Programmiersprache R → eine Umgebung die das Arbeiten mit R erleichtert
+
+:::::: fragment
+::::: columns
+::: {.column width="50%"}
+![](images/clipboard-2230146645.png){width="30%"}
+:::
+
+::: {.column width="50%"}
+![](images/clipboard-3208056066.png){width="50%"}
+:::
+:::::
+::::::
+
+## Was sind R und R-Studio?
+
+![](images/clipboard-4253454986.png)
+
+## Was sind R und R-Studio?
+
+::: {layout-ncol="2"}
+![R ohne R-Studio (in R-Gui)](images/clipboard-825709011.png)
+
+![R in R-Studio](images/clipboard-3138135745.png)
+:::
+
+## Die goldenen R-Regeln
+
+:::: {layout-ncol="2"}
+-   Alles ist möglich.\
+-   Es gibt IMMER mehr als einen Weg zum Ziel
+-   Gerade zu Beginn kann das Programmieren sehr frustrierend sein. Gib nicht auf! Frustrationstoleranz ist der Schlüssel!
+
+::: fragment
+![](images/clipboard-989640835.png)
+:::
+::::
+
+## Lernziel {.center}
+
+> Erwerb der Fähigkeit, große Datensätze selbständig zu verarbeiten, den Daten und der Fragestellung entsprechende geeignete Analysen durchzuführen und deren Ergebnisse kompetent darzustellen und zu interpretieren.
+
+## Dieser Kurs vermittelt:
+
+-   Erlernen von:
+    -   Datenaufbereitung (Bereinigung und Bearbeitung),
+    -   Deskriptiver Datenanalyse,
+    -   Erster statistischer Datenanalyse und
+    -   Visualisierung und Darstellung
+-   Praktische Anwendung durch Übungen
+
+::: fragment
+→ Übertragung auf kommende Lehrveranstaltungen, Hausarbeiten etc.
+:::
+
+## Ressourcen
+
+-   Syllabus & Sitzungsplan
+-   Zu erbringende Leistungen
+-   Folien & Skripte
+-   Übungen & Hausaufgaben
+-   Literatur & Tipps
+
+::: {.callout-important .fragment}
+## Wichtig
+
+All das steht euch auf der [Kurs-Webseite](https://maurakratz.github.io/quanti-methoden-website/) zur Verfügung!
+:::
+
+## Semesterübersicht
+
+![](images/clipboard-4994590.png)
+
+## Bis zur kommenden Sitzung bitte
+
+-   R herunterladen & installieren
+-   R-Studio herunterladen & installieren
+-   mit dem Syllabus vertraut machen
+-   etwaige Fragen notieren und zur nächsten Sitzung mitbringen
+
+## R installieren
+
+-   Download über Website des Cran-Projekts („The Comprehensive R Archive Network“): <https://cran.uni-muenster.de/> oder <https://cloud.r-project.org/>
+
+    -   Download and Install R → entsprechende Betriebssystem auswählen (Windows, Mac oder Linux)
+
+    -   install R for the first time → aktuelle R-Version zum Download auswählen bzw. bei Mac entweder Mac mit mind. M1 Chip oder mit Intel-Prozessor auswählen
+
+-   Datei installieren (Standardeinstellungen können beibehalten werden)
+
+## R installieren
+
+::::: columns
+::: {.column width="50%"}
+![](images/clipboard-3697793632.png)
+
+![](images/clipboard-2565061375.png)
+:::
+
+::: {.column width="50%"}
+![](images/clipboard-2302214045.png)
+:::
+:::::
+
+## R-Studio installieren
+
+-   Download über Website von RStudio: <https://rstudio.com/products/rstudio/download/>
+-   RStudio Desktop (Free-Lizenz und entsprechendes Betriebssystem) auswählen
+-   Datei installieren
+-   RStudio starten
+
+## R-Studio installieren
+
+![](images/clipboard-1889837894.png)
+
+## R-Studio öffnen
+
+Wenn du R-Studio das erste Mal öffnest, sieht es in etwa so aus:
+
+![](images/clipboard-2744485803.png)
+
+# Vielen Dank und bis kommenden Dienstag!
+
+::: {style="margin-top: 4em;"}
+![](images/clipboard-1442474581.png)
+:::

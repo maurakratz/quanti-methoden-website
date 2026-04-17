@@ -73,7 +73,7 @@
 
 # d) Ordnung
    # Lange Befehle durch Zeilenumbrüche unterbrechen
-   # Einrücken
+   # Einrücken mit Leerzeichen
    # Konsole regelmäßig "aufräumen": Strg + L
    # detaillierte Stilregeln unter (http://adv-r.had.co.nz/Style.html)
 
@@ -111,29 +111,6 @@ ls() # alles anzeigen lassen
 rm(a) # etwas (in diesem Falle das Objekt a) entfernen
 
 
-# 5 Variablen -------------------------------------------------
 
-# EXKURS Skalenniveaus (im Detail in Sitzung 03)
-   # nominal-dichotom: zwei Ausprägungen (0/1), z.B. ja/nein
-   # nominal-polytom: mehrere Ausprägungen (z.B. Religionszugehörikeit, Haarfarbe, Wohnort)
-   # ordinal: mehrere Ausprägungen, Rangordnung (sortierbar), z.B. Schulbildung
-   # (quasi-)metrisch: bspw.  1 (trifft überhaupt nicht zu) bis 7 (trifft voll und ganz zu)
-   # metrisch:
-     # a) Intervallskala: sortierbar, Abstände zwischen Werte gleich, kein natürlicher Nullpunkt (Celsius)
-     # b) Verhältnisskala: natürlicher Nullpunkt (Körpergröße, Gewicht)
-     # c) Absolutskala: natürlicher Nullpunkt, natürliche Einheit (Anzahl Einwohner)
-
-
-# die Übersetzung unterschiedlicher Variablentypen in R heißt "Klassen"
-# Klassen sind verschiedene Formen von Datenstrukturen mit denen unterschiedliche
-# Funktionen/Operationen möglich sind
-
-# Klasse der Objekte anzeigen lassen
-class(b)
-class(c)
-
-d <- TRUE
-
-class(d)
 
 
