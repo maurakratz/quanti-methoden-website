@@ -57,7 +57,7 @@ editor_options:
 ## *summarytools*-Paket
 
 | Funktion | Beschreibung | Geeignet für |
-|------------------------|------------------------|------------------------|
+|----|----|----|
 | `dfSummary()` | Übersicht über alle Variablen (Klasse, fehlende Werte, Verteilungen, etc.) | Schnelle Gesamtübersicht eines Datensatzes |
 | `freq()` | Häufigkeitstabellen | Einfache Verteilungen kategorialer Variablen |
 | `descr()` | Deskriptive Statistik (Mittelwert, Median, SD, etc.) | Basisanalyse numerischer Variablen |
@@ -103,7 +103,7 @@ btw_2025_ergebnisse %>%
 ## Datentransformation mit *dplyr*
 
 | Befehl | Beschreibung | Bsp |
-|------------------------|------------------------|------------------------|
+|----|----|----|
 | `rename()` | Spaltennamen ändern | `df %>% rename(neu = alt)` |
 | `select()` | Variablen auswählen | `df %>% select(var1, var2)` |
 | `slice()` | Zeilen nach Position auswählen | `df %>% slice(1:10)` |
@@ -113,7 +113,7 @@ btw_2025_ergebnisse %>%
 ## Datentransformation mit mit *dplyr*
 
 | Befehl | Beschreibung | Bsp |
-|------------------------|------------------------|------------------------|
+|----|----|----|
 | `mutate()` | Neue Variablen hinzufügen | `df %>% mutate(anteil = stimmen / sum(stimmen))` |
 | `summarise()` | Mehrere Werte zusammenfassen | `df %>% summarise(mean(stimmen))` |
 | `count()` | Häufigkeiten zählen | `df %>% count(partei)` |
@@ -122,7 +122,7 @@ btw_2025_ergebnisse %>%
 ## Datentransformation mit mit *tidyr*
 
 | Befehl | Beschreibung | Bsp |
-|------------------------|------------------------|------------------------|
+|----|----|----|
 | `pivot_longer()` | Breites Format in langes umwandeln | `df %>% pivot_longer(cols = -id, names_to = "var", values_to = "val")` |
 | `pivot_wider()` | Langes Format in breites umwandeln | `df %>% pivot_wider(names_from = var, values_from = val)` |
 | `drop_na()` | Zeilen mit fehlenden Werten entfernen | `df %>% drop_na(var1)` |

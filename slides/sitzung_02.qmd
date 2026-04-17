@@ -19,7 +19,7 @@ editor_options:
 
 ## Willkommen zurück!
 
-![](images/clipboard-1010800426.png)
+![](images/clipboard-4994590.png)
 
 # Was heute ansteht:
 
@@ -66,18 +66,36 @@ Da wir in R-Studio aber immer mit Skripten arbeiten, sieht die Oberfläche typis
 -   So müssen nicht immer lange, nicht reproduzierbare absolute Pfade angegeben werden
 -   Und es muss nicht immer explizit der Arbeitsordner mit `setwd("Pfad-zum-Ordner")` festgelegt werden
 -   Ein **Projekt** legt einen Ordner als Standard-Arbeitsordner fest
--   Von dort aus können dann unterschiedliche Unterordner mit relativen Pfaden angesteuert werden: 
+-   Von dort aus können dann unterschiedliche Unterordner mit relativen Pfaden angesteuert werden:
+
 ```{r}
 #| eval: false
 #| echo: true
 #| classes: fragment
 data_1 <- rio::import("./data/dataset_1.csv")
 ```
-
 :::
 
 ::: {.column .fragment style="width: 30%; text-align: right;"}
-![](images/clipboard-1445146113.png){width="100%"}
+```
+R_Kurs/
+├── R_Kurs.Rproj
+├── data/
+│   └── bspdaten.csv
+├── slides/
+│   └── sitzung_01.pdf
+├── skripte/
+│   └── 02_analyse.R
+├── uebungen/
+│   └── uebung_01.R
+└── output/
+    ├── grafik_01.png
+    └── tabelle_01.docx
+```
+::: callout-important
+Niemals ein Leerzeichen in Ordner- oder Dateinamen!
+:::
+
 :::
 :::::
 
@@ -152,35 +170,8 @@ im [Tidyverse-Styleguide](https://style.tidyverse.org/) und im eBook [R For Data
 
 -   `%>%` bzw. Str. + Shift + M um mehrere Befehle mittels Pipe zu verketten
 
-## Funktionen
+- Aufbau von Befehlen: `command_name(argument1 = value1, argument2 = value2, ...)`
 
-`function_name(argument1 = value1, argument2 = value2, ...)`
-
-## Nützliche Befehle
-
--   `ls()` zeigt alle Objekte
-
--   `rm()` für "remove" löscht ein Objekt
-
-:::: fragment
-::: callout-note
-## Befehle ausführen
-
-`Str + Enter` führt den Befehl aus. Dafür:
-
--   entweder den auszuführenden Code markieren
-
--   oder den Cursor irgendwo im auszuführenden Code-Chunk platzieren
-:::
-::::
-
-:::: fragment
-::: callout-note
-## Skript ausführen
-
-Str + Shift + S führt das gesamte Skript aus
-:::
-::::
 
 ## Wo bekomme ich Hilfe?
 
@@ -204,6 +195,7 @@ Str + Shift + S führt das gesamte Skript aus
 :::
 :::::
 
+
 ## Wo bekomme ich Hilfe ?
 
 4.  Online
@@ -214,11 +206,9 @@ Str + Shift + S führt das gesamte Skript aus
     -   auf [Datacamp](https://www.datacamp.com/doc/r/r-tutorial) für einen schnellen Überblick über Basics
     -   in den Ressourcen im Syllabus
 
-
 ## Datenanalyse-Workflow
 
 ![](images/clipboard-4263712504.png){style="display: block; margin: 0 auto;"}
-
 
 # Hands On - Daten einlesen
 
