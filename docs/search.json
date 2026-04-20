@@ -93,91 +93,91 @@
   {
     "objectID": "slides/sitzung_02.html#willkommen-zurück",
     "href": "slides/sitzung_02.html#willkommen-zurück",
-    "title": "Quantitative Methoden mit R & R-Studio",
+    "title": "Quantitative Methoden mit R & RStudio",
     "section": "Willkommen zurück!",
     "text": "Willkommen zurück!"
   },
   {
-    "objectID": "slides/sitzung_02.html#die-r-studio-arbeitsumgebung",
-    "href": "slides/sitzung_02.html#die-r-studio-arbeitsumgebung",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "Die R-Studio-Arbeitsumgebung",
-    "text": "Die R-Studio-Arbeitsumgebung\nBisher sieht es bei euch vermutlich etwa so aus:"
+    "objectID": "slides/sitzung_02.html#die-rstudio-arbeitsumgebung",
+    "href": "slides/sitzung_02.html#die-rstudio-arbeitsumgebung",
+    "title": "Quantitative Methoden mit R & RStudio",
+    "section": "Die RStudio-Arbeitsumgebung",
+    "text": "Die RStudio-Arbeitsumgebung\nBisher sieht es bei euch vermutlich etwa so aus:"
   },
   {
-    "objectID": "slides/sitzung_02.html#die-r-studio-arbeitsumgebung-1",
-    "href": "slides/sitzung_02.html#die-r-studio-arbeitsumgebung-1",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "Die R-Studio-Arbeitsumgebung",
-    "text": "Die R-Studio-Arbeitsumgebung\nDa wir in R-Studio aber immer mit Skripten arbeiten, sieht die Oberfläche typischerweise so aus:"
+    "objectID": "slides/sitzung_02.html#die-rstudio-arbeitsumgebung-1",
+    "href": "slides/sitzung_02.html#die-rstudio-arbeitsumgebung-1",
+    "title": "Quantitative Methoden mit R & RStudio",
+    "section": "Die RStudio-Arbeitsumgebung",
+    "text": "Die RStudio-Arbeitsumgebung\nDa wir in RStudio aber immer mit Skripten arbeiten, sieht die Oberfläche typischerweise so aus:"
   },
   {
     "objectID": "slides/sitzung_02.html#einstellungen",
     "href": "slides/sitzung_02.html#einstellungen",
-    "title": "Quantitative Methoden mit R & R-Studio",
+    "title": "Quantitative Methoden mit R & RStudio",
     "section": "Einstellungen",
     "text": "Einstellungen\n\n\n\nTools → Global Options\nBitte die Optionen zum Workspace deaktivieren: Häkchen nicht setzen und im drop-down-Menü “never” wählen\nmehr Infos zu den Einstellungen im User Guide"
   },
   {
     "objectID": "slides/sitzung_02.html#ordner-und-pfade",
     "href": "slides/sitzung_02.html#ordner-und-pfade",
-    "title": "Quantitative Methoden mit R & R-Studio",
+    "title": "Quantitative Methoden mit R & RStudio",
     "section": "Ordner und Pfade",
     "text": "Ordner und Pfade\n\n\n\nWir müssen R sagen, wo es Datensätze einlesen und Ergebnisse ablegen soll\nDazu ist es sinnvoll in Projekten zu arbeiten (1 Projekt pro Kurs/ Hausarbeit/ Forschungsprojekt)\nSo müssen nicht immer lange, nicht reproduzierbare absolute Pfade angegeben werden\nUnd es muss nicht immer explizit der Arbeitsordner mit setwd(\"Pfad-zum-Ordner\") festgelegt werden\nEin Projekt legt einen Ordner als Standard-Arbeitsordner fest\nVon dort aus können dann unterschiedliche Unterordner mit relativen Pfaden angesteuert werden:\n\n\ndata_1 &lt;- rio::import(\"./data/dataset_1.csv\")\n\n\nR_Kurs/\n├── R_Kurs.Rproj\n├── data/\n│   └── bspdaten.csv\n├── slides/\n│   └── sitzung_01.pdf\n├── skripte/\n│   └── 02_analyse.R\n├── uebungen/\n│   └── uebung_01.R\n└── output/\n    ├── grafik_01.png\n    └── tabelle_01.docx\n\n\n\n\n\n\nImportant\n\n\nNiemals ein Leerzeichen in Ordner- oder Dateinamen!"
   },
   {
     "objectID": "slides/sitzung_02.html#die-wichtigsten-keyboard-shortcuts",
     "href": "slides/sitzung_02.html#die-wichtigsten-keyboard-shortcuts",
-    "title": "Quantitative Methoden mit R & R-Studio",
+    "title": "Quantitative Methoden mit R & RStudio",
     "section": "Die wichtigsten Keyboard-Shortcuts",
     "text": "Die wichtigsten Keyboard-Shortcuts\n\nStr + Enter führt Code aus. Dafür:\n\nentweder den auszuführenden Code markieren\noder den Cursor irgendwo im auszuführenden Code-Chunk platzieren\n\nStr + Shift + S führt das gesamte Skript aus.\nStr + Shift + M fügt die Pipe (%&gt;%) ein\nStr + Shift + L räumt die Console auf"
   },
   {
     "objectID": "slides/sitzung_02.html#guter-stil-im-skript",
     "href": "slides/sitzung_02.html#guter-stil-im-skript",
-    "title": "Quantitative Methoden mit R & R-Studio",
+    "title": "Quantitative Methoden mit R & RStudio",
     "section": "Guter Stil im Skript",
     "text": "Guter Stil im Skript\n\n\n\nerkläre, was du tust in # Kommentaren\nbenne Objekte ausschließlich mit Kleinbuchstaben und trenne Wörter mit _\ni_use_snake_case \notherPeopleUseCamelCase \nsome.people.use.periods \nAnd_aFew.People_RENOUNCEconvention\nunterteile dein Skript in Sektionen\n# Load data --------------------------------------\n\n# Plot data --------------------------------------\n\n\n\n\n\n\n\n\n\nNote\n\n\nMehr dazu\nim Tidyverse-Styleguide und im eBook R For Data Science."
   },
   {
     "objectID": "slides/sitzung_02.html#guter-stil-im-code",
     "href": "slides/sitzung_02.html#guter-stil-im-code",
-    "title": "Quantitative Methoden mit R & R-Studio",
+    "title": "Quantitative Methoden mit R & RStudio",
     "section": "Guter Stil im Code",
     "text": "Guter Stil im Code\n\nLeerzeichen vor Operatoren (außer ^), vor %&gt;% und vor + in ggplot2-Befehlen\nkeine Leerzeichen vor oder nach Klammern\nneue Argumente/ Befehle kommen in eine neue Zeile\nPipes sollten grundsätzlich das letzte in einer Codezeile sein\neine Pipe sollte nicht länger als 10-15 Zeilen sein"
   },
   {
     "objectID": "slides/sitzung_02.html#basic-r-syntax",
     "href": "slides/sitzung_02.html#basic-r-syntax",
-    "title": "Quantitative Methoden mit R & R-Studio",
+    "title": "Quantitative Methoden mit R & RStudio",
     "section": "Basic R-Syntax",
     "text": "Basic R-Syntax\n\n# für Kommentare, also Beschreibungen\n&lt;- um etwas einem R-Objekt zuzuweisen\n[] um Positionen anzugeben\nDurch Drücken der Tab-Taste erhältst du Vorschläge zur Vervollständigung\n%&gt;% bzw. Str. + Shift + M um mehrere Befehle mittels Pipe zu verketten\nAufbau von Befehlen: command_name(argument1 = value1, argument2 = value2, ...)"
   },
   {
     "objectID": "slides/sitzung_02.html#wo-bekomme-ich-hilfe",
     "href": "slides/sitzung_02.html#wo-bekomme-ich-hilfe",
-    "title": "Quantitative Methoden mit R & R-Studio",
+    "title": "Quantitative Methoden mit R & RStudio",
     "section": "Wo bekomme ich Hilfe?",
-    "text": "Wo bekomme ich Hilfe?\n\n\n\nDirekt in R-Studio\n\n?befehl(), z.B. ?mean()\n?paket, z.B. ?dplyr\n??\"stichwort\", z.B. ??\"mean\"\n\nVon Kommiliton*innen\nVon mir während der Sitzung und/ oder in Sprechstunden"
+    "text": "Wo bekomme ich Hilfe?\n\n\n\nDirekt in RStudio\n\n?befehl(), z.B. ?mean()\n?paket, z.B. ?dplyr\n??\"stichwort\", z.B. ??\"mean\"\n\nVon Kommiliton*innen\nVon mir während der Sitzung und/ oder in Sprechstunden"
   },
   {
     "objectID": "slides/sitzung_02.html#wo-bekomme-ich-hilfe-1",
     "href": "slides/sitzung_02.html#wo-bekomme-ich-hilfe-1",
-    "title": "Quantitative Methoden mit R & R-Studio",
+    "title": "Quantitative Methoden mit R & RStudio",
     "section": "Wo bekomme ich Hilfe ?",
     "text": "Wo bekomme ich Hilfe ?\n\nOnline\n\nbei RStudio/Posit\nüber die von Google betriebene Suchmaschine Rseek\nauf der CRAN-Webseite unter “Manuals” gibt es hilfreiche Einstiegshandbücher\nauf Datacamp für einen schnellen Überblick über Basics\nin den Ressourcen im Syllabus"
   },
   {
     "objectID": "slides/sitzung_02.html#datenanalyse-workflow",
     "href": "slides/sitzung_02.html#datenanalyse-workflow",
-    "title": "Quantitative Methoden mit R & R-Studio",
+    "title": "Quantitative Methoden mit R & RStudio",
     "section": "Datenanalyse-Workflow",
     "text": "Datenanalyse-Workflow"
   },
   {
     "objectID": "slides/sitzung_02.html#minute-cards",
     "href": "slides/sitzung_02.html#minute-cards",
-    "title": "Quantitative Methoden mit R & R-Studio",
+    "title": "Quantitative Methoden mit R & RStudio",
     "section": "Minute Cards",
     "text": "Minute Cards\nBitte füllt die Minute Cards für die heutige Sitzung aus. Das sollt enicht länger als 3 Minuten dauern. Vielen Dank für eure Mitarbeit!"
   },
@@ -235,7 +235,7 @@
     "href": "index.html",
     "title": "Willkommen",
     "section": "",
-    "text": "Dieser Kurs vermittelt das Handwerkszeug für quantitative Datenanalyse mit R — von der Installation über Datenvisualisierung bis hin zu statistischen Analysen. Keine Programmierkenntnisse erforderlich.\nDen vollständigen Seminarplan, die Anforderungen und die Pflichtlektüre findest du im Syllabus. Folien und R-Skripte werden wöchentlich unter Sitzungen bereitgestellt, Übungsaufgaben unter Übungen.\n\n\n\n\n\n\nNoteAuf einen Blick\n\n\n\nKurszeit: Dienstag, 10:00–12:00 Uhr c.t.\nKursort: Ihnestr. 22, UG 1\nKontakt: maura.kratz@fu-berlin.de"
+    "text": "Dieser Kurs vermittelt das Handwerkszeug für quantitative Datenanalyse mit R — von der Installation über Datenvisualisierung bis hin zu statistischen Analysen. Keine Programmierkenntnisse erforderlich.\nDen vollständigen Seminarplan, die Anforderungen und die Pflichtlektüre findest du im Syllabus. Folien und R-Skripte werden wöchentlich unter Sitzungen bereitgestellt, Übungsaufgaben unter Übungen.\n\n\n\n\n\n\nNoteAuf einen Blick\n\n\n\nKurszeit: Dienstag, 10:00–12:00 Uhr c.t.\nKursort: Ihnestr. 22, UG 1\nKontakt: maura.kratz@fu-berlin.de\n\n\n\n\n\n\n\n\nQuelle: Allison Horst\n\n\n\n\nhttps://allisonhorst.com/allison-horst"
   },
   {
     "objectID": "LICENSE.html",
@@ -247,198 +247,198 @@
   {
     "objectID": "slides/sitzung_01_einfuehrung.html#wer-bin-ich",
     "href": "slides/sitzung_01_einfuehrung.html#wer-bin-ich",
-    "title": "Quantitative Methoden mit R & R-Studio",
+    "title": "Quantitative Methoden mit R & RStudio",
     "section": "Wer bin ich?",
     "text": "Wer bin ich?\n\n\n\nMaura Kratz\nAB Vergleich politischer Systeme mit Schwerpunkt DE und FR\nDissertation zu Themen der politischen Ungleichheit und Repräsentation\n2020 BA in Sciences Politiques an SciencesPo Paris\n2023 MA in Affaires Internationales & Politiwissenschaft an der SciencesPo und der FU\nSeit 2023 WiMi und Promovendin\nWie wollen wir uns ansprechen?"
   },
   {
     "objectID": "slides/sitzung_01_einfuehrung.html#wer-seid-ihr",
     "href": "slides/sitzung_01_einfuehrung.html#wer-seid-ihr",
-    "title": "Quantitative Methoden mit R & R-Studio",
+    "title": "Quantitative Methoden mit R & RStudio",
     "section": "Wer seid ihr?",
     "text": "Wer seid ihr?\nSitznachbar*in kennenlernen\n\n\n\nWorauf freust Du dich in diesem Semester am meisten (außerhalb der Uni)?\nWelches Thema (egal welches!) hat dich zuletzt begeistert?\nWas ist die letzte richtig gute Serie, die Du geschaut hast?\nWie lange hast du heute zur Uni gebraucht und mit welchem Verkehrsmittel warst du unterwegs?"
   },
   {
     "objectID": "slides/sitzung_01_einfuehrung.html#wer-seid-ihr-1",
     "href": "slides/sitzung_01_einfuehrung.html#wer-seid-ihr-1",
-    "title": "Quantitative Methoden mit R & R-Studio",
+    "title": "Quantitative Methoden mit R & RStudio",
     "section": "Wer seid ihr?",
     "text": "Wer seid ihr?\nZwei Wahrheiten, eine Lüge\n\n\n\nJede*r notiert drei Aussagen über sich selbst: Zwei wahre und eine erfundene.\nWer den Ball zugeworfen bekommt stellt die drei Aussagen vor.\nWir stimmen gemeinsam ab, welche der drei Aussagen wir für die erfundene halten.\nAuflösung."
   },
   {
     "objectID": "slides/sitzung_01_einfuehrung.html#wer-seid-ihr-2",
     "href": "slides/sitzung_01_einfuehrung.html#wer-seid-ihr-2",
-    "title": "Quantitative Methoden mit R & R-Studio",
+    "title": "Quantitative Methoden mit R & RStudio",
     "section": "Wer seid ihr?",
     "text": "Wer seid ihr?\nEs steht auf wer…\n\n\n\n… eine Sprache spricht, die nicht Deutsch, Englisch oder Französisch ist.\n… aktuell mehr als 20 Tabs im Browser geöffnet hat.\n… Pflanzen zu Hause erfolgreich am Leben erhält.\n… dieselbe Serie schon mehr als dreimal komplett durchgeschaut hat."
   },
   {
     "objectID": "slides/sitzung_01_einfuehrung.html#wer-seid-ihr-3",
     "href": "slides/sitzung_01_einfuehrung.html#wer-seid-ihr-3",
-    "title": "Quantitative Methoden mit R & R-Studio",
+    "title": "Quantitative Methoden mit R & RStudio",
     "section": "Wer seid ihr?",
     "text": "Wer seid ihr?\nEs steht auf wer…\n\n\n\n… lieber Hörbücher/Podcasts hört, anstatt selbst zu lesen.\n… am besten/ liebsten nach 22 Uhr lernt.\n… bei Gruppenarbeiten tendenziell das Gefühl hat 80% der Arbeit allein zu machen.\n… schon einmal eine Datei Hausarbeit_final_FINAL_jetzt_wirklich_v2 (oder so ähnlich) genannt hat."
   },
   {
     "objectID": "slides/sitzung_01_einfuehrung.html#wir-sind-umgeben-von-daten",
     "href": "slides/sitzung_01_einfuehrung.html#wir-sind-umgeben-von-daten",
-    "title": "Quantitative Methoden mit R & R-Studio",
+    "title": "Quantitative Methoden mit R & RStudio",
     "section": "Wir sind umgeben von Daten",
     "text": "Wir sind umgeben von Daten"
   },
   {
     "objectID": "slides/sitzung_01_einfuehrung.html#daten-helfen-uns-soziale-phänomene-zu-begreifen",
     "href": "slides/sitzung_01_einfuehrung.html#daten-helfen-uns-soziale-phänomene-zu-begreifen",
-    "title": "Quantitative Methoden mit R & R-Studio",
+    "title": "Quantitative Methoden mit R & RStudio",
     "section": "Daten helfen uns, soziale Phänomene zu begreifen",
     "text": "Daten helfen uns, soziale Phänomene zu begreifen"
   },
   {
     "objectID": "slides/sitzung_01_einfuehrung.html#daten-können-aber-auch-täuschen",
     "href": "slides/sitzung_01_einfuehrung.html#daten-können-aber-auch-täuschen",
-    "title": "Quantitative Methoden mit R & R-Studio",
+    "title": "Quantitative Methoden mit R & RStudio",
     "section": "Daten können aber auch täuschen",
     "text": "Daten können aber auch täuschen\n\n\n\n\n\nQuelle: ZDFheute, 17.01.2026\n\n\n\n\nQuelle: Mediendienst Integration, 05.03.2026"
   },
   {
     "objectID": "slides/sitzung_01_einfuehrung.html#die-menge-zu-überblickender-daten-wird-immer-größer",
     "href": "slides/sitzung_01_einfuehrung.html#die-menge-zu-überblickender-daten-wird-immer-größer",
-    "title": "Quantitative Methoden mit R & R-Studio",
+    "title": "Quantitative Methoden mit R & RStudio",
     "section": "Die Menge zu überblickender Daten wird immer größer",
     "text": "Die Menge zu überblickender Daten wird immer größer\n\n\n\n\n\n\nQuelle: Die Zeit."
   },
   {
     "objectID": "slides/sitzung_01_einfuehrung.html#datenkompetenz-wird-immer-wichtiger",
     "href": "slides/sitzung_01_einfuehrung.html#datenkompetenz-wird-immer-wichtiger",
-    "title": "Quantitative Methoden mit R & R-Studio",
+    "title": "Quantitative Methoden mit R & RStudio",
     "section": "Datenkompetenz wird immer wichtiger",
     "text": "Datenkompetenz wird immer wichtiger"
   },
   {
     "objectID": "slides/sitzung_01_einfuehrung.html#auch-in-der-politikwissenschaft",
     "href": "slides/sitzung_01_einfuehrung.html#auch-in-der-politikwissenschaft",
-    "title": "Quantitative Methoden mit R & R-Studio",
+    "title": "Quantitative Methoden mit R & RStudio",
     "section": "Auch in der Politikwissenschaft",
     "text": "Auch in der Politikwissenschaft\n\n\n\n\n\n\n\n\n\n\n\nQuelle: Monroe, Kristen Renwick, William Chiu, Adam Martin und Bridgette Portman. 2009. What Is Political Psychology? Perspectives on Politics 7, Nr. 4 (Dezember): 859–882. doi:10.1017/S153759270999185X."
   },
   {
     "objectID": "slides/sitzung_01_einfuehrung.html#gängige-statistik-software",
     "href": "slides/sitzung_01_einfuehrung.html#gängige-statistik-software",
-    "title": "Quantitative Methoden mit R & R-Studio",
+    "title": "Quantitative Methoden mit R & RStudio",
     "section": "Gängige Statistik-Software",
     "text": "Gängige Statistik-Software"
   },
   {
     "objectID": "slides/sitzung_01_einfuehrung.html#warum-r",
     "href": "slides/sitzung_01_einfuehrung.html#warum-r",
-    "title": "Quantitative Methoden mit R & R-Studio",
+    "title": "Quantitative Methoden mit R & RStudio",
     "section": "Warum R?",
     "text": "Warum R?\n\nkostenlos & für alle zugänglich \nkann (fast) alles → flexibel erweiterbar mit Paketen \nreproduzierbar & transparent durch R-Skripte \ngut in andere Programme integrierbar \nversionierbar durch Git und GitHub \nopen-source → große Community \nProgrammierkenntnisse erforderlich, daher weniger nutzer*innenfreundlich"
   },
   {
     "objectID": "slides/sitzung_01_einfuehrung.html#r-kenntnisse-sind-gefragt",
     "href": "slides/sitzung_01_einfuehrung.html#r-kenntnisse-sind-gefragt",
-    "title": "Quantitative Methoden mit R & R-Studio",
+    "title": "Quantitative Methoden mit R & RStudio",
     "section": "R-Kenntnisse sind gefragt",
     "text": "R-Kenntnisse sind gefragt\n\n\n\nklassische Berufsfelder für PoWi-Absolvent*innen: politische INstitutionen, Beratung, Verwaltung, Medien, NGOs, Projektmanagement …\nsie alle haben gemein, dass die Bedeutung evidenzbasierter und Entscheidungen zunimmt\nR und Python für komplexe Datenanalysen\nZeitalter der AI → Data Science, Computational Science und maschinelles Lernen"
   },
   {
-    "objectID": "slides/sitzung_01_einfuehrung.html#was-sind-r-und-r-studio",
-    "href": "slides/sitzung_01_einfuehrung.html#was-sind-r-und-r-studio",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "Was sind R und R-Studio?",
-    "text": "Was sind R und R-Studio?\n\nR ist eine Skriptsprache ( = „einfache“ Programmiersprache)\nEin Skript ist eine Abfolge von Befehlen\nRStudio ist eine „Integrierte Entwicklungsumgebung” (integrated development environment,IDE) für die Programmiersprache R → eine Umgebung die das Arbeiten mit R erleichtert"
+    "objectID": "slides/sitzung_01_einfuehrung.html#was-sind-r-und-rstudio",
+    "href": "slides/sitzung_01_einfuehrung.html#was-sind-r-und-rstudio",
+    "title": "Quantitative Methoden mit R & RStudio",
+    "section": "Was sind R und RStudio?",
+    "text": "Was sind R und RStudio?\n\nR ist eine Skriptsprache ( = „einfache“ Programmiersprache)\nEin Skript ist eine Abfolge von Befehlen\nRStudio ist eine „Integrierte Entwicklungsumgebung” (integrated development environment,IDE) für die Programmiersprache R → eine Umgebung die das Arbeiten mit R erleichtert"
   },
   {
-    "objectID": "slides/sitzung_01_einfuehrung.html#was-sind-r-und-r-studio-1",
-    "href": "slides/sitzung_01_einfuehrung.html#was-sind-r-und-r-studio-1",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "Was sind R und R-Studio?",
-    "text": "Was sind R und R-Studio?"
+    "objectID": "slides/sitzung_01_einfuehrung.html#was-sind-r-und-rstudio-1",
+    "href": "slides/sitzung_01_einfuehrung.html#was-sind-r-und-rstudio-1",
+    "title": "Quantitative Methoden mit R & RStudio",
+    "section": "Was sind R und RStudio?",
+    "text": "Was sind R und RStudio?"
   },
   {
-    "objectID": "slides/sitzung_01_einfuehrung.html#was-sind-r-und-r-studio-2",
-    "href": "slides/sitzung_01_einfuehrung.html#was-sind-r-und-r-studio-2",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "Was sind R und R-Studio?",
-    "text": "Was sind R und R-Studio?\n\n\n\n\n\n\nR ohne R-Studio (in R-Gui)\n\n\n\n\n\n\n\nR in R-Studio"
+    "objectID": "slides/sitzung_01_einfuehrung.html#was-sind-r-und-rstudio-2",
+    "href": "slides/sitzung_01_einfuehrung.html#was-sind-r-und-rstudio-2",
+    "title": "Quantitative Methoden mit R & RStudio",
+    "section": "Was sind R und RStudio?",
+    "text": "Was sind R und RStudio?\n\n\n\n\n\n\nR ohne RStudio (in R-Gui)\n\n\n\n\n\n\n\nR in RStudio"
   },
   {
     "objectID": "slides/sitzung_01_einfuehrung.html#die-goldenen-r-regeln",
     "href": "slides/sitzung_01_einfuehrung.html#die-goldenen-r-regeln",
-    "title": "Quantitative Methoden mit R & R-Studio",
+    "title": "Quantitative Methoden mit R & RStudio",
     "section": "Die goldenen R-Regeln",
     "text": "Die goldenen R-Regeln\n\n\n\n\nAlles ist möglich.\n\nEs gibt IMMER mehr als einen Weg zum Ziel\nGerade zu Beginn kann das Programmieren sehr frustrierend sein. Gib nicht auf! Frustrationstoleranz ist der Schlüssel!"
   },
   {
     "objectID": "slides/sitzung_01_einfuehrung.html#lernziel",
     "href": "slides/sitzung_01_einfuehrung.html#lernziel",
-    "title": "Quantitative Methoden mit R & R-Studio",
+    "title": "Quantitative Methoden mit R & RStudio",
     "section": "Lernziel",
     "text": "Lernziel\n\nErwerb der Fähigkeit, große Datensätze selbständig zu verarbeiten, den Daten und der Fragestellung entsprechende geeignete Analysen durchzuführen und deren Ergebnisse kompetent darzustellen und zu interpretieren."
   },
   {
     "objectID": "slides/sitzung_01_einfuehrung.html#dieser-kurs-vermittelt",
     "href": "slides/sitzung_01_einfuehrung.html#dieser-kurs-vermittelt",
-    "title": "Quantitative Methoden mit R & R-Studio",
+    "title": "Quantitative Methoden mit R & RStudio",
     "section": "Dieser Kurs vermittelt:",
     "text": "Dieser Kurs vermittelt:\n\nErlernen von:\n\nDatenaufbereitung (Bereinigung und Bearbeitung),\nDeskriptiver Datenanalyse,\nErster statistischer Datenanalyse und\nVisualisierung und Darstellung\n\nPraktische Anwendung durch Übungen\n\n\n→ Übertragung auf kommende Lehrveranstaltungen, Hausarbeiten etc."
   },
   {
     "objectID": "slides/sitzung_01_einfuehrung.html#ressourcen",
     "href": "slides/sitzung_01_einfuehrung.html#ressourcen",
-    "title": "Quantitative Methoden mit R & R-Studio",
+    "title": "Quantitative Methoden mit R & RStudio",
     "section": "Ressourcen",
     "text": "Ressourcen\n\nSyllabus & Sitzungsplan\nZu erbringende Leistungen\nFolien & Skripte\nÜbungen & Hausaufgaben\nLiteratur & Tipps\n\n\n\n\n\n\n\n\nWichtig\n\n\nAll das steht euch auf der Kurs-Webseite zur Verfügung!"
   },
   {
     "objectID": "slides/sitzung_01_einfuehrung.html#semesterübersicht",
     "href": "slides/sitzung_01_einfuehrung.html#semesterübersicht",
-    "title": "Quantitative Methoden mit R & R-Studio",
+    "title": "Quantitative Methoden mit R & RStudio",
     "section": "Semesterübersicht",
     "text": "Semesterübersicht"
   },
   {
     "objectID": "slides/sitzung_01_einfuehrung.html#bis-zur-kommenden-sitzung-bitte",
     "href": "slides/sitzung_01_einfuehrung.html#bis-zur-kommenden-sitzung-bitte",
-    "title": "Quantitative Methoden mit R & R-Studio",
+    "title": "Quantitative Methoden mit R & RStudio",
     "section": "Bis zur kommenden Sitzung bitte",
-    "text": "Bis zur kommenden Sitzung bitte\n\nR herunterladen & installieren\nR-Studio herunterladen & installieren\nmit dem Syllabus vertraut machen\netwaige Fragen notieren und zur nächsten Sitzung mitbringen"
+    "text": "Bis zur kommenden Sitzung bitte\n\nR herunterladen & installieren\nRStudio herunterladen & installieren\nmit dem Syllabus vertraut machen\netwaige Fragen notieren und zur nächsten Sitzung mitbringen"
   },
   {
     "objectID": "slides/sitzung_01_einfuehrung.html#r-installieren",
     "href": "slides/sitzung_01_einfuehrung.html#r-installieren",
-    "title": "Quantitative Methoden mit R & R-Studio",
+    "title": "Quantitative Methoden mit R & RStudio",
     "section": "R installieren",
     "text": "R installieren\n\nDownload über Website des Cran-Projekts („The Comprehensive R Archive Network“): https://cran.uni-muenster.de/ oder https://cloud.r-project.org/\n\nDownload and Install R → entsprechende Betriebssystem auswählen (Windows, Mac oder Linux)\ninstall R for the first time → aktuelle R-Version zum Download auswählen bzw. bei Mac entweder Mac mit mind. M1 Chip oder mit Intel-Prozessor auswählen\n\nDatei installieren (Standardeinstellungen können beibehalten werden)"
   },
   {
     "objectID": "slides/sitzung_01_einfuehrung.html#r-installieren-1",
     "href": "slides/sitzung_01_einfuehrung.html#r-installieren-1",
-    "title": "Quantitative Methoden mit R & R-Studio",
+    "title": "Quantitative Methoden mit R & RStudio",
     "section": "R installieren",
     "text": "R installieren"
   },
   {
-    "objectID": "slides/sitzung_01_einfuehrung.html#r-studio-installieren",
-    "href": "slides/sitzung_01_einfuehrung.html#r-studio-installieren",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "R-Studio installieren",
-    "text": "R-Studio installieren\n\nDownload über Website von RStudio: https://rstudio.com/products/rstudio/download/\nRStudio Desktop (Free-Lizenz und entsprechendes Betriebssystem) auswählen\nDatei installieren\nRStudio starten"
+    "objectID": "slides/sitzung_01_einfuehrung.html#rstudio-installieren",
+    "href": "slides/sitzung_01_einfuehrung.html#rstudio-installieren",
+    "title": "Quantitative Methoden mit R & RStudio",
+    "section": "RStudio installieren",
+    "text": "RStudio installieren\n\nDownload über Website von RStudio: https://rstudio.com/products/rstudio/download/\nRStudio Desktop (Free-Lizenz und entsprechendes Betriebssystem) auswählen\nDatei installieren\nRStudio starten"
   },
   {
-    "objectID": "slides/sitzung_01_einfuehrung.html#r-studio-installieren-1",
-    "href": "slides/sitzung_01_einfuehrung.html#r-studio-installieren-1",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "R-Studio installieren",
-    "text": "R-Studio installieren"
+    "objectID": "slides/sitzung_01_einfuehrung.html#rstudio-installieren-1",
+    "href": "slides/sitzung_01_einfuehrung.html#rstudio-installieren-1",
+    "title": "Quantitative Methoden mit R & RStudio",
+    "section": "RStudio installieren",
+    "text": "RStudio installieren"
   },
   {
-    "objectID": "slides/sitzung_01_einfuehrung.html#r-studio-öffnen",
-    "href": "slides/sitzung_01_einfuehrung.html#r-studio-öffnen",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "R-Studio öffnen",
-    "text": "R-Studio öffnen\nWenn du R-Studio das erste Mal öffnest, sieht es in etwa so aus:"
+    "objectID": "slides/sitzung_01_einfuehrung.html#rstudio-öffnen",
+    "href": "slides/sitzung_01_einfuehrung.html#rstudio-öffnen",
+    "title": "Quantitative Methoden mit R & RStudio",
+    "section": "RStudio öffnen",
+    "text": "RStudio öffnen\nWenn du RStudio das erste Mal öffnest, sieht es in etwa so aus:"
   },
   {
     "objectID": "slides/sitzung_03_data-wrangling.html#willkommen-zurück",
@@ -501,7 +501,7 @@
     "href": "slides/sitzung_03_data-wrangling.html#änderungen-überprüfen---3-optionen",
     "title": "Quantitative Methoden mit R & R-Studio",
     "section": "Änderungen überprüfen - 3 Optionen",
-    "text": "Änderungen überprüfen - 3 Optionen\n1. In der Console ansehen\n\nSinnvoll zum Testen, kann aber schnell unübersichtlich werden bei großen Datensätzen\nÄnderungen werden nirgends gespeichert\n\n\n\nbtw_2025_ergebnisse %&gt;%\n  dplyr::select(gebietsart, gebietsnummer, gruppenname, stimme, prozent, gewahlt) %&gt;%\n  head(10)\n\n   gebietsart gebietsnummer     gruppenname stimme   prozent gewahlt\n1        Bund            99 Wahlberechtigte     NA        NA        \n2        Bund            99        Wählende     NA 82.512200        \n3        Bund            99       Ungültige      1  0.847738        \n4        Bund            99       Ungültige      2  0.559080        \n5        Bund            99         Gültige      1 99.152262        \n6        Bund            99         Gültige      2 99.440920        \n7        Bund            99             SPD      1 20.071417        \n8        Bund            99             SPD      2 16.413301        \n9        Bund            99             CDU      1 25.460226        \n10       Bund            99             CDU      2 22.550824"
+    "text": "Änderungen überprüfen - 3 Optionen\n1. In der Console ansehen\n\nSinnvoll zum Testen, kann aber schnell unübersichtlich werden bei großen Datensätzen\nÄnderungen werden nirgends gespeichert\n\n\n\n\n\nAttache Paket: 'dplyr'\n\n\nDie folgenden Objekte sind maskiert von 'package:stats':\n\n    filter, lag\n\n\nDie folgenden Objekte sind maskiert von 'package:base':\n\n    intersect, setdiff, setequal, union\n\n\n\nbtw_2025_ergebnisse %&gt;%\n  dplyr::select(gebietsart, gebietsnummer, gruppenname, stimme, prozent, gewahlt) %&gt;%\n  head(10)\n\n   gebietsart gebietsnummer     gruppenname stimme   prozent gewahlt\n1        Bund            99 Wahlberechtigte     NA        NA        \n2        Bund            99        Wählende     NA 82.512200        \n3        Bund            99       Ungültige      1  0.847738        \n4        Bund            99       Ungültige      2  0.559080        \n5        Bund            99         Gültige      1 99.152262        \n6        Bund            99         Gültige      2 99.440920        \n7        Bund            99             SPD      1 20.071417        \n8        Bund            99             SPD      2 16.413301        \n9        Bund            99             CDU      1 25.460226        \n10       Bund            99             CDU      2 22.550824"
   },
   {
     "objectID": "slides/sitzung_03_data-wrangling.html#änderungen-überprüfen---3-optionen-1",
@@ -529,7 +529,7 @@
     "href": "slides/sitzung_03_data-wrangling.html#minute-cards",
     "title": "Quantitative Methoden mit R & R-Studio",
     "section": "Minute Cards",
-    "text": "Minute Cards\nBitte füllt die Minute Cards für die heutige Sitzung aus. Das sollt enicht länger als 3 Minuten dauern. Vielen Dank für eure Mitarbeit!"
+    "text": "Minute Cards\nBitte füllt die Minute Cards für die heutige Sitzung aus. Das sollt enicht länger als 3 Minuten dauern. Vielen Dank für eure Mitarbeit!\n\n\nWarning: Paket 'qrcode' wurde unter R Version 4.5.3 erstellt"
   },
   {
     "objectID": "syllabus.html#vorläufiger-zeitplan",
@@ -565,5 +565,26 @@
     "title": "Übung XX: [Titel der Übung]",
     "section": "",
     "text": "Setup\n\n# Pakete laden\nlibrary(tidyverse)\nlibrary(rio)\nlibrary(janitor)\nlibrary(labelled)\nlibrary(summarytools)\n\n\n\nAufgabe 1: [Titel]\n[Kurze Beschreibung was in dieser Aufgabe gemacht wird.]\n\n# Code hier\n\n[Kurze Interpretation / Antwort in eigenen Worten.]\n\n\nAufgabe 2: [Titel]\n[Kurze Beschreibung was in dieser Aufgabe gemacht wird.]\n\n# Code hier\n\n[Kurze Interpretation / Antwort in eigenen Worten.]\n\n\nAufgabe 3: [Titel]\n[Kurze Beschreibung was in dieser Aufgabe gemacht wird.]\n\n# Code hier\n\n[Kurze Interpretation / Antwort in eigenen Worten.]"
+  },
+  {
+    "objectID": "slides/sitzung_04.html#variablen-und-skalenniveaus-1",
+    "href": "slides/sitzung_04.html#variablen-und-skalenniveaus-1",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Variablen und Skalenniveaus",
+    "text": "Variablen und Skalenniveaus\n\nin R lautet der entsprechende Befehl class()\ndas richtige Skalenniveau ist entscheidend für die spätere Durchführung von deskriptiver und schließender Statistik (ab kommender Sitzung)\ndaher schauen wir uns jetzt nochmal unsere Datensatzübersicht an und überlegen gemeinsam, welche Skalenniveaus geändert werden müssten.\n\n\nfoto"
+  },
+  {
+    "objectID": "slides/sitzung_04.html#variablen-und-skalenniveaus-meine",
+    "href": "slides/sitzung_04.html#variablen-und-skalenniveaus-meine",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Variablen und Skalenniveaus Meine",
+    "text": "Variablen und Skalenniveaus Meine\n\nin R lautet der entsprechende Befehl class()\ndas richtige Skalenniveau ist entscheidend für die spätere Durchführung von deskriptiver und schließender Statistik (ab kommender Sitzung)\ndaher schauen wir uns jetzt nochmal unsere Datensatzübersicht an und überlegen gemeinsam, welche Skalenniveaus geändert werden müssten."
+  },
+  {
+    "objectID": "slides/sitzung_04.html#section",
+    "href": "slides/sitzung_04.html#section",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "",
+    "text": "in R lautet der entsprechende Befehl class()\ndas richtige Skalenniveau ist entscheidend für die spätere Durchführung von deskriptiver und schließender Statistik (ab kommender Sitzung)\ndaher schauen wir uns jetzt nochmal unsere Datensatzübersicht an und überlegen gemeinsam, welche Skalenniveaus geändert werden müssten."
   }
 ]

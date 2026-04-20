@@ -18,11 +18,6 @@ editor_options:
 
 ![](images/clipboard-4994590.png)
 
-# Was heute ansteht:
-
--   Check-In
--   Besprechung der Übung 1
--   Data Cleaning & Wrangling
 
 # Recap
 
@@ -31,6 +26,15 @@ editor_options:
 3.  Hilfe suchen {{< fa check >}}
 4.  Daten einlesen mit dem *rio*-Paket {{< fa check >}}
 5.  Daten überblicken mit dem *summarytools*-Paket {{< fa check >}}
+
+
+# Was heute ansteht:
+
+-   Check-In
+-   Besprechung der Übung 1
+-   Data Cleaning & Wrangling
+
+
 
 ## Datenanalyse-Workflow
 

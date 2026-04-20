@@ -1,5 +1,5 @@
 ---
-title: "Quantitative Methoden mit R & R-Studio"
+title: "Quantitative Methoden mit R & RStudio"
 subtitle: "Sommersemester 2026 | Sitzung 2"
 author: "Maura Kratz"
 format: 
@@ -7,7 +7,7 @@ format:
     self-contained: true
     theme: [default, fu_slides.scss] 
     logo: "images/fu-logo-schwarz-RGB-p.png"
-    footer: "Quantitative Methoden mit R & R-Studio | SoSe26 | Maura Kratz"
+    footer: "Quantitative Methoden mit R & RStudio | SoSe26 | Maura Kratz"
     incremental: true 
     highlight-style: none
 editor_options: 
@@ -21,24 +21,25 @@ editor_options:
 # Was heute ansteht:
 
 -   Check-In: Installation & Fragen
--   R-Studio-Oberfläche
+-   RStudio-Oberfläche
     -   Einstellungen
     -   Hilfe
 -   Projektordner anlegen
 -   Basic R-Syntax & Nützliche Shortcuts
--   Hands-On: Daten einlesen
+-   Daten einlesen
 
-## Die R-Studio-Arbeitsumgebung
+## Die RStudio-Arbeitsumgebung
 
 Bisher sieht es bei euch vermutlich etwa so aus:
 
 ![](images/clipboard-2744485803.png)
 
-## Die R-Studio-Arbeitsumgebung
+## Die RStudio-Arbeitsumgebung
 
-Da wir in R-Studio aber immer mit Skripten arbeiten, sieht die Oberfläche typischerweise so aus:
+Da wir in RStudio aber immer mit Skripten arbeiten, sieht die Oberfläche typischerweise so aus:
 
 ![](images/clipboard-3365166862.png){width="100%"}
+
 
 ## Einstellungen
 
@@ -174,7 +175,7 @@ im [Tidyverse-Styleguide](https://style.tidyverse.org/) und im eBook [R For Data
 
 ::::: columns
 ::: {.column width="60%"}
-1.  Direkt in R-Studio
+1.  Direkt in RStudio
 
     -   `?befehl()`, z.B. `?mean()`
 

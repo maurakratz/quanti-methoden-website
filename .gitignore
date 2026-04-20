@@ -8,6 +8,8 @@
 
 data/
 ergebnisse/
+slides/*.html
+slides/*.pdf
 
 .Rproj.user
 .httr-oauth

@@ -1,5 +1,5 @@
 ---
-title: "Quantitative Methoden mit R & R-Studio"
+title: "Quantitative Methoden mit R & RStudio"
 subtitle: "Sommersemester 2026 | Sitzung 1"
 author: "Maura Kratz"
 format: 
@@ -7,7 +7,7 @@ format:
     self-contained: true
     theme: [default, fu_slides.scss] 
     logo: "images/fu-logo-schwarz-RGB-p.png"
-    footer: "Quantitative Methoden mit R & R-Studio | SoSe26 | Maura Kratz"
+    footer: "Quantitative Methoden mit R & RStudio | SoSe26 | Maura Kratz"
     incremental: true 
     highlight-style: none
 editor_options: 
@@ -19,7 +19,7 @@ editor_options:
 -   Vorstellungsrunde
 -   Warum computergestützte Datenanalyse lernen?
 -   Warum R?
--   Was ist R? Was ist R-Studio?
+-   Was ist R? Was ist RStudio?
 -   Was erwartet uns in diesem Kurs?
 -   Was ist bis kommenden Dienstag zu tun?
 
@@ -225,9 +225,9 @@ Quelle: Monroe, Kristen Renwick, William Chiu, Adam Martin und Bridgette Portman
 :::
 :::::
 
-# Was sind R und R-Studio eigentlich?
+# Was sind R und RStudio eigentlich?
 
-## Was sind R und R-Studio?
+## Was sind R und RStudio?
 
 -   R ist eine Skriptsprache ( = „einfache“ Programmiersprache)
 -   Ein Skript ist eine Abfolge von Befehlen
@@ -245,16 +245,16 @@ Quelle: Monroe, Kristen Renwick, William Chiu, Adam Martin und Bridgette Portman
 :::::
 ::::::
 
-## Was sind R und R-Studio?
+## Was sind R und RStudio?
 
 ![](images/clipboard-4253454986.png)
 
-## Was sind R und R-Studio?
+## Was sind R und RStudio?
 
 ::: {layout-ncol="2"}
-![R ohne R-Studio (in R-Gui)](images/clipboard-825709011.png)
+![R ohne RStudio (in R-Gui)](images/clipboard-825709011.png)
 
-![R in R-Studio](images/clipboard-3138135745.png)
+![R in RStudio](images/clipboard-3138135745.png)
 :::
 
 ## Die goldenen R-Regeln
@@ -307,7 +307,7 @@ All das steht euch auf der [Kurs-Webseite](https://maurakratz.github.io/quanti-m
 ## Bis zur kommenden Sitzung bitte
 
 -   R herunterladen & installieren
--   R-Studio herunterladen & installieren
+-   RStudio herunterladen & installieren
 -   mit dem Syllabus vertraut machen
 -   etwaige Fragen notieren und zur nächsten Sitzung mitbringen
 
@@ -335,20 +335,20 @@ All das steht euch auf der [Kurs-Webseite](https://maurakratz.github.io/quanti-m
 :::
 :::::
 
-## R-Studio installieren
+## RStudio installieren
 
 -   Download über Website von RStudio: <https://rstudio.com/products/rstudio/download/>
 -   RStudio Desktop (Free-Lizenz und entsprechendes Betriebssystem) auswählen
 -   Datei installieren
 -   RStudio starten
 
-## R-Studio installieren
+## RStudio installieren
 
 ![](images/clipboard-1889837894.png)
 
-## R-Studio öffnen
+## RStudio öffnen
 
-Wenn du R-Studio das erste Mal öffnest, sieht es in etwa so aus:
+Wenn du RStudio das erste Mal öffnest, sieht es in etwa so aus:
 
 ![](images/clipboard-2744485803.png)
 

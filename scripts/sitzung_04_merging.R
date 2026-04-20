@@ -1,5 +1,5 @@
 # QUANTITATIVE DATENANALYSE IN R | Maura Kratz | SoSe26 -----------
-# SITZUNG 04 Data merging & Quarto                      -----------
+# SITZUNG 04 Data merging                               -----------
 # ______________________________________________________-----------
 
 
@@ -23,8 +23,8 @@ library(dplyr) # %>%
    # Führe dann das gesamte Skript aus.
 
 # Nun können wir beide hier mit dem base R Befehl load() einlesen.
-load("data/btw_2025_ergebnisse.RData")
-load("data/btw_2025_strukturdaten.RData")
+load("output/btw_2025_ergebnisse.RData")
+load("output/btw_2025_strukturdaten.RData")
 
 
 # 3. Daten mergen --------------------
@@ -85,4 +85,11 @@ btw_2025_erg_struk <- btw_2025_ergebnisse %>%
   )
 
 # speichern
-save(btw_2025_erg_struk, file = "data/btw_2025_erg_struk.RData")
+save(btw_2025_erg_struk, file = "output/btw_2025_erg_struk.RData")
+
+# summary speichern
+btw_2025_erg_struk %>%
+  summarytools::dfSummary() %>%
+  summarytools::view(file = "output/btw_2025_erg_struk_summary.html")
+
+
