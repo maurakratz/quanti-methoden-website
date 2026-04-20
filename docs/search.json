@@ -28,48 +28,6 @@
     "text": "Datenanalyse-Workflow"
   },
   {
-    "objectID": "slides/sitzung_04.html#pakete",
-    "href": "slides/sitzung_04.html#pakete",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "Pakete",
-    "text": "Pakete\n\n\n\nEinige Funktionen sind bereits in base R enthalten\nFür andere müssen zusätzliche Pakete geladen werden\nPakete sind Bündel unterschiedlicher Funktionen\nBase R reicht oft nur für sehr basale Operationen und Visualisierungen, für alles andere werden Pakete benötigt"
-  },
-  {
-    "objectID": "slides/sitzung_04.html#summarytools-paket",
-    "href": "slides/sitzung_04.html#summarytools-paket",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "summarytools-Paket",
-    "text": "summarytools-Paket\n\n\n\n\n\n\n\n\nFunktion\nBeschreibung\nGeeignet für\n\n\n\n\ndfSummary()\nÜbersicht über alle Variablen (Klasse, fehlende Werte, Verteilungen, etc.)\nSchnelle Gesamtübersicht eines Datensatzes\n\n\nfreq()\nHäufigkeitstabellen\nEinfache Verteilungen kategorialer Variablen\n\n\ndescr()\nDeskriptive Statistik (Mittelwert, Median, SD, etc.)\nBasisanalyse numerischer Variablen\n\n\nctable()\nKreuztabellen mit Prozenten und optionalen Tests (z. B. Chi²)\nZusammenhang zwischen zweikategorialen Variablen\n\n\n\n\nbtw_2025_ergebnisse %&gt;%\n  summarytools::dfSummary(na.col = FALSE) %&gt;% # missings-Spalte ausblenden\n  summarytools::view(file = \"./data/btw_2025_ergebnisse_uebersicht.html\") # speichern"
-  },
-  {
-    "objectID": "slides/sitzung_04.html#pipes",
-    "href": "slides/sitzung_04.html#pipes",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "Pipes",
-    "text": "Pipes\n\nZwei Optionen: Base R pipe: |&gt; ODER magrittr pipe: %&gt;%\nDie Default-Pipe kann über Global Options eingestellt werden\nZum Einfügen: eintippen oder Strg + Shift + M\nStilregeln:\n\nImmer Leerzeichen vor der Pipe\nImmer neue Zeile danach\n\n\n\nbtw_2025_ergebnisse %&gt;%\n  dplyr::filter(jahr == 2025) %&gt;%\n  dplyr::select(partei, zweitstimmen)"
-  },
-  {
-    "objectID": "slides/sitzung_04.html#datentransformation-mit-dplyr",
-    "href": "slides/sitzung_04.html#datentransformation-mit-dplyr",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "Datentransformation mit dplyr",
-    "text": "Datentransformation mit dplyr\n\n\n\n\n\n\n\n\nBefehl\nBeschreibung\nBsp\n\n\n\n\nrename()\nSpaltennamen ändern\ndf %&gt;% rename(neu = alt)\n\n\nselect()\nVariablen auswählen\ndf %&gt;% select(var1, var2)\n\n\nslice()\nZeilen nach Position auswählen\ndf %&gt;% slice(1:10)\n\n\nfilter()\nZeilen nach Werten filtern\ndf %&gt;% filter(jahr == 2025)\n\n\narrange()\nZeilen sortieren\ndf %&gt;% arrange(desc(stimmen))\n\n\nrelocate()\nSpaltenreihenfolge ändern\ndf %&gt;% relocate(var1, .before = var2)"
-  },
-  {
-    "objectID": "slides/sitzung_04.html#datentransformation-mit-mit-dplyr",
-    "href": "slides/sitzung_04.html#datentransformation-mit-mit-dplyr",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "Datentransformation mit mit dplyr",
-    "text": "Datentransformation mit mit dplyr\n\n\n\n\n\n\n\n\nBefehl\nBeschreibung\nBsp\n\n\n\n\nmutate()\nNeue Variablen hinzufügen\ndf %&gt;% mutate(anteil = stimmen / sum(stimmen))\n\n\nsummarise()\nMehrere Werte zusammenfassen\ndf %&gt;% summarise(mean(stimmen))\n\n\ncount()\nHäufigkeiten zählen\ndf %&gt;% count(partei)\n\n\ngroup_by()\nOperationen gruppenweise ausführen\ndf %&gt;% group_by(partei) %&gt;% summarise(mean(stimmen))"
-  },
-  {
-    "objectID": "slides/sitzung_04.html#datentransformation-mit-mit-tidyr",
-    "href": "slides/sitzung_04.html#datentransformation-mit-mit-tidyr",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "Datentransformation mit mit tidyr",
-    "text": "Datentransformation mit mit tidyr\n\n\n\n\n\n\n\n\nBefehl\nBeschreibung\nBsp\n\n\n\n\npivot_longer()\nBreites Format in langes umwandeln\ndf %&gt;% pivot_longer(cols = -id, names_to = \"var\", values_to = \"val\")\n\n\npivot_wider()\nLanges Format in breites umwandeln\ndf %&gt;% pivot_wider(names_from = var, values_from = val)\n\n\ndrop_na()\nZeilen mit fehlenden Werten entfernen\ndf %&gt;% drop_na(var1)"
-  },
-  {
     "objectID": "slides/sitzung_04.html#variablen-skalenniveaus",
     "href": "slides/sitzung_04.html#variablen-skalenniveaus",
     "title": "Quantitative Methoden mit R & R-Studio",
@@ -82,6 +40,13 @@
     "title": "Quantitative Methoden mit R & R-Studio",
     "section": "Variablen und Skalenniveaus",
     "text": "Variablen und Skalenniveaus\n\n\n\n\n\n\n\n\n\n\nSkalenniveau\nVariablentyp\nMögliche Aussagen\nBeispiel(e)\nOperationen\n\n\n\n\nNominal\nKategorial\nGleichheit / Verschiedenheit\nDiagnosen, Religion\n\\(=, \\neq\\)\n\n\nOrdinal\nKategorial\nRangfolge\nSchulabschlüsse\n\\(=, \\neq, &lt;, &gt;\\)\n\n\nIntervall\nMetrisch\nAbstände\nTemperatur (°C), IQ\n\\(+, -\\)\n\n\nVerhältnis\nMetrisch\nVerhältnisse\nEinkommen, Alter\n\\(*, /\\)"
+  },
+  {
+    "objectID": "slides/sitzung_04.html#variablen-und-skalenniveaus-1",
+    "href": "slides/sitzung_04.html#variablen-und-skalenniveaus-1",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Variablen und Skalenniveaus",
+    "text": "Variablen und Skalenniveaus\n\nin R lautet der entsprechende Befehl class()\ndas richtige Skalenniveau ist entscheidend für die spätere Durchführung von deskriptiver und schließender Statistik (ab kommender Sitzung)\ndaher schauen wir uns jetzt nochmal unsere Datensatzübersicht an und überlegen gemeinsam, welche Skalenniveaus geändert werden müssten."
   },
   {
     "objectID": "slides/sitzung_04.html#minute-cards",
@@ -501,7 +466,7 @@
     "href": "slides/sitzung_03_data-wrangling.html#änderungen-überprüfen---3-optionen",
     "title": "Quantitative Methoden mit R & R-Studio",
     "section": "Änderungen überprüfen - 3 Optionen",
-    "text": "Änderungen überprüfen - 3 Optionen\n1. In der Console ansehen\n\nSinnvoll zum Testen, kann aber schnell unübersichtlich werden bei großen Datensätzen\nÄnderungen werden nirgends gespeichert\n\n\n\n\n\nAttache Paket: 'dplyr'\n\n\nDie folgenden Objekte sind maskiert von 'package:stats':\n\n    filter, lag\n\n\nDie folgenden Objekte sind maskiert von 'package:base':\n\n    intersect, setdiff, setequal, union\n\n\n\nbtw_2025_ergebnisse %&gt;%\n  dplyr::select(gebietsart, gebietsnummer, gruppenname, stimme, prozent, gewahlt) %&gt;%\n  head(10)\n\n   gebietsart gebietsnummer     gruppenname stimme   prozent gewahlt\n1        Bund            99 Wahlberechtigte     NA        NA        \n2        Bund            99        Wählende     NA 82.512200        \n3        Bund            99       Ungültige      1  0.847738        \n4        Bund            99       Ungültige      2  0.559080        \n5        Bund            99         Gültige      1 99.152262        \n6        Bund            99         Gültige      2 99.440920        \n7        Bund            99             SPD      1 20.071417        \n8        Bund            99             SPD      2 16.413301        \n9        Bund            99             CDU      1 25.460226        \n10       Bund            99             CDU      2 22.550824"
+    "text": "Änderungen überprüfen - 3 Optionen\n1. In der Console ansehen\n\nSinnvoll zum Testen, kann aber schnell unübersichtlich werden bei großen Datensätzen\nÄnderungen werden nirgends gespeichert\n\n\n\nbtw_2025_ergebnisse %&gt;%\n  dplyr::select(gebietsart, gebietsnummer, gruppenname, stimme, prozent, gewahlt) %&gt;%\n  head(10)\n\n   gebietsart gebietsnummer     gruppenname stimme   prozent gewahlt\n1        Bund            99 Wahlberechtigte     NA        NA        \n2        Bund            99        Wählende     NA 82.512200        \n3        Bund            99       Ungültige      1  0.847738        \n4        Bund            99       Ungültige      2  0.559080        \n5        Bund            99         Gültige      1 99.152262        \n6        Bund            99         Gültige      2 99.440920        \n7        Bund            99             SPD      1 20.071417        \n8        Bund            99             SPD      2 16.413301        \n9        Bund            99             CDU      1 25.460226        \n10       Bund            99             CDU      2 22.550824"
   },
   {
     "objectID": "slides/sitzung_03_data-wrangling.html#änderungen-überprüfen---3-optionen-1",
@@ -529,7 +494,7 @@
     "href": "slides/sitzung_03_data-wrangling.html#minute-cards",
     "title": "Quantitative Methoden mit R & R-Studio",
     "section": "Minute Cards",
-    "text": "Minute Cards\nBitte füllt die Minute Cards für die heutige Sitzung aus. Das sollt enicht länger als 3 Minuten dauern. Vielen Dank für eure Mitarbeit!\n\n\nWarning: Paket 'qrcode' wurde unter R Version 4.5.3 erstellt"
+    "text": "Minute Cards\nBitte füllt die Minute Cards für die heutige Sitzung aus. Das sollt enicht länger als 3 Minuten dauern. Vielen Dank für eure Mitarbeit!"
   },
   {
     "objectID": "syllabus.html#vorläufiger-zeitplan",
@@ -565,26 +530,5 @@
     "title": "Übung XX: [Titel der Übung]",
     "section": "",
     "text": "Setup\n\n# Pakete laden\nlibrary(tidyverse)\nlibrary(rio)\nlibrary(janitor)\nlibrary(labelled)\nlibrary(summarytools)\n\n\n\nAufgabe 1: [Titel]\n[Kurze Beschreibung was in dieser Aufgabe gemacht wird.]\n\n# Code hier\n\n[Kurze Interpretation / Antwort in eigenen Worten.]\n\n\nAufgabe 2: [Titel]\n[Kurze Beschreibung was in dieser Aufgabe gemacht wird.]\n\n# Code hier\n\n[Kurze Interpretation / Antwort in eigenen Worten.]\n\n\nAufgabe 3: [Titel]\n[Kurze Beschreibung was in dieser Aufgabe gemacht wird.]\n\n# Code hier\n\n[Kurze Interpretation / Antwort in eigenen Worten.]"
-  },
-  {
-    "objectID": "slides/sitzung_04.html#variablen-und-skalenniveaus-1",
-    "href": "slides/sitzung_04.html#variablen-und-skalenniveaus-1",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "Variablen und Skalenniveaus",
-    "text": "Variablen und Skalenniveaus\n\nin R lautet der entsprechende Befehl class()\ndas richtige Skalenniveau ist entscheidend für die spätere Durchführung von deskriptiver und schließender Statistik (ab kommender Sitzung)\ndaher schauen wir uns jetzt nochmal unsere Datensatzübersicht an und überlegen gemeinsam, welche Skalenniveaus geändert werden müssten.\n\n\nfoto"
-  },
-  {
-    "objectID": "slides/sitzung_04.html#variablen-und-skalenniveaus-meine",
-    "href": "slides/sitzung_04.html#variablen-und-skalenniveaus-meine",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "Variablen und Skalenniveaus Meine",
-    "text": "Variablen und Skalenniveaus Meine\n\nin R lautet der entsprechende Befehl class()\ndas richtige Skalenniveau ist entscheidend für die spätere Durchführung von deskriptiver und schließender Statistik (ab kommender Sitzung)\ndaher schauen wir uns jetzt nochmal unsere Datensatzübersicht an und überlegen gemeinsam, welche Skalenniveaus geändert werden müssten."
-  },
-  {
-    "objectID": "slides/sitzung_04.html#section",
-    "href": "slides/sitzung_04.html#section",
-    "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "",
-    "text": "in R lautet der entsprechende Befehl class()\ndas richtige Skalenniveau ist entscheidend für die spätere Durchführung von deskriptiver und schließender Statistik (ab kommender Sitzung)\ndaher schauen wir uns jetzt nochmal unsere Datensatzübersicht an und überlegen gemeinsam, welche Skalenniveaus geändert werden müssten."
   }
 ]
