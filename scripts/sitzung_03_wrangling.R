@@ -3,7 +3,7 @@
 # ______________________________________________________-----------
 
 
-# 1 setup --------------------
+# 1. setup --------------------
 
 # work directory überprüfen
 getwd()
@@ -24,12 +24,60 @@ library(tidyr)
 
 # Nun können wir beide hier mit dem base R Befehl load() einlesen.
 load("output/btw_2025_ergebnisse.RData")
-# load("data/btw_2025_strukturdaten.RData")
+load("output/btw_2025_strukturdaten.RData")
 
 
 # 3. Daten Bereinigen --------------------
 
-## dplyr::rename() - Variablennamen umbenennen  --------------
+# Sicherstellen, dass alles, was NA sein sollte, auch NA ist!
+   # Je nach Datenformat kann es sein, dass R fehlende Werte (wie z.B. -99)
+   # nicht als solche erkennt. Dann müssen diese explizit in NA umgewandelt werden.
+# So können fehlende Werte bei zukünftigen Operationen ignoriert werden.
+
+
+## Umgang mit fehlenden Werten ---------------------
+
+# zunächst schauen, welche Werte die Variable "gewahlt" enthält
+btw_2025_ergebnisse %>%
+  dplyr::distinct(gewahlt)
+
+btw_2025_ergebnisse %>%
+  dplyr::count(gewahlt)
+# hier fällt auf, dass einige Zellen einfach leer sind, andere als "-". Warum?
+
+  # welche Zellen sind leer?
+  btw_2025_ergebnisse %>%
+    dplyr::filter(gewahlt == "") %>%
+    View()
+
+  # welche Zellen sind – ?
+  btw_2025_ergebnisse %>%
+    dplyr::filter(gewahlt == "–") %>%
+    View()
+
+  btw_2025_ergebnisse %>%
+    dplyr::filter(gewahlt == "–") %>%
+    dplyr::distinct(gebietsnummer)
+  # kleiner Tipp: https://www.bundeswahlleiterin.de/bundestagswahlen/2025/ergebnisse/wahlatlas.html#(wahlatlas-4f511b16-bb62-403b-860c-68eb306c5540/thema_GEWAEHLTE_IN_WAHLKREISEN_/haeufigkeiten/wahl%C2%ADkreis/)
+
+
+# Wenn die Zelle leer ist, bedeutet das also fehlender Wert
+# Also wandeln wir leere Zellen der var "gewahlt" in NAs um:
+btw_2025_ergebnisse <- btw_2025_ergebnisse %>%
+  dplyr::mutate(
+    gewahlt = dplyr::case_when(
+      gewahlt == "" ~ NA,
+      .default = gewahlt
+    )
+  )
+
+# nun können fehlende Werte gezielt ignoriert werden
+btw_2025_ergebnisse %>%
+  dplyr::filter(!is.na(gewahlt)) %>%
+  count(gewahlt)
+
+
+## Variablen umbenennen  --------------
 
 # Variablennamen ansehen
 names(btw_2025_ergebnisse)
@@ -42,41 +90,10 @@ btw_2025_ergebnisse <- btw_2025_ergebnisse %>%
 
 
 
-
-## tidyr::drop_na() - NAs herausfiltern -------------------------------
-
-# Umgang mit fehlenden Werten:
-# zunächst schauen, welche Werte die Variable "gewahlt" enthält
-
-btw_2025_ergebnisse %>%
-  dplyr::distinct(gewahlt)
-
-btw_2025_ergebnisse %>%
-  dplyr::count(gewahlt)
+# 4. Daten Zuschneiden ----------------------
 
 
-# drop_na() entfernt alle Zeilen, in denen die angegebene Variable NA ist
-btw_2025_ergebnisse %>%
-  dplyr::count(stimme)
-
-btw_2025_ergebnisse %>%
-  tidyr::drop_na(stimme) %>%
-  dplyr::count(stimme)
-
-
-# Zum Vergleich mit filter(): dasselbe Ergebnis, aber drop_na() ist lesbarer
-btw_2025_ergebnisse %>%
-  dplyr::filter(!is.na(stimme))
-
-# WICHTIG: Je nach Datenformat kann es sein, dass R fehlende Werte (wie z.B. -99)
-   # nicht als solche erkennt. Dann müssen diese explizit in NA umgewandelt werden.
-
-
-
-# 4 Daten Zuschneiden ----------------------
-
-
-## dplyr::select - Variablen auswählen (oder ausschließen) ---------------
+## Variablen auswählen (oder ausschließen) ---------------
 
 # Nur bestimmte Variablen behalten
 btw_2025_ergebnisse %>%
@@ -99,52 +116,37 @@ btw_2025_ergebnisse <- btw_2025_ergebnisse %>%
 
 
 
-## dplyr::filter() - Zeilen auswählen -----------
+## Zeilen auswählen -----------
 
    # Während wir mit dplyr::slide() Zeilen nach Position auswählen, erlaubt und
    # dplyr::filter() Zeilen nach Bedingungen auswählen.
+   # (siehe oben unter Umgang mit fehlenden Werten)
 
-# Nur Ergebnisse in Berlin
-btw_2025_ergebnisse_be <-  btw_2025_ergebnisse %>%
-  dplyr::filter(gebietsname == "Berlin")
-
-# Nur Zweitstimmenergebnisse
-btw_2025_ergebnisse_zweitst <-  btw_2025_ergebnisse %>%
-  dplyr::filter(stimme == 2)
-
-
-
-
-# frequency counts aller vorkommenden Ausprägungen der Variable gruppenart
+# Häufigkeitszählung aller vorkommenden Ausprägungen der Variable gruppenart
 btw_2025_ergebnisse %>%
   count(gruppenart)
 
-# Einzelbewerber*innen nicht anzeigen
-btw_2025_ergebnisse %>%
-  dplyr::filter(gebietsart != "Einzelbewerber/Wählergruppe") %>%
-  View()
-
-# Kombination: Bundesebene UND Zweitstimmen UND nur Parteien
-btw_2025_ergebnisse_partei <-  btw_2025_ergebnisse %>%
-  dplyr::filter(
-    gebietsart == "Bund",
-    stimme == 2,
-    gruppenart == "Partei"
-  )
-
 # Mehrere Ausprägungen mit %in%
-btw_2025_ergebnisse_partei %>%
+btw_2025_ergebnisse %>%
+  dplyr::filter(gebietsart == "Bund") %>%
   dplyr::filter(gruppenname %in% c("SPD", "CDU", "CSU", "GRÜNE", "Die Linke", "AfD", "FDP", "BSW")) %>%
   View()
 
-btw_2025_ergebnisse_partei %>%
-  count(gruppenname)
+
+# was habe ich hier gemacht?
+btw_2025_ergebnisse %>%
+  dplyr::filter(gebietsart == "Land",
+                gruppenart == "Partei",
+                diff_prozent_pkt > 5) %>%
+  dplyr::select(- uberg_gebietsart,
+                - uberg_gebietsnr,
+                - gruppenart)
 
 
-# 5 Daten umstrukturieren ---------------------------
+# 5. Daten umstrukturieren ---------------------------
 
 
-## dplyr::relocate() - Variablenpositionen ändern -------------
+## Variablenpositionen ändern -------------
 # Eine Variable verschieben
 btw_2025_ergebnisse <- btw_2025_ergebnisse %>%
   dplyr::relocate(gewahlt, .before = vorp_anzahl)
@@ -154,7 +156,7 @@ btw_2025_ergebnisse <- btw_2025_ergebnisse %>%
   dplyr::relocate(gebietsart, .after = gebietsname)
 
 
-## tidyr::pivot_wider() & tidyr::pivot_longer() ------------------------
+## long vs. wide format ------------------------
 
 # Aktuell ist der Datensatz im Long-Format:
    # jede Stimme (Erst-/Zweitstimme) ist eine eigene Zeile pro Partei und Gebiet.
@@ -168,28 +170,15 @@ btw_2025_ergebnisse_wide <- btw_2025_ergebnisse %>%
     names_prefix = "stimme_" # Präfix für neue Spaltennamen (stimme_1)
   )
 
+btw_2025_ergebnisse_wide <- btw_2025_ergebnisse %>%
+  dplyr::filter(gruppenart == "Partei",
+                !is.na(stimme),
+                gruppenname %in% c("SPD", "CDU", "CSU", "GRÜNE", "Die Linke", "AfD", "FDP", "BSW")
+                ) %>%
+  dplyr::select(gebietsnummer, gebietsname, gebietsart, gruppenname, stimme, prozent) %>%
+  tidyr::pivot_wider(
+    names_from = stimme,
+    values_from = prozent,
+    names_prefix = "prozent_stimme_"
+  )
 
-## dplyr::mutate() und dplyr::case_when() - Variable hinzufügen ---------
-
-# case_when(): kategoriale Variable auf Basis von Bedingungen
-# Syntax: case_when(Bedingung ~ Wert, Bedingung ~ Wert, .default = Wert)
-btw_2025_ergebnisse %>%
-  dplyr::filter(stimme == 1,
-                gruppenname %in% c("SPD", "CDU", "CSU", "GRÜNE", "Die Linke",
-                                   "AfD", "FDP", "BSW")) %>%
-  dplyr::mutate(
-    ergebnis_kat = dplyr::case_when(
-      prozent >= 30 ~ "stark",
-      prozent >= 15 ~ "mittel",
-      prozent >= 5  ~ "schwach",
-      .default     = "sehr schwach"
-    )
-  ) %>%
-  relocate(ergebnis_kat, .after = prozent) %>%
-  tidyr::drop_na(ergebnis_kat, prozent) %>%
-  View()
-
-
-
-# zum Beispiel eine Altersvariable zu der rep. Wahlstatistik hinzufügen! Angaben sind den
-   # allgemeinen methodsichen Hinweisen entnommen.

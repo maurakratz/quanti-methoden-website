@@ -150,7 +150,7 @@ library(labelled) # labels setzen und ankleben
 
 # 6 Datensatz gegebenenfalls speichern
 
- # save(btw_2025_ergebnisse, file = "output/btw_2025_ergebnisse.RData")
+  save(btw_2025_ergebnisse, file = "output/btw_2025_ergebnisse.RData")
 
 
 

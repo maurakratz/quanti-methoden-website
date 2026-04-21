@@ -25,8 +25,9 @@ Denkt daran: um als PFD rendern zu können, müsst ihr einmalig in der Konsole `
 # Setup
 
 ```{r}
-library(tidyverse)
 library(rio)
+library(dplyr)
+library(tidyr)
 library(janitor)
 library(labelled)
 library(summarytools)

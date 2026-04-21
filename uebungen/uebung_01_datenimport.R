@@ -3,7 +3,7 @@
 # ______________________________________________________-----------
 
 
-# Aufgabe 1 -------------
+# Aufgabe 1 ----------------
    # Lade dir die Wahlkreisstrukturdaten herunter und lege sie in deinen .data-Unterordner.
    # Siehe dafür auf der Kurswebseite unter dem Tab "Daten" nach.
 

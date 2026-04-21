@@ -90,7 +90,7 @@ sqrt(16) # berechne die Wurzel von 16
    # Subtrahieren:	–
    # Multiplizieren:	*
    # Dividieren: /
-   # Potenzieren:	**
+   # Potenzieren:	** oder ^
    # Wurzel ziehen: sqrt()
 
 
