@@ -140,8 +140,7 @@ btw_2025_ergebnisse %>%
   dplyr::filter(gebietsart == "Land",
                 gruppenart == "Partei",
                 diff_prozent_pkt > 5) %>%
-  dplyr::select(- uberg_gebietsart,
-                - uberg_gebietsnr,
+  dplyr::select(- uberg_gebietsnr,
                 - gruppenart)
 
 

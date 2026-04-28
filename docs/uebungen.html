@@ -150,7 +150,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>Jede Woche gibt es eine kleine Übungsaufgabe zur Vertiefung des Gelernten. Die Abgabe erfolgt auf <a href="https://fu-berlin.blackboard.com">Blackboard</a> im Reiter “Abgaben” bis jeweils <strong>Sonntag, 23:59 Uhr</strong> vor der nächsten Sitzung. Sollte es unerwartet zu Problemen mit Blackboard kommen, kann die Übung auch per E-Mail an <a href="mailto:maura.kratz@fu-berlin.de">maura.kratz@fu-berlin.de</a> eingereicht werden. Die fristgerechte Einreichung der Übungen ist Bestandteil der aktiven und regelmäßigen Teilnahme.</p>
-<p>Unter Hausaufgabe findest du Vorbereitungsmaterialien für die jeweils folgende Sitzung — etwa Lektüre oder Videos, die statistische Grundlagen wiederholen, bevor wir sie in der Sitzung anwenden. Eine Einreichung ist nicht erforderlich. Wer beim Durcharbeiten merkt, dass die Wiederholung nicht nötig ist, kann die Hausaufgabe überspringen.</p>
+<p>Unter Materialien findest du zusätzliche Quellen — etwa Lektüre oder Videos - zur Vor- und/ oder Nachbereitung der jeweiligen Sitzung. Die Bearbeitung ist optional. Eine Einreichung ist nicht erforderlich. Wer beim Durcharbeiten merkt, dass die Wiederholung nicht nötig ist, kann sie überspringen.</p>
 <table class="table-striped table-hover caption-top table">
 <colgroup>
 <col style="width: 5%">
@@ -163,7 +163,7 @@ ul.task-list li input[type="checkbox"] {
 <tr class="header">
 <th style="text-align: center;">Sitzung</th>
 <th style="text-align: left;">Thema</th>
-<th style="text-align: left;">Hausaufgabe</th>
+<th style="text-align: left;">Materialien</th>
 <th style="text-align: center;">Übung</th>
 <th style="text-align: center;">Lösung</th>
 </tr>
@@ -179,78 +179,78 @@ ul.task-list li input[type="checkbox"] {
 <tr class="even">
 <td style="text-align: center;">02</td>
 <td style="text-align: left;">Projekte &amp; Datenimport</td>
-<td style="text-align: left;">Lade dir die Wahlkreisergebnisse der Bundestagswahl 2025 als Datensatz herunter (siehe Daten)</td>
+<td style="text-align: left;">Ein <a href="materials/cheatsheet_data-import.pdf">cheatsheet</a> zu den unterschiedlichen Datenformaten und wie man sie einlesen kann.</td>
 <td style="text-align: center;"><a href="uebungen/uebung_01_datenimport.R">Übung_01</a></td>
 <td style="text-align: center;"><a href="uebungen/uebung_01_datenimport_loesung.R">01_Lösung</a></td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">03</td>
 <td style="text-align: left;">Data Cleaning and Wrangling</td>
-<td style="text-align: left;">—</td>
-<td style="text-align: center;"><a href="uebungen/uebung_2_datenimport.qmd">Download</a></td>
+<td style="text-align: left;">Ein <a href="materials/cheat-sheet_manipulating_data_in_dplyr.pdf">cheatsheet zu den wichtigsten dplyr-Befehlen</a>, sowie zu <a href="materials/cheat-sheet_tidyr.pdf">tidyr</a> um pivot_wider() besser zu verstehen.</td>
+<td style="text-align: center;"><a href="uebungen/uebung_02_data_wrangling.R">Übung_02</a></td>
 <td style="text-align: center;">—</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">04</td>
 <td style="text-align: left;">Dataset Merging</td>
-<td style="text-align: left;">—</td>
-<td style="text-align: center;"><a href="uebungen/uebung_03.qmd">Download</a></td>
+<td style="text-align: left;">Dasselbe cheatsheet zu den dplyr-Befehlen (siehe oben), diesmal mit Fokus auf “Joining Tables.”</td>
+<td style="text-align: center;">—</td>
 <td style="text-align: center;">—</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">05</td>
 <td style="text-align: left;">Quarto; Deskriptive Statistik – Kennwerte &amp; Visualisierung</td>
-<td style="text-align: left;">—</td>
-<td style="text-align: center;"><a href="uebungen/uebung_04.qmd">Download</a></td>
+<td style="text-align: left;"><a href="https://statistikgrundlagen.de/ebook/front-matter/introduction-2/">Statistik Grundlagen</a> Kapitel 1 (bis 1.8) und Kapitel 2 (bis 2.12); Ein <a href="materials/chapter_03_summarize_groupby_ggplot2.pdf">Foliensatz</a> aus dem Datacamp-Kurs “Introduction to the tidyverse” zu den summarize()- und group_by()-Befehlen aus dem dplyr-Paket, sowie Visualisierungsoptionen mit ggplot2.</td>
+<td style="text-align: center;">—</td>
 <td style="text-align: center;">—</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">06</td>
 <td style="text-align: left;">Deskriptive Statistik – Häufigkeits- &amp; Kreuztabellen</td>
-<td style="text-align: left;">—</td>
-<td style="text-align: center;"><a href="uebungen/uebung_05.qmd">Download</a></td>
+<td style="text-align: left;">[Statistik Grundlagen] Kapitel 3 (nur bis 3.2)</td>
+<td style="text-align: center;">—</td>
 <td style="text-align: center;">—</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">07</td>
 <td style="text-align: left;">Deskriptive Statistik – Schöne Grafiken</td>
-<td style="text-align: left;">—</td>
-<td style="text-align: center;"><a href="uebungen/uebung_06.qmd">Download</a></td>
+<td style="text-align: left;">Ein <a href="materials/data-visualizations-overview.pdf">cheatsheet zu Visualisierungsmöglichkeiten</a> und wann welche am besten passt.</td>
+<td style="text-align: center;">—</td>
 <td style="text-align: center;">—</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">08</td>
 <td style="text-align: left;">Deskriptive Statistik – Korrelation &amp; Einfache Lineare Regression</td>
 <td style="text-align: left;">—</td>
-<td style="text-align: center;"><a href="uebungen/uebung_07.qmd">Download</a></td>
+<td style="text-align: center;">—</td>
 <td style="text-align: center;">—</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">09</td>
 <td style="text-align: left;">Inferenzstatistik – Einfache &amp; Multiple Lineare Regression</td>
 <td style="text-align: left;">—</td>
-<td style="text-align: center;"><a href="uebungen/uebung_08.qmd">Download</a></td>
+<td style="text-align: center;">—</td>
 <td style="text-align: center;">—</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">10</td>
 <td style="text-align: left;">Regression Diagnostics</td>
 <td style="text-align: left;">—</td>
-<td style="text-align: center;"><a href="uebungen/uebung_09.qmd">Download</a></td>
+<td style="text-align: center;">—</td>
 <td style="text-align: center;">—</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">11</td>
 <td style="text-align: left;">Logistische Regression</td>
 <td style="text-align: left;">—</td>
-<td style="text-align: center;"><a href="uebungen/uebung_10.qmd">Download</a></td>
+<td style="text-align: center;">—</td>
 <td style="text-align: center;">—</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">12</td>
 <td style="text-align: left;">Varianzanalyse (ANOVA)</td>
 <td style="text-align: left;">—</td>
-<td style="text-align: center;"><a href="uebungen/uebung_11.qmd">Download</a></td>
+<td style="text-align: center;">—</td>
 <td style="text-align: center;">—</td>
 </tr>
 <tr class="odd">

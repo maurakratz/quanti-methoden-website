@@ -55,6 +55,69 @@ Da wir in RStudio aber immer mit Skripten arbeiten, sieht die Oberfläche typisc
 :::
 :::::
 
+## relative und absolute Pfade
+
+**Windows**
+
+Absoluter Pfad:
+```{r}
+#| echo: true
+#| eval: false
+
+# Pfad mit "Shift+Rechtsklick+Pfad kopieren" kopieren und einfügen führt zu  backward slashes (\)
+
+# Option 1: händisch zu forward slashes konvertieren
+daten <- rio::import("C:/Forschung/Forschungsprojekt_A/data/beispieldaten.csv")
+
+# Option 2: raw string nutzen 
+daten <- rio::import(r"(C:\Forschung\Forschungsprojekt_A\data\beispieldaten.csv)")
+```
+
+
+Relativer Pfad:
+```{r}
+#| echo: true 
+#| eval: false 
+
+# Wenn wir einen working directory spezifiziert, oder ein Projekt angelegt haben, müssen wir statt des absoluten nur noch den relativen Pfad angeben 
+
+# working directory setzen (falls kein Projekt)
+setwd("C:/Forschung/Forschungsprojekt_A")
+
+# danach reicht der relative Pfad
+daten <- rio::import("./data/beispieldaten.csv")
+```
+
+
+## Relative und absolute Pfade
+**macOS / Linux**
+
+Absoluter Pfad:
+```{r}
+#| echo: true
+#| eval: false
+
+# Pfad mit "Rechtsklick + Als Pfadname kopieren" kopieren und einfügen führt zu forward slashes
+
+# kein raw string nötig
+daten <- rio::import("/Users/maura/Forschung/Forschungsprojekt_A/data/beispieldaten.csv")
+```
+
+Relativer Pfad:
+```{r}
+#| echo: true
+#| eval: false
+
+# Wenn wir ein Projekt angelegt haben oder setwd() genutzt haben, reicht der relative Pfad
+
+# Working Directory setzen (wenn nicht ohnehin ein Projekt)
+setwd("/Users/maura/Forschung/Forschungsprojekt_A")
+
+# danach reicht der relative Pfad
+daten <- rio::import("./data/beispieldaten.csv")
+```
+
+
 ## Ordner und Pfade
 
 ::::: columns

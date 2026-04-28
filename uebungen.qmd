@@ -5,22 +5,22 @@ toc: false
 
 Jede Woche gibt es eine kleine Übungsaufgabe zur Vertiefung des Gelernten. Die Abgabe erfolgt auf [Blackboard](https://fu-berlin.blackboard.com) im Reiter "Abgaben" bis jeweils **Sonntag, 23:59 Uhr** vor der nächsten Sitzung. Sollte es unerwartet zu Problemen mit Blackboard kommen, kann die Übung auch per E-Mail an [maura.kratz@fu-berlin.de](mailto:maura.kratz@fu-berlin.de) eingereicht werden. Die fristgerechte Einreichung der Übungen ist Bestandteil der aktiven und regelmäßigen Teilnahme. 
 
-Unter Hausaufgabe findest du Vorbereitungsmaterialien für die jeweils folgende Sitzung — etwa Lektüre oder Videos, die statistische Grundlagen wiederholen, bevor wir sie in der Sitzung anwenden. Eine Einreichung ist nicht erforderlich. Wer beim Durcharbeiten merkt, dass die Wiederholung nicht nötig ist, kann die Hausaufgabe überspringen.
+Unter Materialien findest du zusätzliche Quellen — etwa Lektüre oder Videos - zur Vor- und/ oder Nachbereitung der jeweiligen Sitzung. Die Bearbeitung ist optional. Eine Einreichung ist nicht erforderlich. Wer beim Durcharbeiten merkt, dass die Wiederholung nicht nötig ist, kann sie überspringen.
 
-| Sitzung | Thema | Hausaufgabe | Übung | Lösung |
+| Sitzung | Thema | Materialien | Übung | Lösung |
 |:-------:|:------|:------------|:-----:|:------:|
-| 01 | Einführung | Installiere R und R-Studio (siehe Folien) | — | — |
-| 02 | Projekte & Datenimport | Lade dir die Wahlkreisergebnisse der Bundestagswahl 2025 als Datensatz herunter (siehe Daten) | [Übung_01](uebungen/uebung_01_datenimport.R) | [01_Lösung](uebungen/uebung_01_datenimport_loesung.R) |
-| 03 | Data Cleaning and Wrangling | — | [Download](uebungen/uebung_2_datenimport.qmd) | — |
-| 04 | Dataset Merging | — | [Download](uebungen/uebung_03.qmd) | — |
-| 05 | Quarto; Deskriptive Statistik – Kennwerte & Visualisierung | — | [Download](uebungen/uebung_04.qmd) | — |
-| 06 | Deskriptive Statistik – Häufigkeits- & Kreuztabellen | — | [Download](uebungen/uebung_05.qmd) | — |
-| 07 | Deskriptive Statistik – Schöne Grafiken | — | [Download](uebungen/uebung_06.qmd) | — |
-| 08 | Deskriptive Statistik – Korrelation & Einfache Lineare Regression | — | [Download](uebungen/uebung_07.qmd) | — |
-| 09 | Inferenzstatistik – Einfache & Multiple Lineare Regression | — | [Download](uebungen/uebung_08.qmd) | — |
-| 10 | Regression Diagnostics | — | [Download](uebungen/uebung_09.qmd) | — |
-| 11 | Logistische Regression | — | [Download](uebungen/uebung_10.qmd) | — |
-| 12 | Varianzanalyse (ANOVA) | — | [Download](uebungen/uebung_11.qmd) | — |
+| 01 | Einführung | Installiere R und R-Studio! (siehe Folien zu Sitzung 1) | — | — |
+| 02 | Projekte & Datenimport | Ein [cheatsheet](materials/cheatsheet_data-import.pdf) zu den unterschiedlichen Datenformaten und wie man sie einlesen kann. | [Übung_01](uebungen/uebung_01_datenimport.R) | [01_Lösung](uebungen/uebung_01_datenimport_loesung.R) |
+| 03 | Data Cleaning and Wrangling | Ein [cheatsheet](materials/cheat-sheet_manipulating_data_in_dplyr.pdf) zu den wichtigsten dplyr-Befehlen, sowie zu [tidyr](materials/cheat-sheet_tidyr.pdf) um pivot_wider() besser zu verstehen. | [Übung_02](uebungen/uebung_02_data_wrangling.R) | — |
+| 04 | Dataset Merging | Dasselbe cheatsheet zu den dplyr-Befehlen (siehe oben), diesmal mit Fokus auf "Joining Tables." | — | — |
+| 05 | Quarto; Deskriptive Statistik – Kennwerte & Visualisierung | Kapitel 1 (bis 1.8) und Kapitel 2 (bis 2.12) im E-Book [Statistik Grundlagen](https://statistikgrundlagen.de/ebook/front-matter/introduction-2/); Ein [Foliensatz](materials/chapter_03_summarize_groupby_ggplot2.pdf) aus dem Datacamp-Kurs "Introduction to the tidyverse" zu den summarize()- und group_by()-Befehlen aus dem dplyr-Paket, sowie Visualisierungsoptionen mit ggplot2. | — | — |
+| 06 | Deskriptive Statistik – Häufigkeits- & Kreuztabellen | [Statistik Grundlagen] Kapitel 3 (nur bis 3.2) | — | — |
+| 07 | Deskriptive Statistik – Schöne Grafiken | Ein [cheatsheet](materials/data-visualizations-overview.pdf) zu Visualisierungsmöglichkeiten und wann welche am besten passt. | — | — |
+| 08 | Deskriptive Statistik – Korrelation & Einfache Lineare Regression | — | — | — |
+| 09 | Inferenzstatistik – Einfache & Multiple Lineare Regression | — | — | — |
+| 10 | Regression Diagnostics | — | — | — |
+| 11 | Logistische Regression | — | — | — |
+| 12 | Varianzanalyse (ANOVA) | — | — | — |
 | 13 | — | — | — | — |
 | 14 | — | — | — | — |
 : {.striped .hover tbl-colwidths="[5,25,40,15,15]"}

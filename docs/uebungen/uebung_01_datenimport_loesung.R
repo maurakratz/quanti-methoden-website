@@ -178,6 +178,6 @@ btw_2025_strukturdaten <- btw_2025_strukturdaten %>%
   labelled::set_variable_labels(.labels = btw_2025_strukturdaten_labels,
                                 .strict = FALSE)
 
-# save(btw_2025_strukturdaten, file = "output/btw_2025_strukturdaten.RData")
+save(btw_2025_strukturdaten, file = "output/btw_2025_strukturdaten.RData")
 
 

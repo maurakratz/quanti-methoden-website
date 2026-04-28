@@ -49,6 +49,9 @@ library(labelled) # labels setzen und ankleben
 
 # 2 Einlesen der Wahlergebnisse der BTW 2025 ----------
 
+# Lade dir die Wahlkreisergebnisse der Bundestagswahl 2025 als Datensatz
+  # herunter (siehe Daten). Lege sie in den data-Unterordner deines Projektordners.
+
   btw_2025_ergebnisse_raw <- rio::import("./data/kerg2.csv")
   # Da ist etwas schief gelaufen. Deutsche .csv-Dateien sind oft mit ";" getrennt
   # und englische mit ",". Das können wir mit dem "sep"-Argument anpassen.
