@@ -14,7 +14,7 @@ Unter Materialien findest du zusätzliche Quellen — etwa Lektüre oder Videos 
 | 03 | Data Cleaning and Wrangling | Ein [cheatsheet](materials/cheat-sheet_manipulating_data_in_dplyr.pdf) zu den wichtigsten dplyr-Befehlen, sowie zu [tidyr](materials/cheat-sheet_tidyr.pdf) um pivot_wider() besser zu verstehen. | [Übung_02](uebungen/uebung_02_data_wrangling.R) | — |
 | 04 | Dataset Merging | Dasselbe cheatsheet zu den dplyr-Befehlen (siehe oben), diesmal mit Fokus auf "Joining Tables." | — | — |
 | 05 | Quarto; Deskriptive Statistik – Kennwerte & Visualisierung | Kapitel 1 (bis 1.8) und Kapitel 2 (bis 2.12) im E-Book [Statistik Grundlagen](https://statistikgrundlagen.de/ebook/front-matter/introduction-2/); Ein [Foliensatz](materials/chapter_03_summarize_groupby_ggplot2.pdf) aus dem Datacamp-Kurs "Introduction to the tidyverse" zu den summarize()- und group_by()-Befehlen aus dem dplyr-Paket, sowie Visualisierungsoptionen mit ggplot2. | — | — |
-| 06 | Deskriptive Statistik – Häufigkeits- & Kreuztabellen | [Statistik Grundlagen] Kapitel 3 (nur bis 3.2) | — | — |
+| 06 | Deskriptive Statistik – Häufigkeits- & Kreuztabellen | [Statistik Grundlagen](https://statistikgrundlagen.de/ebook/front-matter/introduction-2/) Kapitel 3 (nur bis 3.2) | — | — |
 | 07 | Deskriptive Statistik – Schöne Grafiken | Ein [cheatsheet](materials/data-visualizations-overview.pdf) zu Visualisierungsmöglichkeiten und wann welche am besten passt. | — | — |
 | 08 | Deskriptive Statistik – Korrelation & Einfache Lineare Regression | — | — | — |
 | 09 | Inferenzstatistik – Einfache & Multiple Lineare Regression | — | — | — |
