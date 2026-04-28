@@ -63,6 +63,7 @@ Absoluter Pfad:
 ```{r}
 #| echo: true
 #| eval: false
+#| style: "max-height: 200px; overflow-y: auto;"
 
 # Pfad mit "Shift+Rechtsklick+Pfad kopieren" kopieren und einfügen führt zu  backward slashes (\)
 
@@ -77,7 +78,8 @@ daten <- rio::import(r"(C:\Forschung\Forschungsprojekt_A\data\beispieldaten.csv)
 Relativer Pfad:
 ```{r}
 #| echo: true 
-#| eval: false 
+#| eval: false
+#| style: "max-height: 200px; overflow-y: auto;"
 
 # Wenn wir einen working directory spezifiziert, oder ein Projekt angelegt haben, müssen wir statt des absoluten nur noch den relativen Pfad angeben 
 
@@ -93,20 +95,23 @@ daten <- rio::import("./data/beispieldaten.csv")
 **macOS / Linux**
 
 Absoluter Pfad:
+
 ```{r}
 #| echo: true
 #| eval: false
-
+#| style: "max-height: 200px; overflow-y: auto;"
 # Pfad mit "Rechtsklick + Als Pfadname kopieren" kopieren und einfügen führt zu forward slashes
 
 # kein raw string nötig
 daten <- rio::import("/Users/maura/Forschung/Forschungsprojekt_A/data/beispieldaten.csv")
 ```
 
+
 Relativer Pfad:
 ```{r}
 #| echo: true
 #| eval: false
+#| style: "max-height: 200px; overflow-y: auto;"
 
 # Wenn wir ein Projekt angelegt haben oder setwd() genutzt haben, reicht der relative Pfad
 
