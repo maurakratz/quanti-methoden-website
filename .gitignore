@@ -17,3 +17,4 @@ slides/*.pdf
 .quarto
 
 **/*.quarto_ipynb
+.positai

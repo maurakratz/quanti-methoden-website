@@ -16,12 +16,12 @@ editor_options:
 
 # Was heute ansteht:
 
--   Vorstellungsrunde
--   Warum computergestützte Datenanalyse lernen?
--   Warum R?
--   Was ist R? Was ist RStudio?
--   Was erwartet uns in diesem Kurs?
--   Was ist bis kommenden Dienstag zu tun?
+- Vorstellungsrunde
+- Warum computergestützte Datenanalyse lernen?
+- Warum R?
+- Was ist R? Was ist RStudio?
+- Was erwartet uns in diesem Kurs?
+- Was ist bis kommenden Dienstag zu tun?
 
 # Vorstellungsrunde
 
@@ -29,19 +29,19 @@ editor_options:
 
 ::::: columns
 ::: {.column width="70%"}
--   Maura Kratz
+- Maura Kratz
 
--   AB Vergleich politischer Systeme mit Schwerpunkt DE und FR
+- AB Vergleich politischer Systeme mit Schwerpunkt DE und FR
 
--   Dissertation zu Themen der politischen Ungleichheit und Repräsentation
+- Dissertation zu Themen der politischen Ungleichheit und Repräsentation
 
--   2020 BA in Sciences Politiques an SciencesPo Paris
+- 2020 BA in Sciences Politiques an SciencesPo Paris
 
--   2023 MA in Affaires Internationales & Politiwissenschaft an der SciencesPo und der FU
+- 2023 MA in Affaires Internationales & Politiwissenschaft an der SciencesPo und der FU
 
--   Seit 2023 WiMi und Promovendin
+- Seit 2023 WiMi und Promovendin
 
--   **Wie wollen wir uns ansprechen?**
+- **Wie wollen wir uns ansprechen?**
 :::
 
 ::: {.column width="30%"}
@@ -202,22 +202,22 @@ Quelle: Monroe, Kristen Renwick, William Chiu, Adam Martin und Bridgette Portman
 
 ## Warum R?
 
--   kostenlos & für alle zugänglich {{< fa thumbs-up >}}
--   kann (fast) alles → flexibel erweiterbar mit Paketen {{< fa thumbs-up >}}
--   reproduzierbar & transparent durch R-Skripte {{< fa thumbs-up >}}
--   gut in andere Programme integrierbar {{< fa thumbs-up >}}
--   versionierbar durch Git und GitHub {{< fa thumbs-up >}}
--   open-source → große Community {{< fa thumbs-up >}}
--   Programmierkenntnisse erforderlich, daher weniger nutzer\*innenfreundlich {{< fa thumbs-down >}}
+- kostenlos & für alle zugänglich {{< fa thumbs-up >}}
+- kann (fast) alles → flexibel erweiterbar mit Paketen {{< fa thumbs-up >}}
+- reproduzierbar & transparent durch R-Skripte {{< fa thumbs-up >}}
+- gut in andere Programme integrierbar {{< fa thumbs-up >}}
+- versionierbar durch Git und GitHub {{< fa thumbs-up >}}
+- open-source → große Community {{< fa thumbs-up >}}
+- Programmierkenntnisse erforderlich, daher weniger nutzer\*innenfreundlich {{< fa thumbs-down >}}
 
 ## R-Kenntnisse sind gefragt
 
 ::::: columns
 ::: {.column width="60%" style="font-size: 0.7em;"}
--   klassische Berufsfelder für PoWi-Absolvent\*innen: politische INstitutionen, Beratung, Verwaltung, Medien, NGOs, Projektmanagement ...
--   sie alle haben gemein, dass die Bedeutung evidenzbasierter und Entscheidungen zunimmt
--   R und Python für komplexe Datenanalysen
--   Zeitalter der AI → Data Science, Computational Science und maschinelles Lernen
+- klassische Berufsfelder für PoWi-Absolvent\*innen: politische INstitutionen, Beratung, Verwaltung, Medien, NGOs, Projektmanagement ...
+- sie alle haben gemein, dass die Bedeutung evidenzbasierter und Entscheidungen zunimmt
+- R und Python für komplexe Datenanalysen
+- Zeitalter der AI → Data Science, Computational Science und maschinelles Lernen
 :::
 
 ::: {.column width="40%" style="text-align: right"}
@@ -229,9 +229,9 @@ Quelle: Monroe, Kristen Renwick, William Chiu, Adam Martin und Bridgette Portman
 
 ## Was sind R und RStudio?
 
--   R ist eine Skriptsprache ( = „einfache“ Programmiersprache)
--   Ein Skript ist eine Abfolge von Befehlen
--   RStudio ist eine „Integrierte Entwicklungsumgebung” (integrated development environment,IDE) für die Programmiersprache R → eine Umgebung die das Arbeiten mit R erleichtert
+- R ist eine Skriptsprache ( = „einfache“ Programmiersprache)
+- Ein Skript ist eine Abfolge von Befehlen
+- RStudio ist eine „Integrierte Entwicklungsumgebung” (integrated development environment,IDE) für die Programmiersprache R → eine Umgebung die das Arbeiten mit R erleichtert
 
 :::::: fragment
 ::::: columns
@@ -260,9 +260,9 @@ Quelle: Monroe, Kristen Renwick, William Chiu, Adam Martin und Bridgette Portman
 ## Die goldenen R-Regeln
 
 :::: {layout-ncol="2"}
--   Alles ist möglich.\
--   Es gibt IMMER mehr als einen Weg zum Ziel
--   Gerade zu Beginn kann das Programmieren sehr frustrierend sein. Gib nicht auf! Frustrationstoleranz ist der Schlüssel!
+- Alles ist möglich.\
+- Es gibt IMMER mehr als einen Weg zum Ziel
+- Gerade zu Beginn kann das Programmieren sehr frustrierend sein. Gib nicht auf! Frustrationstoleranz ist der Schlüssel!
 
 ::: fragment
 ![](images/clipboard-989640835.png)
@@ -275,12 +275,12 @@ Quelle: Monroe, Kristen Renwick, William Chiu, Adam Martin und Bridgette Portman
 
 ## Dieser Kurs vermittelt:
 
--   Erlernen von:
-    -   Datenaufbereitung (Bereinigung und Bearbeitung),
-    -   Deskriptiver Datenanalyse,
-    -   Erster statistischer Datenanalyse und
-    -   Visualisierung und Darstellung
--   Praktische Anwendung durch Übungen
+- Erlernen von:
+  - Datenaufbereitung (Bereinigung und Bearbeitung),
+  - Deskriptiver Datenanalyse,
+  - Erster statistischer Datenanalyse und
+  - Visualisierung und Darstellung
+- Praktische Anwendung durch Übungen
 
 ::: fragment
 → Übertragung auf kommende Lehrveranstaltungen, Hausarbeiten etc.
@@ -288,11 +288,11 @@ Quelle: Monroe, Kristen Renwick, William Chiu, Adam Martin und Bridgette Portman
 
 ## Ressourcen
 
--   Syllabus & Sitzungsplan
--   Zu erbringende Leistungen
--   Folien & Skripte
--   Übungen & Hausaufgaben
--   Literatur & Tipps
+- Syllabus & Sitzungsplan
+- Zu erbringende Leistungen
+- Folien & Skripte
+- Übungen & Hausaufgaben
+- Literatur & Tipps
 
 ::: {.callout-important .fragment}
 ## Wichtig
@@ -306,20 +306,20 @@ All das steht euch auf der [Kurs-Webseite](https://maurakratz.github.io/quanti-m
 
 ## Bis zur kommenden Sitzung bitte
 
--   R herunterladen & installieren
--   RStudio herunterladen & installieren
--   mit dem Syllabus vertraut machen
--   etwaige Fragen notieren und zur nächsten Sitzung mitbringen
+- R herunterladen & installieren
+- RStudio herunterladen & installieren
+- mit dem Syllabus vertraut machen
+- etwaige Fragen notieren und zur nächsten Sitzung mitbringen
 
 ## R installieren
 
--   Download über Website des Cran-Projekts („The Comprehensive R Archive Network“): <https://cran.uni-muenster.de/> oder <https://cloud.r-project.org/>
+- Download über Website des Cran-Projekts („The Comprehensive R Archive Network“): <https://cran.uni-muenster.de/> oder <https://cloud.r-project.org/>
 
-    -   Download and Install R → entsprechende Betriebssystem auswählen (Windows, Mac oder Linux)
+  - Download and Install R → entsprechende Betriebssystem auswählen (Windows, Mac oder Linux)
 
-    -   install R for the first time → aktuelle R-Version zum Download auswählen bzw. bei Mac entweder Mac mit mind. M1 Chip oder mit Intel-Prozessor auswählen
+  - install R for the first time → aktuelle R-Version zum Download auswählen bzw. bei Mac entweder Mac mit mind. M1 Chip oder mit Intel-Prozessor auswählen
 
--   Datei installieren (Standardeinstellungen können beibehalten werden)
+- Datei installieren (Standardeinstellungen können beibehalten werden)
 
 ## R installieren
 
@@ -337,10 +337,10 @@ All das steht euch auf der [Kurs-Webseite](https://maurakratz.github.io/quanti-m
 
 ## RStudio installieren
 
--   Download über Website von RStudio: <https://rstudio.com/products/rstudio/download/>
--   RStudio Desktop (Free-Lizenz und entsprechendes Betriebssystem) auswählen
--   Datei installieren
--   RStudio starten
+- Download über Website von RStudio: <https://rstudio.com/products/rstudio/download/>
+- RStudio Desktop (Free-Lizenz und entsprechendes Betriebssystem) auswählen
+- Datei installieren
+- RStudio starten
 
 ## RStudio installieren
 

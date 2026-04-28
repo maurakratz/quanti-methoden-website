@@ -22,20 +22,22 @@ library(tidyr)
 # Öffne anschließend das Lösungsskript zur ersten Übung. Ergänze auch dort ganz
 # unten: save(btw_2025_strukturdaten, file = "data/btw_2025_strukturdaten.RData").
 
-# Nun können wir beide hier mit dem base R Befehl load() einlesen.
+# Nun können wir beide hier mit dem baseR-Befehl load() einlesen.
 load("output/btw_2025_ergebnisse.RData")
 load("output/btw_2025_strukturdaten.RData")
 
 
 # 3. Daten Bereinigen --------------------
 
+
+
+## Umgang mit fehlenden Werten ---------------------
+
 # Sicherstellen, dass alles, was NA sein sollte, auch NA ist!
    # Je nach Datenformat kann es sein, dass R fehlende Werte (wie z.B. -99)
    # nicht als solche erkennt. Dann müssen diese explizit in NA umgewandelt werden.
 # So können fehlende Werte bei zukünftigen Operationen ignoriert werden.
 
-
-## Umgang mit fehlenden Werten ---------------------
 
 # zunächst schauen, welche Werte die Variable "gewahlt" enthält
 btw_2025_ergebnisse %>%
@@ -73,7 +75,7 @@ btw_2025_ergebnisse <- btw_2025_ergebnisse %>%
 
 # nun können fehlende Werte gezielt ignoriert werden
 btw_2025_ergebnisse %>%
-  dplyr::filter(!is.na(gewahlt)) %>%
+  dplyr::filter(!is.na(gewahlt)) %>% # alternative: drop_na()
   count(gewahlt)
 
 
@@ -126,7 +128,7 @@ btw_2025_ergebnisse <- btw_2025_ergebnisse %>%
 btw_2025_ergebnisse %>%
   count(gruppenart)
 
-# Mehrere Ausprägungen mit %in%
+# Mehrere Ausprägungen mit %in% filtern
 btw_2025_ergebnisse %>%
   dplyr::filter(gebietsart == "Bund") %>%
   dplyr::filter(gruppenname %in% c("SPD", "CDU", "CSU", "GRÜNE", "Die Linke", "AfD", "FDP", "BSW")) %>%

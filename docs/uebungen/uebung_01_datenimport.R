@@ -8,7 +8,7 @@
    # Siehe dafür auf der Kurswebseite unter dem Tab "Daten" nach.
 
 # Aufgabe 2 -----------------
-   # Lade die nötigen Pakete: rio, labelled.
+   # Lade die nötigen Pakete: rio, janitor, dplyr, labelled, summarytools.
    # Lese die Daten mir dem rio-Paket ein. Achte darauf, ggf. überflüssige Zeilen
    # zu überspringen. Sieh dir das Ergebnis an.
 

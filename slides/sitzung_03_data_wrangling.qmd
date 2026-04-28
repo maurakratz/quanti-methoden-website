@@ -28,22 +28,21 @@ editor_options:
 
 # Was heute ansteht:
 
--   Check-In
--   Besprechung der Übung 1
--   Data Cleaning & Wrangling
+- Check-In
+- Besprechung der Übung 1
+- Was sind Pakete?
+- Tidyverse
+- Data Cleaning & Wrangling
 
-## Datenanalyse-Workflow
-
-![](images/clipboard-4263712504.png){style="display: block; margin: 0 auto;"}
 
 ## Pakete
 
 ::::: columns
 ::: {.column width="50%"}
--   Einige Funktionen sind bereits in base R enthalten
--   Für andere müssen zusätzliche Pakete geladen werden
--   Pakete sind Bündel unterschiedlicher Funktionen
--   Base R reicht oft nur für sehr basale Operationen und Visualisierungen, für alles andere werden Pakete benötigt
+- Einige Funktionen sind bereits in base R enthalten
+- Für andere müssen zusätzliche Pakete geladen werden
+- Pakete sind Bündel unterschiedlicher Funktionen
+- Base R reicht oft nur für sehr basale Operationen und Visualisierungen, für alles andere werden Pakete benötigt
 :::
 
 ::: {.column width="50%"}
@@ -73,15 +72,57 @@ btw_2025_ergebnisse %>%
 ::: fragment
 **Abhängigkeiten:**
 
--   `summarytools` greift auf ein anderes Paket namens `cairo` zu
--   `cairo` nutzt für die Erstellung von .html-Dateien eine Grafikbibliothek, die in Windows integriert ist, in macOS aber irgendwann ersetzt wurde
--   macOS benötigt also ein Programm (XQuartz), das die Grafikbibliothek bereitstellt
--   um das Programm manuell nachzuinstallieren:
+- `summarytools` greift auf ein anderes Paket namens `cairo` zu
+- `cairo` nutzt für die Erstellung von .html-Dateien eine Grafikbibliothek, die in Windows integriert ist, in macOS aber irgendwann ersetzt wurde
+- macOS benötigt also ein Programm (XQuartz), das die Grafikbibliothek bereitstellt
+- um das Programm manuell nachzuinstallieren:
 
 1.  XQuartz herunterladen: [xquartz.org](https://www.xquartz.org)
 
 2.  RStudio öffnen und das Skript erneut ausführen
 :::
+
+# {{< fa reply >}} Feedback zu Übung 1
+
+- naming convention: uebung_01_name.R (+ gern auch im Dokument selbst angeben)
+
+- Code immer ausführen! Das ist die beste Prüfung, ob er korrekt ist.
+
+- achtet darauf alle benötigten Pakete zu laden (mein Fehler)
+
+- nutzt lieber relative als absolute Pfade
+
+- `install.packages(" ")` vs `library( )` : eins hat Anführungszeichen, das andere nicht
+
+- Aufgabe 4c) zu Labels fiel schwer
+
+:::{.callout-important}
+- kursfremde Syntax fällt (negativ) auf!
+
+- leere Übungen oder Kursskripte abzugeben ebenfalls
+:::
+
+## Übungen als Voraussetzung für die aktive und regelm. Teilnahme
+
+- Es gibt rund 10 Übungen, davon bis zu 1 "Joker"
+
+- nach jeder Abgabe notiere ich:
+
+  - grün = pünktlich und bestanden;
+
+  - gelb = mit Mängeln und/ oder unpünktlich,
+
+  - rot = nicht bestanden oder nicht eingereicht
+
+- am Ende des Semesters bekommen alle, die 9-10 mal grünes Licht bekommen haben (und die übrigen Bestandteile wie Lektüre und mündl. Teilnahme erfüllt haben) ihre aktive und regelmäßige Teilnahme bestätigt
+
+- alles andere sind Einzelfallprüfungen. (Wie oft? Wurde eine Begründung angegeben? Wurde eine Ausgleichsleistung angeboten? etc.)
+
+
+## Datenanalyse-Workflow
+
+![](images/clipboard-4263712504.png){style="display: block; margin: 0 auto;"}
+
 
 # Das *tidyverse*-Paketbündel
 
@@ -91,16 +132,61 @@ btw_2025_ergebnisse %>%
 :::
 ::::
 
+
+## *tidyverse*-Logik
+
+:::::: columns
+::: {.column width="48%"}
+[Base R]{style="background:#f0f0f0; color:#222; padding:2px 10px; border-radius:4px; font-size:0.85em; font-weight:600;"}
+
+```{r}
+#| eval: false
+#| echo: true
+df <- read.csv("daten.csv")
+df2 <- df[df$jahr == 2025, ]
+mittel <- mean(df2$stimmen, na.rm = TRUE)
+```
+
+- Viele Zwischenobjekte
+
+- schnell unlesbar durch verschachtelte \[ \] bei mehreren Schritten
+:::
+
+::: {.column width="4%"}
+:::
+
+::: {.column width="48%"}
+[tidyverse]{style="background:#f0f0f0; color:#222; padding:2px 10px; border-radius:4px; font-size:0.85em; font-weight:600;"}
+
+```{r}
+#| eval: false
+#| echo: true
+df <- rio::import("daten.csv")
+mittel <- df %>%
+  dplyr::filter(jahr == 2025) %>%
+  dplyr::summarise(
+    m = mean(stimmen, na.rm = TRUE)
+  )
+```
+
+- Ein Objekt, eine Pipeline
+
+- Jede Zeile = ein Schritt
+
+- Schritte lesen sich von oben nach unten wie eine Anleitung: "nimm df, dann filtere, dann berechne."
+:::
+::::::
+
 ## Pipes
 
--   Zwei Optionen: Base R pipe: `|>` ODER magrittr pipe: `%>%`
--   Die Default-Pipe kann über *Global Options* eingestellt werden
--   Zum Einfügen: eintippen oder `Strg + Shift + M`
--   Stilregeln:
-    -   Immer Leerzeichen vor der Pipe
-    -   Immer neue Zeile danach
+- Zwei Optionen: Base R pipe: `|>` ODER magrittr pipe: `%>%`
+- Die Default-Pipe kann über *Global Options* eingestellt werden
+- Zum Einfügen: eintippen oder `Strg + Shift + M`
+- Stilregeln:
+  - Immer Leerzeichen vor der Pipe
+  - Immer neue Zeile danach
 
-::: {.fragment}
+::: fragment
 ```{r}
 #| eval: false
 #| echo: true
@@ -144,9 +230,9 @@ btw_2025_ergebnisse %>%
 
 **1. In der Console ansehen**
 
--   Sinnvoll zum Testen, kann aber schnell unübersichtlich werden bei großen Datensätzen
+- Sinnvoll zum Testen, kann aber schnell unübersichtlich werden bei großen Datensätzen
 
--   Änderungen werden nirgends gespeichert
+- Änderungen werden nirgends gespeichert
 
 ::: fragment
 ```{r}
@@ -175,11 +261,11 @@ btw_2025_ergebnisse %>%
 
 **2. "Nur kurz schauen"**
 
--   Daten werden in einem neuen Tab geöffnet.
+- Daten werden in einem neuen Tab geöffnet.
 
--   Umgeht das Unübersichtlichkeitsproblem.
+- Umgeht das Unübersichtlichkeitsproblem.
 
--   Nervt aber ggf. später, wenn das Skript von oben bis unten ausgeführt wird ("Source"-button).
+- Nervt aber ggf. später, wenn das Skript von oben bis unten ausgeführt wird ("Source"-button).
 
 ::: fragment
 ```{r}
@@ -198,9 +284,9 @@ btw_2025_ergebnisse %>%
 
 **3. Speichern oder Überschreiben**
 
--   viele unterschiedliche Objekte zu speichern kann unübersichtlich werden
+- viele unterschiedliche Objekte zu speichern kann unübersichtlich werden
 
--   aber einmal überschriebene Daten schwieriger zurückzuholen
+- aber einmal überschriebene Daten schwieriger zurückzuholen
 
 ::: fragment
 ```{r}
@@ -228,15 +314,15 @@ btw_2025_ergebnisse <- btw_2025_ergebnisse %>%
 
 Long-Format ist sinnvoll für:
 
--   ggplot2 – erwartet fast immer Long
--   group_by() + summarise()
--   Regressionsmodelle
+- ggplot2 erwartet fast immer long format
+- group_by() + summarise()
+- Regressionsmodelle
 
 Wide-Format ist sinnvoll für:
 
--   Korrelationsmatrizen (eine Zeile pro Beobachtungseinheit)
--   Vergleichstabellen (Erst- vs. Zweitstimme nebeneinander)
--   Export nach Excel
+- Korrelationsmatrizen (eine Zeile pro Beobachtungseinheit)
+- Vergleichstabellen (Erst- vs. Zweitstimme nebeneinander)
+- Export nach Excel
 
 ## Minute Cards
 

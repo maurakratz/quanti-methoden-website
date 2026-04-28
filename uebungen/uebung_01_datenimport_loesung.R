@@ -8,12 +8,15 @@
    # Siehe dafür auf der Kurswebseite unter dem Tab "Daten" nach.
 
 # Aufgabe 2 ------------------
-   # Lade die nötigen Pakete: rio, labelled.
+   # Lade die nötigen Pakete: rio, janitor, dplyr, labelled, summarytools.
    # Lese die daten mir dem rio-Paket ein. Achte darauf, ggf. überflüssige Zeilen
    # zu überspringen. Sieh dir das Ergebnis an.
 
 library(rio)
+library(janitor)
+library(dplyr)
 library(labelled)
+library(summarytools)
 
 btw_2025_strukturdaten_raw <- rio::import(
   "data/btw2025_strukturdaten.csv",
@@ -29,16 +32,16 @@ btw_2025_strukturdaten <- btw_2025_strukturdaten_raw %>%
 # Aufgabe 4 ---------------------
    # a) Lass dir die Variablennamen ausgeben.
    # b) Ändere sie zu kurzen, sinnvollen Namen um.
-     # Da wir das noch nicht durchgenommen haben bekommst du unetnn ein Beispiel,
+     # Da wir das noch nicht durchgenommen haben bekommst du unten ein Beispiel,
      # das den rename-Befehl illustriert. Vervollständige den Befehl, indem du
      # auch die übrigen Varaiblen umbenennst.
    # c) Füge mit labelled::set_variable_labels() den neuen Namen
      # entsprechende Labels hinzu.
 
-# a)
+# a) Namen printen
 names(btw_2025_strukturdaten)
 
-# a) Zu lange Namen umbenennen
+# b) Zu lange Namen umbenennen
 btw_2025_strukturdaten <- btw_2025_strukturdaten %>%
   dplyr::rename(
     gemeinden = gemeinden_am_31_12_2023_anzahl,

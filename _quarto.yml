@@ -1,6 +1,8 @@
 project:
   type: website
   output-dir: docs
+  resources:
+    - scripts/*.R
 
 website:
   title: ""
