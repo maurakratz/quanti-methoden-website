@@ -2,6 +2,7 @@
 # ÜBUNG 2: Data Wrangling                               -----------
 # ______________________________________________________-----------
 
+
 # Aufgabe 1 ------------------
    # Lade die nötigen Pakete (rio, dplyr, tidyr)
 library(rio)
@@ -49,7 +50,8 @@ btw_2025_struk_lander <- btw_2025_strukturdaten %>%
    # in der Console anzeigen.
 
 btw_2025_struk_lander %>%
-  dplyr::select(bula, wknr, flache_km2, bev_insgesamt_1000, bev_dichte_ew_km2)
+  dplyr::select(bula, wknr, flache_km2, bev_insgesamt_1000, bev_dichte_ew_km2) %>%
+  arrange(desc(flache_km2))
 
    # Welches Bundesland ist am dichtesten besiedelt?
      # Berlin mit 4109,9 Einwohner*innen pro km2

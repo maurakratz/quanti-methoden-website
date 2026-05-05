@@ -431,7 +431,7 @@
     "href": "index.html",
     "title": "Willkommen",
     "section": "",
-    "text": "Dieser Kurs vermittelt das Handwerkszeug für quantitative Datenanalyse mit R — von der Installation über Datenvisualisierung bis hin zu statistischen Analysen. Keine Programmierkenntnisse erforderlich.\nDen vollständigen Seminarplan, die Anforderungen und die Pflichtlektüre findest du im Syllabus. Folien und R-Skripte werden wöchentlich unter Sitzungen bereitgestellt, Übungsaufgaben unter Übungen.\n\n\n\n\n\n\nNoteAuf einen Blick\n\n\n\nKurszeit: Dienstag, 10:00–12:00 Uhr c.t.\nKursort: Ihnestr. 22, UG 1\nKontakt: maura.kratz@fu-berlin.de\n\n\n\n\n\n\n\n\nQuelle: Allison Horst\n\n\n\n\nhttps://allisonhorst.com/allison-horst"
+    "text": "Dieser Kurs vermittelt das Handwerkszeug für quantitative Datenanalyse mit R — von der Installation über Datenvisualisierung bis hin zu statistischen Analysen. Keine Programmierkenntnisse erforderlich.\nDen vollständigen Seminarplan, die Anforderungen und die Pflichtlektüre findest du im Syllabus. Folien und R-Skripte werden wöchentlich unter Sitzungen bereitgestellt, Übungsaufgaben unter Übungen.\n\n\n\n\n\n\nNoteAuf einen Blick\n\n\n\nKurszeit: Dienstag, 10:00–12:00 Uhr c.t.\nKursort: Ihnestr. 22, UG 1\nKontakt: maura.kratz@fu-berlin.de\n\n\n\n\n\n\n\n\nQuelle: Allison Horst"
   },
   {
     "objectID": "daten.html",
@@ -600,6 +600,20 @@
     "title": "Quantitative Methoden mit R & R-Studio",
     "section": "Datenanalyse-Workflow",
     "text": "Datenanalyse-Workflow"
+  },
+  {
+    "objectID": "slides/sitzung_04.html#data-merging-1---kombinieren",
+    "href": "slides/sitzung_04.html#data-merging-1---kombinieren",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Data merging 1 - Kombinieren",
+    "text": "Data merging 1 - Kombinieren\n\ndplyr::bind_cols() um Spalten neben einander zu kleben\ndplyr::bind_rows() um Zeilen untereinander zu kleben\ndplyr::union() Zeilen aus zwei Tabellen untereinander kleben, aber dabei Duplikate löschen\n\n\n\nDiese bind()-Befehle führen Daten lediglich mechanisch zusammen, ohne beispielsweise unterschiedliche Sortierung der Spalten zu beachten oder Ähnliches."
+  },
+  {
+    "objectID": "slides/sitzung_04.html#data-merging-2---joining",
+    "href": "slides/sitzung_04.html#data-merging-2---joining",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Data merging 2 - Joining",
+    "text": "Data merging 2 - Joining\n\nAnstatt Spalten einfach nebeneinander zu stellen, ohne die Sortierung zu beachten, verbindet ein join die Daten sinnvoll miteinander auf Grundlage der Übereinstimmung einer Schlüsselvariable."
   },
   {
     "objectID": "slides/sitzung_04.html#variablen-skalenniveaus",

@@ -93,18 +93,6 @@ btw_2025_strukturdaten <- btw_2025_strukturdaten %>%
 
 
 
-# Dazu müssen wir unsere bereits vorbereiteten Datensätze speichern und einlesen.
-   # Führe das Skript aus Sitzung 2 komplett aus. Setze dann am unteren Ende
-   # folgendes Befehl ein: save(btw_2025_ergebnisse, file = "data/btw_2025_ergebnisse.RData").
-   # Öffne anschließend das Lösungsskript zur ersten Übung. Ergänze auch dort ganz
-   # unten: save(btw_2025_strukturdaten, file = "data/btw_2025_strukturdaten.RData").
-   # Führe dann das gesamte Skript aus.
-
-# Nun können wir beide hier mit dem base R Befehl load() einlesen.
-load("output/btw_2025_ergebnisse.RData")
-load("output/btw_2025_strukturdaten.RData")
-
-
 
 # 3. Daten mergen --------------------
 

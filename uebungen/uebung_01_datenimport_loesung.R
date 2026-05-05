@@ -22,6 +22,8 @@ library(summarytools)
 
 btw_2025_strukturdaten_raw <- rio::import(
   "data/btw2025_strukturdaten.csv",
+  sep = ";",
+  dec = ",",
   skip = 9
 )
 
@@ -169,14 +171,17 @@ btw_2025_strukturdaten %>%
    # anbringen
 
 # (named) Vektor erstellen mit neuen Namen als Werte und alte Namen als Namen der Werte
-btw_2025_strukturdaten_labels <- setNames(
-  names(btw_2025_strukturdaten_raw), # die alten Namen werden zu names
-  names(btw_2025_strukturdaten) # neuen Spaltennamen werden zu values
+btw_2025_strukturdaten_labels <- stats::setNames(
+  object = names(btw_2025_strukturdaten_raw), # Das wird der Text des Labels
+  nm = names(btw_2025_strukturdaten) # Das ist die Spalte im aktuellen Datensatz
 )
 
+# 2. Zuweisen
 btw_2025_strukturdaten <- btw_2025_strukturdaten %>%
-  labelled::set_variable_labels(.labels = btw_2025_strukturdaten_labels,
-                                .strict = FALSE)
+  labelled::set_variable_labels(
+    .labels = as.list(btw_2025_strukturdaten_labels),
+    .strict = FALSE
+  )
 
 save(btw_2025_strukturdaten, file = "output/btw_2025_strukturdaten.RData")
 

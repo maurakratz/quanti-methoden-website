@@ -26,11 +26,57 @@ editor_options:
 
 # Recap
 
-1.  ... {{< fa check >}}
+1.  Mit `dplyr::count()` und `dplyr::distinct()` die ersten Aggregationsbefehle {{< fa check >}}
+2.  Zeilen filtern mit `dplyr::filter()` und logischen Operatoren (==) {{< fa check >}}
+3.  `dplyr::filter(!is.na())` als Sonderform des filter()-Befehls {{< fa check >}}
+4.  `dplyr::select()` um Spalten auszuwählen oder auszuschließen {{< fa check >}}
+5.  Variablen überschreiben (oder neu erstellen) anhand bestimmter Konditionen mit `dplyr::mutate()` in Kombination mit `case_when()` {{< fa check >}}
+6.  Datensatzausrichtung ändern mit tidyr::pivot_wider() oder `tidyr::pivot_longer()` {{< fa check >}}
 
 ## Datenanalyse-Workflow
 
 ![](images/clipboard-4263712504.png){style="display: block; margin: 0 auto;"}
+
+# {{< fa reply >}} Feedback zu Übung 2
+
+-   naming convention: uebung_01_name.R {{< fa thumbs-up >}}
+
+-   warum? `btw_2025_strukturdaten_neue_namen_ohne_fussnoten[, c("wknr", "wkname")]`
+
+-   mit "Datensatz überschreiben" meine ich nicht `save()`, sondern `datensatz <- datensatz`
+
+-   
+
+    ```{r}
+    #| echo: true 
+    #| eval: false 
+
+    btw_2025_struk_lander <- btw_2025_strukturdaten %>%
+      dplyr::filter(wknr %in% c("901", "913", "902", "903", "904", "912", "915", "911", "905", "906", "907", "909", "910", "999")) %>% 
+      View()
+    ```
+
+## Data merging 1 - Kombinieren
+
+-   `dplyr::bind_cols()` um Spalten neben einander zu kleben
+
+-   `dplyr::bind_rows()` um Zeilen untereinander zu kleben
+
+-   `dplyr::union()` Zeilen aus zwei Tabellen untereinander kleben, aber dabei Duplikate löschen
+
+:::: fragment
+::: callout-note{
+Diese `bind()`-Befehle führen Daten lediglich mechanisch zusammen, ohne beispielsweise unterschiedliche Sortierung der Spalten zu beachten oder Ähnliches.
+:::
+::::
+
+## Data merging 2 - Joining
+
+::: callout-note{
+Anstatt Spalten einfach nebeneinander zu stellen, ohne die Sortierung zu beachten, verbindet ein `join` die Daten sinnvoll miteinander auf Grundlage der Übereinstimmung einer Schlüsselvariable.
+:::
+
+![](images/clipboard-2143522233.png)
 
 # Hands On - Daten mergen
 
@@ -67,7 +113,6 @@ Bsp.:
 
 ![](images/clipboard-2822810441.png){fig-align="center"}
 
-
 ## Minute Cards
 
 Bitte füllt die Minute Cards für die heutige Sitzung aus. Das sollt enicht länger als 3 Minuten dauern. Vielen Dank für eure Mitarbeit!
@@ -82,7 +127,7 @@ plot(qr)
 # Vielen Dank und bis kommenden Dienstag!
 
 ::: {style="margin-top: 1em;"}
-![](images/clipboard-3542587166.png)
+![](images/clipboard-1343489762.png)
 :::
 
 ::: {style="display: flex; align-items: center; gap: 1em; "}
