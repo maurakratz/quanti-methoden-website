@@ -25,4 +25,3 @@ Den vollständigen Seminarplan, die Anforderungen und die Pflichtlektüre findes
 ![Quelle: [Allison Horst](https://allisonhorst.com/allison-horst)](images/welcome.png)
 :::
 ::::::
-https://allisonhorst.com/allison-horst
