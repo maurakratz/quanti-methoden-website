@@ -1,0 +1,136 @@
+---
+title: "Sitzung 05: Kennwerte und deren Visualisierung"
+subtitle: "Politik vermessen: Quantitative Methoden mit R | SoSe 2026 | Maura Kratz"
+date: today
+date-format: "DD.MM.YYYY"
+format:
+  pdf:
+    toc: true
+    toc-title: "Inhalt"
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+Nun, da wir gelernt haben, wie wir Datensätze einlesen, säubern und
+zusammenführen, können wir bereits viele spannende deskriptive
+politikwissenschaftliche Fragen beantworten.
+
+# Setup
+
+```{r}
+library(rio)
+library(dplyr)
+library(skimr)
+
+load(here::here("output/btw_2025_strukturdaten.RData"))
+
+```
+
+# Daten vorbereiten
+
+Wir filtern auf echte Wahlkreise (keine Bundesland-Summenzeilen):
+
+```{r}
+wk <- btw_2025_strukturdaten %>%
+  dplyr::filter(wahlkreis_nr < 900)
+
+nrow(wk)
+```
+
+# Frage 1: Wie ungleich ist Arbeitslosigkeit über Wahlkreise verteilt?
+
+## Überblick mit summary() und skim()
+
+```{r}
+wk %>%
+  dplyr::select(alo_quote_insgesamt) %>%
+  summary()
+```
+
+```{r}
+wk %>%
+  dplyr::select(alo_quote_insgesamt) %>%
+  skimr::skim()
+```
+
+## Kennwerte gezielt berechnen
+
+```{r}
+wk %>%
+  dplyr::summarise(
+    n = dplyr::n(),
+    min = min(alo_quote_insgesamt, na.rm = TRUE),
+    max = max(alo_quote_insgesamt, na.rm = TRUE),
+    spannweite = max - min,
+    mittelwert = mean(alo_quote_insgesamt, na.rm = TRUE),
+    median = median(alo_quote_insgesamt, na.rm = TRUE),
+    sd = sd(alo_quote_insgesamt, na.rm = TRUE),
+    q25 = quantile(alo_quote_insgesamt, probs = 0.25, na.rm = TRUE),
+    q75 = quantile(alo_quote_insgesamt, probs = 0.75, na.rm = TRUE),
+    iqr = IQR(alo_quote_insgesamt, na.rm = TRUE)
+  ) %>%
+  t()
+```
+
+**Interpretation:** Die durchschnittliche Arbeitslosenquote liegt bei etwa
+6% in deutschen Wahlkreisen. Im Durchschnitt weicht ein Wahlkreis ca. 2 PP
+vom Mittelwert ab. Der Median ist etwas kleiner als der Mittelwert —
+es gibt Ausreißer nach oben, aber keine starke Verzerrung. Zwischen dem
+Wahlkreis mit der niedrigsten (2,5%) und höchsten (14,8%) Arbeitslosenquote
+liegen fast 12 Prozentpunkte. Die mittleren 50% der Wahlkreise liegen
+zwischen 4,3% und 7,3% (IQR: 3 PP) — stärkere Abweichungen sind Ausreißer,
+nicht die Regel.
+
+## Visualisierung
+
+```{r}
+#| fig-width: 7
+#| fig-height: 4
+hist(wk$alo_quote_insgesamt,
+     main = "Arbeitslosenquote in deutschen Wahlkreisen (BTW 2025)",
+     xlab = "Arbeitslosenquote (%)",
+     ylab = "Anzahl Wahlkreise",
+     col = "steelblue",
+     border = "white",
+     breaks = 20)
+abline(v = mean(wk$alo_quote_insgesamt, na.rm = TRUE),
+       col = "red", lwd = 2, lty = 1)
+abline(v = median(wk$alo_quote_insgesamt, na.rm = TRUE),
+       col = "orange", lwd = 2, lty = 2)
+legend("topright",
+       legend = c("Mittelwert", "Median"),
+       col = c("red", "orange"),
+       lwd = 2, lty = c(1, 2), bty = "n")
+```
+
+```{r}
+#| fig-width: 7
+#| fig-height: 4
+boxplot(wk$alo_quote_insgesamt,
+        main = "Arbeitslosenquote in deutschen Wahlkreisen (BTW 2025)",
+        ylab = "Arbeitslosenquote (%)",
+        col = "steelblue",
+        border = "gray30")
+```
+
+## Extremfälle
+
+Wahlkreise mit der **niedrigsten** Arbeitslosenquote:
+
+```{r}
+wk %>%
+  dplyr::select(wahlkreis_name, land, alo_quote_insgesamt) %>%
+  dplyr::arrange(alo_quote_insgesamt) %>%
+  head(10)
+```
+
+Wahlkreise mit der **höchsten** Arbeitslosenquote:
+
+```{r}
+wk %>%
+  dplyr::select(wahlkreis_name, land, alo_quote_insgesamt) %>%
+  dplyr::arrange(dplyr::desc(alo_quote_insgesamt)) %>%
+  head(10)
+```

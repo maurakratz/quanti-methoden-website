@@ -24,10 +24,28 @@ website:
       - icon: github
         href: https://github.com/maurakratz/quanti-methoden-website
   page-footer:
-    center: "Maura Kratz | maura.kratz@fu-berin.de"
+    center: "Maura Kratz | maura.kratz@fu-berlin.de"
 
 format:
   html:
     theme: [default, website.scss]
     toc: true
     toc-title: "Inhalt"
+    link-external-newwindow: true
+    link-external-icon: true
+    include-after-body:
+      text: |
+        <script type="text/javascript">
+        window.onload = function() {
+            var links = document.links;
+            for (var i = 0; i < links.length; i++) {
+                var isExternal = links[i].hostname !== window.location.hostname;
+                var isDoc = /\.(pdf|xlsx?|docx?|zip|csv)$/i.test(links[i].href);
+                
+                if (isExternal || isDoc) {
+                    links[i].target = '_blank';
+                    links[i].rel = 'noopener noreferrer';
+                }
+            }
+        };
+        </script>

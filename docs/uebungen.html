@@ -204,7 +204,7 @@ ul.task-list li input[type="checkbox"] {
 <tr class="odd">
 <td style="text-align: center;">05</td>
 <td style="text-align: left;">Quarto; Deskriptive Statistik – Kennwerte &amp; Visualisierung</td>
-<td style="text-align: left;">Kapitel 1 (bis 1.8) und Kapitel 2 (bis 2.12) im E-Book <a href="https://statistikgrundlagen.de/ebook/front-matter/introduction-2/">Statistik Grundlagen</a>; Ein <a href="materials/chapter_03_summarize_groupby_ggplot2.pdf">Foliensatz</a> aus dem Datacamp-Kurs “Introduction to the tidyverse” zu den summarize()- und group_by()-Befehlen aus dem dplyr-Paket, sowie Visualisierungsoptionen mit ggplot2.</td>
+<td style="text-align: left;">Kapitel 1 (bis 1.8) und Kapitel 2 (bis 2.12) im E-Book <a href="https://statistikgrundlagen.de/ebook/front-matter/introduction-2/">Statistik Grundlagen</a>; Ein <a href="materials/chapter_03_summarize_groupby_ggplot2.pdf">Foliensatz</a> aus dem Datacamp-Kurs “Introduction to the tidyverse” zu den summarize()- und group_by()-Befehlen aus dem dplyr-Paket, sowie Visualisierungsoptionen mit ggplot2. Ein <a href="materials/cheat-sheet_quarto.pdf">cheatsheet</a> zu Quarto - Details findet ihr auch immer auf der <a href="https://quarto.org/docs/get-started/hello/rstudio.html">Quarto-Website</a> von Posit.</td>
 <td style="text-align: center;">—</td>
 <td style="text-align: center;">—</td>
 </tr>
@@ -364,6 +364,13 @@ ul.task-list li input[type="checkbox"] {
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
         }
       }
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
@@ -684,13 +691,27 @@ ul.task-list li input[type="checkbox"] {
       &nbsp;
     </div>   
     <div class="nav-footer-center">
-<p>Maura Kratz | maura.kratz@fu-berin.de</p>
+<p>Maura Kratz | maura.kratz@fu-berlin.de</p>
 </div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
   </div>
 </footer>
+<script type="text/javascript">
+window.onload = function() {
+    var links = document.links;
+    for (var i = 0; i < links.length; i++) {
+        var isExternal = links[i].hostname !== window.location.hostname;
+        var isDoc = /\.(pdf|xlsx?|docx?|zip|csv)$/i.test(links[i].href);
+        
+        if (isExternal || isDoc) {
+            links[i].target = '_blank';
+            links[i].rel = 'noopener noreferrer';
+        }
+    }
+};
+</script>
 
 
 

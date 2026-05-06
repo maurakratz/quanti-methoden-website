@@ -28,7 +28,8 @@
 
 # Aufgabe 5 ----------------------------
    # Lass dir mit summarytools eine Datensazübersicht ausgeben und
-   # speichere sie im output-Ordner.
+   # speichere sie im output-Ordner. Speichere dort auch den Datensatz
+   # als .RData-Datei.
 
 
 # Aufgabe 6 --------------------

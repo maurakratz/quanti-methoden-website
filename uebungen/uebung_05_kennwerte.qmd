@@ -1,0 +1,123 @@
+---
+title: "Übung 05: Kennwerte und deren Visualisierung"
+subtitle: "Politik vermessen: Quantitative Methoden mit R | SoSe 2026 | Maura Kratz"
+author: "Vorname Nachname"
+date: today
+date-format: "DD.MM.YYYY"
+format:
+  pdf:
+    toc: false
+    toc-title: "Inhalt"
+  html:
+    toc: true
+    toc-title: "Inhalt"
+    self-contained: true
+    theme: default
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+<!-- ---------------------------------------------------------------
+     Hinweise zum Arbeiten mit dieser Datei:
+
+     - R-Code kommt in die Chunks (zwischen ```{r} und ```)
+     - Text, Interpretationen und Antworten als normalen Text
+       direkt unter dem jeweiligen Chunk
+     - Rendern: Strg+Shift+K (oder oben "Render")
+     - Abgabe: die gerenderte PDF-Datei in Blackboard hochladen
+
+     Erste Schritte falls noch nicht erledigt:
+       install.packages("tinytex")
+       tinytex::install_tinytex()
+     Danach RStudio neu starten, dann funktioniert PDF-Render.
+--------------------------------------------------------------- -->
+
+# Setup
+
+```{r}
+library(rio)
+library(dplyr)
+library(skimr)
+```
+
+# Aufgabe 1: Daten laden und vorbereiten
+
+Lade den Datensatz `btw_2025_strukturdaten.RData` und filtere ihn so,
+dass nur echte Wahlkreise enthalten sind (keine Bundesland-Summenzeilen).
+Wie viele Wahlkreise enthält der gefilterte Datensatz?
+
+```{r}
+# Code hier
+```
+
+*Antwort hier eintragen.*
+
+# Aufgabe 2: Überblick verschaffen
+
+Nutze `skimr::skim()` um dir einen ersten Überblick über die Variable
+`einkommen_je_ew_2021` zu verschaffen. Welche Informationen liefert
+`skim()` im Vergleich zu `summary()`?
+
+```{r}
+# Code hier
+```
+
+*Antwort hier eintragen.*
+
+# Aufgabe 3: Kennwerte berechnen
+
+Berechne mit `dplyr::summarise()` folgende Kennwerte für die Variable
+`einkommen_je_ew_2021`: n, Minimum, Maximum, Spannweite, Mittelwert,
+Median, Standardabweichung, Q25, Q75 und IQR.
+Nutze `t()` für eine übersichtliche Ausgabe.
+
+```{r}
+# Code hier
+```
+
+*Was sagen dir die Kennwerte? Interpretiere kurz Mittelwert vs. Median
+und die Streuung.*
+
+# Aufgabe 4: Ost-West-Vergleich
+
+Erstelle eine neue Variable `ost_west` mit den Ausprägungen
+"Ost", "West" und "Berlin". Berechne dann die wichtigsten Kennwerte
+für `einkommen_je_ew_2021` getrennt nach dieser Gruppenvariable.
+Welche Unterschiede erkennst du?
+
+```{r}
+# Code hier
+```
+
+*Antwort hier eintragen.*
+
+# Aufgabe 5: Visualisierung
+
+Erstelle für `einkommen_je_ew_2021` (a) ein Histogramm mit
+eingezeichnetem Mittelwert und Median und (b) einen gruppierten
+Boxplot nach `ost_west`. Beschreibe jeweils kurz, was du siehst.
+
+```{r}
+# (a) Histogramm
+```
+
+*Interpretation Histogramm.*
+
+```{r}
+# (b) Boxplot
+```
+
+*Interpretation Boxplot.*
+
+# Aufgabe 6: Extremfälle
+
+Welche fünf Wahlkreise haben das höchste und welche fünf das niedrigste
+verfügbare Einkommen? Gibt es ein Muster (Region, Bundesland)?
+
+```{r}
+# Code hier
+```
+
+*Antwort hier eintragen.*

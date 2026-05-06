@@ -29,8 +29,8 @@ btw_25_rws_raw <- rio::import("./data/btw25_rws_bst2.csv",
 
 # Aufgabe 3 ------------------------------
    # Bereinige die Variablennamen.
-btw_25_rws <- btw_25_rws %>%
-  janitor::clean_names(btw_25_rws_raw)
+btw_25_rws <- btw_25_rws_raw %>%
+  janitor::clean_names()
 
 btw_25_rws %>%
   names()
@@ -56,11 +56,14 @@ btw_25_rws <- btw_25_rws %>%
 
 # Aufgabe 5 ----------------------------
    # Lass dir mit summarytools eine Datensazübersicht ausgeben und
-   # speichere sie im output-Ordner.
+   # speichere sie im output-Ordner. Speichere dort auch den Datensatz
+   # als .RData-Datei.
 
 btw_25_rws %>%
   summarytools::dfSummary() %>%
-  summarytools::view(file = "output/btw_25_rws_dfSummary.html")
+  summarytools::view(file = "output/btw_25_rws_summary.html")
+
+save(btw_25_rws, file = "output/btw_25_rws.RData")
 
 
 # Aufgabe 6 --------------------
@@ -115,6 +118,13 @@ btw_25_rws <- btw_25_rws %>%
       land == "SL" ~ "Saarland"
     )
   )
+# Merke: Durch diese Rechenoperation ist das Variable-Label verschwunden!
+# Für solche Fälle ist es super, alle labels in einer Liste zu haben,
+# sodass wir sie jederzeit wieder dranheften können:
+
+btw_25_rws <- btw_25_rws %>%
+  labelled::set_variable_labels(.labels = btw_25_rws_labels,
+                                .strict = FALSE)
 
 
      # Nun, da die Datenstrukturen zueinander passen: Führe sie auf Grundlage
@@ -125,5 +135,12 @@ btw_25_rws_struk <- btw_25_rws %>%
                    by = "land")
 
      # Sieh dir das Ergebnis an. Erstelle und speichere eine Übersicht
-     # des neuen Datensatzes. Speichere auch den Datensatz selbst als .RData-Datei.
+     # des neuen Datensatzes.
 
+btw_25_rws_struk %>%
+  summarytools::dfSummary(max.distinct.values = 3,
+                          na.col = FALSE) %>%
+  summarytools::view(file = "output/btw_25_rws_struk_summary.html")
+
+     # Speichere auch den Datensatz selbst als .RData-Datei.
+save(btw_25_rws_struk, file = "output/btw_25_rws_struk.RData")
