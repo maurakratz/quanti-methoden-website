@@ -1,0 +1,178 @@
+---
+title: "Quarto"
+subtitle: "Politik vermessen: Quantitative Methoden mit R | SoSe 2026 | Maura Kratz"
+date: today
+date-format: "DD.MM.YYYY"
+format:
+  pdf:
+    toc: true
+    toc-depth: 1
+    toc-title: "Inhalt"
+    number-sections: true
+execute:
+  echo: true
+  eval: false
+  warning: false
+  message: false
+editor: 
+  markdown: 
+    wrap: 80
+---
+
+# Was ist Quarto?
+
+Quarto ist ein Dokumentenformat, das R-Code und Text kombiniert. Aus einer
+`.qmd`-Datei lassen sich PDF-, HTML- oder Word-Dokumente rendern. Eure
+Übungsabgaben sind solche `.qmd`-Dateien, die ihr dann als PDF abgebt. Der
+Vorteil gegenüber Skriptdateien (.R-Dateien) ist, dass diese PDFs formatiert und
+insgesamt besser lesbar sind. Anders als bspw. in einer Word-Datei stehen aber
+Code, Output und Interpretation im selben Dokument, was unnötiges Copy-Paste von
+Ergebnissen und etwaige dadurch entstehenden Fehler verhindert.
+
+# Erste Schritte (einmalig)
+
+Für PDF-Export wird eine LaTeX-Installation benötigt. Einmalig in der R-Console
+ausführen, danach RStudio neu starten:
+
+``` r
+install.packages("tinytex")
+tinytex::install_tinytex()
+```
+
+Für korrekte Dateipfade in Quarto:
+
+``` r
+install.packages("here")
+```
+
+# Aufbau einer .qmd-Datei
+
+Eine `.qmd`-Datei besteht aus drei Teilen:
+
+**1. YAML-Header** (ganz oben, zwischen `---`)\
+Steuert Titel, Format, globale Chunk-Optionen.
+
+**2. Markdown-Text**\
+Normaler Text, Überschriften, Listen etc. außerhalb der Chunks.
+
+**3. Code-Chunks**\
+R-Code zwischen ```` ```{r} ```` und ```` ``` ````.
+
+# YAML-Header
+
+``` yaml
+---
+title: "Mein Dokument"
+subtitle: "Untertitel"
+author: "Vorname Nachname"
+date: today
+date-format: "DD.MM.YYYY"
+format:
+  pdf:
+    toc: true
+    toc-title: "Inhalt"
+  html:
+    toc: true
+    self-contained: true
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+```
+
+Der Abschnitt `execute:` setzt globale Chunk-Optionen — sie gelten für alle
+Chunks im Dokument, außer ihr überschreibt sie lokal.
+
+
+# Markdown-Syntax
+
+| Element       | Syntax                      | Ergebnis             |
+|---------------|-----------------------------|----------------------|
+| Überschrift 1 | `# Titel`                   | Große Überschrift    |
+| Überschrift 2 | `## Abschnitt`              | Mittlere Überschrift |
+| Überschrift 3 | `### Unterabschnitt`        | Kleine Überschrift   |
+| Fett          | `**Text**`                  | **Text**             |
+| Kursiv        | `*Text*`                    | *Text*               |
+| Code inline   | `` `code` ``                | `code`               |
+| Aufzählung    | `- Punkt`                   | Aufzählung           |
+| Nummeriert    | `1. Punkt`                  | Nummerierte Liste    |
+| Leerzeile     | Leerzeile zwischen Absätzen | Neuer Absatz         |
+
+
+
+# Code-Chunks
+
+Neuen Chunk einfügen: **Strg+Alt+I**
+
+```{{r}}
+#| echo: false
+hist(wk$alo_quote_insgesamt)
+```
+
+
+**Chunk-Optionen mit `#|`**
+
+Chunk-Optionen steuern, was im gerenderten Dokument erscheint. Die lokal
+gesetzten Chunk-Optionen überschreiben ggf. die globalen Chunk-Optionen im
+yaml-header. Sie werden mit `#|` direkt am Anfang des Chunks eingetragen (siehe oben).
+
+
+\newpage
+**Übersicht der wichtigsten Optionen**
+
+| Option    | Default | `false` bewirkt                                |
+|-----------|---------|------------------------------------------------|
+| `echo`    | `true`  | Code wird *nicht* angezeigt, Output schon    |
+| `eval`    | `true`  | Code wird *nicht* ausgeführt, aber angezeigt |
+| `output`  | `true`  | Output wird *nicht* angezeigt, Code schon    |
+| `warning` | `true`  | Warnungen werden *nicht* angezeigt           |
+| `message` | `true`  | Meldungen werden *nicht* angezeigt           |
+| `include` | `true`  | *Weder* Code *noch* Output werden angezeigt        |
+
+
+
+# Plotgröße
+
+Plotgröße wird in Zoll angegeben (1 Zoll = 2.54 cm):
+
+```{{r}}
+#| fig-width: 7
+#| fig-height: 4
+hist(wk$alo_quote_insgesamt)
+```
+
+**Faustregeln:**
+
+| Plottyp                                             | `fig-width` | `fig-height` |
+|-----------------------------------------------------|-------------|--------------|
+| Einfacher Boxplot / Histogramm                      | 6–7         | 4            |
+| Gruppierter Boxplot / Barplot mit vielen Kategorien | 9           | 5            |
+| Scatterplot                                         | 6           | 6            |
+
+
+# Dateipfade mit `here::here()`
+
+Quarto sucht Dateien standardmäßig relativ zur `.qmd`-Datei, nicht zum
+Projektordner. `here::here()` verweist immer auf den Projektordner (dort wo die
+`.Rproj`-Datei liegt):
+
+``` r
+# so:
+load(here::here("output/btw_2025_strukturdaten.RData"))
+
+# statt so:
+load("output/btw_2025_strukturdaten.RData")
+```
+
+
+
+# Rendern
+
+| Aktion                        | Tastenkürzel                 |
+|-------------------------------|------------------------------|
+| Dokument rendern              | **Strg+Shift+K**             |
+| Format wählen (PDF oder HTML) | Kleiner Pfeil neben "Render" |
+
+Die gerenderte Datei erscheint im gleichen Ordner wie die `.qmd`-Datei. Für die
+Abgabe bitte die **PDF-Datei** in Blackboard hochladen.

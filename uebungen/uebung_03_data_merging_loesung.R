@@ -42,8 +42,8 @@ btw_25_rws %>%
 # auch hier sind die alten Namen als Labels brauchbar (siehe Lösung zu Übung 1).
 # also speichern wir sie in einem named vector
 btw_25_rws_labels <- setNames(
-  object = names(btw_25_rws_raw), # die alten Namen werden zu names
-  nm = names(btw_25_rws) # neuen Spaltennamen werden zu values
+  object = names(btw_25_rws_raw), # die alten Namen werden zu object (labels)
+  nm = names(btw_25_rws) # neuen Spaltennamen werden zu  names
 )
 
 btw_25_rws_labels

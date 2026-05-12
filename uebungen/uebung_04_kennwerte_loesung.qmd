@@ -1,0 +1,202 @@
+---
+title: "Übung 04: Kennwerte und deren Visualisierung — Lösung"
+subtitle: "Politik vermessen: Quantitative Methoden mit R | SoSe 2026 | Maura Kratz"
+date: today
+date-format: "DD.MM.YYYY"
+format:
+  pdf:
+    toc: false
+  html:
+    toc: true
+    toc-title: "Inhalt"
+    self-contained: true
+    theme: default
+execute:
+  echo: true
+  warning: false
+  message: false
+knitr:
+  opts_chunk:
+    fig-width: 7
+    fig-height: 4
+---
+
+# Setup
+
+```{r}
+library(dplyr)
+library(skimr)
+library(here)
+
+```
+
+# Aufgabe 1: Daten laden und vorbereiten
+
+Lade den Datensatz `btw_2025_ergebnisse.RData` mit `here::here()`.
+Filtere anschließend die Wahlkreise und die Wahlbeteiligung heraus
+(Gruppe: `Wählende`). Wie viele Zeilen hat der gefilterte Datensatz?
+
+```{r}
+load(here::here("output/btw_2025_ergebnisse.RData"))
+
+wb <- btw_2025_ergebnisse %>%
+  dplyr::filter(
+    gebietsart == "Wahlkreis",
+    gruppenname == "Wählende"
+  )
+
+nrow(wb) 
+# stattdessen kannst du auch den Datensatz öffnen und die Zeilen zählen.
+```
+
+Der gefilterte Datensatz enthält 299 Zeilen — eine pro Wahlkreis.
+
+
+# Aufgabe 2: Kennwerte berechnen
+
+Berechne mit `dplyr::summarise()` folgende Kennwerte für die Wahlbeteiligung 
+(Variable `prozent`): n, Minimum, Maximum, Spannweite, Mittelwert, Standardabweichung, Median, Mittlere Abweichung vom Median, Q25, Q75 und IQR. Nutze `dplyr::as_tibble`` für eine übersichtliche Ausgabe.
+
+```{r}
+wb %>%
+  dplyr::summarise(
+    n = dplyr::n(),
+    min = min(prozent, na.rm = TRUE),
+    max = max(prozent, na.rm = TRUE),
+    range = max(prozent, na.rm = TRUE) - min(prozent, na.rm = TRUE),
+    mittelwert = mean(prozent, na.rm = TRUE),
+    sd = sd(prozent, na.rm = TRUE),
+    median = median(prozent, na.rm = TRUE),
+    mad = mad(prozent, na.rm = TRUE), 
+    q25 = quantile(prozent, probs = 0.25, na.rm = TRUE),
+    q75 = quantile(prozent, probs = 0.75, na.rm = TRUE),
+    iqr = IQR(prozent, na.rm = TRUE)
+  ) %>%
+  dplyr::as_tibble()
+```
+
+Die durchschnittliche Wahlbeteiligung liegt bei etwa 82%, der Median
+ist ähnlich hoch. Mittelwert und Median liegen nah beieinander, was auf
+eine annähernd symmetrische Verteilung hindeutet. Die Spannweite von
+ca. 15 PP zeigt aber, dass es erhebliche Unterschiede zwischen den
+Wahlkreisen gibt. Die SD von ca. 2.5 PP bedeutet, dass die meisten
+Wahlkreise relativ nah am Mittelwert liegen — die Extremfälle sind
+tatsächlich Ausreißer.
+
+
+# Aufgabe 3: Visualisierung
+
+Erstelle einen Boxplot der Wahlbeteiligung.
+
+```{r}
+#| fig-width: 3 
+boxplot(wb$prozent)
+```
+
+Der Median liegt leicht unterhalb der Mitte der Box, was auf eine leichte
+Rechtsschiefe hindeutet — es gibt einige Wahlkreise mit sehr hoher
+Wahlbeteiligung. Die Whisker sind asymmetrisch: der untere ist länger,
+was auf einige Wahlkreise mit deutlich niedrigerer Beteiligung hinweist.
+Es gibt keine extremen Ausreißer.
+
+
+# Aufgabe 4: Extremfälle
+
+In welchen drei Wahlkreisen war die Wahlbeteiligung am niedrigsten,
+in welchen am höchsten?
+
+```{r}
+wb %>%
+  dplyr::select(gebietsnummer, gebietsname, prozent) %>%
+  dplyr::arrange(prozent) %>%
+  head(3)
+```
+
+```{r}
+wb %>%
+  dplyr::select(gebietsnummer, gebietsname, prozent) %>%
+  dplyr::arrange(prozent) %>%
+  tail(3)
+```
+
+Die Wahlkreise mit der niedrigsten Wahlbeteiligung liegen tendenziell
+in städtischen Gebieten und ostdeutschen Bundesländern. Die Wahlkreise
+mit der höchsten Beteiligung finden sich eher in ländlichen Regionen
+Süddeutschlands.
+
+
+# Aufgabe 5: Bundesland-Mapping
+
+Führe zunächst folgenden Code aus, um den Wahlkreisen ihre Bundeslandnamen
+zuzuordnen. Erkläre in eigenen Worten, was die beiden Codeblöocke hier machen.
+
+```{r}
+bula_mapping <- btw_2025_ergebnisse %>%
+  dplyr::filter(gebietsart == "Land") %>%
+  dplyr::select(bula_nr = gebietsnummer, bula_name = gebietsname) %>%
+  dplyr::distinct()
+
+wb <- wb %>%
+  dplyr::left_join(bula_mapping, by = c("ueg_gebietsnummer" = "bula_nr")) %>%
+  dplyr::rename(ueg_gebietsname = bula_name) %>%
+  dplyr::relocate(ueg_gebietsname, .after = ueg_gebietsnummer)
+```
+
+Zunächst wird eine Tabelle erstellt, in der jeder Bundeslandnummer der dazugehörige Bundeslandname zugeordnet wird. Die Angaben dazu werden aus den Variablen `gebietsnummer` und `gebietsname` des Datensatzes `btw_2025_ergebnisse` entnommen. `left_join` verbindet zwei Datensätze anhand einer gemeinsamen Variable. Basierend auf der Übereinstimmung von
+`ueg_gebietsnummer` (in `wb`) und `bula_nr` (in `bula_mapping`) wird jeder übergeordneten Gebietnummer ein übergeordneter Gebietsname zugewiesen.
+
+
+# Aufgabe 6: Kennwerte nach Bundesland
+
+Gruppiere den Datensatz nach Bundesland und berechne die Kennwerte
+der Wahlbeteiligung pro Bundesland. Erstelle außerdem einen gruppierten
+Boxplot.
+
+```{r}
+wb %>%
+  dplyr::group_by(ueg_gebietsname) %>%
+  dplyr::summarise(
+    n = dplyr::n(),
+    min = min(prozent, na.rm = TRUE),
+    max = max(prozent, na.rm = TRUE),
+    range = max(prozent, na.rm = TRUE) - min(prozent, na.rm = TRUE),
+    mittelwert = mean(prozent, na.rm = TRUE),
+    sd = sd(prozent, na.rm = TRUE),
+    median = median(prozent, na.rm = TRUE),
+    mad = mad(prozent, na.rm = TRUE),
+    q25 = quantile(prozent, probs = 0.25, na.rm = TRUE),
+    q75 = quantile(prozent, probs = 0.75, na.rm = TRUE),
+    iqr = IQR(prozent, na.rm = TRUE)
+  ) %>%
+  t()
+```
+
+```{r}
+#| fig-width: 9
+#| fig-height: 5
+boxplot(prozent ~ ueg_gebietsname,
+        data = wb)
+```
+
+Beantworte anschließend folgende Fragen:
+
+**a)** Schau dir Sachsen-Anhalt genauer an. Was fällt dir auf, wenn du
+Mittelwert, Median und die Streuung betrachtest? Was sagt das über die Wahlkreise dort aus?
+
+Sachsen-Anhalt hat mit Abstand die niedrigste durchschnittliche
+Wahlbeteiligung (MW 77.7%) und gleichzeitig die geringste Streuung
+(SD 0.58, IQR 0.95). Mittelwert und Median liegen sehr nah beieinander
+(77.7% vs. 77.4%). Das bedeutet: Die Wahlkreise in Sachsen-Anhalt sind
+sich sehr ähnlich — überall niedrige Beteiligung, kaum Unterschiede
+zwischen den Wahlkreisen.
+
+**b)** Vergleiche Bayern und Nordrhein-Westfalen: Beide haben viele
+Wahlkreise — aber was unterscheidet sie in ihrem Schwerpunkt und ihrer Streuung? Was sagt das aus?
+
+Bayern (n = 47) und NRW (n = 64) haben beide viele Wahlkreise,
+unterscheiden sich aber deutlich in der Streuung: Bayern hat SD = 2.00
+und IQR = 2.81, NRW dagegen SD = 2.84 und IQR = 3.11 — und vor allem
+eine Spannweite von 14.6 PP gegenüber 9.2 PP in Bayern. NRW ist also
+intern viel heterogener: zwischen städtischen Wahlkreisen (z.B. Ruhrgebiet)
+und ländlichen Wahlkreisen gibt es erhebliche Unterschiede in der
+Wahlbeteiligung.

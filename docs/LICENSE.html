@@ -40,7 +40,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-1f3c96edfa6e275fbe0e0e704f3e73e9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-4f1b497ac4158aab7e1e1df34238ae45.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -709,6 +709,20 @@ wiki.creativecommons.org/Considerations_for_licensees</code></pre>
     </div>
   </div>
 </footer>
+<script type="text/javascript">
+window.onload = function() {
+    var links = document.links;
+    for (var i = 0; i < links.length; i++) {
+        var isExternal = links[i].hostname !== window.location.hostname;
+        var isDoc = /\.(pdf|xlsx?|docx?|zip|csv)$/i.test(links[i].href);
+        
+        if (isExternal || isDoc) {
+            links[i].target = '_blank';
+            links[i].rel = 'noopener noreferrer';
+        }
+    }
+};
+</script>
 
 
 
