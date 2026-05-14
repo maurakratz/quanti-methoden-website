@@ -32,7 +32,7 @@ editor_options:
 -   dar steht für daraus/darunter (also "Sonstige Parteien", "daraus BSW")
 -   `filter()` und `select()` tun sehr unterschiedliche Dinge
 -   `filter()`-Aufgabe kann unterschiedlich gelöst werden: `wahlkreis_nr > 900` oder `wahlkreis_name == "Land Insgesamt" | wahlkreis_name == "Insgesamt"` oder `dplyr::filter(wknr %in% c(901, 902, 903 ... ))`
--   in `case_when()` wurde `TRUE ~` durch `.default ~` ersetzt
+-   in `case_when()` wurde `TRUE ~` durch `.default =` ersetzt
 
 ## Exkurs CSV-Dateien
 
@@ -124,7 +124,7 @@ Spannende Fragen an Daten lassen sich meistens zwei Polen zuordnen:
 
 :::: {style="font-size: 0.75em;"}
 | Skalenniveau | Mögliche Aussagen | Beispiel(e) | Zulässige Operationen |
-|----|----|----|----|
+|------------------|------------------|------------------|------------------|
 | kategorial · **Nominalskala** | Gleichheit / Verschiedenheit | Diagnosen, Religion, Parteipräferenz | `=, ≠` |
 | kategorial · **Ordinalskala** | … & Rangfolge | Schulabschlüsse, Zustimmungswerte (Likert-Skala) | `=, ≠, <, >` |
 | metrisch · **Intervallskala** | … & Interpretierbare Abstände | Temperatur in °C, Kalenderjahre, IQ | `=, ≠, <, >, +, −` |
@@ -208,7 +208,7 @@ Je höher das Skalenniveau, desto mehr mathematische Operationen sind zulässig.
 ## Datentransformation mit mit *dplyr*
 
 | Befehl | Beschreibung | Bsp |
-|----|----|----|
+|------------------------|------------------------|------------------------|
 | `mutate()` | Neue Variablen hinzufügen | `df %>% mutate(anteil = stimmen / sum(stimmen))` |
 | `summarise()` | Mehrere Werte zusammenfassen | `df %>% summarise(mean(stimmen))` |
 | `count()` | Häufigkeiten zählen | `df %>% count(partei)` |

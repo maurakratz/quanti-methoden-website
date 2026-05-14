@@ -48,7 +48,7 @@ library(here)
 
 Lade den Datensatz `btw_2025_ergebnisse.RData` mit `here::here()`.
 Filtere anschließend die Wahlkreise und die Wahlbeteiligung heraus
-(Gruppe: `Wählende`). Wie viele Zeilen hat der gefilterte Datensatz?
+(Gruppe: `Wählende`). Speichere das Ergebnis in einem neuen Obejkt namens `wb`. Wie viele Zeilen hat der gefilterte Datensatz?
 
 ```{r}
 # Code hier

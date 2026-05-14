@@ -34,7 +34,7 @@ Spannende Fragen an Daten lassen sich meistens zwei Polen zuordnen:
 ## Variation untersuchen - 1 Variable {.smaller}
 
 | Skalenniveau | Ziel / Frage | Kennwert / Tabelle | R-Funktion |
-|----------------|----------------|------------------|-----------------------|
+|-----------------|-----------------|-----------------|--------------------|
 | Kategorial | Häufigkeiten | Häufigkeitstabelle | `dplyr::count()` · `count()` |
 | Kategorial | Anteile | Relative Häufigkeiten | `dplyr::mutate(pct = n / sum(n) * 100)` |
 | Metrisch | Zentrale Tendenz | Mittelwert · Median | `dplyr::summarise()` + `mean()` · `median()` |
@@ -54,6 +54,7 @@ Spannende Fragen an Daten lassen sich meistens zwei Polen zuordnen:
 Mit der Visualisierung mit ggplot2 beschäftigen wir uns in Sitzung 7 ausführlicher!
 :::
 
+
 # Recap
 
 1.  Kennwerte in R berechnen
@@ -67,6 +68,7 @@ Mit der Visualisierung mit ggplot2 beschäftigen wir uns in Sitzung 7 ausführli
 
 -   Streuungsmaße: Spannweite (range); Quartile, Interquartilsabstand (IQR); Varianz, bzw. Standardabweichung; ...
 :::
+
 
 ## Boxplots
 
@@ -148,18 +150,83 @@ p4 <- make_panel(dplyr::filter(dat, gruppe == "Bimodal"),      "Bimodal",      "
   )
 ```
 
+
 # Was heute ansteht:
 
 -   Check-In: Fragen zu Quarto, Kennwerten etc.
 -   Besprechung der Übung 4
 -   Häufigkeiten und Visualisierung
 
+
+## "Base R"
+
+-   Die Installation von R enthält automatisch eine Sammlung von Paketen, die als Standard-R-Distribution (oft informell auch als „Base R“ im weiteren Sinne oder Core R) bezeichnet werden
+-   15 Basispakete werden beim Start von R automatisch geladen (z. B. base, stats, graphics)
+-   15 empfohlene Pakete werden Installation automatisch mitgeliefert, sind aber nicht automatisch geladen.
+
+:::{callout-tip}
+Auch diese "Base-R"-Funktionen werden als bei Masking-Konflikten überschrieben, wenn wir sie nicht refernzieren, wie beispielsweise mit stats::summary().
+::: 
+
+## Quarto {.smaller}
+
+-   Dokumentenformat, das R-Code und Text kombiniert
+
+-   YAML-Header: Titel, Format, Globale Chunk-Optionen
+
+:::{.fragment}
+![](images/clipboard-4003848383.png){width="70%"}
+:::
+
+## Quarto {.smaller}
+
+-   Markdown Text
+
+    | Element       | Syntax                      | Ergebnis             |
+    |---------------|-----------------------------|----------------------|
+    | Überschrift 1 | `# Titel`                   | Große Überschrift    |
+    | Überschrift 2 | `## Abschnitt`              | Mittlere Überschrift |
+    | Überschrift 3 | `### Unterabschnitt`        | Kleine Überschrift   |
+    | Fett          | `**Text**`                  | **Text**             |
+    | Kursiv        | `*Text*`                    | *Text*               |
+    | Code inline   | `` `code` ``                | `code`               |
+    | Aufzählung    | `- Punkt`                   | Aufzählung           |
+    | Nummeriert    | `1. Punkt`                  | Nummerierte Liste    |
+    | Leerzeile     | Leerzeile zwischen Absätzen | Neuer Absatz         |
+
+
+## Quarto  {.smaller}
+
+-   Chunk-Optionen steuern, was im gerenderten Dokument erscheint. Die lokal gesetzten Chunk-Optionen überschreiben ggf. die globalen Chunk-Optionen im yaml-header. Sie werden mit `#|` direkt am Anfang des Chunks eingetragen
+
+    | Option    | Default | `false` bewirkt                              |
+    |-----------|---------|----------------------------------------------|
+    | `echo`    | `true`  | Code wird *nicht* angezeigt, Output schon    |
+    | `eval`    | `true`  | Code wird *nicht* ausgeführt, aber angezeigt |
+    | `output`  | `true`  | Output wird *nicht* angezeigt, Code schon    |
+    | `warning` | `true`  | Warnungen werden *nicht* angezeigt           |
+    | `message` | `true`  | Meldungen werden *nicht* angezeigt           |
+    | `include` | `true`  | *Weder* Code *noch* Output werden angezeigt  |
+
+
+## Quarto
+
+-   Quarto sucht Dateien standardmäßig relativ zur `.qmd`-Datei, nicht zum Projektordner. `here::here()` verweist immer auf den Projektordner (dort wo die `.Rproj`-Datei liegt):
+
+    ``` r
+    # so:
+    load(here::here("output/btw_2025_strukturdaten.RData"))
+
+    # statt so:
+    load("output/btw_2025_strukturdaten.RData")
+    ```
+
+
 # {{< fa reply >}} Feedback zu Übung 4
 
--   dar steht für daraus/darunter (also "Sonstige Parteien", "daraus BSW")
--   `filter()` und `select()` tun sehr unterschiedliche Dinge
--   `filter()`-Aufgabe kann unterschiedlich gelöst werden: `wahlkreis_nr > 900` oder `wahlkreis_name == "Land Insgesamt" | wahlkreis_name == "Insgesamt"` oder `dplyr::filter(wknr %in% c(901, 902, 903 ... ))`
--   in `case_when()` wurde `TRUE ~` durch `.default ~` ersetzt
+-   Konntet ihr die .qmd alle herunterladen? 
+-   sorry für Verwirrung mit `wb`-Objekt in Aufgabe 5 
+
 
 ## kategoriale und kontinuierliche Variablen
 
@@ -192,7 +259,7 @@ plot(qr)
 ::: {style="display: flex; align-items: center; gap: 1em; "}
 ![](images/clipboard-2636932712.png){style="width: 140px;"}
 
-**Übung 4** zu "Daten Aggregieren" bis spätestens Sonntagabend!
+**Übung 5** zu "Häufigkeiten" bis spätestens Sonntagabend!
 :::
 
 ------------------------------------------------------------------------

@@ -154,7 +154,7 @@ wk_btw_2025_strukt <- wk_btw_2025_strukt %>%
     land %in% c("Brandenburg", "Mecklenburg-Vorpommern",
                 "Sachsen", "Sachsen-Anhalt", "Thüringen") ~ "Ost",
     land == "Berlin" ~ "Berlin",
-    .default ~ "West"
+    .default = "West"
   ))
 
 wk_btw_2025_strukt %>%
