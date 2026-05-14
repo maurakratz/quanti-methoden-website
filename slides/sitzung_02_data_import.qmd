@@ -276,6 +276,176 @@ im [Tidyverse-Styleguide](https://style.tidyverse.org/) und im eBook [R For Data
 
 ![](images/clipboard-4263712504.png){style="display: block; margin: 0 auto;"}
 
+
+# Daten einlesen 
+
+## Überblick: Datenimport
+
+| Format | Paket | Funktion |
+|--------|-------|----------|
+| `.csv` (Komma) | `readr` | `read_csv()` |
+| `.csv` (Semikolon) | `readr` | `read_csv2()` |
+| `.csv` (flexibel) | `readr` | `read_delim()` |
+| `.dta` (Stata) | `haven` | `read_dta()` |
+| `.sas7bdat` (SAS) | `haven` | `read_sas()` |
+| `.sav` (SPSS) | `haven` | `read_sav()` |
+| `.RData` | Base R | `load()` |
+
+
+
+## CSV-Dateien importieren
+
+
+```{r}
+#| eval: false
+#| echo: true
+daten <- read_delim(
+  "daten.csv",
+  delim = ";",      # Trennzeichen
+  dec = ",",        # Dezimalzeichen
+  skip = 2,         # Zeilen überspringen (z. B. Metadaten am Anfang)
+  n_max = 500,      # Maximale Zeilenzahl einlesen
+  na = c("", "NA", "-99"),  # Welche Werte als NA behandeln?
+  locale = locale(encoding = "UTF-8")  # Zeichenkodierung
+)
+```
+
+`read_delim()` ist die flexible Basis-Funktion — `read_csv()` und `read_csv2()` sind Spezialfälle davon.
+
+
+## CSV-Dateien importieren
+
+`read_csv()` für Komma-separierte Dateien, `read_csv2()` für Semikolon-separierte Dateien (deutsch):
+
+```{r}
+#| eval: false
+#| echo: true
+library(readr)
+
+# Komma-separiert (englisches Format)
+daten <- read_csv("daten.csv")
+
+# Semikolon-separiert, Komma als Dezimalzeichen (deutsches Format)
+daten <- read_csv2("daten.csv")
+```
+
+::: {.callout-tip}
+`read_csv2()` setzt automatisch `sep = ";"` und `dec = ","` — ideal für auf deutschen Betriebssystemen erstellte CSV-Dateien.
+:::
+
+
+
+## Spaltentypen festlegen
+
+`readr` rät Spaltentypen automatisch — besser explizit angeben:
+
+```{r}
+#| eval: false
+#| echo: true
+daten <- read_csv2(
+  "daten.csv",
+  col_types = cols(
+    wahlkreis_nr = col_integer(),    # Ganzzahl
+    stimmenanteil = col_double(),    # Dezimalzahl
+    partei = col_factor(),           # Faktor
+    datum = col_date(format = "%d.%m.%Y"),  # Datum
+    name = col_character(),          # Text
+    ost = col_logical()              # TRUE/FALSE
+  )
+)
+```
+
+::: {.callout-tip}
+Spalten, die nicht in `col_types` aufgeführt sind, werden weiterhin automatisch erkannt. Mit `col_skip()` lassen sich Spalten beim Import gezielt ausschließen.
+:::
+
+
+## Daten aus Stata, SAS und SPSS
+
+```{r}
+#| eval: false
+#| echo: true
+library(haven)
+
+# Stata (.dta)
+daten <- haven::read_dta("daten.dta")
+
+# SAS (.sas7bdat)
+daten <- haven::read_sas("daten.sas7bdat")
+
+# SPSS (.sav)
+daten <- haven::read_sav("daten.sav")
+```
+
+`haven` übernimmt automatisch **Variable Labels** und **Value Labels** aus Stata/SAS/SPSS — diese bleiben als Attribute erhalten.
+
+---
+
+## Wichtige Argumente
+
+```{r}
+#| eval: false
+#| echo: true
+
+# Stata: bestimmte Variablen auswählen
+daten <- haven::read_dta(
+  "daten.dta",
+  col_select = c(partei, stimmen, wahlkreis_nr),  # nur diese Variablen
+  n_max = 1000,                                    # Zeilenlimit
+  encoding = "UTF-8"                               # Zeichenkodierung
+)
+
+```
+
+
+
+## Labels und Faktoren
+
+Stata/SPSS speichern Variablen numerisch mit Labels (z. B. 1 = "CDU"). haven liest das als <labelled>-Klasse ein — viele R-Funktionen kommen damit nicht zurecht. `haven::as_factor()` wandelt die Labels in Faktorlevels um ("CDU", "SPD", ...).
+
+
+```{r}
+#| eval: false
+#| echo: true
+library(haven)
+library(dplyr)
+
+daten <- haven::read_dta("daten.dta") %>%
+  mutate(
+    partei = haven::as_factor(partei),   # Label → Faktor
+    ost = haven::as_factor(ost)
+  )
+```
+
+::: {.callout-tip}
+`haven::as_factor()` nutzt die Value Labels als Faktorlevel. `base::as.factor()` würde stattdessen die numerischen Codes nehmen - also nicht verwenden!
+:::
+
+---
+
+## RData importieren
+
+`.RData`-Dateien enthalten ein oder mehrere R-Objekte und werden mit `load()` geladen:
+
+```{r}
+#| eval: false
+#| echo: true
+# Objekte direkt in die aktuelle Umgebung laden
+load("daten.RData")
+
+# Empfohlen: in eine neue Umgebung laden (verhindert ungewolltes Überschreiben)
+env <- new.env()
+load("daten.RData", envir = env)
+
+ls(env)       # welche Objekte wurden geladen?
+daten <- env$daten  # Objekt aus der Umgebung holen
+```
+
+::: {.callout-warning}
+`load()` gibt keinen Rückgabewert — die Objekte erscheinen direkt in der Umgebung unter ihrem gespeicherten Namen.
+:::
+
+
 # Hands On - Daten einlesen
 
 ![](images/clipboard-797395825.jpeg)

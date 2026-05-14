@@ -670,5 +670,418 @@
     "title": "Übung XX: [Titel der Übung]",
     "section": "",
     "text": "Setup\n\n# Pakete laden\nlibrary(tidyverse)\nlibrary(rio)\nlibrary(janitor)\nlibrary(labelled)\nlibrary(summarytools)\n\n\n\nAufgabe 1: [Titel]\n[Kurze Beschreibung was in dieser Aufgabe gemacht wird.]\n\n# Code hier\n\n[Kurze Interpretation / Antwort in eigenen Worten.]\n\n\nAufgabe 2: [Titel]\n[Kurze Beschreibung was in dieser Aufgabe gemacht wird.]\n\n# Code hier\n\n[Kurze Interpretation / Antwort in eigenen Worten.]\n\n\nAufgabe 3: [Titel]\n[Kurze Beschreibung was in dieser Aufgabe gemacht wird.]\n\n# Code hier\n\n[Kurze Interpretation / Antwort in eigenen Worten.]"
+  },
+  {
+    "objectID": "slides/sitzung_06_häufigkeiten.html#boxplots",
+    "href": "slides/sitzung_06_häufigkeiten.html#boxplots",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Boxplots",
+    "text": "Boxplots"
+  },
+  {
+    "objectID": "slides/sitzung_06_häufigkeiten.html#exkurs-csv-dateien",
+    "href": "slides/sitzung_06_häufigkeiten.html#exkurs-csv-dateien",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Exkurs CSV-Dateien",
+    "text": "Exkurs CSV-Dateien\n\nCSV steht für Comma-Separated Values, aber in der Praxis gibt es Varianten, die sich im verwendeten Spalten- & Dezimaltrenner unterscheiden:\n\nEnglisches Format: Spalten durch , getrennt, Dezimalzahlen mit . (z.B. 1.5)\nDeutsches Format: Spalten durch ; getrennt, Dezimalzahlen mit , (z.B. 1,5)\n\nDas Format hängt von den Systemeinstellungen ab, mit denen die Datei gespeichert wurde\n\n\nrio::import(\"daten.csv\", sep = \";\", dec = \",\") # Deutsches csv-Format\nrio::import(\"data.csv\", sep = \",\", dec = \".\") # Englisches csv-Format\n# Englisch ist der Standard in R und muss nicht explizit eingestellt werden."
+  },
+  {
+    "objectID": "slides/sitzung_06_häufigkeiten.html#exkurs-encoding",
+    "href": "slides/sitzung_06_häufigkeiten.html#exkurs-encoding",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Exkurs Encoding",
+    "text": "Exkurs Encoding\nDas Encoding bestimmt wie Sonderzeichen gespeichert werden.\n\n\n\nEncoding\nTypisch für\n\n\n\n\nUTF-8\nMac, moderne Tools\n\n\nlatin1\nÄlteres Windows/Excel\n\n\n\nWenn Umlaute als Ã¼ erscheinen ist das Encoding falsch.\nrio::import(\"datei.csv\", sep = \";\", dec = \",\",\n         encoding = \"latin1\")\n\n\n\n\n\n\nTip\n\n\nIm Zweifel Datei kurz in RStudio öffnen und nachschauen!"
+  },
+  {
+    "objectID": "slides/sitzung_06_häufigkeiten.html#willkommen-zurück",
+    "href": "slides/sitzung_06_häufigkeiten.html#willkommen-zurück",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Willkommen zurück!",
+    "text": "Willkommen zurück!\n\n\n\n\n\nSpannende Fragen an Daten lassen sich meistens zwei Polen zuordnen:\n\nVariation einer Variable (Kennwerte, Sitzung 5 & Häufigkeiten, Sitzung 06)\nKovariation zweier Variablen (Zusammenhänge, Sitzung 08)"
+  },
+  {
+    "objectID": "slides/sitzung_06_häufigkeiten.html#voraussetzungen-und-vokabeln",
+    "href": "slides/sitzung_06_häufigkeiten.html#voraussetzungen-und-vokabeln",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Voraussetzungen und Vokabeln",
+    "text": "Voraussetzungen und Vokabeln\n\nQualitative & quantitative, diskrete & stetige, latente & manifeste, unabhängige & abhängige Variablen\nVariable, Ausprägung, Fall\nSkalierung (definiert mögl. Ausprägungen):\n\nNominalskala\nOrdinalskala\nIntervallskala\nVerhältnisskala"
+  },
+  {
+    "objectID": "slides/sitzung_06_häufigkeiten.html#voraussetzungen-und-vokabeln-1",
+    "href": "slides/sitzung_06_häufigkeiten.html#voraussetzungen-und-vokabeln-1",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Voraussetzungen und Vokabeln",
+    "text": "Voraussetzungen und Vokabeln\n\nLagemaße\n\nModus\nMittelwert (arithmetisches Mittel)\nMedian\n\nStreuungsmaße\n\nSpannweite (range)\nQuartile, Interquartilsabstand (IQR)\nVarianz, bzw. Standardabweichung\nMittlere absolute Abweichung vom Median (Median Absolute Deviation, MAD)"
+  },
+  {
+    "objectID": "slides/sitzung_06_häufigkeiten.html#skalenniveaus",
+    "href": "slides/sitzung_06_häufigkeiten.html#skalenniveaus",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Skalenniveaus",
+    "text": "Skalenniveaus\n\n\n\n\n\n\n\n\n\n\nSkalenniveau\nMögliche Aussagen\nBeispiel(e)\nZulässige Operationen\n\n\n\n\nkategorial · Nominalskala\nGleichheit / Verschiedenheit\nDiagnosen, Religion, Parteipräferenz\n=, ≠\n\n\nkategorial · Ordinalskala\n… & Rangfolge\nSchulabschlüsse, Zustimmungswerte (Likert-Skala)\n=, ≠, &lt;, &gt;\n\n\nmetrisch · Intervallskala\n… & Interpretierbare Abstände\nTemperatur in °C, Kalenderjahre, IQ\n=, ≠, &lt;, &gt;, +, −\n\n\nmetrisch · Verhältnisskala\n… & Absoluter Nullpunkt & interpretierbare Verhältnisse\nEinkommen in Euro, Körpergröße in cm, Alter in Jahren\n=, ≠, &lt;, &gt;, +, −, ×, ÷\n\n\n\n\n\n\n\n\n\nTip\n\n\nJe höher das Skalenniveau, desto mehr mathematische Operationen sind zulässig."
+  },
+  {
+    "objectID": "slides/sitzung_06_häufigkeiten.html#skalenniveau",
+    "href": "slides/sitzung_06_häufigkeiten.html#skalenniveau",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Skalenniveau",
+    "text": "Skalenniveau\n\n\n\n\n\n\nLagemaße\nStreuungsmaße\n\n\nSkalenniveau\nModus\nMedian\nMittelwert\nSpannweite\nIQR\nVarianz & SD\n\n\n\n\nNominal\nja\nnein\nnein\nnein\nnein\nnein\n\n\nOrdinal\nja\nja\nnein\nja\nja\nnein\n\n\nIntervall\nja\nja\nja\nja\nja\nja\n\n\nVerhältnis\nja\nja\nja\nja\nja\nja"
+  },
+  {
+    "objectID": "slides/sitzung_06_häufigkeiten.html#datentransformation-mit-mit-dplyr",
+    "href": "slides/sitzung_06_häufigkeiten.html#datentransformation-mit-mit-dplyr",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Datentransformation mit mit dplyr",
+    "text": "Datentransformation mit mit dplyr\n\n\n\n\n\n\n\n\nBefehl\nBeschreibung\nBsp\n\n\n\n\nmutate()\nNeue Variablen hinzufügen\ndf %&gt;% mutate(anteil = stimmen / sum(stimmen))\n\n\nsummarise()\nMehrere Werte zusammenfassen\ndf %&gt;% summarise(mean(stimmen))\n\n\ncount()\nHäufigkeiten zählen\ndf %&gt;% count(partei)\n\n\ngroup_by()\nOperationen gruppenweise ausführen\ndf %&gt;% group_by(partei) %&gt;% summarise(mean(stimmen))"
+  },
+  {
+    "objectID": "slides/sitzung_06_häufigkeiten.html#datentransformation-mit-mit-dplyr-1",
+    "href": "slides/sitzung_06_häufigkeiten.html#datentransformation-mit-mit-dplyr-1",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Datentransformation mit mit dplyr",
+    "text": "Datentransformation mit mit dplyr\n\n\n\n\n\n\nTip\n\n\ndplyr::count() zählt wie viele Zeilen pro Gruppe vorhanden sind. count(land) ist eine Abkürzung für group_by(land) %&gt;% summarise(n = n()). Gibt immer eine Spalte mit Häufigkeitszählungen namens n zurück.\ndplyr::n() zählt die Anzahl Zeilen in der aktuellen Gruppe — aber nur innerhalb von summarise(), mutate() oder filter(). Kann nicht alleinstehend aufgerufen werden."
+  },
+  {
+    "objectID": "slides/sitzung_06_häufigkeiten.html#minute-cards",
+    "href": "slides/sitzung_06_häufigkeiten.html#minute-cards",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Minute Cards",
+    "text": "Minute Cards\nBitte füllt die Minute Cards für die heutige Sitzung aus. Das sollt enicht länger als 3 Minuten dauern. Vielen Dank für eure Mitarbeit!"
+  },
+  {
+    "objectID": "slides/sitzung_06_häufigkeiten.html#boxplots-1",
+    "href": "slides/sitzung_06_häufigkeiten.html#boxplots-1",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Boxplots",
+    "text": "Boxplots"
+  },
+  {
+    "objectID": "slides/sitzung_06_häufigkeiten.html#boxplots-2",
+    "href": "slides/sitzung_06_häufigkeiten.html#boxplots-2",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Boxplots",
+    "text": "Boxplots"
+  },
+  {
+    "objectID": "slides/sitzung_06_häufigkeiten.html#kategoriale-und-kontinuierliche-variablen",
+    "href": "slides/sitzung_06_häufigkeiten.html#kategoriale-und-kontinuierliche-variablen",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "kategoriale und kontinuierliche Variablen",
+    "text": "kategoriale und kontinuierliche Variablen\n\ndie meisten Kennwerte ergeben nur für metrische Variablen Sinn\ndiese können wir aber dann nach kategorialen Variaben gruppiert ausgeben\nz.B. Mittelwert der Körpergröße nach Geschlecht, Mittleres Einkommen nach Bildungsabschluss etc.\nbei kategorialen Variablen können Häufigkeiten gezählt werden"
+  },
+  {
+    "objectID": "slides/sitzung_06_häufigkeiten.html#willkommen-zurück-1",
+    "href": "slides/sitzung_06_häufigkeiten.html#willkommen-zurück-1",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Willkommen zurück!",
+    "text": "Willkommen zurück!\n\n\n\n\n\nSpannende Fragen an Daten lassen sich meistens zwei Polen zuordnen:\n\nVariation einer Variable (Kennwerte, Sitzung 5 & Häufigkeiten, Sitzung 06)\nKovariation zweier Variablen (Zusammenhänge, Sitzung 08)"
+  },
+  {
+    "objectID": "slides/sitzung_06_häufigkeiten.html#willkommen-zurück-2",
+    "href": "slides/sitzung_06_häufigkeiten.html#willkommen-zurück-2",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Willkommen zurück!",
+    "text": "Willkommen zurück!\n\n\n\n\n\nSpannende Fragen an Daten lassen sich meistens zwei Polen zuordnen:\n\nVariation einer Variable (Kennwerte, Sitzung 5 & Häufigkeiten, Sitzung 06)\nKovariation zweier Variablen (Zusammenhänge, Sitzung 08)"
+  },
+  {
+    "objectID": "slides/sitzung_06_häufigkeiten.html#welche-visualisierung-für-welche-daten",
+    "href": "slides/sitzung_06_häufigkeiten.html#welche-visualisierung-für-welche-daten",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Welche Visualisierung für welche Daten?",
+    "text": "Welche Visualisierung für welche Daten?\n\n\n\nVar.\nX-Skala\nY-Skala\nZiel / Frage\nVisualisierung\n\n\n\n\n1\nKategorial\n—\nHäufigkeit / Verteilung\nBalkendiagramm\n\n\n1\nMetrisch\n—\nVerteilung\nHistogramm\n\n\n1\nMetrisch\n—\nStreuung / Ausreißer\nBoxplot\n\n\n2\nKategorial\nMetrisch\nGruppen vergleichen\nBoxplot / Balkendiagramm nach Gruppen\n\n\n2\nMetrisch\nMetrisch\nZusammenhang\nStreudiagramm\n\n\n2\nZeit\nMetrisch\nVerlauf / Entwicklung\nLiniendiagramm\n\n\n3\nKategorial\nMetrisch\nGruppenunterschiede\nFacettierter Boxplot\n\n\n3\nMetrisch\nMetrisch\nZusammenhang + Gruppen\nStreudiagramm mit Farbe/Form\n\n\n3\nZeit\nMetrisch\nEntwicklung + Gruppen\nMehrere Linien in einem Plot"
+  },
+  {
+    "objectID": "slides/sitzung_06_häufigkeiten.html#wie-kann-ich-die-variation-untersuchen",
+    "href": "slides/sitzung_06_häufigkeiten.html#wie-kann-ich-die-variation-untersuchen",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Wie kann ich die Variation untersuchen?",
+    "text": "Wie kann ich die Variation untersuchen?\n\n\n\nVar.\nSkalenniveau\nZiel / Frage\nKennwert / Tabelle\nR-Funktion\n\n\n\n\n1\nKategorial\nHäufigkeiten\nHäufigkeitstabelle\ntable() · count()\n\n\n1\nKategorial\nAnteile\nRelative Häufigkeiten\nprop.table()\n\n\n1\nMetrisch\nZentrale Tendenz\nMittelwert · Median\nmean() · median()\n\n\n1\nMetrisch\nStreuung\nSD · Varianz · IQR\nsd() · var() · IQR()\n\n\n1\nMetrisch\nWertebereich\nMin · Max · Range\nmin() · max() · range()\n\n\n1\nMetrisch\nÜberblick\nAlle Kennwerte auf einmal\nsummary()\n\n\n2\nKat. × Kat.\nGemeinsame Häufigkeiten\nKreuztabelle\ntable(x, y) · count()\n\n\n2\nKat. × Metrisch\nGruppen vergleichen\nKennwerte nach Gruppe\ngroup_by() |&gt; summarise()\n\n\n2\nMetrisch × Metrisch\nZusammenhang\nKorrelationskoeffizient\ncor()"
+  },
+  {
+    "objectID": "slides/sitzung_06_häufigkeiten.html#variation-untersuchen---1-variable",
+    "href": "slides/sitzung_06_häufigkeiten.html#variation-untersuchen---1-variable",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Variation untersuchen - 1 Variable",
+    "text": "Variation untersuchen - 1 Variable\n\n\n\n\n\n\n\n\n\nSkalenniveau\nZiel / Frage\nKennwert / Tabelle\nR-Funktion\n\n\n\n\nKategorial\nHäufigkeiten\nHäufigkeitstabelle\ndplyr::count() · count()\n\n\nKategorial\nAnteile\nRelative Häufigkeiten\ndplyr::mutate(pct = n / sum(n) * 100)\n\n\nMetrisch\nZentrale Tendenz\nMittelwert · Median\ndplyr::summarise() + mean() · median()\n\n\nMetrisch\nStreuung\nSD · Varianz · IQR\nsd() · var() · IQR()\n\n\nMetrisch\nWertebereich\nMin · Max\nmin() · max()\n\n\nMetrisch\nÜberblick\nAlle Kennwerte\nskimr::skim()"
+  },
+  {
+    "objectID": "slides/sitzung_06_häufigkeiten.html#kennwerte-häufigkeiten-eine-variable",
+    "href": "slides/sitzung_06_häufigkeiten.html#kennwerte-häufigkeiten-eine-variable",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Kennwerte & Häufigkeiten: eine Variable",
+    "text": "Kennwerte & Häufigkeiten: eine Variable\n\n\n\n\n\n\n\n\n\nSkalenniveau\nZiel / Frage\nKennwert / Tabelle\nR-Funktion\n\n\n\n\nKategorial\nHäufigkeiten\nHäufigkeitstabelle\ntable() · count()\n\n\nKategorial\nAnteile\nRelative Häufigkeiten\nprop.table()\n\n\nMetrisch\nZentrale Tendenz\nMittelwert · Median\nmean() · median()\n\n\nMetrisch\nStreuung\nSD · Varianz · IQR\nsd() · var() · IQR()\n\n\nMetrisch\nWertebereich\nMin · Max\nmin() · max()\n\n\nMetrisch\nÜberblick\nAlle Kennwerte\nsummary()"
+  },
+  {
+    "objectID": "slides/sitzung_06_häufigkeiten.html#variation-untersuchen---2-variablen",
+    "href": "slides/sitzung_06_häufigkeiten.html#variation-untersuchen---2-variablen",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Variation untersuchen - 2 Variablen",
+    "text": "Variation untersuchen - 2 Variablen\n\n\n\n\n\n\n\n\n\nSkalenniveau\nZiel / Frage\nKennwert / Tabelle\nR-Funktion\n\n\n\n\nKat. × Kat.\nGemeinsame Häufigk.\nKreuztabelle\ntable(x, y) · count()\n\n\nKat. × Metrisch\nGruppen vergleichen\nKennwerte nach Gruppe\ngroup_by() %&gt;% summarise()\n\n\nMetrisch × Metrisch\nZusammenhang\nKorrelationskoeffizient\ncor()"
+  },
+  {
+    "objectID": "slides/sitzung_06_häufigkeiten.html#kennwerte-häufigkeiten-zwei-variablen",
+    "href": "slides/sitzung_06_häufigkeiten.html#kennwerte-häufigkeiten-zwei-variablen",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Kennwerte & Häufigkeiten: zwei Variablen",
+    "text": "Kennwerte & Häufigkeiten: zwei Variablen\n\n\n\n\n\n\n\n\n\nSkalenniveau\nZiel / Frage\nKennwert / Tabelle\nR-Funktion\n\n\n\n\nKat. × Kat.\nGemeinsame Häufigk.\nKreuztabelle\ntable(x, y) · count()\n\n\nKat. × Metrisch\nGruppen vergleichen\nKennwerte nach Gruppe\ngroup_by() %&gt;% summarise()\n\n\nMetrisch × Metrisch\nZusammenhang\nKorrelationskoeffizient\ncor()"
+  },
+  {
+    "objectID": "slides/sitzung_06_häufigkeiten.html#variation-visualisieren",
+    "href": "slides/sitzung_06_häufigkeiten.html#variation-visualisieren",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Variation visualisieren",
+    "text": "Variation visualisieren\n\n\n\nVar.\nX-Skala\nY-Skala\nZiel / Frage\nVisualisierung\n\n\n\n\n1\nKategorial\n—\nHäufigkeit / Verteilung\nBalkendiagramm\n\n\n1\nMetrisch\n—\nVerteilung\nHistogramm\n\n\n1\nMetrisch\n—\nStreuung / Ausreißer\nBoxplot\n\n\n2\nKategorial\nMetrisch\nGruppen vergleichen\nBoxplot / Balkendiagramm nach Gruppen\n\n\n2\nMetrisch\nMetrisch\nZusammenhang\nStreudiagramm\n\n\n2\nZeit\nMetrisch\nVerlauf / Entwicklung\nLiniendiagramm\n\n\n3\nKategorial\nMetrisch\nGruppenunterschiede\nFacettierter Boxplot\n\n\n3\nMetrisch\nMetrisch\nZusammenhang + Gruppen\nStreudiagramm mit Farbe/Form\n\n\n3\nZeit\nMetrisch\nEntwicklung + Gruppen\nMehrere Linien in einem Plot"
+  },
+  {
+    "objectID": "slides/sitzung_06_häufigkeiten.html#visualisierung---1-variable",
+    "href": "slides/sitzung_06_häufigkeiten.html#visualisierung---1-variable",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Visualisierung - 1 Variable",
+    "text": "Visualisierung - 1 Variable\n\n\n\n\n\n\n\n\n\nSkalenniveau\nZiel / Frage\nVisualisierung\nggplot2\n\n\n\n\nKategorial\nHäufigkeit/Verteilung\nBalkendiagramm\ngeom_bar()\n\n\nMetrisch\nVerteilung\nHistogramm\ngeom_histogram()\n\n\nMetrisch\nStreuung / Ausreißer\nBoxplot\ngeom_boxplot()\n\n\n\n\n\n\n\n\n\nTip\n\n\nMit der Visualisierung mit ggplot2 beschäftigen wir uns in Sitzung 7 ausführlicher!"
+  },
+  {
+    "objectID": "slides/sitzung_06_häufigkeiten.html#visualisierung---2-variablen",
+    "href": "slides/sitzung_06_häufigkeiten.html#visualisierung---2-variablen",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Visualisierung - 2 Variablen",
+    "text": "Visualisierung - 2 Variablen\n\n\n\n\n\n\n\n\n\nSkalenniveau\nZiel / Frage\nVisualisierung\nggplot2\n\n\n\n\nKat. × Metrisch\nGruppen vergleichen\nBoxplot / Balkendiagramm n. Gr.\ngeom_boxplot() · geom_col()\n\n\nMetrisch × Metrisch\nZusammenhang\nStreudiagramm\ngeom_point()\n\n\nZeit × Metrisch\nVerlauf\nLiniendiagramm\ngeom_line()"
+  },
+  {
+    "objectID": "slides/sitzung_07_visualisierung.html#willkommen-zurück",
+    "href": "slides/sitzung_07_visualisierung.html#willkommen-zurück",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Willkommen zurück!",
+    "text": "Willkommen zurück!\n\n\n\n\n\nSpannende Fragen an Daten lassen sich meistens zwei Polen zuordnen:\n\nVariation einer Variable (Kennwerte, Sitzung 5 & Häufigkeiten, Sitzung 06)\nKovariation zweier Variablen (Zusammenhänge, Sitzung 08)"
+  },
+  {
+    "objectID": "slides/sitzung_07_visualisierung.html#variation-untersuchen---1-variable",
+    "href": "slides/sitzung_07_visualisierung.html#variation-untersuchen---1-variable",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Variation untersuchen - 1 Variable",
+    "text": "Variation untersuchen - 1 Variable\n\n\n\n\n\n\n\n\n\nSkalenniveau\nZiel / Frage\nKennwert / Tabelle\nR-Funktion\n\n\n\n\nKategorial\nHäufigkeiten\nHäufigkeitstabelle\ndplyr::count() · count()\n\n\nKategorial\nAnteile\nRelative Häufigkeiten\ndplyr::mutate(pct = n / sum(n) * 100)\n\n\nMetrisch\nZentrale Tendenz\nMittelwert · Median\ndplyr::summarise() + mean() · median()\n\n\nMetrisch\nStreuung\nSD · Varianz · IQR\nsd() · var() · IQR()\n\n\nMetrisch\nWertebereich\nMin · Max\nmin() · max()\n\n\nMetrisch\nÜberblick\nAlle Kennwerte\nskimr::skim()"
+  },
+  {
+    "objectID": "slides/sitzung_07_visualisierung.html#visualisierung---1-variable",
+    "href": "slides/sitzung_07_visualisierung.html#visualisierung---1-variable",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Visualisierung - 1 Variable",
+    "text": "Visualisierung - 1 Variable\n\n\n\n\n\n\n\n\n\nSkalenniveau\nZiel / Frage\nVisualisierung\nggplot2\n\n\n\n\nKategorial\nHäufigkeit/Verteilung\nBalkendiagramm\ngeom_bar()\n\n\nMetrisch\nVerteilung\nHistogramm\ngeom_histogram()\n\n\nMetrisch\nStreuung / Ausreißer\nBoxplot\ngeom_boxplot()"
+  },
+  {
+    "objectID": "slides/sitzung_07_visualisierung.html#grammar-of-graphics",
+    "href": "slides/sitzung_07_visualisierung.html#grammar-of-graphics",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Grammar of Graphics",
+    "text": "Grammar of Graphics\n\nFür detaillierte Einblicke empfehle ich das {EBook}(https://ggplot2-book.org/) von Hadley Wickham!"
+  },
+  {
+    "objectID": "slides/sitzung_07_visualisierung.html#geometries-geom_",
+    "href": "slides/sitzung_07_visualisierung.html#geometries-geom_",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Geometries (geom_*)",
+    "text": "Geometries (geom_*)\n\n\nBalken & Häufigkeiten\n\ngeom_bar() — Häufigkeiten (nur x nötig)\ngeom_col() — Werte aus Daten (x und y nötig)\ngeom_histogram() — Verteilung numerischer Var.\n\nLinien & Punkte\n\ngeom_point() — Streudiagramm\ngeom_line() — Zeitverlauf\n\n\nVerteilungen\n\ngeom_boxplot() — Boxplot\ngeom_violin() — Violinplot\ngeom_density() — Dichtekurve\n\nZusammenfassungen\n\ngeom_smooth() — Trendlinie (lm, loess)\ngeom_errorbar() — Fehlerbalken\ngeom_text() / geom_label() — Beschriftungen"
+  },
+  {
+    "objectID": "slides/sitzung_07_visualisierung.html#boxplots",
+    "href": "slides/sitzung_07_visualisierung.html#boxplots",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Boxplots",
+    "text": "Boxplots"
+  },
+  {
+    "objectID": "slides/sitzung_07_visualisierung.html#kategoriale-und-kontinuierliche-variablen",
+    "href": "slides/sitzung_07_visualisierung.html#kategoriale-und-kontinuierliche-variablen",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "kategoriale und kontinuierliche Variablen",
+    "text": "kategoriale und kontinuierliche Variablen\n\ndie meisten Kennwerte ergeben nur für metrische Variablen Sinn\ndiese können wir aber dann nach kategorialen Variaben gruppiert ausgeben\nz.B. Mittelwert der Körpergröße nach Geschlecht, Mittleres Einkommen nach Bildungsabschluss etc.\nbei kategorialen Variablen können Häufigkeiten gezählt werden"
+  },
+  {
+    "objectID": "slides/sitzung_07_visualisierung.html#minute-cards",
+    "href": "slides/sitzung_07_visualisierung.html#minute-cards",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Minute Cards",
+    "text": "Minute Cards\nBitte füllt die Minute Cards für die heutige Sitzung aus. Das sollt enicht länger als 3 Minuten dauern. Vielen Dank für eure Mitarbeit!"
+  },
+  {
+    "objectID": "slides/sitzung_07_visualisierung.html#grammar-of-graphics-1",
+    "href": "slides/sitzung_07_visualisierung.html#grammar-of-graphics-1",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Grammar of Graphics",
+    "text": "Grammar of Graphics\nggplot(data = mein_datensatz,       # Data\n       aes(x = variable_a,          # Aesthetics\n           y = variable_b)) +\n  geom_point() +                    # Geometries\n  facet_wrap(~ gruppe) +            # Facets\n  theme_minimal()                   # Theme"
+  },
+  {
+    "objectID": "slides/sitzung_07_visualisierung.html#geometries",
+    "href": "slides/sitzung_07_visualisierung.html#geometries",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Geometries",
+    "text": "Geometries\n\n\nBalken & Häufigkeiten\n\ngeom_bar() — Häufigkeiten (nur x nötig)\ngeom_col() — Werte aus Daten (x und y nötig)\ngeom_histogram() — Verteilung numerischer Var.\n\nLinien & Punkte\n\ngeom_point() — Streudiagramm\ngeom_line() — Zeitverlauf\n\n\nVerteilungen\n\ngeom_boxplot() — Boxplot\ngeom_violin() — Violinplot\ngeom_density() — Dichtekurve\n\nZusammenfassungen\n\ngeom_smooth() — Trendlinie (lm, loess)\ngeom_errorbar() — Fehlerbalken\ngeom_text() / geom_label() — Beschriftungen"
+  },
+  {
+    "objectID": "slides/sitzung_07_visualisierung.html#themes-im-vergleich",
+    "href": "slides/sitzung_07_visualisierung.html#themes-im-vergleich",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Themes im Vergleich",
+    "text": "Themes im Vergleich"
+  },
+  {
+    "objectID": "slides/sitzung_07_visualisierung.html#farben-in-ggplot2",
+    "href": "slides/sitzung_07_visualisierung.html#farben-in-ggplot2",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Farben in ggplot2",
+    "text": "Farben in ggplot2\n\n\nFarben benennen oder als Hex-Code\n# Farbnamen\ngeom_col(fill = \"steelblue\")\ngeom_col(fill = \"lightgray\")\n\n# Hex-Code\ngeom_col(fill = \"#FF0000\")   # rot\ngeom_col(fill = \"#D3D3D3\")   # hellgrau\nEigener Farbvektor (z.B. für Parteien)\nparty_colors &lt;- c(\n  \"SPD\" = \"#E3000F\",\n  \"CDU\" = \"#000000\",\n  \"Grüne\" = \"#1AA037\",\n  \"FDP\" = \"#FFED00\",\n  \"AfD\" = \"#009EE0\"\n)\n\nggplot(...) +\n  scale_fill_manual(values = party_colors)\n\nEine Fülle an Farbpaletten mit paletteer\n\n\n\n\n\n\n\n\n\nMehr Paletten unter: r-graph-gallery.com"
+  },
+  {
+    "objectID": "slides/sitzung_07_visualisierung.html#zur-erinnerung",
+    "href": "slides/sitzung_07_visualisierung.html#zur-erinnerung",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Zur Erinnerung",
+    "text": "Zur Erinnerung\n\n\n„Eine gute Grafik ist fertig, wenn sie die Botschaft klar vermittelt. Eine perfekte Grafik ist nie fertig.”\n— paraphrasiert nach Hadley Wickham\n\n\n\n\n„Spend 80% of your time getting the first 80% of the graphic right — don’t waste too much time chasing the last 20% of perfection.”\n— frei nach gängigen Empfehlungen in DataViz-Communities\n\n\n\n\n„It takes a few minutes to make a good plot, and hours (or days) to make a perfect one.”\n— anonyme DataViz-Folklore"
+  },
+  {
+    "objectID": "slides/sitzung_07_visualisierung.html#farben-in-ggplot2-1",
+    "href": "slides/sitzung_07_visualisierung.html#farben-in-ggplot2-1",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Farben in ggplot2",
+    "text": "Farben in ggplot2\nFarbnamen & Hex-Codes\n# Farbnamen direkt verwenden\ngeom_col(fill = \"steelblue\")\ngeom_col(fill = \"lightgray\")\n\n# Hex-Code\ngeom_col(fill = \"#FF0000\")   # rot\ngeom_col(fill = \"#D3D3D3\")   # hellgrau\nEine Übersicht aller R-Farbnamen: colors()"
+  },
+  {
+    "objectID": "slides/sitzung_07_visualisierung.html#farben-in-ggplot2-13-farbnamen-hex-codes",
+    "href": "slides/sitzung_07_visualisierung.html#farben-in-ggplot2-13-farbnamen-hex-codes",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Farben in ggplot2 (1/3): Farbnamen & Hex-Codes",
+    "text": "Farben in ggplot2 (1/3): Farbnamen & Hex-Codes\n# Farbnamen direkt verwenden\ngeom_col(fill = \"steelblue\")\ngeom_col(fill = \"lightgray\")\n\n# Hex-Code\ngeom_col(fill = \"#FF0000\")   # rot\ngeom_col(fill = \"#D3D3D3\")   # hellgrau\nEine Übersicht aller R-Farbnamen: colors()"
+  },
+  {
+    "objectID": "slides/sitzung_07_visualisierung.html#farben-in-ggplot2-23-eigener-farbvektor",
+    "href": "slides/sitzung_07_visualisierung.html#farben-in-ggplot2-23-eigener-farbvektor",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Farben in ggplot2 (2/3): Eigener Farbvektor",
+    "text": "Farben in ggplot2 (2/3): Eigener Farbvektor\nparty_colors &lt;- c(\n  \"SPD\"   = \"#E3000F\",\n  \"CDU\"   = \"#000000\",\n  \"Grüne\" = \"#1AA037\",\n  \"FDP\"   = \"#FFED00\",\n  \"AfD\"   = \"#009EE0\"\n)\n\nggplot(...) +\n  scale_fill_manual(values = party_colors)"
+  },
+  {
+    "objectID": "slides/sitzung_07_visualisierung.html#farben-in-ggplot2-33-farbpaletten-mit-paletteer",
+    "href": "slides/sitzung_07_visualisierung.html#farben-in-ggplot2-33-farbpaletten-mit-paletteer",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Farben in ggplot2 (3/3): Farbpaletten mit paletteer",
+    "text": "Farben in ggplot2 (3/3): Farbpaletten mit paletteer\n\nMehr Paletten unter: r-graph-gallery.com"
+  },
+  {
+    "objectID": "slides/sitzung_07_visualisierung.html#farben-in-ggplot2-2",
+    "href": "slides/sitzung_07_visualisierung.html#farben-in-ggplot2-2",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Farben in ggplot2",
+    "text": "Farben in ggplot2\nSelbst definierter Farbvektor\nparty_colors &lt;- c(\n  \"SPD\"   = \"#E3000F\",\n  \"CDU\"   = \"#000000\",\n  \"Grüne\" = \"#1AA037\",\n  \"FDP\"   = \"#FFED00\",\n  \"AfD\"   = \"#009EE0\"\n)\n\nggplot(...) +\n  scale_fill_manual(values = party_colors)"
+  },
+  {
+    "objectID": "slides/sitzung_07_visualisierung.html#farben-in-ggplot2-3",
+    "href": "slides/sitzung_07_visualisierung.html#farben-in-ggplot2-3",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Farben in ggplot2",
+    "text": "Farben in ggplot2\nFarbpaletten mit paletteer \n\nMehr Paletten unter: r-graph-gallery.com"
+  },
+  {
+    "objectID": "slides/sitzung_07_visualisierung.html#in-a-nutshell",
+    "href": "slides/sitzung_07_visualisierung.html#in-a-nutshell",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "In a nutshell",
+    "text": "In a nutshell\n\n\n„Eine gute Grafik ist fertig, wenn sie die Botschaft klar vermittelt. Eine perfekte Grafik ist nie fertig.”\n— paraphrasiert nach Hadley Wickham\n\n\n\n\n„Spend 80% of your time getting the first 80% of the graphic right — don’t waste too much time chasing the last 20% of perfection.”\n— frei nach gängigen Empfehlungen in DataViz-Communities\n\n\n\n\n„It takes a few minutes to make a good plot, and hours (or days) to make a perfect one.”\n— anonyme DataViz-Folklore"
+  },
+  {
+    "objectID": "slides/sitzung_02_data_import.html#überblick-datenimport",
+    "href": "slides/sitzung_02_data_import.html#überblick-datenimport",
+    "title": "Quantitative Methoden mit R & RStudio",
+    "section": "Überblick: Datenimport",
+    "text": "Überblick: Datenimport\n\n\n\nFormat\nPaket\nFunktion\n\n\n\n\n.csv (Komma)\nreadr\nread_csv()\n\n\n.csv (Semikolon)\nreadr\nread_csv2()\n\n\n.csv (flexibel)\nreadr\nread_delim()\n\n\n.dta (Stata)\nhaven\nread_dta()\n\n\n.sas7bdat (SAS)\nhaven\nread_sas()\n\n\n.sav (SPSS)\nhaven\nread_sav()\n\n\n.RData\nBase R\nload()"
+  },
+  {
+    "objectID": "slides/sitzung_02_data_import.html#readr-csv-dateien-importieren",
+    "href": "slides/sitzung_02_data_import.html#readr-csv-dateien-importieren",
+    "title": "Quantitative Methoden mit R & RStudio",
+    "section": "readr: CSV-Dateien importieren",
+    "text": "readr: CSV-Dateien importieren\nread_csv() für Komma-separierte Dateien, read_csv2() für Semikolon-separierte Dateien (deutsch):\n\n\n\n\n\n\nTip\n\n\nread_csv2() setzt automatisch sep = \";\" und dec = \",\" — ideal für deutsche CSV-Exporte (z. B. aus Excel)."
+  },
+  {
+    "objectID": "slides/sitzung_02_data_import.html#readr-wichtige-argumente",
+    "href": "slides/sitzung_02_data_import.html#readr-wichtige-argumente",
+    "title": "Quantitative Methoden mit R & RStudio",
+    "section": "readr: Wichtige Argumente",
+    "text": "readr: Wichtige Argumente\nread_delim() ist die flexible Basis-Funktion — read_csv() und read_csv2() sind Spezialfälle davon."
+  },
+  {
+    "objectID": "slides/sitzung_02_data_import.html#readr-spaltentypen-festlegen",
+    "href": "slides/sitzung_02_data_import.html#readr-spaltentypen-festlegen",
+    "title": "Quantitative Methoden mit R & RStudio",
+    "section": "readr: Spaltentypen festlegen",
+    "text": "readr: Spaltentypen festlegen\nreadr rät Spaltentypen automatisch — besser explizit angeben:\n\ndaten &lt;- read_csv2(\n  \"daten.csv\",\n  col_types = cols(\n    wahlkreis_nr = col_integer(),    # Ganzzahl\n    stimmenanteil = col_double(),    # Dezimalzahl\n    partei = col_factor(),           # Faktor\n    datum = col_date(format = \"%d.%m.%Y\"),  # Datum\n    name = col_character(),          # Text\n    ost = col_logical()              # TRUE/FALSE\n  )\n)\n\n\n\n\n\n\n\nTip\n\n\nSpalten, die nicht in col_types aufgeführt sind, werden weiterhin automatisch erkannt. Mit col_skip() lassen sich Spalten beim Import gezielt ausschließen."
+  },
+  {
+    "objectID": "slides/sitzung_02_data_import.html#haven-stata-sas-und-spss",
+    "href": "slides/sitzung_02_data_import.html#haven-stata-sas-und-spss",
+    "title": "Quantitative Methoden mit R & RStudio",
+    "section": "haven: Stata, SAS und SPSS",
+    "text": "haven: Stata, SAS und SPSS\n\nlibrary(haven)\n\n# Stata (.dta)\ndaten &lt;- haven::read_dta(\"daten.dta\")\n\n# SAS (.sas7bdat)\ndaten &lt;- haven::read_sas(\"daten.sas7bdat\")\n\n# SPSS (.sav)\ndaten &lt;- haven::read_sav(\"daten.sav\")\n\nhaven übernimmt automatisch Variable Labels und Value Labels aus Stata/SAS/SPSS — diese bleiben als Attribute erhalten."
+  },
+  {
+    "objectID": "slides/sitzung_02_data_import.html#haven-wichtige-argumente",
+    "href": "slides/sitzung_02_data_import.html#haven-wichtige-argumente",
+    "title": "Quantitative Methoden mit R & RStudio",
+    "section": "haven: Wichtige Argumente",
+    "text": "haven: Wichtige Argumente\n\n# Stata: bestimmte Variablen auswählen\ndaten &lt;- haven::read_dta(\n  \"daten.dta\",\n  col_select = c(partei, stimmen, wahlkreis_nr),  # nur diese Variablen\n  n_max = 1000,                                    # Zeilenlimit\n  encoding = \"UTF-8\"                               # Zeichenkodierung\n)\n\n# SPSS: User-defined Missings als NA einlesen\ndaten &lt;- haven::read_sav(\n  \"daten.sav\",\n  user_na = FALSE  # TRUE: kodierte Missings als eigene Werte behalten\n)"
+  },
+  {
+    "objectID": "slides/sitzung_02_data_import.html#haven-labels-und-faktoren",
+    "href": "slides/sitzung_02_data_import.html#haven-labels-und-faktoren",
+    "title": "Quantitative Methoden mit R & RStudio",
+    "section": "haven: Labels und Faktoren",
+    "text": "haven: Labels und Faktoren\nVariablen aus Stata/SPSS kommen als &lt;labelled&gt;-Klasse — für die Analyse umwandeln:\n\nlibrary(haven)\nlibrary(dplyr)\n\ndaten &lt;- haven::read_dta(\"daten.dta\") %&gt;%\n  mutate(\n    partei = haven::as_factor(partei),   # Label → Faktor\n    ost = haven::as_factor(ost)\n  )\n\n\n\n\n\n\n\nTip\n\n\nhaven::as_factor() nutzt die Value Labels als Faktorlevel — base::as.factor() würde stattdessen die numerischen Codes verwenden."
+  },
+  {
+    "objectID": "slides/sitzung_02_data_import.html#rdata-importieren",
+    "href": "slides/sitzung_02_data_import.html#rdata-importieren",
+    "title": "Quantitative Methoden mit R & RStudio",
+    "section": "RData importieren",
+    "text": "RData importieren\n.RData-Dateien enthalten ein oder mehrere R-Objekte und werden mit load() geladen:\n\n# Objekte direkt in die aktuelle Umgebung laden\nload(\"daten.RData\")\n\n# Empfohlen: in eine neue Umgebung laden (verhindert ungewolltes Überschreiben)\nenv &lt;- new.env()\nload(\"daten.RData\", envir = env)\n\nls(env)       # welche Objekte wurden geladen?\ndaten &lt;- env$daten  # Objekt aus der Umgebung holen\n\n\n\n\n\n\n\nWarning\n\n\nload() gibt keinen Rückgabewert — die Objekte erscheinen direkt in der Umgebung unter ihrem gespeicherten Namen."
+  },
+  {
+    "objectID": "slides/sitzung_02_data_import.html#csv-dateien-importieren",
+    "href": "slides/sitzung_02_data_import.html#csv-dateien-importieren",
+    "title": "Quantitative Methoden mit R & RStudio",
+    "section": "CSV-Dateien importieren",
+    "text": "CSV-Dateien importieren\n\ndaten &lt;- read_delim(\n  \"daten.csv\",\n  delim = \";\",      # Trennzeichen\n  dec = \",\",        # Dezimalzeichen\n  skip = 2,         # Zeilen überspringen (z. B. Metadaten am Anfang)\n  n_max = 500,      # Maximale Zeilenzahl einlesen\n  na = c(\"\", \"NA\", \"-99\"),  # Welche Werte als NA behandeln?\n  locale = locale(encoding = \"UTF-8\")  # Zeichenkodierung\n)\n\nread_delim() ist die flexible Basis-Funktion — read_csv() und read_csv2() sind Spezialfälle davon."
+  },
+  {
+    "objectID": "slides/sitzung_02_data_import.html#wichtige-argumente",
+    "href": "slides/sitzung_02_data_import.html#wichtige-argumente",
+    "title": "Quantitative Methoden mit R & RStudio",
+    "section": "Wichtige Argumente",
+    "text": "Wichtige Argumente\n\n# Stata: bestimmte Variablen auswählen\ndaten &lt;- haven::read_dta(\n  \"daten.dta\",\n  col_select = c(partei, stimmen, wahlkreis_nr),  # nur diese Variablen\n  n_max = 1000,                                    # Zeilenlimit\n  encoding = \"UTF-8\"                               # Zeichenkodierung\n)"
+  },
+  {
+    "objectID": "slides/sitzung_02_data_import.html#spaltentypen-festlegen",
+    "href": "slides/sitzung_02_data_import.html#spaltentypen-festlegen",
+    "title": "Quantitative Methoden mit R & RStudio",
+    "section": "Spaltentypen festlegen",
+    "text": "Spaltentypen festlegen\nreadr rät Spaltentypen automatisch — besser explizit angeben:\n\ndaten &lt;- read_csv2(\n  \"daten.csv\",\n  col_types = cols(\n    wahlkreis_nr = col_integer(),    # Ganzzahl\n    stimmenanteil = col_double(),    # Dezimalzahl\n    partei = col_factor(),           # Faktor\n    datum = col_date(format = \"%d.%m.%Y\"),  # Datum\n    name = col_character(),          # Text\n    ost = col_logical()              # TRUE/FALSE\n  )\n)\n\n\n\n\n\n\n\nTip\n\n\nSpalten, die nicht in col_types aufgeführt sind, werden weiterhin automatisch erkannt. Mit col_skip() lassen sich Spalten beim Import gezielt ausschließen."
+  },
+  {
+    "objectID": "slides/sitzung_02_data_import.html#csv-dateien-importieren-1",
+    "href": "slides/sitzung_02_data_import.html#csv-dateien-importieren-1",
+    "title": "Quantitative Methoden mit R & RStudio",
+    "section": "CSV-Dateien importieren",
+    "text": "CSV-Dateien importieren\nread_csv() für Komma-separierte Dateien, read_csv2() für Semikolon-separierte Dateien (deutsch):\n\nlibrary(readr)\n\n# Komma-separiert (englisches Format)\ndaten &lt;- read_csv(\"daten.csv\")\n\n# Semikolon-separiert, Komma als Dezimalzeichen (deutsches Format)\ndaten &lt;- read_csv2(\"daten.csv\")\n\n\n\n\n\n\n\nTip\n\n\nread_csv2() setzt automatisch sep = \";\" und dec = \",\" — ideal für auf deutschen Betriebssystemen erstellte CSV-Dateien."
+  },
+  {
+    "objectID": "slides/sitzung_02_data_import.html#daten-aus-stata-sas-und-spss",
+    "href": "slides/sitzung_02_data_import.html#daten-aus-stata-sas-und-spss",
+    "title": "Quantitative Methoden mit R & RStudio",
+    "section": "Daten aus Stata, SAS und SPSS",
+    "text": "Daten aus Stata, SAS und SPSS\n\nlibrary(haven)\n\n# Stata (.dta)\ndaten &lt;- haven::read_dta(\"daten.dta\")\n\n# SAS (.sas7bdat)\ndaten &lt;- haven::read_sas(\"daten.sas7bdat\")\n\n# SPSS (.sav)\ndaten &lt;- haven::read_sav(\"daten.sav\")\n\nhaven übernimmt automatisch Variable Labels und Value Labels aus Stata/SAS/SPSS — diese bleiben als Attribute erhalten."
+  },
+  {
+    "objectID": "slides/sitzung_02_data_import.html#labels-und-faktoren",
+    "href": "slides/sitzung_02_data_import.html#labels-und-faktoren",
+    "title": "Quantitative Methoden mit R & RStudio",
+    "section": "Labels und Faktoren",
+    "text": "Labels und Faktoren\nStata/SPSS speichern Variablen numerisch mit Labels (z. B. 1 = “CDU”). haven liest das als -Klasse ein — viele R-Funktionen kommen damit nicht zurecht. haven::as_factor() wandelt die Labels in Faktorlevels um (“CDU”, “SPD”, …).\n\nlibrary(haven)\nlibrary(dplyr)\n\ndaten &lt;- haven::read_dta(\"daten.dta\") %&gt;%\n  mutate(\n    partei = haven::as_factor(partei),   # Label → Faktor\n    ost = haven::as_factor(ost)\n  )\n\n\n\n\n\n\n\nTip\n\n\nhaven::as_factor() nutzt die Value Labels als Faktorlevel. base::as.factor() würde stattdessen die numerischen Codes nehmen - also nicht verwenden!"
   }
 ]

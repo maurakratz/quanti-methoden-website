@@ -44,14 +44,13 @@ editor_options:
 
 -   Das Format hängt von den **Systemeinstellungen** ab, mit denen die Datei gespeichert wurde
 
-:::{ .fragment}
-
+::: fragment
 ``` r
 rio::import("daten.csv", sep = ";", dec = ",") # Deutsches csv-Format
 rio::import("data.csv", sep = ",", dec = ".") # Englisches csv-Format
 # Englisch ist der Standard in R und muss nicht explizit eingestellt werden.
 ```
-::: 
+:::
 
 ## Exkurs Encoding
 
@@ -125,7 +124,7 @@ Spannende Fragen an Daten lassen sich meistens zwei Polen zuordnen:
 
 :::: {style="font-size: 0.75em;"}
 | Skalenniveau | Mögliche Aussagen | Beispiel(e) | Zulässige Operationen |
-|------------------|------------------|------------------|------------------|
+|----|----|----|----|
 | kategorial · **Nominalskala** | Gleichheit / Verschiedenheit | Diagnosen, Religion, Parteipräferenz | `=, ≠` |
 | kategorial · **Ordinalskala** | … & Rangfolge | Schulabschlüsse, Zustimmungswerte (Likert-Skala) | `=, ≠, <, >` |
 | metrisch · **Intervallskala** | … & Interpretierbare Abstände | Temperatur in °C, Kalenderjahre, IQ | `=, ≠, <, >, +, −` |
@@ -209,7 +208,7 @@ Je höher das Skalenniveau, desto mehr mathematische Operationen sind zulässig.
 ## Datentransformation mit mit *dplyr*
 
 | Befehl | Beschreibung | Bsp |
-|------------------------|------------------------|------------------------|
+|----|----|----|
 | `mutate()` | Neue Variablen hinzufügen | `df %>% mutate(anteil = stimmen / sum(stimmen))` |
 | `summarise()` | Mehrere Werte zusammenfassen | `df %>% summarise(mean(stimmen))` |
 | `count()` | Häufigkeiten zählen | `df %>% count(partei)` |
