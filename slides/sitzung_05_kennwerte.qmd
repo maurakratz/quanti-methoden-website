@@ -124,7 +124,7 @@ Spannende Fragen an Daten lassen sich meistens zwei Polen zuordnen:
 
 :::: {style="font-size: 0.75em;"}
 | Skalenniveau | Mögliche Aussagen | Beispiel(e) | Zulässige Operationen |
-|------------------|------------------|------------------|------------------|
+|----|----|----|----|
 | kategorial · **Nominalskala** | Gleichheit / Verschiedenheit | Diagnosen, Religion, Parteipräferenz | `=, ≠` |
 | kategorial · **Ordinalskala** | … & Rangfolge | Schulabschlüsse, Zustimmungswerte (Likert-Skala) | `=, ≠, <, >` |
 | metrisch · **Intervallskala** | … & Interpretierbare Abstände | Temperatur in °C, Kalenderjahre, IQ | `=, ≠, <, >, +, −` |
@@ -208,7 +208,7 @@ Je höher das Skalenniveau, desto mehr mathematische Operationen sind zulässig.
 ## Datentransformation mit mit *dplyr*
 
 | Befehl | Beschreibung | Bsp |
-|------------------------|------------------------|------------------------|
+|----|----|----|
 | `mutate()` | Neue Variablen hinzufügen | `df %>% mutate(anteil = stimmen / sum(stimmen))` |
 | `summarise()` | Mehrere Werte zusammenfassen | `df %>% summarise(mean(stimmen))` |
 | `count()` | Häufigkeiten zählen | `df %>% count(partei)` |
