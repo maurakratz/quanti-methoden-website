@@ -1,0 +1,142 @@
+---
+title: "Übung 04: Kennwerte und deren Visualisierung"
+subtitle: "Politik vermessen: Quantitative Methoden mit R | SoSe 2026 | Maura Kratz"
+author: "Vorname Nachname"
+date: today
+date-format: "DD.MM.YYYY"
+format:
+  pdf:
+    toc: false
+  html:
+    toc: true
+    toc-title: "Inhalt"
+    self-contained: true
+    theme: default
+execute:
+  echo: true
+  warning: false
+  message: false
+knitr:
+  opts_chunk:
+    fig-width: 7
+    fig-height: 4
+---
+
+<!-- ---------------------------------------------------------------
+     Hinweise zum Arbeiten mit dieser Datei:
+     - R-Code kommt in die Chunks (zwischen ```{r} und ```)
+     - Text, Interpretationen und Antworten als normalen Text
+       direkt unter dem jeweiligen Chunk
+     - Rendern: Strg+Shift+K (oder oben "Render")
+     - Abgabe: die gerenderte PDF-Datei in Blackboard hochladen
+
+     Erste Schritte falls noch nicht erledigt (siehe Skript Sitzung 5):
+       install.packages("tinytex")
+       tinytex::install_tinytex()
+     Danach RStudio neu starten, dann funktioniert PDF-Render.
+--------------------------------------------------------------- -->
+
+# Setup
+
+```{r}
+library(dplyr)
+library(skimr)
+library(here)
+```
+
+# Aufgabe 1: Daten laden und vorbereiten
+
+Lade den Datensatz `btw_2025_ergebnisse.RData` mit `here::here()`.
+Filtere anschließend die Wahlkreise und die Wahlbeteiligung heraus
+(Gruppe: `Wählende`). Speichere das Ergebnis in einem neuen Obejkt namens `wb`. Wie viele Zeilen hat der gefilterte Datensatz?
+
+```{r}
+# Code hier
+```
+
+*Antwort hier eintragen.*
+
+# Aufgabe 2: Kennwerte berechnen
+
+Berechne mit `dplyr::summarise()` folgende Kennwerte für die Wahlbeteiligung 
+(Variable `prozent`): n, Minimum, Maximum, Spannweite, Mittelwert, Standardabweichung, Median, Mittlere Abweichung vom Median, Q25, Q75 und IQR. Nutze `dplyr::as_tibble`` für eine übersichtliche Ausgabe.
+
+```{r}
+# Code hier
+```
+
+*Was sagen dir die Kennwerte? Interpretiere Mittelwert vs. Median
+und die Streuung.*
+
+
+# Aufgabe 3: Visualisierung 
+
+Erstelle einen Boxplot der Wahlbeteiligung. 
+
+```{r}
+#| fig-width: 3 
+# Code hier
+```
+
+
+
+# Aufgabe 4: Extremfälle
+
+In welchen drei Wahlkreisen war die Wahlbeteiligung am niedrigsten,
+in welchen am höchsten?
+
+```{r}
+# Code hier
+```
+
+*Antwort hier eintragen.*
+
+
+# Aufgabe 5: Bundesland-Mapping
+
+Führe zunächst folgenden Code aus, um den Wahlkreisen ihre Bundeslandnamen
+zuzuordnen. Wichtig: dafür die Zeile mit eval: false entfernen! Erkläre in eigenen Worten, was die beiden Codeblöcke hier machen.
+
+```{r}
+#| eval: false
+# Mapping erstellen
+bula_mapping <- btw_2025_ergebnisse %>%
+  dplyr::filter(gebietsart == "Land") %>%
+  dplyr::select(bula_nr = gebietsnummer, bula_name = gebietsname) %>%
+  dplyr::distinct()
+
+# Bundeslandname zu wb hinzufügen
+wb <- wb %>%
+  dplyr::left_join(bula_mapping, by = c("ueg_gebietsnummer" = "bula_nr")) %>%
+  dplyr::rename(ueg_gebietsname = bula_name) %>%
+  dplyr::relocate(ueg_gebietsname, .after = ueg_gebietsnummer)
+```
+
+*Antwort hier eintragen.*
+
+
+# Aufgabe 6: Kennwerte nach Bundesland
+
+Gruppiere den Datensatz nach Bundesland und berechne die Kennwerte
+der Wahlbeteiligung pro Bundesland. Erstelle außerdem einen gruppierten
+Boxplot.
+
+```{r}
+# Kennwerte
+```
+
+```{r}
+# Boxplot
+```
+
+Beantworte anschließend folgende Fragen:
+
+**a)** Schau dir Sachsen-Anhalt genauer an. Was fällt dir auf, wenn du
+Mittelwert, Median betrachtest? Was sagt das über die Wahlkreise dort aus?
+
+*Antwort hier eintragen.*
+
+**b)** Vergleiche Bayern und Nordrhein-Westfalen: Beide haben viele
+Wahlkreise — aber was unterscheidet sie ihrem Schwerpunkt und ihrer Streuung? Was sagt das aus?
+
+*Antwort hier eintragen.*
