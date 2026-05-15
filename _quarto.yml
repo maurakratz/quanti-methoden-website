@@ -1,6 +1,9 @@
 project:
   type: website
   output-dir: docs
+  render:
+    - "*.qmd"            
+    - "!do_not_render/"
   resources:
     - scripts/*.R
     - "do_not_render/"
