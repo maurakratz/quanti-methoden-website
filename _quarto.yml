@@ -3,6 +3,7 @@ project:
   output-dir: docs
   resources:
     - scripts/*.R
+    - "do_not_render/"
 
 website:
   title: ""
