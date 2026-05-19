@@ -34,26 +34,27 @@ Spannende Fragen an Daten lassen sich meistens zwei Polen zuordnen:
 ## Variation untersuchen - 1 Variable {.smaller}
 
 | Skalenniveau | Ziel / Frage | Kennwert / Tabelle | R-Funktion |
-|-----------------|-----------------|-----------------|--------------------|
-| Kategorial | Häufigkeiten | Häufigkeitstabelle | `dplyr::count()` · `count()` |
+|------------------|------------------|------------------|--------------------|
+| Kategorial | Häufigkeiten | Häufigkeitstabelle | `dplyr::count()` · `questionr::freq` |
 | Kategorial | Anteile | Relative Häufigkeiten | `dplyr::mutate(pct = n / sum(n) * 100)` |
 | Metrisch | Zentrale Tendenz | Mittelwert · Median | `dplyr::summarise()` + `mean()` · `median()` |
 | Metrisch | Streuung | SD · Varianz · IQR | `sd()` · `var()` · `IQR()` |
 | Metrisch | Wertebereich | Min · Max | `min()` · `max()` |
 | Metrisch | Überblick | Alle Kennwerte | `skimr::skim()` |
 
-## Visualisierung - 1 Variable {.smaller}
+## Visualisierung - 1 Variable
 
+::: {style="font-size: 0.75em;"}
 | Skalenniveau | Ziel / Frage          | Visualisierung | ggplot2            |
 |--------------|-----------------------|----------------|--------------------|
 | Kategorial   | Häufigkeit/Verteilung | Balkendiagramm | `geom_bar()`       |
 | Metrisch     | Verteilung            | Histogramm     | `geom_histogram()` |
 | Metrisch     | Streuung / Ausreißer  | Boxplot        | `geom_boxplot()`   |
+:::
 
 ::: callout-tip
 Mit der Visualisierung mit ggplot2 beschäftigen wir uns in Sitzung 7 ausführlicher!
 :::
-
 
 # Recap
 
@@ -61,14 +62,13 @@ Mit der Visualisierung mit ggplot2 beschäftigen wir uns in Sitzung 7 ausführli
 2.  Boxplots
 3.  Code, Output und Interpretation mit Quarto in einem Dokument (z.B. PDF) zusammenbringen
 
-::: callout-tip
+::: {.callout-tip .fragment}
 ## Kennwerte
 
 -   Lagemaße: Modus; Mittelwert (arithmetisches Mittel); Median; ...
 
 -   Streuungsmaße: Spannweite (range); Quartile, Interquartilsabstand (IQR); Varianz, bzw. Standardabweichung; ...
 :::
-
 
 ## Boxplots
 
@@ -150,13 +150,11 @@ p4 <- make_panel(dplyr::filter(dat, gruppe == "Bimodal"),      "Bimodal",      "
   )
 ```
 
-
 # Was heute ansteht:
 
 -   Check-In: Fragen zu Quarto, Kennwerten etc.
 -   Besprechung der Übung 4
 -   Häufigkeiten und Visualisierung
-
 
 ## "Base R"
 
@@ -164,9 +162,9 @@ p4 <- make_panel(dplyr::filter(dat, gruppe == "Bimodal"),      "Bimodal",      "
 -   15 Basispakete werden beim Start von R automatisch geladen (z. B. base, stats, graphics)
 -   15 empfohlene Pakete werden Installation automatisch mitgeliefert, sind aber nicht automatisch geladen.
 
-:::{callout-tip}
+::: {.callout-tip .fragment}
 Auch diese "Base-R"-Funktionen werden als bei Masking-Konflikten überschrieben, wenn wir sie nicht refernzieren, wie beispielsweise mit stats::summary().
-::: 
+:::
 
 ## Quarto {.smaller}
 
@@ -174,7 +172,7 @@ Auch diese "Base-R"-Funktionen werden als bei Masking-Konflikten überschrieben,
 
 -   YAML-Header: Titel, Format, Globale Chunk-Optionen
 
-:::{.fragment}
+::: fragment
 ![](images/clipboard-4003848383.png){width="70%"}
 :::
 
@@ -194,8 +192,7 @@ Auch diese "Base-R"-Funktionen werden als bei Masking-Konflikten überschrieben,
     | Nummeriert    | `1. Punkt`                  | Nummerierte Liste    |
     | Leerzeile     | Leerzeile zwischen Absätzen | Neuer Absatz         |
 
-
-## Quarto  {.smaller}
+## Quarto {.smaller}
 
 -   Chunk-Optionen steuern, was im gerenderten Dokument erscheint. Die lokal gesetzten Chunk-Optionen überschreiben ggf. die globalen Chunk-Optionen im yaml-header. Sie werden mit `#|` direkt am Anfang des Chunks eingetragen
 
@@ -207,7 +204,6 @@ Auch diese "Base-R"-Funktionen werden als bei Masking-Konflikten überschrieben,
     | `warning` | `true`  | Warnungen werden *nicht* angezeigt           |
     | `message` | `true`  | Meldungen werden *nicht* angezeigt           |
     | `include` | `true`  | *Weder* Code *noch* Output werden angezeigt  |
-
 
 ## Quarto
 
@@ -221,12 +217,14 @@ Auch diese "Base-R"-Funktionen werden als bei Masking-Konflikten überschrieben,
     load("output/btw_2025_strukturdaten.RData")
     ```
 
-
 # {{< fa reply >}} Feedback zu Übung 4
 
--   Konntet ihr die .qmd alle herunterladen? 
--   sorry für Verwirrung mit `wb`-Objekt in Aufgabe 5 
-
+-   Konntet ihr die .qmd alle herunterladen?
+-   Entschuldigt die Verwirrung mit `wb`-Objekt in Aufgabe 5
+-   Interpretation geht über bloße Nennung hinaus
+-   Zwei häufige Probleme beim Rendering:
+    -   Es fehlt der gesamte Header (Wieso?)
+    -   es fehlt die LaTeX-Klasse scrartcl (aus dem KOMA-Script-Paket): `tinytex::tlmgr_install("koma-script")` `tinytex::uninstall_tinytex()` `tinytex::install_tinytex()`
 
 ## kategoriale und kontinuierliche Variablen
 
@@ -262,4 +260,4 @@ plot(qr)
 **Übung 5** zu "Häufigkeiten" bis spätestens Sonntagabend!
 :::
 
-------------------------------------------------------------------------
+

@@ -49,7 +49,7 @@ nrow(wb)
 # stattdessen kannst du auch den Datensatz öffnen und die Zeilen zählen.
 ```
 
-Der gefilterte Datensatz enthält 299 Zeilen — eine pro Wahlkreis.
+*Der gefilterte Datensatz enthält 299 Zeilen — eine pro Wahlkreis.*
 
 
 # Aufgabe 2: Kennwerte berechnen
@@ -75,13 +75,10 @@ wb %>%
   dplyr::as_tibble()
 ```
 
-Die durchschnittliche Wahlbeteiligung liegt bei etwa 82%, der Median
-ist ähnlich hoch. Mittelwert und Median liegen nah beieinander, was auf
-eine annähernd symmetrische Verteilung hindeutet. Die Spannweite von
-ca. 15 PP zeigt aber, dass es erhebliche Unterschiede zwischen den
-Wahlkreisen gibt. Die SD von ca. 2.5 PP bedeutet, dass die meisten
-Wahlkreise relativ nah am Mittelwert liegen — die Extremfälle sind
-tatsächlich Ausreißer.
+Was sagen dir die Kennwerte? Interpretiere Mittelwert vs. Median
+und die Streuung.
+
+*Die durchschnittliche Wahlbeteiligung liegt bei etwa 82%. Die Spannweite von ca. 15 Prozentpunkten zeigt, dass es erhebliche Unterschiede zwischen den Wahlkreisen gibt. Der Median ist ähnlich hoch wie der Mittelwert, was auf eine annähernd symmetrische Verteilung hindeutet. Da der Mittelwert allerdings leicht unter dem Median liegt, beeinflussen ihn anscheinend einige Ausreißer nach unten - anders, als es beim Median der Fall ist. Die Standardabweichung von ca. 2,5 bedeutet, dass Wahlkreise im Durchschnitt 2,5 Prozentpunkte vom Mittelwert abweichen. Die meisten Wahlkreise liegen also relativ nah am Mittelwert und der Mittelwert wird tatsächlich von Ausreißern nach unten gezogen.*
 
 
 # Aufgabe 3: Visualisierung
@@ -93,11 +90,7 @@ Erstelle einen Boxplot der Wahlbeteiligung.
 boxplot(wb$prozent)
 ```
 
-Der Median liegt leicht unterhalb der Mitte der Box, was auf eine leichte
-Rechtsschiefe hindeutet — es gibt einige Wahlkreise mit sehr hoher
-Wahlbeteiligung. Die Whisker sind asymmetrisch: der untere ist länger,
-was auf einige Wahlkreise mit deutlich niedrigerer Beteiligung hinweist.
-Es gibt keine extremen Ausreißer.
+*Merke: dieser BaseR-Boxplot zeigt nur den Median, nicht den Mittelwert. Er gibt also nur sehr indirekt Hinweise auf die oben beschriebene Linksschiefe - die Tatsache, dass einige, wenige, sehr niedrige Extremwerte den Mittelwert nach unten ziehen, nicht aber den Median. Am ehesten ist diese hier an den eingezeichneten Ausreißern zu erkennen.*
 
 
 # Aufgabe 4: Extremfälle
@@ -119,10 +112,7 @@ wb %>%
   tail(3)
 ```
 
-Die Wahlkreise mit der niedrigsten Wahlbeteiligung liegen tendenziell
-in städtischen Gebieten und ostdeutschen Bundesländern. Die Wahlkreise
-mit der höchsten Beteiligung finden sich eher in ländlichen Regionen
-Süddeutschlands.
+*Die Wahlkreise mit der niedrigsten Wahlbeteiligung liegen tendenziell in ehemaligen Industriestädten. Sowohl die Wahlkreise mit der höchsten, als auch jene mit der niedrigsten Wahlnbeteiligung liegen in  städtischen Gebieten und in Westdeutschland.*
 
 
 # Aufgabe 5: Bundesland-Mapping
@@ -142,8 +132,7 @@ wb <- wb %>%
   dplyr::relocate(ueg_gebietsname, .after = ueg_gebietsnummer)
 ```
 
-Zunächst wird eine Tabelle erstellt, in der jeder Bundeslandnummer der dazugehörige Bundeslandname zugeordnet wird. Die Angaben dazu werden aus den Variablen `gebietsnummer` und `gebietsname` des Datensatzes `btw_2025_ergebnisse` entnommen. `left_join` verbindet zwei Datensätze anhand einer gemeinsamen Variable. Basierend auf der Übereinstimmung von
-`ueg_gebietsnummer` (in `wb`) und `bula_nr` (in `bula_mapping`) wird jeder übergeordneten Gebietnummer ein übergeordneter Gebietsname zugewiesen.
+*Zunächst wird eine Tabelle erstellt, in der jeder Bundeslandnummer der dazugehörige Bundeslandname zugeordnet wird. Die Angaben dazu werden aus den Variablen `gebietsnummer` und `gebietsname` des Datensatzes `btw_2025_ergebnisse` entnommen. `left_join` verbindet zwei Datensätze anhand einer gemeinsamen Variable. In diesem Fall wird, basierend auf der Übereinstimmung von `ueg_gebietsnummer` (in `wb`) und `bula_nr` (in `bula_mapping`), jeder übergeordneten Gebietnummer der dazugehörige Bundeslandsname zugewiesen.*
 
 
 # Aufgabe 6: Kennwerte nach Bundesland
@@ -168,12 +157,13 @@ wb %>%
     q75 = quantile(prozent, probs = 0.75, na.rm = TRUE),
     iqr = IQR(prozent, na.rm = TRUE)
   ) %>%
-  t()
+  dplyr::as_tibble()
 ```
 
 ```{r}
 #| fig-width: 9
 #| fig-height: 5
+
 boxplot(prozent ~ ueg_gebietsname,
         data = wb)
 ```
@@ -183,20 +173,9 @@ Beantworte anschließend folgende Fragen:
 **a)** Schau dir Sachsen-Anhalt genauer an. Was fällt dir auf, wenn du
 Mittelwert, Median und die Streuung betrachtest? Was sagt das über die Wahlkreise dort aus?
 
-Sachsen-Anhalt hat mit Abstand die niedrigste durchschnittliche
-Wahlbeteiligung (MW 77.7%) und gleichzeitig die geringste Streuung
-(SD 0.58, IQR 0.95). Mittelwert und Median liegen sehr nah beieinander
-(77.7% vs. 77.4%). Das bedeutet: Die Wahlkreise in Sachsen-Anhalt sind
-sich sehr ähnlich — überall niedrige Beteiligung, kaum Unterschiede
-zwischen den Wahlkreisen.
+*Sachsen-Anhalt hat mit Abstand die niedrigste durchschnittliche Wahlbeteiligung (MW 77.7%) und gleichzeitig die geringste Streuung (SD 0.58, IQR 0.95). Mittelwert und Median liegen sehr nah beieinander (77.7% vs. 77.4%). Das bedeutet: Die Wahlkreise in Sachsen-Anhalt sind sich sehr ähnlich — überall niedrige Beteiligung, kaum Unterschiede zwischen den Wahlkreisen.*
 
 **b)** Vergleiche Bayern und Nordrhein-Westfalen: Beide haben viele
 Wahlkreise — aber was unterscheidet sie in ihrem Schwerpunkt und ihrer Streuung? Was sagt das aus?
 
-Bayern (n = 47) und NRW (n = 64) haben beide viele Wahlkreise,
-unterscheiden sich aber deutlich in der Streuung: Bayern hat SD = 2.00
-und IQR = 2.81, NRW dagegen SD = 2.84 und IQR = 3.11 — und vor allem
-eine Spannweite von 14.6 PP gegenüber 9.2 PP in Bayern. NRW ist also
-intern viel heterogener: zwischen städtischen Wahlkreisen (z.B. Ruhrgebiet)
-und ländlichen Wahlkreisen gibt es erhebliche Unterschiede in der
-Wahlbeteiligung.
+*Bayern (n = 47) und NRW (n = 64) haben beide viele Wahlkreise, unterscheiden sich aber deutlich in der Streuung: Bayern hat SD = 2.00 und IQR = 2.81, NRW dagegen SD = 2.84 und IQR = 3.11 — und vor allem eine Spannweite von 14.6 PP gegenüber 9.2 PP in Bayern. NRW ist also intern viel heterogener: zwischen städtischen Wahlkreisen (z.B. Ruhrgebiet) und ländlichen Wahlkreisen gibt es erhebliche Unterschiede in der Wahlbeteiligung.*

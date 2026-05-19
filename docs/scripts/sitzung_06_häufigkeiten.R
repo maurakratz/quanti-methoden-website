@@ -8,8 +8,7 @@
 # Pakete
 library(dplyr)
 library(skimr)
-library(summarytools)
-library(ggplot2)
+library(questionr)
 
 
 # Daten
@@ -54,7 +53,50 @@ wk_btw_2025_strukt %>%
   dplyr::mutate(pct = round(n / sum(n) * 100, 2))
 
 
-### kontinuierliche Variablen klassieren -------------------
+## mit questionr::freq() ------------------
+
+# klassischerweise enthalten Häufigkeitstabellen Angaben zu:
+# - absoluten Häufigkeiten (n)
+# - Prozentualen Anteilen (%)
+# - kumulierten Anteilen (cum_pct)
+# Je nach Vollständigkeit kann es sinnvoll sein, diese Angaben
+# nur auf die validen Werte (ohne missings) auszugeben.
+
+questionr::freq(wk_btw_2025_strukt$land) # absolute Häufigkeiten
+
+questionr::freq(wk_btw_2025_strukt$land,
+                valid = FALSE)  # val% ausblenden
+
+questionr::freq(wk_btw_2025_strukt$land,
+                valid = FALSE,
+                cum = TRUE) # mit kumulierten Häufigkeiten
+
+questionr::freq(
+  wk_btw_2025_strukt$land,
+  valid = FALSE,
+  cum = TRUE,
+  total = TRUE # mit Gesamtzeile
+)
+
+
+## (Optionale Alternativen zu dplyr und questionr) ---------
+
+# mit baseR
+table(wk_btw_2025_strukt$land)
+
+# mit %
+prop.table(table(wk_btw_2025_strukt$land)) * 100
+
+# mit janitor - für den schnellen Überblick
+wk_btw_2025_strukt %>%
+  janitor::tabyl(land) %>% # freq tab mit n und pct
+  dplyr::arrange(desc(n)) %>% # absteigend nach n sortieren
+  janitor::adorn_totals("row") %>%  # Gesamtzeile hinzufügen
+  janitor::adorn_pct_formatting()  # mit %-Zeichen ausstatten
+
+
+
+# 02 kontinuierliche Variablen klassieren -------------------
 
 # Manchmal ist es sinnvoll, metrisch skalierte Variablen in Intervalle zu
 # unterteilen, um sie besser beschreiben oder visualisieren zu können.
@@ -64,9 +106,9 @@ wk_btw_2025_strukt %>%
 # Beispiel Arbeitslosenquote in Gruppen einteilen
 wk_btw_2025_strukt <- wk_btw_2025_strukt %>%
   dplyr::mutate(alo_quote_insg_kat = dplyr::case_when(
-    alo_quote_insgesamt <  4 ~ "< 4%",
+    alo_quote_insgesamt < 4 ~ "< 4%",
     alo_quote_insgesamt >= 4 & alo_quote_insgesamt < 6 ~ "4–5%",
-    alo_quote_insgesamt >= 6 & alo_quote_insgesamt < 8  ~ "6–7%",
+    alo_quote_insgesamt >= 6 & alo_quote_insgesamt < 8 ~ "6–7%",
     alo_quote_insgesamt >= 8 & alo_quote_insgesamt < 10 ~ "8–9%",
     alo_quote_insgesamt >= 10 ~ ">= 10%"
   )) %>%
@@ -83,7 +125,7 @@ wk_btw_2025_strukt %>%
 # Das ist nicht sehr sinnvoll angeordnet!
 
 
-### Exkurs faktoren ---------------
+# 03 Exkurs Faktoren ---------------
 
 # Das Problemn ist, dass R die neue Variable als character-Klasse interpretiert,
 # also als Textvariable, und diese standardmäßig alphabetisch sortiert.
@@ -116,24 +158,8 @@ wk_btw_2025_strukt %>%
 
 
 
-## Optionale Alternativen zu dplyr ---------
 
-# mit baseR
-table(wk_btw_2025_strukt$land)
-
-# mit %
-prop.table(table(wk_btw_2025_strukt$land)) * 100
-
-# mit janitor - für den schnellen Überblick
-wk_btw_2025_strukt %>%
-  janitor::tabyl(land) %>%
-  janitor::adorn_totals("row") %>%
-  janitor::adorn_pct_formatting() %>%
-  dplyr::arrange(desc(n))
-
-
-
-# 02 Häufigkeiten visualisieren ---------------------
+# 04 Häufigkeiten visualisieren ---------------------
 
 # Nominal oder ordinal skalierte Variablen (also kategoriale Variablen)
 # können mit Säulen- oder Balkendiagrammen visualisiert werden.
