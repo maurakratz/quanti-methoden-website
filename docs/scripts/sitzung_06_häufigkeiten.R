@@ -62,6 +62,7 @@ wk_btw_2025_strukt %>%
 # Je nach Vollständigkeit kann es sinnvoll sein, diese Angaben
 # nur auf die validen Werte (ohne missings) auszugeben.
 
+
 questionr::freq(wk_btw_2025_strukt$land) # absolute Häufigkeiten
 
 questionr::freq(wk_btw_2025_strukt$land,
@@ -122,6 +123,7 @@ wk_btw_2025_strukt %>%
   dplyr::mutate(pct = round(n / sum(n) * 100, 2),
                 cum_pct = cumsum(pct))
 
+
 # Das ist nicht sehr sinnvoll angeordnet!
 
 
@@ -176,10 +178,9 @@ wk_btw_2025_strukt %>%
 # optional names.arg = land, damit die Ländernamen (teils) angezeigt werden
 
 
-
 # Histogramme für kontinuierliche Variablen
 hist(wk_btw_2025_strukt$alo_quote_insgesamt)
 # hier wurde also eine eigentlich kontinuierliche Variable in Intervalle
 # unterteilt, um sie darstellen zu können.
 
-
+class(wk_btw_2025_strukt$alo_quote_insgesamt)

@@ -65,8 +65,8 @@ Berechne mit `dplyr::summarise()` folgende Kennwerte für die Wahlbeteiligung
 # Code hier
 ```
 
-*Was sagen dir die Kennwerte? Interpretiere Mittelwert vs. Median
-und die Streuung.*
+Was sagen dir die Kennwerte? Interpretiere Mittelwert vs. Median
+und die Streuung.
 
 
 # Aufgabe 3: Visualisierung 
