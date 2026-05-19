@@ -2,9 +2,11 @@ project:
   type: website
   output-dir: docs
   render:
-    - "*.qmd"            
+    - "*.qmd"
+    - "!qmd_dateien/**"          
   resources:
     - scripts/*.R
+    - "qmd_dateien/**"
 
 website:
   title: ""
