@@ -1,0 +1,57 @@
+---
+title: "Übung XX: [Titel der Übung]"
+subtitle: "Politik vermessen: Quantitative Methoden mit R | SoSe 2026 | Maura Kratz"
+author: "Vorname Nachname"
+date: today
+date-format: "DD.MM.YYYY"
+format:
+  html:
+    toc: true
+    toc-title: "Inhalt"
+    self-contained: true
+    theme: default
+execute:
+  warning: false
+  message: false
+---
+
+# Setup
+
+```{r}
+# Pakete laden
+library(tidyverse)
+library(rio)
+library(janitor)
+library(labelled)
+library(summarytools)
+```
+
+# Aufgabe 1: [Titel]
+
+[Kurze Beschreibung was in dieser Aufgabe gemacht wird.]
+
+```{r}
+# Code hier
+```
+
+[Kurze Interpretation / Antwort in eigenen Worten.]
+
+# Aufgabe 2: [Titel]
+
+[Kurze Beschreibung was in dieser Aufgabe gemacht wird.]
+
+```{r}
+# Code hier
+```
+
+[Kurze Interpretation / Antwort in eigenen Worten.]
+
+# Aufgabe 3: [Titel]
+
+[Kurze Beschreibung was in dieser Aufgabe gemacht wird.]
+
+```{r}
+# Code hier
+```
+
+[Kurze Interpretation / Antwort in eigenen Worten.]
