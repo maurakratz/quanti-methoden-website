@@ -172,7 +172,7 @@
     "href": "slides/sitzung_05_kennwerte.html#exkurs-encoding",
     "title": "Quantitative Methoden mit R & R-Studio",
     "section": "Exkurs Encoding",
-    "text": "Exkurs Encoding\nDas Encoding bestimmt wie Sonderzeichen gespeichert werden.\n\n\n\nEncoding\nTypisch für\n\n\n\n\nUTF-8\nMac, moderne Tools\n\n\nlatin1\nÄlteres Windows/Excel\n\n\n\nWenn Umlaute als Ã¼ erscheinen ist das Encoding falsch.\nrio::import(\"datei.csv\", sep = \";\", dec = \",\",\n         encoding = \"latin1\")\n\n\n\n\n\n\nTip\n\n\n\nIm Zweifel Datei kurz in RStudio öffnen und nachschauen!"
+    "text": "Exkurs Encoding\nDas Encoding bestimmt wie Sonderzeichen gespeichert werden.\n\n\n\nEncoding\nTypisch für\n\n\n\n\nUTF-8\nMac, moderne Tools\n\n\nlatin1\nÄlteres Windows/Excel\n\n\n\nWenn Umlaute als Ã¼ erscheinen ist das Encoding falsch.\nrio::import(\"datei.csv\", sep = \";\", dec = \",\",\n         encoding = \"latin1\")\n\n\n\n\n\n\nTip\n\n\nIm Zweifel Datei kurz in RStudio öffnen und nachschauen!"
   },
   {
     "objectID": "slides/sitzung_05_kennwerte.html#willkommen-zurück",
@@ -200,7 +200,7 @@
     "href": "slides/sitzung_05_kennwerte.html#skalenniveaus",
     "title": "Quantitative Methoden mit R & R-Studio",
     "section": "Skalenniveaus",
-    "text": "Skalenniveaus\n\n\n\n\n\n\n\n\n\n\nSkalenniveau\nMögliche Aussagen\nBeispiel(e)\nZulässige Operationen\n\n\n\n\nkategorial · Nominalskala\nGleichheit / Verschiedenheit\nDiagnosen, Religion, Parteipräferenz\n=, ≠\n\n\nkategorial · Ordinalskala\n… & Rangfolge\nSchulabschlüsse, Zustimmungswerte (Likert-Skala)\n=, ≠, &lt;, &gt;\n\n\nmetrisch · Intervallskala\n… & Interpretierbare Abstände\nTemperatur in °C, Kalenderjahre, IQ\n=, ≠, &lt;, &gt;, +, −\n\n\nmetrisch · Verhältnisskala\n… & Absoluter Nullpunkt & interpretierbare Verhältnisse\nEinkommen in Euro, Körpergröße in cm, Alter in Jahren\n=, ≠, &lt;, &gt;, +, −, ×, ÷\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nJe höher das Skalenniveau, desto mehr mathematische Operationen sind zulässig."
+    "text": "Skalenniveaus\n\n\n\n\n\n\n\n\n\n\nSkalenniveau\nMögliche Aussagen\nBeispiel(e)\nZulässige Operationen\n\n\n\n\nkategorial · Nominalskala\nGleichheit / Verschiedenheit\nDiagnosen, Religion, Parteipräferenz\n=, ≠\n\n\nkategorial · Ordinalskala\n… & Rangfolge\nSchulabschlüsse, Zustimmungswerte (Likert-Skala)\n=, ≠, &lt;, &gt;\n\n\nmetrisch · Intervallskala\n… & Interpretierbare Abstände\nTemperatur in °C, Kalenderjahre, IQ\n=, ≠, &lt;, &gt;, +, −\n\n\nmetrisch · Verhältnisskala\n… & Absoluter Nullpunkt & interpretierbare Verhältnisse\nEinkommen in Euro, Körpergröße in cm, Alter in Jahren\n=, ≠, &lt;, &gt;, +, −, ×, ÷\n\n\n\n\n\n\n\n\n\nTip\n\n\nJe höher das Skalenniveau, desto mehr mathematische Operationen sind zulässig."
   },
   {
     "objectID": "slides/sitzung_05_kennwerte.html#skalenniveau",
@@ -221,14 +221,14 @@
     "href": "slides/sitzung_05_kennwerte.html#datentransformation-mit-mit-dplyr-1",
     "title": "Quantitative Methoden mit R & R-Studio",
     "section": "Datentransformation mit mit dplyr",
-    "text": "Datentransformation mit mit dplyr\n\n\n\n\n\n\nTip\n\n\n\ndplyr::count() zählt wie viele Zeilen pro Gruppe vorhanden sind. count(land) ist eine Abkürzung für group_by(land) %&gt;% summarise(n = n()). Gibt immer eine Spalte mit Häufigkeitszählungen namens n zurück.\ndplyr::n() zählt die Anzahl Zeilen in der aktuellen Gruppe — aber nur innerhalb von summarise(), mutate() oder filter(). Kann nicht alleinstehend aufgerufen werden."
+    "text": "Datentransformation mit mit dplyr\n\n\n\n\n\n\nTip\n\n\ndplyr::count() zählt wie viele Zeilen pro Gruppe vorhanden sind. count(land) ist eine Abkürzung für group_by(land) %&gt;% summarise(n = n()). Gibt immer eine Spalte mit Häufigkeitszählungen namens n zurück.\ndplyr::n() zählt die Anzahl Zeilen in der aktuellen Gruppe — aber nur innerhalb von summarise(), mutate() oder filter(). Kann nicht alleinstehend aufgerufen werden."
   },
   {
     "objectID": "slides/sitzung_05_kennwerte.html#minute-cards",
     "href": "slides/sitzung_05_kennwerte.html#minute-cards",
     "title": "Quantitative Methoden mit R & R-Studio",
     "section": "Minute Cards",
-    "text": "Minute Cards\nBitte füllt die Minute Cards für die heutige Sitzung aus. Das sollt enicht länger als 3 Minuten dauern. Vielen Dank für eure Mitarbeit!\n\n\nWarning: Paket 'qrcode' wurde unter R Version 4.5.3 erstellt"
+    "text": "Minute Cards\nBitte füllt die Minute Cards für die heutige Sitzung aus. Das sollt enicht länger als 3 Minuten dauern. Vielen Dank für eure Mitarbeit!"
   },
   {
     "objectID": "slides/sitzung_03_data_wrangling.html#willkommen-zurück",
