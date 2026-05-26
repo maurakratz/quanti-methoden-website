@@ -6,6 +6,7 @@
 # setup ---------------------
 library(haven)
 library(dplyr)
+library(gtsummary) # ggf. vorher installieren!
 
 
 
@@ -60,7 +61,7 @@ if(FALSE){
 
 # Überblick alle Variablen: Position, Name, Label, Klasse, Values
 allbus_c_2023_raw %>%
-labelled::look_for()
+labelled::look_for(max.print = Inf) # max.print = Inf zeigt alle Variablen an, sonst nur die ersten 100)
 
 # bestimmte Variablen
 allbus_c_2023_raw %>%
@@ -104,8 +105,10 @@ allbus_c_2023_raw %>%
 # Bereinigung: negative Codes -> NA, haven_labelled -> Faktor
 allbus_c_2023 <- allbus_c_2023_raw %>%
   dplyr::mutate(
-    sex_f  = haven::as_factor(dplyr::case_when(sex  < 0 ~ NA, .default = sex)),
-    work_f = haven::as_factor(dplyr::case_when(work < 0 ~ NA, .default = work))
+    sex_f  = haven::as_factor(dplyr::case_when(sex  < 0 ~ NA, .default = sex)) %>%
+      forcats::fct_drop(),
+    work_f = haven::as_factor(dplyr::case_when(work < 0 ~ NA, .default = work)) %>%
+      forcats::fct_drop() #  entfernt leere Faktorlevels
   )
 
 allbus_c_2023 %>%
@@ -142,25 +145,10 @@ allbus_c_2023 %>%
                    pct = srvyr::survey_mean() * 100)
 
 
-# questionr macht zwar weights aber janitor ist besser für piping
 
 
-# mit questionr
 
-# absolute Häufigkeiten
-questionr::wtd.table(allbus_c_2023$sex_f, allbus_c_2023$work_f,
-                     weights = allbus_c_2023$wghtpew)
-
-# Zeilenprozente
-questionr::wtd.table(allbus_c_2023$sex_f, allbus_c_2023$work_f,
-                     weights = allbus_c_2023$wghtpew) %>%
-  questionr::rprop()
-
-questionr::wtd.table(allbus_c_2023$sex_f, allbus_c_2023$work_f,
-                     weights = allbus_c_2023_raw$wghtpew) %>%
-  questionr::rprop()  # Zeilenprozente
-
-# mit janitor:
+# mit janitor - leichter aber ohne weihgts
 allbus_c_2023 %>%
   dplyr::filter(!is.na(sex_f), !is.na(work_f)) %>%
   janitor::tabyl(sex_f, work_f, show_missing_levels = FALSE) %>%
@@ -171,22 +159,38 @@ allbus_c_2023 %>%
 
 allbus_c_2023 %>%
   dplyr::filter(!is.na(sex_f), !is.na(work_f)) %>%
-janitor::tabyl(sex_f, work_f, show_missing_levels = FALSE) %>%
+  janitor::tabyl(sex_f, work_f, show_missing_levels = FALSE) %>%
   janitor::adorn_totals(where = c("row", "col")) %>%
   janitor::adorn_percentages(denominator = "row") %>%
   janitor::adorn_pct_formatting(digits = 1) %>%
   janitor::adorn_ns(position = "front") # %>% knitr::kable() # für quarto
 
 
-library(gtsummary)
 
-gtsummary::tbl_cross(
-  data = allbus_c_2023,
-  row = sex_f,
-  col = work_f,
-  percent = "row",
-  missing = "no"
-)
+# mit gtsummary - mit weights möglich -------------
+
+allbus_c_2023 %>%
+  gtsummary::tbl_cross(
+    row = sex_f,
+    col = work_f,
+    percent = "row",
+    missing = "no"
+  )
+
+
+# mit gewichten!!
+
+allbus_c_2023 %>%
+  dplyr::filter(!is.na(sex_f), !is.na(work_f)) %>%
+  survey::svydesign(~1, data = ., weights = ~wghtpew) %>%
+  gtsummary::tbl_svysummary(
+    by = work_f,
+    include = sex_f,
+    percent = "row",
+    missing = "no"
+  )
+
+
 
 
 # scatter plots

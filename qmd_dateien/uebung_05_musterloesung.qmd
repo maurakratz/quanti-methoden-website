@@ -69,7 +69,7 @@ summarytools::descr(wk_btw_2025_strukt$bev_dichte_ew_km2)
 
 **a)** Was fällt dir auf?
 
-*Die Variable ist stark rechtsschief: der Median liegt bei ca. 200
+*Die Variable ist stark rechtsschief: der Median liegt bei ca. 270
 EW/km², der Mittelwert aber deutlich höher. Das deutet darauf hin, dass
 wenige sehr dicht besiedelte Großstadtwahlkreise den Mittelwert nach
 oben ziehen.*
@@ -85,7 +85,7 @@ wk_btw_2025_strukt %>%
   )
 ```
 
-*Das Minimum beträgt ca. 36 EW/km², das Maximum ca. 5243 EW/km² —
+*Das Minimum beträgt ca. 37 EW/km², das Maximum ca. 12200 EW/km² —
 eine Spannweite von über 5000. Das zeigt die extreme Bandbreite zwischen
 dünn besiedelten ländlichen Wahlkreisen und dicht besiedelten
 Großstadtwahlkreisen.*
@@ -129,11 +129,7 @@ Welche Kategorie ist am häufigsten vertreten? Was sagt das über die
 Struktur der Bundestagswahlkreise aus?
 
 *Die meisten Wahlkreise sind halbstädtisch. Das spiegelt wider, dass
-Wahlkreise nach Bevölkerungszahl, nicht nach Fläche eingeteilt werden —
-auch ländlich geprägte Regionen mit vielen Gemeinden können so einen
-eigenen Wahlkreis bilden. Großstadtwahlkreise sind trotz hoher
-Bevölkerungsdichte selten, weil Großstädte in viele kleine Wahlkreise
-aufgeteilt werden.*
+Wahlkreise nach Bevölkerungszahl, nicht nach Fläche eingeteilt werden.*
 
 # Aufgabe 5: Ost-West-Vergleich
 
@@ -167,6 +163,6 @@ Unterschiede in der Siedlungsstruktur?
 
 *In Ostdeutschland gibt es anteilig deutlich mehr ländliche Wahlkreise
 als im Westen — das spiegelt die geringere Bevölkerungsdichte in den
-neuen Bundesländern wider. Im Westen dominiert die halbstädtische
+neuen Bundesländern wider. Auch im Westen dominiert die halbstädtische
 Kategorie. Berlin ist erwartungsgemäß ausschließlich in den städtischen
 Kategorien vertreten.*

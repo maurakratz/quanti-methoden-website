@@ -34,7 +34,7 @@ Spannende Fragen an Daten lassen sich meistens zwei Polen zuordnen:
 ## Variation untersuchen - 1 Variable {.smaller}
 
 | Skalenniveau | Ziel / Frage | Kennwert / Tabelle | R-Funktion |
-|----|----|----|----|
+|------------------|------------------|------------------|------------------|
 | Kategorial | Häufigkeiten | Häufigkeitstabelle | `dplyr::count()` · `count()` |
 | Kategorial | Anteile | Relative Häufigkeiten | `dplyr::mutate(pct = n / sum(n) * 100)` |
 | Metrisch | Zentrale Tendenz | Mittelwert · Median | `dplyr::summarise()` + `mean()` · `median()` |
@@ -125,61 +125,6 @@ p6 <- p + theme_linedraw() + labs(title = "theme_linedraw()")
 
 (p1 + p2 + p3) / (p4 + p5 + p6)
 ```
-
-## Farben in ggplot2 {.smaller}
-
-::::: columns
-::: {.column width="50%"}
-**Farben benennen oder als Hex-Code**
-
-``` r
-# Farbnamen
-geom_col(fill = "steelblue")
-geom_col(fill = "lightgray")
-
-# Hex-Code
-geom_col(fill = "#FF0000")   # rot
-geom_col(fill = "#D3D3D3")   # hellgrau
-```
-
-**Eigener Farbvektor** (z.B. für Parteien)
-
-``` r
-party_colors <- c(
-  "SPD" = "#E3000F",
-  "CDU" = "#000000",
-  "Grüne" = "#1AA037",
-  "FDP" = "#FFED00",
-  "AfD" = "#009EE0"
-)
-
-ggplot(...) +
-  scale_fill_manual(values = party_colors)
-```
-:::
-
-::: {.column width="50%"}
-**Eine Fülle an Farbpaletten mit `paletteer`**
-
-```{r}
-#| echo: false
-#| fig-height: 2.5
-library(ggplot2)
-library(paletteer)
-library(dplyr)
-
-data.frame(x = LETTERS[1:6], y = c(4, 7, 3, 6, 5, 8)) %>%
-  ggplot(aes(x = x, y = y, fill = x)) +
-  geom_col(show.legend = FALSE) +
-  scale_fill_paletteer_d("RColorBrewer::Set1") +
-  theme_minimal() +
-  labs(x = NULL, y = NULL,
-       title = "RColorBrewer::Set1")
-```
-
-Mehr Paletten unter: [r-graph-gallery.com](https://r-graph-gallery.com/ggplot2-color.html)
-:::
-:::::
 
 ## Farben in ggplot2 {.smaller}
 
@@ -361,12 +306,13 @@ p4 <- make_panel(dplyr::filter(dat, gruppe == "Bimodal"),      "Bimodal",      "
 -   Besprechung der Übung 4
 -   Häufigkeiten und Visualisierung
 
-# {{< fa reply >}} Feedback zu Übung 4
+# {{< fa reply >}} Feedback zu Übung 5
 
--   dar steht für daraus/darunter (also "Sonstige Parteien", "daraus BSW")
--   `filter()` und `select()` tun sehr unterschiedliche Dinge
--   `filter()`-Aufgabe kann unterschiedlich gelöst werden: `wahlkreis_nr > 900` oder `wahlkreis_name == "Land Insgesamt" | wahlkreis_name == "Insgesamt"` oder `dplyr::filter(wknr %in% c(901, 902, 903 ... ))`
--   in `case_when()` wurde `TRUE ~` durch `.default ~` ersetzt
+-   Franka und ich haben das LaTex-problem (scrartcl error code) gemeinsam gelöst
+    -   von anderen habe ich folgenden Hinweis bekommen: `quarto install tinytex` im Terminal statt über die `tinytex::install_tinytex()` in der Console
+-   Bei Fragen gern an sie wenden (oder sie jetzt hier äußern)
+-   Nun da ihr per PDF abgebt, markiere ich Fehler oder Unklarheiten mit Rotstift direkt in der PDF
+-   Ab der kommenden Übung erwarte ich grundsätzlich auch gerenderte PDF
 
 ## kategoriale und kontinuierliche Variablen
 

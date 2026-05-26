@@ -1,0 +1,128 @@
+---
+title: "Übung 06: Schöne Grafiken!"
+subtitle: "Politik vermessen: Quantitative Methoden mit R | SoSe 2026 | Maura Kratz"
+author: "Musterlösung"
+date: today
+date-format: "DD.MM.YYYY"
+format:
+  pdf:
+    toc: false
+  html:
+    toc: true
+    toc-title: "Inhalt"
+    self-contained: true
+    theme: default
+execute:
+  echo: true
+  warning: false
+  message: false
+knitr:
+  opts_chunk:
+    fig-width: 7
+    fig-height: 4
+---
+
+<!-- ---------------------------------------------------------------
+     Hinweise zum Arbeiten mit dieser Datei:
+     - R-Code kommt in die Chunks (zwischen ```{r} und ```)
+     - Instruktionen stehen als unformatierter Text über den Chunks
+     - Interpretationen und Antworten kommen zwischen die ** unter den Chunks und werden also kursiv gerendert
+     - Rendern: Strg+Shift+K (oder oben Button "Render")
+     - Abgabe: die gerenderte PDF-Datei in Blackboard hochladen
+--------------------------------------------------------------- -->
+
+# Setup
+
+```{r}
+library(here)
+library(haven)
+library(skimr)
+library(summarytools)
+library(dplyr)
+library(questionr)
+library(ggplot2)
+```
+
+# Aufgabe 1: Daten laden und vorbereiten
+
+Lade den ALLBUS compact herunter (siehe Webseite => Daten) und lege ihn in deinen data-Ordner. Versuche, dir anhand des Codebooks einen Überblick zu verschaffen. Einlesen tun wir ihn mit dem haven-Paket:
+
+```{r}
+allbus_c_2023_raw <- haven::read_dta(here::here("data", "ZA8831_v1-3-0.dta"))
+
+```
+Was ist das für ein Datensatz? Wieviele Beobachtungen und wieviele Variablen enthält er? Was für Variablen sind das? 
+*....*
+
+# Aufgabe 2: Variable kennenlernen
+
+Führe folgenden Befehl aus:
+
+```{r}
+allbus_c_2023_raw %>%
+labelled::look_for("fr07")
+```
+
+**a)** Was bewirkt der Befehl?
+
+*Look for gibt mir Auskunft über: Variablenname, Variablenlabel, Variablenklasse, Vaues und Value Labels (entspricht Faktorstufen und Faktorlevels). So kann ih auf einen Blick sehen, a) was zu NA gemacht werden muss, und b) welche Labels zu den Werten gehören. Auf dieser Grundlage kann ich entscheiden, ob ich die Variable als Faktor oder metrisch weiterverarbeite.*
+
+**b)** Interpretiere das Output, das die dieser Befehl liefert. 
+
+
+*Die Variable fr07 gibt uns die Antworten der Befragten  auf die Frage danach, ob eine erwerbstätige frau auch eine gute Mutter sein könne.  Missings sind noch nicht korrekt kodiert. Vielmehr ist ist überall, wo der/ die Befragte andere Fragen bekommen hat mit -11 kodiert und jene, die keine Angabe machen wollten mit -9 und jene die als Antwort Weiß nicht gaben mit -8. Ansonsten geht es von 1 stimme voll zu bis 4 stimme gar nciht zu.*
+
+
+# Aufgabe 3: Säulendiagramm
+
+Basierend auf dem Output auf Aufgabe 2, bereinige die Variable fr07 von den Missings und stelle die Häufigkeit der unterschiedlichen Kategorien als Säulendiagramm dar.
+
+```{r}
+ allbus_c_2023_raw %>%
+  dplyr::mutate(fr07 = haven::as_factor(
+    dplyr::case_when(fr07 < 0 ~ NA,
+                     .default = fr07)
+    )) %>%
+  tidyr::drop_na(fr07) %>% # oder dplyr::filter(!is.na(fr07)) 
+  ggplot2::ggplot(mapping = aes(x = fr07)) +
+  ggplot2::geom_bar()
+
+# oder man trennt es: 
+allbus_c_2023_raw %>%
+  dplyr::mutate(fr07 = dplyr::case_when(fr07 < 0 ~ NA,
+                                        .default = fr07)) %>%
+  dplyr::filter(!is.na(fr07)) %>%
+  dplyr::mutate(fr07 = haven::as_factor(fr07)) %>%
+  ggplot2::ggplot(mapping = aes(x = fr07)) +
+  ggplot2::geom_bar()
+
+```
+
+# Aufgabe 4: Histogramm
+
+Wie ist die Häufigkeitsverteilung der Variable age? Stelle als Histogramm dar und interpretiere das Output. 
+
+```{r}
+allbus_c_2023_raw %>%
+  dplyr::mutate(age = dplyr::case_when(age < 0 ~ NA,
+                                        .default = age)) %>%
+  dplyr::filter(!is.na(age)) %>%
+ggplot(aes(x = age)) +
+    geom_histogram(binwidth = 5, # Säulenbreite
+                   fill = "grey", color = "black") + # Säulenfarbe
+    theme_minimal() 
+```
+
+
+
+# Aufgabe 5: Boxplot ??
+
+..
+
+
+
+```{r}
+
+```
+
+

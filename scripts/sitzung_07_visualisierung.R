@@ -1,5 +1,5 @@
 # QUANTITATIVE DATENANALYSE IN R | Maura Kratz | SoSe26 -----------
-# SITZUNG 07 Visualisierungen mit ggplot2         -----------
+# SITZUNG 07 Visualisierungen mit ggplot2               -----------
 # ______________________________________________________-----------
 
 
@@ -34,7 +34,7 @@ wk_btw_2025_strukt <- btw_2025_strukturdaten %>%
   # Arbeitslosenquote über Wahlkreise hinweg nach Bundesland
   boxplot(alo_quote_insgesamt ~ land, data = wk_btw_2025_strukt)
 
-  # Insgesamt also: UGLY!
+  # Insgesamt also: UNZUREICHEND!
 
 
 # Heute lernen wir schöne, maßgeschneiderte Grafiken mit ggplot2 zu erstellen!
@@ -54,7 +54,7 @@ wk_btw_2025_strukt <- btw_2025_strukturdaten %>%
 # 5. Anpassungen: Wie soll die Grafik aussehen? (z.B. Farben, Achsenbeschriftungen, Titel)
 
 
-# saeulendiagramm: wahlkreise pro bundesland
+# 03 Säulendiagramm: wahlkreise pro Bundesland ----------
 wk_btw_2025_strukt %>%
   dplyr::count(land, sort = TRUE) %>%
   ggplot2::ggplot(aes(x = reorder(land, n), y = n)) +
@@ -71,8 +71,6 @@ wk_btw_2025_strukt %>%
 # wie habe ich das jetzt gemacht?!
 
 
-# 03 layer by layer --------------
-
 # schritt 1: daten, achsen und geometrie
   wk_btw_2025_strukt %>%
     dplyr::count(land, sort = TRUE) %>%  # vorbereitende Rechnung
@@ -88,7 +86,7 @@ wk_btw_2025_strukt %>%
   # Kategorien einer Variable x nach den Werten von y sortieren
 
   # schritt 3: Titel, Achsenbeschriftungen und Design
-  wk_btw_2025_strukt %>%
+  wk_bar <- wk_btw_2025_strukt %>%
     dplyr::count(land, sort = TRUE) %>%
     ggplot2::ggplot(aes(x = reorder(land, n), y = n)) +
     ggplot2::geom_col() +
@@ -104,8 +102,16 @@ wk_btw_2025_strukt %>%
   # 90 Grad drehen, sodass sie sich nicht mehr überschneidet:
   # ggplot2::theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
+  ggplot2::ggsave("./output/wk_bar_plot.jpg",
+                  plot = wk_bar + theme_bw(),
+                  width = 8, height = 4, dpi = 300)
 
-# boxplot: arbeitslosenquote
+  ggplot2::ggsave("./output/wk_bar_plot.svg",
+                  plot = wk_bar + theme_bw(),
+                  width = 8, height = 4, dpi = 300)
+
+
+# 04 Boxplot: Arbeitslosenquote -----------
   wk_btw_2025_strukt %>%
     ggplot2::ggplot(aes(y = alo_quote_insgesamt)) +
     ggplot2::geom_boxplot(fill = "steelblue", # Farbe
@@ -130,3 +136,89 @@ wk_btw_2025_strukt %>%
     ggplot2::theme_minimal() +
     ggplot2::theme(axis.text.x = element_blank())
 
+
+## BONUS: Punkt-/ Liniendiagramm -----------------------------------------------
+
+  # Lade zunächst den Datensatz namens Quoten von der Webseite herunter
+
+  quoten <- readxl::read_excel("./data/Quoten.xlsx")
+
+  # Schritt 1: Definition der Datengrundlage + Koordinatensystem
+  ggplot2::ggplot(quoten, # Datensatz definieren
+                  aes(x = Folge, # aes = definieren, welche Daten auf X- und Y-Achse sollen
+                      y = alleMio))
+
+
+  # Schritt 2: Definition der Darstellungsweise
+  ggplot(quoten, # Datensatz definieren
+         aes(x = Folge, # aes = definieren, welche Daten auf X- und Y-Achse sollen
+             y = alleMio)) +
+    geom_point() # Datenpunkte hinzufügen
+
+
+  ggplot(quoten, # Datensatz definieren
+         aes(x = Folge, # aes = definieren, welche Daten auf X- und Y-Achse sollen
+             y = alleMio,
+             color = Sendung) # Gruppenvergleich: jede Sendung bekommt eine eigene Farbe
+  ) +
+    geom_point() # Datenpunkte hinzufügen
+
+
+  ggplot(quoten, # Datensatz definieren
+         aes(x = Folge, # aes = definieren, welche Daten auf X- und Y-Achse sollen
+             y = alleMio,
+             color = Sendung)) +
+    geom_point() +  # Datenpunkte hinzufügen
+    geom_line() # Datenpunkte miteinander verbinden/Linien hinzufügen
+
+  ggplot(quoten, # Datensatz definieren
+         aes(x = Folge, # aes = definieren, welche Daten auf X- und Y-Achse sollen
+             y = alleMio,
+             color = Sendung)) +
+    geom_point() + # Datenpunkte hinzufügen
+    geom_line() + # Datenpunkte miteinander verbinden/Linien hinzufügen
+    scale_y_continuous(limits = c(0,3)) + # y-Achse definieren
+    scale_x_continuous(breaks = c(0,1,2,3,4,5,6,7,8,9)) # x-Achse definieren
+
+  ggplot(quoten, # Datensatz definieren
+         aes(x = Folge, # aes = definieren, welche Daten auf X- und Y-Achse sollen
+             y = alleMio,
+             color = Sendung)) +
+    geom_point() + # Datenpunkte hinzufügen
+    geom_line() + # Datenpunkte miteinander verbinden/Linien hinzufügen
+    scale_y_continuous(limits = c(0,3)) +  # y-Achse definieren
+    scale_x_continuous(breaks = c(0,1,2,3,4,5,6,7,8,9)) + # x-Achse definieren
+    labs(x = "Folge", # x-Achse beschriften
+         y = "Anzahl der Zuschauenden in Mio.", # y-Achse beschriften
+         title = "Bachelorette teilweise mehr Zuschauende als Bachelor", # Titel geben
+         subtitle = "Zuschauende in Mio. nach Staffel und Folgen") # Untertitel gegeben
+
+
+  # In einem Objekt speichern
+  zuschauende_plot <- ggplot(quoten, # Datensatz definieren
+                             aes(x = Folge, # aes = definieren Sie, welche Daten verwendet werden (X- und Y-Achse)
+                                 y = alleMio,
+                                 color = Sendung)) + # x-Achse definieren
+    geom_point() + # Datenpunkte hinzufügen
+    geom_line() + # Datenpunkte miteinander verbinden/Linien hinzufügen
+    scale_y_continuous(limits = c(0,3)) + # y-Achse definieren
+    scale_x_continuous(breaks = c(0,1,2,3,4,5,6,7,8,9)) +
+    labs(x = "Folge", # x-Achse beschriftet
+         y = "Anzahl der Zuschauenden in Mio.", # y-Achse beschriftet
+         title = "Bachelorette teilweise mehr Zuschauende als Bachelor", # Titel gegeben
+         subtitle = "Zuschauende in Mio. nach Staffel und Folgen") # Untertitel gegeben
+
+
+  # Jetzt können wir das Objekt nutzen, um weitere Ebenen hinzuzufügen
+  zuschauende_plot + theme_bw() # theme hinzufügen
+
+
+  # Objekt als svg oder jpg datei herunterladen
+
+  ggplot2::ggsave("./output/zuschauende_plot.jpg",
+                  plot = zuschauende_plot + theme_bw(),
+                  width = 8, height = 4, dpi = 300)
+
+  ggplot2::ggsave("./output/zuschauende_plot.svg",
+                  plot = zuschauende_plot + theme_bw(),
+                  width = 8, height = 4, dpi = 300)
