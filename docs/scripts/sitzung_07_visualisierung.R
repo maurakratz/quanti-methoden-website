@@ -58,7 +58,7 @@ wk_btw_2025_strukt <- btw_2025_strukturdaten %>%
 wk_btw_2025_strukt %>%
   dplyr::count(land, sort = TRUE) %>%
   ggplot2::ggplot(aes(x = reorder(land, n), y = n)) +
-  ggplot2::geom_col(fill = "steelblue") +
+  ggplot2::geom_col() +
   ggplot2::coord_flip() +
   ggplot2::labs(
     title = "Wahlkreise pro Bundesland",
@@ -73,20 +73,25 @@ wk_btw_2025_strukt %>%
 
 # schritt 1: daten, achsen und geometrie
   wk_btw_2025_strukt %>%
-    dplyr::count(land, sort = TRUE) %>%  # vorbereitende Rechnung
-  ggplot2::ggplot(aes(x = land, y = n)) + # x und y
+    dplyr::count(land) %>%  # vorbereitende Rechnung
+    ggplot2::ggplot(aes(x = land, y = n)) + # x und y
     ggplot2::geom_col() # Säulen
 
 # schritt 2: sortieren und tauschen
   wk_btw_2025_strukt %>%
-    dplyr::count(land, sort = TRUE) %>%
-    ggplot2::ggplot(aes(x = reorder(land, n), y = n)) + # reorder sortiert
+    dplyr::count(land) %>%
+    ggplot2::ggplot(aes(x = reorder(land, n), y = n)) + # reorder sortiert K
+    # Kategorien einer Variable x nach den Werten von y
     ggplot2::geom_col() +
-    ggplot2::coord_flip() # x- und y-Achse tauschen,
-  # Kategorien einer Variable x nach den Werten von y sortieren
+    ggplot2::coord_flip() # x- und y-Achse tauschen
+
+  # alternativ zum flip können wir auch die Beschriftung der x-achse um
+  # 90 Grad drehen, sodass sie sich nicht mehr überschneidet:
+  # ggplot2::theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
 
   # schritt 3: Titel, Achsenbeschriftungen und Design
-  wk_bar <- wk_btw_2025_strukt %>%
+  wk_bar <- wk_btw_2025_strukt %>% # in einem Objekt speichern
     dplyr::count(land, sort = TRUE) %>%
     ggplot2::ggplot(aes(x = reorder(land, n), y = n)) +
     ggplot2::geom_col() +
@@ -95,17 +100,19 @@ wk_btw_2025_strukt %>%
       title = "Wahlkreise pro Bundesland", # Titel
       x = NULL, # keine x-Achsenbeschriftung (Achtung, Flip!)
       y = "Anzahl Wahlkreise"
-    ) +
-    ggplot2::theme_minimal()
+    )
 
-  # alternativ zum flip können wir auch die Beschriftung der x-achse um
-  # 90 Grad drehen, sodass sie sich nicht mehr überschneidet:
-  # ggplot2::theme(axis.text.x = element_text(angle = 45, hjust = 1))
+  wk_bar # ansehen
 
-  ggplot2::ggsave("./output/wk_bar_plot.jpg",
+  wk_bar + theme_bw() # Theme ändern
+
+  # Exportieren (wird nicht gebraucht, wenn wir in Quarto rendern!)
+  ggplot2::ggsave("./output/wk_bar_plot.png",
                   plot = wk_bar + theme_bw(),
                   width = 8, height = 4, dpi = 300)
 
+  # svg ist das beste Format für Word, weil verlustfrei
+  # das heißt man kann reinzoomen, ohne dass es pixelig wird
   ggplot2::ggsave("./output/wk_bar_plot.svg",
                   plot = wk_bar + theme_bw(),
                   width = 8, height = 4, dpi = 300)
@@ -119,7 +126,6 @@ wk_btw_2025_strukt %>%
     ggplot2::labs(title = "Arbeitslosenquote über alle Wahlkreise",
                   y = "Arbeitslosenquote (%)",
                   x = NULL) +
-    ggplot2::theme_minimal() +
     ggplot2::theme(axis.text.x = element_blank())
 
 
@@ -133,13 +139,25 @@ wk_btw_2025_strukt %>%
     ggplot2::labs(title = NULL,
                   y = "Arbeitslosenquote (%)",
                   x = NULL) +
-    ggplot2::theme_minimal() +
-    ggplot2::theme(axis.text.x = element_blank())
+    ggplot2::theme(axis.text.x = element_blank()) +
+    theme_minimal()
+
+  wk_btw_2025_strukt %>%
+    ggplot2::ggplot(mapping = aes(x = "", y = alo_quote_insgesamt)) +
+    ggplot2::geom_boxplot(fill = "steelblue", alpha = 0.5) +
+    ggplot2::stat_summary(fun = mean,
+                          geom = "point",
+                          shape = 4,
+                          size = 3) +
+    ggplot2::scale_y_continuous(breaks = seq(0, 20, by = 1)) +
+    ggplot2::labs(y = "Arbeitslosenquote (%)", x = NULL) +
+    ggplot2::theme_minimal()
 
 
 ## BONUS: Punkt-/ Liniendiagramm -----------------------------------------------
 
-  # Lade zunächst den Datensatz namens Quoten von der Webseite herunter
+  # Lade zunächst den Übungsdatensatz namens Quoten von der Webseite herunter und
+  # lege ihn in den Datenordner.
 
   quoten <- readxl::read_excel("./data/Quoten.xlsx")
 

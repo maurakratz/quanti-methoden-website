@@ -17,7 +17,7 @@ library(gtsummary) # ggf. vorher installieren!
 # Einlesen tun wir ihn mit dem haven-Paket:
 
 
-allbus_c_2023_raw <- read_dta("data/ZA8831_v1-3-0.dta")
+allbus_c_2023_raw <- haven::read_dta("data/ZA8831_v1-3-0.dta")
 View(ZA8831_v1_3_0)
 
 

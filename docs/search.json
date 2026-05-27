@@ -59,8 +59,8 @@
     "objectID": "slides/sitzung_07_visualisierung.html#willkommen-zurück",
     "href": "slides/sitzung_07_visualisierung.html#willkommen-zurück",
     "title": "Quantitative Methoden mit R & R-Studio",
-    "section": "",
-    "text": "Spannende Fragen an Daten lassen sich meistens zwei Polen zuordnen:\n\nVariation einer Variable (Kennwerte, Sitzung 5 & Häufigkeiten, Sitzung 06)\nKovariation zweier Variablen (Zusammenhänge, Sitzung 08)"
+    "section": "Willkommen zurück!",
+    "text": "Willkommen zurück!\n\n\n\n\n\nSpannende Fragen an Daten lassen sich meistens zwei Polen zuordnen:\n\nVariation einer Variable (Kennwerte, Sitzung 5 & Häufigkeiten, Sitzung 06)\nKovariation zweier Variablen (Zusammenhänge, Sitzung 08)"
   },
   {
     "objectID": "slides/sitzung_07_visualisierung.html#variation-untersuchen---1-variable",
@@ -81,7 +81,7 @@
     "href": "slides/sitzung_07_visualisierung.html#grammar-of-graphics",
     "title": "Quantitative Methoden mit R & R-Studio",
     "section": "Grammar of Graphics",
-    "text": "Grammar of Graphics\n\nFür detaillierte Einblicke empfehle ich das {EBook}(https://ggplot2-book.org/) von Hadley Wickham!"
+    "text": "Grammar of Graphics\n\nFür detaillierte Einblicke empfehle ich das EBook von Hadley Wickham!"
   },
   {
     "objectID": "slides/sitzung_07_visualisierung.html#grammar-of-graphics-1",
@@ -123,7 +123,7 @@
     "href": "slides/sitzung_07_visualisierung.html#farben-in-ggplot2-2",
     "title": "Quantitative Methoden mit R & R-Studio",
     "section": "Farben in ggplot2",
-    "text": "Farben in ggplot2\nFarbpaletten mit paletteer\n\n\n\nAttache Paket: 'dplyr'\n\n\nDie folgenden Objekte sind maskiert von 'package:stats':\n\n    filter, lag\n\n\nDie folgenden Objekte sind maskiert von 'package:base':\n\n    intersect, setdiff, setequal, union\n\n\n\n\n\n\n\n\n\nMehr Paletten unter: r-graph-gallery.com"
+    "text": "Farben in ggplot2\nFarbpaletten mit paletteer\n\nMehr Paletten unter: r-graph-gallery.com"
   },
   {
     "objectID": "slides/sitzung_07_visualisierung.html#farben-in-ggplot2-3",
@@ -158,7 +158,7 @@
     "href": "slides/sitzung_07_visualisierung.html#minute-cards",
     "title": "Quantitative Methoden mit R & R-Studio",
     "section": "Minute Cards",
-    "text": "Minute Cards\nBitte füllt die Minute Cards für die heutige Sitzung aus. Das sollt enicht länger als 3 Minuten dauern. Vielen Dank für eure Mitarbeit!\n\n\nWarning: Paket 'qrcode' wurde unter R Version 4.5.3 erstellt"
+    "text": "Minute Cards\nBitte füllt die Minute Cards für die heutige Sitzung aus. Das sollt enicht länger als 3 Minuten dauern. Vielen Dank für eure Mitarbeit!"
   },
   {
     "objectID": "slides/sitzung_05_kennwerte.html#exkurs-csv-dateien",
@@ -592,7 +592,7 @@
     "href": "sitzungen.html",
     "title": "Sitzungen",
     "section": "",
-    "text": "Hier findest du die Folien und R-Skripte zu jeder Sitzung. Folien sind als HTML (für den Browser) und PDF verfügbar.\n\n\n\n\n\n\n\n\n\n\n\n\nSitzung\nDatum\nThema\nSchlüsselbegriffe\nPakete\nFolien\nSkript\n\n\n\n\n01\n14.04.2026\nEinführung\nDatenanalyse, R, RStudio\nbase\nHTML / PDF\n—\n\n\n02\n21.04.2026\nProjekte & Datenimport\nArbeitsverzeichnis, Ordnerstruktur, variable names, variable labels, Codebook\nrio, janitor, labelled, summarytools\nHTML / PDF\nGrundlagen  Datenimport\n\n\n03\n28.04.2026\nData Cleaning & Wrangling\nUmbennenen, Filtern, Transformieren, Fehlende Werte\ndplyr::count(), dplyr::mutate(), dplyr::case_when(), dplyr::filter(), dplyr::select(), tidyr:::pivot_wider()\nHTML / PDF\nR\n\n\n04\n05.05.2026\nDataset Merging\nMaster, unterschiedliche Joins\ndplyr::left_join()\nHTML / PDF\nR\n\n\n05\n12.05.2026\nQuarto; Deskriptive Statistik – Kennwerte & Visualisierung\nMittelwert, Median, Streuung\nbase, dplyr, ggplot2\nHTML / PDF\nR / Quarto_Beispiel\n\n\n06\n19.05.2026\nDeskriptive Statistik – Häufigkeits- & Kreuztabellen\nHäufigkeiten, Kreuztabellen\ndplyr, quationr, janitor\nHTML / PDF\nR\n\n\n07\n26.05.2026\nDeskriptive Statistik – Schöne Grafiken\nGrammar of Graphics, Visualisierung\nggplot2, dplyr\n— / —\n—\n\n\n08\n02.06.2026\nDeskriptive Statistik – Korrelation & Einfache Lineare Regression\nKorrelation, Streudiagramm, OLS\ncorrr, texreg\n— / —\n—\n\n\n09\n09.06.2026\nInferenzstatistik – Einfache & Multiple Lineare Regression\nRegressionskoeffizienten, p-Wert, R²\nstats, performance\n— / —\n—\n\n\n10\n16.06.2026\nRegression Diagnostics\nResiduen, Heteroskedastizität, Ausreißer\nstats, performance\n— / —\n—\n\n\n11\n23.06.2026\nLogistische Regression\nOdds Ratio, binäre AV\nstats, performance\n— / —\n—\n\n\n12\n30.06.2026\nVarianzanalyse (ANOVA)\n—\n—\n— / —\n—\n\n\n13\n07.07.2026\n—\n—\n—\n— / —\n—\n\n\n14\n14.07.2026\n—\n—\n—\n— / —\n—"
+    "text": "Hier findest du die Folien und R-Skripte zu jeder Sitzung. Folien sind als HTML (für den Browser) und PDF verfügbar.\n\n\n\n\n\n\n\n\n\n\n\n\nSitzung\nDatum\nThema\nSchlüsselbegriffe\nPakete\nFolien\nSkript\n\n\n\n\n01\n14.04.2026\nEinführung\nDatenanalyse, R, RStudio\nbase\nHTML / PDF\n—\n\n\n02\n21.04.2026\nProjekte & Datenimport\nArbeitsverzeichnis, Ordnerstruktur, variable names, variable labels, Codebook\nrio, janitor, labelled, summarytools\nHTML / PDF\nGrundlagen  Datenimport\n\n\n03\n28.04.2026\nData Cleaning & Wrangling\nUmbennenen, Filtern, Transformieren, Fehlende Werte\ndplyr::count(), dplyr::mutate(), dplyr::case_when(), dplyr::filter(), dplyr::select(), tidyr:::pivot_wider()\nHTML / PDF\nR\n\n\n04\n05.05.2026\nDataset Merging\nMaster, unterschiedliche Joins\ndplyr::left_join()\nHTML / PDF\nR\n\n\n05\n12.05.2026\nQuarto; Deskriptive Statistik – Kennwerte & Visualisierung\nMittelwert, Median, Streuung\nbase, dplyr, ggplot2\nHTML / PDF\nR / Quarto_Beispiel\n\n\n06\n19.05.2026\nDeskriptive Statistik – Häufigkeits- & Kreuztabellen\nHäufigkeiten, Kreuztabellen\ndplyr, quationr, janitor\nHTML / PDF\nR\n\n\n07\n26.05.2026\nDeskriptive Statistik – Schöne Grafiken\nGrammar of Graphics, Visualisierung\nggplot2, dplyr\nHTML / PDF\nR ; Quoten\n\n\n08\n02.06.2026\nDeskriptive Statistik – Korrelation & Einfache Lineare Regression\nKorrelation, Streudiagramm, OLS\ncorrr, texreg\n— / —\n—\n\n\n09\n09.06.2026\nInferenzstatistik – Einfache & Multiple Lineare Regression\nRegressionskoeffizienten, p-Wert, R²\nstats, performance\n— / —\n—\n\n\n10\n16.06.2026\nRegression Diagnostics\nResiduen, Heteroskedastizität, Ausreißer\nstats, performance\n— / —\n—\n\n\n11\n23.06.2026\nLogistische Regression\nOdds Ratio, binäre AV\nstats, performance\n— / —\n—\n\n\n12\n30.06.2026\nVarianzanalyse (ANOVA)\n—\n—\n— / —\n—\n\n\n13\n07.07.2026\n—\n—\n—\n— / —\n—\n\n\n14\n14.07.2026\n—\n—\n—\n— / —\n—"
   },
   {
     "objectID": "slides/sitzung_02_data_import.html#willkommen-zurück",
