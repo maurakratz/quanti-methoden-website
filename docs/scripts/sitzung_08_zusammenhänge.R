@@ -6,6 +6,7 @@
 # setup ---------------------
 library(haven)
 library(dplyr)
+library(ggplot2)
 library(gtsummary) # ggf. vorher installieren!
 
 
@@ -59,11 +60,8 @@ if(FALSE){
 
 # Skalenniveaus ----------------------
 
-# Überblick alle Variablen: Position, Name, Label, Klasse, Values
-allbus_c_2023_raw %>%
-labelled::look_for(max.print = Inf) # max.print = Inf zeigt alle Variablen an, sonst nur die ersten 100)
-
-# bestimmte Variablen
+# Überblick bestimmte Variablen:
+# Position, Name, Label, Klasse, Values
 allbus_c_2023_raw %>%
   labelled::look_for("wirtschaftslage")
 
@@ -71,25 +69,76 @@ allbus_c_2023_raw %>%
 # und b) welche Labels zu den Werten gehören, damit ich entscheiden kann,
 # ob ich die Variable als Faktor oder metrisch weiterverarbeite.
 
-
-# Es kombiniert also, was wir sonst in 3 versch. Befehlen tun müssten:
-attr(allbus_c_2023_raw$ep01, "label")   # Variable Label
-attr(allbus_c_2023_raw$ep01, "labels")  # Value Labels mit Rohwerten
-class(allbus_c_2023_raw$ep01)           # -> "haven_labelled"
-
-
 # dann kann ich, je nach dem was ich tun will, die Variable weiterverarbeiten.
 # Bsp:
 
 allbus_c_2023_raw %>%
   dplyr::mutate(
-    ep01_f = haven::as_factor(ep01),    # ordinal/kategorial -> Faktor
-    age_d  = as.double(age)             # metrisch -> double
+    ep01_f = haven::as_factor(ep01), # ordinal/kategorial -> Faktor
+    age_d  = as.double(age) # metrisch -> double
   ) %>%
   select(ep01, ep01_f, age, age_d)
 # Entscheidungshilfe:
 ## kategorial -> as_factor(),
 ## metrisch -> as.integer()/as.double()
+
+
+# staked bar charts ----------------
+
+# anknüpfend an Übung 05 interesseirt uns vielleicht, inwiefern sich die
+# Einschätzung, eine vollzeit arbeitende Frau könne eine gute Mutter sein,
+# nach gender unterscheidet:
+
+allbus_c_2023_raw %>%
+  dplyr::mutate(fr07 = haven::as_factor(
+    dplyr::case_when(fr07 < 0 ~ NA,
+                     .default = fr07)
+  )) %>%
+  tidyr::drop_na(fr07) %>% # oder dplyr::filter(!is.na(fr07))
+  ggplot2::ggplot(mapping = aes(x = fr07)) +
+  ggplot2::geom_bar()
+
+# das passiert, wenn ich die variable vorher nicht bereinige:
+allbus_c_2023_raw %>%
+  dplyr::mutate(fr07 = haven::as_factor(
+    dplyr::case_when(fr07 < 0 ~ NA, .default = fr07))) %>%
+  dplyr::filter(!is.na(fr07)) %>%
+  ggplot2::ggplot(mapping = aes(x = fr07, fill = haven::as_factor(sex))) +
+  ggplot2::geom_bar()
+
+# look for sex
+allbus_c_2023_raw %>%
+  labelled::look_for("sex")
+
+# so ist es korrekt
+allbus_c_2023_raw %>%
+  dplyr::mutate(
+    fr07 = haven::as_factor(dplyr::case_when(fr07 < 0 ~ NA, .default = fr07)),
+    sex = haven::as_factor(dplyr::case_when(sex < 0 ~ NA, .default = sex))
+  ) %>%
+  dplyr::filter(!is.na(fr07),
+                !is.na(sex)) %>%
+  ggplot2::ggplot(mapping = aes(x = fr07, fill = sex)) + # fill entscheidend!
+  ggplot2::geom_bar()
+
+
+
+# weights (NOCH ERGÄNZEN, ggf. lieber srvyr) ----------------
+
+info_weights <- allbus_c_2023_raw %>%
+  labelled::look_for("wght")
+# wghtpew is what we want!
+
+allbus_c_2023_raw %>%
+  count(wghtpew)
+
+# install.packages("survey")
+library(survey)
+
+# AUS MASCH ET AL NOCH ANPASSEN!nun legen wir ein design object an
+allbus.w <- svydesign(ids =~ 1, data = allbus, weights =~ wghtpew)
+# ids ist übrigens für Erhebungscluster, die brauchen wir hier nicht
+
 
 
 # Kreuztabellen -----------------------

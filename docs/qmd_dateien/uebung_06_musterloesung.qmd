@@ -33,26 +33,34 @@ knitr:
 
 # Setup
 
+Lade die für deine Analyse nötigen Pakete. 
+
 ```{r}
+# lade Pakete
 library(here)
 library(haven)
-library(skimr)
-library(summarytools)
 library(dplyr)
-library(questionr)
+library(tidyr)
+library(labelled)
 library(ggplot2)
 ```
 
 # Aufgabe 1: Daten laden und vorbereiten
 
-Lade den ALLBUS compact herunter (siehe Webseite => Daten) und lege ihn in deinen data-Ordner. Versuche, dir anhand des Codebooks einen Überblick zu verschaffen. Einlesen tun wir ihn mit dem haven-Paket:
+Lade den ALLBUS compact herunter (siehe Webseite => Daten) und lege ihn in deinen data-Ordner. Versuche, dir anhand des Codebooks einen Überblick zu verschaffen. 
+
+Einlesen tun wir ihn mit dem haven-Paket:
 
 ```{r}
-allbus_c_2023_raw <- haven::read_dta(here::here("data", "ZA8831_v1-3-0.dta"))
-
+allbus_c_2023_raw <- haven::read_dta(here::here("./data/ZA8831_v1-3-0.dta"))
+# alternativ geht auch:
+# allbus_c_2023_raw <- haven::read_dta(here::here("data", "ZA8831_v1-3-0.dta"))
 ```
-Was ist das für ein Datensatz? Wieviele Beobachtungen und wieviele Variablen enthält er? Was für Variablen sind das? 
-*....*
+
+Was ist das für ein Datensatz? Wieviele Beobachtungen und wieviele Variablen enthält er? Was für Variablen sind das (grobe Zusammenfassung anhand des Codebuchs)? 
+
+*Der ALLBUS ist eine repräsentative Bevölkerungsumfrage in Deutschland, die seit 1980 regelmäßig erhoben wird (Repeated Cross-Sectional Data). Die Umfragewelle von 2023 umfasst 5.246 Befragte und 579 Variablen. Die Variablen umfassen neben soziodemografischen Merkmalen wie Alter, Geschlecht, Bildung und Einkommen auch politische Einstellungen, Werte und Rollenbilder, Einstellungen zu Migration und Wirtschaft sowie Angaben zum Wohlbefinden. Ergänzt werden diese durch technische Erhebungsmetadaten wie Interviewmodus und Gewichtungsvariablen.*
+
 
 # Aufgabe 2: Variable kennenlernen
 
@@ -63,19 +71,20 @@ allbus_c_2023_raw %>%
 labelled::look_for("fr07")
 ```
 
-**a)** Was bewirkt der Befehl?
+**a)** Was bewirkt der Befehl? Wozu könnte er dienlich sein? 
 
-*Look for gibt mir Auskunft über: Variablenname, Variablenlabel, Variablenklasse, Vaues und Value Labels (entspricht Faktorstufen und Faktorlevels). So kann ih auf einen Blick sehen, a) was zu NA gemacht werden muss, und b) welche Labels zu den Werten gehören. Auf dieser Grundlage kann ich entscheiden, ob ich die Variable als Faktor oder metrisch weiterverarbeite.*
+*Look for gibt mir Auskunft über: Variablenname, Variablenlabel, Variablenklasse, Values (entspricht Faktorstufen) und Value Labels (entspricht Faktorlevels). So kann ich auf einen Blick sehen, a) was zu NA gemacht werden muss, und b) welche Labels zu den Werten gehören. Auf dieser Grundlage kann ich entscheiden, ob ich die Variable als Faktor oder metrisch weiterverarbeite.*
 
-**b)** Interpretiere das Output, das die dieser Befehl liefert. 
+**b)** Interpretiere das Output, das er dir in diesem Fall liefert: Was ist die Variable/Frage? Wie ist die Skala? Was sind die Werte? Wie steht es um fehlende Werte? 
 
-
-*Die Variable fr07 gibt uns die Antworten der Befragten  auf die Frage danach, ob eine erwerbstätige frau auch eine gute Mutter sein könne.  Missings sind noch nicht korrekt kodiert. Vielmehr ist ist überall, wo der/ die Befragte andere Fragen bekommen hat mit -11 kodiert und jene, die keine Angabe machen wollten mit -9 und jene die als Antwort Weiß nicht gaben mit -8. Ansonsten geht es von 1 stimme voll zu bis 4 stimme gar nciht zu.*
+*Die Variable fr07 gibt uns die Antworten der Befragten  auf die Frage danach, ob eine erwerbstätige Frau auch eine gute Mutter sein könne.  Missings sind noch nicht korrekt kodiert. Statt echter fehlender Werte enthält der Datensatz numerische Codes: -11 für Befragte, die aufgrund des Fragebogensplits eine andere Frage erhalten haben, -9 für fehlende Angaben und -8 für „Weiß nicht"-Antworten. Die eigentliche Skala reicht von 1 („stimme voll zu") bis 4 („stimme gar nicht nicht zu").*
 
 
 # Aufgabe 3: Säulendiagramm
 
-Basierend auf dem Output auf Aufgabe 2, bereinige die Variable fr07 von den Missings und stelle die Häufigkeit der unterschiedlichen Kategorien als Säulendiagramm dar.
+Basierend auf dem Output aus Aufgabe 2: Bereinige die Variable fr07, indem du missings explizit machst, und stelle die Häufigkeit der unterschiedlichen Kategorien als Säulendiagramm dar.
+
+Hinweis: Du kannst entweder geom_bar() verwenden - dann zählt R die Häufigkeiten automatisch aus den Rohdaten - oder du berechnest die Häufigkeiten vorher mit count() und verwendest geom_col().
 
 ```{r}
  allbus_c_2023_raw %>%
@@ -87,20 +96,13 @@ Basierend auf dem Output auf Aufgabe 2, bereinige die Variable fr07 von den Miss
   ggplot2::ggplot(mapping = aes(x = fr07)) +
   ggplot2::geom_bar()
 
-# oder man trennt es: 
-allbus_c_2023_raw %>%
-  dplyr::mutate(fr07 = dplyr::case_when(fr07 < 0 ~ NA,
-                                        .default = fr07)) %>%
-  dplyr::filter(!is.na(fr07)) %>%
-  dplyr::mutate(fr07 = haven::as_factor(fr07)) %>%
-  ggplot2::ggplot(mapping = aes(x = fr07)) +
-  ggplot2::geom_bar()
-
 ```
 
 # Aufgabe 4: Histogramm
 
 Wie ist die Häufigkeitsverteilung der Variable age? Stelle als Histogramm dar und interpretiere das Output. 
+
+Hinweis: Die passende Geometrie dafür ist `geom_histogram()`. Die Breite der Säulen kannst du mit dem Argument `binwidth` anpassen, die Füllfarbe der Säulen mit mit `fill` und die Farbe der Ränder mit `color`).
 
 ```{r}
 allbus_c_2023_raw %>%
@@ -113,16 +115,37 @@ ggplot(aes(x = age)) +
     theme_minimal() 
 ```
 
+*Der Gipfel liegt um die 50–60 Jahre, danach nimmt die Häufigkeit ab.Es gibt wenige Befragte unter 25 und über 75.*
 
+# Aufgabe 5: Boxplot 
 
-# Aufgabe 5: Boxplot ??
-
-..
+Untersuche die politische Selbsteinstufung (pa01) in Ost- und Westdeutschland. Erstelle einen Boxplot der Links-Rechts-Selbsteinstufung (1 = links, 10 = rechts) getrennt nach Erhebungsgebiet (eastwest). Schließe fehlende Werte aus und füge den Mittelwert als rotes Kreuz ein. Interpretiere dein Ergebnis in eigenen Worten. Was fällt dir auf?
 
 
 
 ```{r}
-
+allbus_c_2023_raw %>%
+  dplyr::mutate(
+    pa01 = dplyr::case_when(pa01 < 0 ~ NA, .default = pa01),
+    eastwest = haven::as_factor(eastwest)
+  ) %>%
+  dplyr::filter(!is.na(pa01)) %>%
+  ggplot2::ggplot(mapping = aes(x = eastwest, y = pa01, fill = eastwest)) +
+  ggplot2::geom_boxplot(show.legend = FALSE, alpha = 0.7) +
+  ggplot2::stat_summary(fun = mean,
+                        geom = "point",
+                        shape = 4,
+                        size = 3,
+                        color = "red",
+                        show.legend = FALSE) +
+  ggplot2::scale_y_continuous(breaks = seq(1, 10, by = 1)) +
+  ggplot2::labs(
+    title = "Politische Selbsteinstufung in Ost- und Westdeutschland",
+    subtitle = "1 = links, 10 = rechts",
+    x = NULL,
+    y = "Links-Rechts-Skala (1–10)"
+  ) +
+  ggplot2::theme_minimal()
 ```
-
+*Beide Gruppen haben denselben Median (5). 50% der Befragten stufen sich also bei 5 oder darüber ein, 50% bei 5 oder darunter. Der Median liegt damit genau in der politischen Mitte. Der Mittelwert (×) liegt in beiden Gruppen knapp unter 5, in den neuen Bundesländern etwas niedriger (ca. 4,7), was auf eine leicht linksschiefe Verteilung im Osten hindeutet. Allerdings zeigt der Boxplot für die neuen Bundesländer einen größeren IQR: Die mittleren 50% der Werte streuen stärker nach unten.*
 

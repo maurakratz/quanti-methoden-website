@@ -55,6 +55,10 @@ wk_btw_2025_strukt <- btw_2025_strukturdaten %>%
 
 
 # 03 Säulendiagramm: wahlkreise pro Bundesland ----------
+
+  # Hinweis: geom_bar() zählt Häufigkeiten selbst und braucht nur ein x,
+  # geom_col() nimmt Werte aus den Daten und braucht ein x und ein y
+
 wk_btw_2025_strukt %>%
   dplyr::count(land, sort = TRUE) %>%
   ggplot2::ggplot(aes(x = reorder(land, n), y = n)) +

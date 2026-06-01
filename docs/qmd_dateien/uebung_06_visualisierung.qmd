@@ -1,0 +1,112 @@
+---
+title: "Übung 06: Schöne Grafiken!"
+subtitle: "Politik vermessen: Quantitative Methoden mit R | SoSe 2026 | Maura Kratz"
+author: "Vorname Nachname"
+date: today
+date-format: "DD.MM.YYYY"
+format:
+  pdf:
+    toc: false
+  html:
+    toc: true
+    toc-title: "Inhalt"
+    self-contained: true
+    theme: default
+execute:
+  echo: true
+  warning: false
+  message: false
+knitr:
+  opts_chunk:
+    fig-width: 7
+    fig-height: 4
+---
+
+<!-- ---------------------------------------------------------------
+     Hinweise zum Arbeiten mit dieser Datei:
+     - R-Code kommt in die Chunks (zwischen ```{r} und ```)
+     - Instruktionen stehen als unformatierter Text über den Chunks
+     - Interpretationen und Antworten kommen zwischen die ** unter den Chunks und werden also kursiv gerendert
+     - Rendern: Strg+Shift+K (oder oben Button "Render")
+     - Abgabe: die gerenderte PDF-Datei in Blackboard hochladen
+--------------------------------------------------------------- -->
+
+# Setup
+
+Lade die für deine Analyse nötigen Pakete. 
+```{r}
+# lade Pakete
+
+```
+
+# Aufgabe 1: Daten laden und vorbereiten
+
+Lade den ALLBUS compact herunter (siehe Webseite => Daten) und lege ihn in deinen data-Ordner. Versuche, dir anhand des Codebooks einen Überblick zu verschaffen. 
+
+Einlesen tun wir ihn mit dem haven-Paket:
+
+```{r}
+allbus_c_2023_raw <- haven::read_dta(here::here("./data/ZA8831_v1-3-0.dta"))
+# alternativ geht auch:
+# allbus_c_2023_raw <- haven::read_dta(here::here("data", "ZA8831_v1-3-0.dta"))
+```
+
+Was ist das für ein Datensatz? Wieviele Beobachtungen und wieviele Variablen enthält er? Was für Variablen sind das (grobe Zusammenfassung anhand des Codebuchs)? 
+
+*Antwort hier.*
+
+
+# Aufgabe 2: Variable kennenlernen
+
+Führe folgenden Befehl aus:
+
+```{r}
+allbus_c_2023_raw %>%
+labelled::look_for("fr07")
+```
+
+**a)** Was bewirkt der Befehl? Wozu könnte er dienlich sein? 
+
+*Antwort hier.*
+
+**b)** Interpretiere das Output, das er dir in diesem Fall liefert: Was ist die Variable/Frage? Wie ist die Skala? Was sind die Werte? Wie steht es um fehlende Werte? 
+
+*Antwort hier.*
+
+
+# Aufgabe 3: Säulendiagramm
+
+Basierend auf dem Output aus Aufgabe 2: Bereinige die Variable fr07, indem du missings explizit machst, und stelle die Häufigkeit der unterschiedlichen Kategorien als Säulendiagramm dar.
+
+Hinweis: Du kannst entweder geom_bar() verwenden - dann zählt R die Häufigkeiten automatisch aus den Rohdaten - oder du berechnest die Häufigkeiten vorher mit count() und verwendest geom_col().
+
+```{r}
+# Code hier:
+
+```
+
+# Aufgabe 4: Histogramm
+
+Wie ist die Häufigkeitsverteilung der Variable age? Stelle als Histogramm dar und interpretiere das Output. 
+
+Hinweis: Die passende Geometrie dafür ist `geom_histogram()`. Die Breite der Säulen kannst du mit dem Argument `binwidth` anpassen, die Füllfarbe der Säulen mit mit `fill` und die Farbe der Ränder mit `color`).
+
+```{r}
+# Code hier:
+
+```
+
+*Antwort hier.*
+
+
+# Aufgabe 5: Boxplot 
+
+Untersuche die politische Selbsteinstufung (pa01) in Ost- und Westdeutschland. Erstelle einen Boxplot der Links-Rechts-Selbsteinstufung (1 = links, 10 = rechts) getrennt nach Erhebungsgebiet (eastwest). Schließe fehlende Werte aus und füge den Mittelwert als rotes Kreuz ein. Interpretiere dein Ergebnis in eigenen Worten. Was fällt dir auf?
+
+
+
+```{r}
+# Code hier: 
+```
+*Antwort hier.*
+
