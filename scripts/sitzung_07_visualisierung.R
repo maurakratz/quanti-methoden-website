@@ -84,7 +84,7 @@ wk_btw_2025_strukt %>%
 # schritt 2: sortieren und tauschen
   wk_btw_2025_strukt %>%
     dplyr::count(land) %>%
-    ggplot2::ggplot(aes(x = reorder(land, n), y = n)) + # reorder sortiert K
+    ggplot2::ggplot(aes(x = reorder(land, n), y = n)) + # reorder sortiert
     # Kategorien einer Variable x nach den Werten von y
     ggplot2::geom_col() +
     ggplot2::coord_flip() # x- und y-Achse tauschen
@@ -156,6 +156,7 @@ wk_btw_2025_strukt %>%
     ggplot2::scale_y_continuous(breaks = seq(0, 20, by = 1)) +
     ggplot2::labs(y = "Arbeitslosenquote (%)", x = NULL) +
     ggplot2::theme_minimal()
+
 
 
 ## BONUS: Punkt-/ Liniendiagramm -----------------------------------------------

@@ -592,7 +592,7 @@
     "href": "sitzungen.html",
     "title": "Sitzungen",
     "section": "",
-    "text": "Hier findest du die Folien und R-Skripte zu jeder Sitzung. Folien sind als HTML (für den Browser) und PDF verfügbar.\n\n\n\n\n\n\n\n\n\n\n\n\nSitzung\nDatum\nThema\nSchlüsselbegriffe\nPakete\nFolien\nSkript\n\n\n\n\n01\n14.04.2026\nEinführung\nDatenanalyse, R, RStudio\nbase\nHTML / PDF\n—\n\n\n02\n21.04.2026\nProjekte & Datenimport\nArbeitsverzeichnis, Ordnerstruktur, variable names, variable labels, Codebook\nrio, janitor, labelled, summarytools\nHTML / PDF\nGrundlagen  Datenimport\n\n\n03\n28.04.2026\nData Cleaning & Wrangling\nUmbennenen, Filtern, Transformieren, Fehlende Werte\ndplyr::count(), dplyr::mutate(), dplyr::case_when(), dplyr::filter(), dplyr::select(), tidyr:::pivot_wider()\nHTML / PDF\nR\n\n\n04\n05.05.2026\nDataset Merging\nMaster, unterschiedliche Joins\ndplyr::left_join()\nHTML / PDF\nR\n\n\n05\n12.05.2026\nQuarto; Deskriptive Statistik – Kennwerte & Visualisierung\nMittelwert, Median, Streuung\nbase, dplyr, ggplot2\nHTML / PDF\nR / Quarto_Beispiel\n\n\n06\n19.05.2026\nDeskriptive Statistik – Häufigkeits- & Kreuztabellen\nHäufigkeiten, Kreuztabellen\ndplyr, quationr, janitor\nHTML / PDF\nR\n\n\n07\n26.05.2026\nDeskriptive Statistik – Schöne Grafiken\nGrammar of Graphics, Visualisierung\nggplot2, dplyr\nHTML / PDF\nR ; Quoten\n\n\n08\n02.06.2026\nDeskriptive Statistik – Korrelation & Einfache Lineare Regression\nKorrelation, Streudiagramm, OLS\ncorrr, texreg\n— / —\n—\n\n\n09\n09.06.2026\nInferenzstatistik – Einfache & Multiple Lineare Regression\nRegressionskoeffizienten, p-Wert, R²\nstats, performance\n— / —\n—\n\n\n10\n16.06.2026\nRegression Diagnostics\nResiduen, Heteroskedastizität, Ausreißer\nstats, performance\n— / —\n—\n\n\n11\n23.06.2026\nLogistische Regression\nOdds Ratio, binäre AV\nstats, performance\n— / —\n—\n\n\n12\n30.06.2026\nVarianzanalyse (ANOVA)\n—\n—\n— / —\n—\n\n\n13\n07.07.2026\n—\n—\n—\n— / —\n—\n\n\n14\n14.07.2026\n—\n—\n—\n— / —\n—"
+    "text": "Hier findest du die Folien und R-Skripte zu jeder Sitzung. Folien sind als HTML (für den Browser) und PDF verfügbar.\n\n\n\n\n\n\n\n\n\n\n\n\nSitzung\nDatum\nThema\nSchlüsselbegriffe\nPakete\nFolien\nSkript\n\n\n\n\n01\n14.04.2026\nEinführung\nDatenanalyse, R, RStudio\nbase\nHTML / PDF\n—\n\n\n02\n21.04.2026\nProjekte & Datenimport\nArbeitsverzeichnis, Ordnerstruktur, variable names, variable labels, Codebook\nrio, janitor, labelled, summarytools\nHTML / PDF\nGrundlagen  Datenimport\n\n\n03\n28.04.2026\nData Cleaning & Wrangling\nUmbennenen, Filtern, Transformieren, Fehlende Werte\ndplyr::count(), dplyr::mutate(), dplyr::case_when(), dplyr::filter(), dplyr::select(), tidyr:::pivot_wider()\nHTML / PDF\nR\n\n\n04\n05.05.2026\nDataset Merging\nMaster, unterschiedliche Joins\ndplyr::left_join()\nHTML / PDF\nR\n\n\n05\n12.05.2026\nQuarto; Deskriptive Statistik – Kennwerte & Visualisierung\nMittelwert, Median, Streuung\nbase, dplyr, ggplot2\nHTML / PDF\nR / Quarto_Beispiel\n\n\n06\n19.05.2026\nDeskriptive Statistik – Häufigkeits- & Kreuztabellen\nHäufigkeiten, Kreuztabellen\ndplyr, questionr, janitor\nHTML / PDF\nR\n\n\n07\n26.05.2026\nDeskriptive Statistik – Schöne Grafiken\nGrammar of Graphics, Visualisierung\nggplot2, dplyr\nHTML / PDF\nR ; Quoten\n\n\n08\n02.06.2026\nDeskriptive Statistik – Kreuztabelle & Korrelation\nKorrelationskoeffizient, Streudiagramm\ncorrelation, gtsummary , gmodels\nHTML / PDF\nALLBUS-dfSummary\n\n\n09\n09.06.2026\nInferenzstatistik – Einfache & Multiple Lineare Regression\nRegressionskoeffizienten, p-Wert, R²\nstats, performance, texreg\n— / —\n—\n\n\n10\n16.06.2026\nRegression Diagnostics\nResiduen, Heteroskedastizität, Ausreißer\nstats, performance\n— / —\n—\n\n\n11\n23.06.2026\nLogistische Regression\nOdds Ratio, binäre AV\nstats, performance\n— / —\n—\n\n\n12\n30.06.2026\nVarianzanalyse (ANOVA)\n—\n—\n— / —\n—\n\n\n13\n07.07.2026\n—\n—\n—\n— / —\n—\n\n\n14\n14.07.2026\n—\n—\n—\n— / —\n—"
   },
   {
     "objectID": "slides/sitzung_02_data_import.html#willkommen-zurück",
@@ -907,7 +907,7 @@
     "href": "slides/sitzung_08_zusammenhänge.html#variation-untersuchen---2-variablen",
     "title": "Quantitative Methoden mit R & R-Studio",
     "section": "Variation untersuchen - 2 Variablen",
-    "text": "Variation untersuchen - 2 Variablen\n\n\n\n\n\n\n\n\n\nSkalenniveau\nZiel / Frage\nKennwert / Tabelle\nR-Funktion\n\n\n\n\nKat. × Kat.\nGemeinsame Häufigk.\nKreuztabelle\ntable(x, y) · count()\n\n\nKat. × Metrisch\nGruppen vergleichen\nKennwerte nach Gruppe\ngroup_by() %&gt;% summarise()\n\n\nMetrisch × Metrisch\nZusammenhang\nKorrelationskoeffizient\ncor()\n\n\n\n\n\n\n\n\n\nTip\n\n\nWie wir Zusammenhänge zwischen zwei Variablen (bzw. Kovariation) untersuchen und visualisieren können, lernen wir heute!"
+    "text": "Variation untersuchen - 2 Variablen\n\n\n\n\n\n\n\n\n\nSkalenniveau\nZiel / Frage\nKennwert / Tabelle\nR-Funktion\n\n\n\n\nKat. × Kat.\nGemeinsame Häufigk.\nKreuztabelle\ncount() + janitor; gtsummary::tbl_cross(); questionr::wtd.table()\n\n\nKat. × Metrisch\nGruppen vergleichen\nKennwerte nach Gruppe\ngroup_by() %&gt;% summarise()\n\n\nMetrisch × Metrisch\nZusammenhang\nKorrelationskoeffizient\ncorrelation::correlation()\n\n\n\n\n\n\n\n\n\nTip\n\n\nWie wir Zusammenhänge zwischen zwei Variablen (bzw. Kovariation) untersuchen und visualisieren können, lernen wir heute!"
   },
   {
     "objectID": "slides/sitzung_08_zusammenhänge.html#visualisierung---2-variablen",
@@ -942,7 +942,7 @@
     "href": "uebungen.html",
     "title": "Übungen",
     "section": "",
-    "text": "Jede Woche gibt es eine kleine Übungsaufgabe zur Vertiefung des Gelernten. Die Abgabe erfolgt auf Blackboard im Reiter “Abgaben” bis jeweils Sonntag, 23:59 Uhr vor der nächsten Sitzung. Sollte es unerwartet zu Problemen mit Blackboard kommen, kann die Übung auch per E-Mail an maura.kratz@fu-berlin.de eingereicht werden. Die fristgerechte Einreichung der Übungen ist Bestandteil der aktiven und regelmäßigen Teilnahme.\nUnter Materialien findest du zusätzliche Quellen — etwa Lektüre oder Videos - zur Vor- und/ oder Nachbereitung der jeweiligen Sitzung. Die Bearbeitung ist optional. Eine Einreichung ist nicht erforderlich. Wer beim Durcharbeiten merkt, dass die Wiederholung nicht nötig ist, kann sie überspringen.\n\n\n\n\n\n\n\n\n\n\nSitzung\nThema\nMaterialien\nÜbung\nLösung\n\n\n\n\n01\nEinführung\nInstalliere R und R-Studio! (siehe Folien zu Sitzung 1)\n—\n—\n\n\n02\nProjekte & Datenimport\nEin cheatsheet zu den unterschiedlichen Datenformaten und wie man sie einlesen kann.\nÜbung_01\n01_Lösung\n\n\n03\nData Cleaning and Wrangling\nEin cheatsheet zu den wichtigsten dplyr-Befehlen, sowie zu tidyr um pivot_wider() besser zu verstehen.\nÜbung_02\n02_Lösung\n\n\n04\nDataset Merging\nDasselbe cheatsheet zu den dplyr-Befehlen (siehe oben), diesmal mit Fokus auf “Joining Tables.”\nÜbung_03\n03_Lösung\n\n\n05\nQuarto; Deskriptive Statistik – Kennwerte & Visualisierung\nKapitel 1 (bis 1.8) und Kapitel 2 (bis 2.12) im E-Book Statistik Grundlagen; Ein Foliensatz aus dem Datacamp-Kurs “Introduction to the tidyverse” zu den summarize()- und group_by()-Befehlen aus dem dplyr-Paket, sowie Visualisierungsoptionen mit ggplot2. Ein cheatsheet zu Quarto. Alternativ das wichtigste auch in meinem Quarto-Handout.Details findet ihr auch immer auf der Quarto-Website von Posit.\nÜbung 04 (sieht nachher als PDF etwa so aus)\n04_Lösung\n\n\n06\nDeskriptive Statistik – Häufigkeitstabellen\nStatistik Grundlagen Kapitel 3 (nur bis 3.2)\nÜbung 05\n05_Lösung\n\n\n07\nDeskriptive Statistik – Schöne Grafiken\nEin cheatsheet zu Visualisierungsmöglichkeiten und wann welche am besten passt.\nÜbung 06\n—\n\n\n08\nDeskriptive Statistik – Kreuztabellen, Korrelation & Einfache Lineare Regression\n—\n—\n—\n\n\n09\nInferenzstatistik – Einfache & Multiple Lineare Regression\n—\n—\n—\n\n\n10\nRegression Diagnostics\n—\n—\n—\n\n\n11\nLogistische Regression\n—\n—\n—\n\n\n12\nVarianzanalyse (ANOVA)\n—\n—\n—\n\n\n13\n—\n—\n—\n—\n\n\n14\n—\n—\n—\n—"
+    "text": "Jede Woche gibt es eine kleine Übungsaufgabe zur Vertiefung des Gelernten. Die Abgabe erfolgt auf Blackboard im Reiter “Abgaben” bis jeweils Sonntag, 23:59 Uhr vor der nächsten Sitzung. Sollte es unerwartet zu Problemen mit Blackboard kommen, kann die Übung auch per E-Mail an maura.kratz@fu-berlin.de eingereicht werden. Die fristgerechte Einreichung der Übungen ist Bestandteil der aktiven und regelmäßigen Teilnahme.\nUnter Materialien findest du zusätzliche Quellen — etwa Lektüre oder Videos - zur Vor- und/ oder Nachbereitung der jeweiligen Sitzung. Die Bearbeitung ist optional. Eine Einreichung ist nicht erforderlich. Wer beim Durcharbeiten merkt, dass die Wiederholung nicht nötig ist, kann sie überspringen.\n\n\n\n\n\n\n\n\n\n\nSitzung\nThema\nMaterialien\nÜbung\nLösung\n\n\n\n\n01\nEinführung\nInstalliere R und R-Studio! (siehe Folien zu Sitzung 1)\n—\n—\n\n\n02\nProjekte & Datenimport\nEin cheatsheet zu den unterschiedlichen Datenformaten und wie man sie einlesen kann.\nÜbung_01\n01_Lösung\n\n\n03\nData Cleaning and Wrangling\nEin cheatsheet zu den wichtigsten dplyr-Befehlen, sowie zu tidyr um pivot_wider() besser zu verstehen.\nÜbung_02\n02_Lösung\n\n\n04\nDataset Merging\nDasselbe cheatsheet zu den dplyr-Befehlen (siehe oben), diesmal mit Fokus auf “Joining Tables.”\nÜbung_03\n03_Lösung\n\n\n05\nQuarto; Deskriptive Statistik – Kennwerte & Visualisierung\nKapitel 1 (bis 1.8) und Kapitel 2 (bis 2.12) im E-Book Statistik Grundlagen; Ein Foliensatz aus dem Datacamp-Kurs “Introduction to the tidyverse” zu den summarize()- und group_by()-Befehlen aus dem dplyr-Paket, sowie Visualisierungsoptionen mit ggplot2. Ein cheatsheet zu Quarto. Alternativ das wichtigste auch in meinem Quarto-Handout.Details findet ihr auch immer auf der Quarto-Website von Posit.\nÜbung 04 (sieht nachher als PDF etwa so aus)\n04_Lösung\n\n\n06\nDeskriptive Statistik – Häufigkeitstabellen\nStatistik Grundlagen Kapitel 3 (nur bis 3.2)\nÜbung 05\n05_Lösung\n\n\n07\nDeskriptive Statistik – Schöne Grafiken\nEin cheatsheet zu Visualisierungsmöglichkeiten und wann welche am besten passt.\nÜbung 06\n—\n\n\n08\nDeskriptive Statistik – Kreuztabellen & Korrelation\nStatistik Grundlagen Kapitel 4 (nur bis 4.7)\nÜbung 07\n—\n\n\n09\nInferenzstatistik – Einfache & Multiple Lineare Regression\n—\n—\n—\n\n\n10\nRegression Diagnostics\n—\n—\n—\n\n\n11\nLogistische Regression\n—\n—\n—\n\n\n12\nVarianzanalyse (ANOVA)\n—\n—\n—\n\n\n13\n—\n—\n—\n—\n\n\n14\n—\n—\n—\n—"
   },
   {
     "objectID": "uebungen/uebung_04_kennwerte.html",
@@ -968,6 +968,48 @@
   {
     "objectID": "slides/sitzung_07_visualisierung.html",
     "href": "slides/sitzung_07_visualisierung.html",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "",
+    "text": "Spannende Fragen an Daten lassen sich meistens zwei Polen zuordnen:\n\nVariation einer Variable (Kennwerte, Sitzung 5 & Häufigkeiten, Sitzung 06)\nKovariation zweier Variablen (Zusammenhänge, Sitzung 08)"
+  },
+  {
+    "objectID": "slides/sitzung_08_zusammenhänge.html#recap-visualisierungen",
+    "href": "slides/sitzung_08_zusammenhänge.html#recap-visualisierungen",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Recap: Visualisierungen",
+    "text": "Recap: Visualisierungen"
+  },
+  {
+    "objectID": "slides/sitzung_08_zusammenhänge.html#kreuztabelle",
+    "href": "slides/sitzung_08_zusammenhänge.html#kreuztabelle",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Kreuztabelle",
+    "text": "Kreuztabelle\n\nZusammenhänge können mit Kreuztabellen oder Korrelationsmaßen dargestellt werden"
+  },
+  {
+    "objectID": "slides/sitzung_08_zusammenhänge.html#korrelationsmaße",
+    "href": "slides/sitzung_08_zusammenhänge.html#korrelationsmaße",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Korrelationsmaße",
+    "text": "Korrelationsmaße\n\nZusammenhänge können mit Kreuztabellen oder Korrelationsmaßen dargestellt werden\nKorrelationsmaße (auch Zusammenhangsmaße) geben Auskunft darüber, inwiefern ein Zusammenhang zwischen Variablen besteht.\nWertebereich -1 (perfekt negativer Zusammenhang) bis +1 (perfekt positiver Zusammenhang)\n\nAb (+/-) r=.10 spricht man von einem schwachen Zusammenhang (schwacher Effekt)\nAb (+/-) r=.30 spricht man von einem mittleren Zusammenhang (mittlerer Effekt)\nAb (+/-) r=.50 spricht man von einem starken Zusammenhang (starker Effekt).\n\nmehr dazu, wie er konkret berechnet wird unter Statistik-Grundlagen"
+  },
+  {
+    "objectID": "slides/sitzung_08_zusammenhänge.html#grenzen-der-korrelationsmaße",
+    "href": "slides/sitzung_08_zusammenhänge.html#grenzen-der-korrelationsmaße",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Grenzen der Korrelationsmaße",
+    "text": "Grenzen der Korrelationsmaße\n\nMisst nur lineare Zusammenhänge!\nAber, wie wir wissen gibt es auch andere Zusammenhänge\nBsp.: Partyhäufigkeit und Alter; Quadratische Korrelationen\nKorrelation ist keine Kausalität!\nBsp.: Menschen mit Feuerzeug haben ein erhöhtes Lungenkrebsrisiko"
+  },
+  {
+    "objectID": "slides/sitzung_08_zusammenhänge.html#korrelationsmaße-1",
+    "href": "slides/sitzung_08_zusammenhänge.html#korrelationsmaße-1",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Korrelationsmaße",
+    "text": "Korrelationsmaße\n\n\n\n\nmehr zu den verschiedenen Korrelationsmaßen unter Statistik-Grundlagen in Kapitel 4 zu Korrelationen!"
+  },
+  {
+    "objectID": "slides/sitzung_08_zusammenhänge.html",
+    "href": "slides/sitzung_08_zusammenhänge.html",
     "title": "Quantitative Methoden mit R & R-Studio",
     "section": "",
     "text": "Spannende Fragen an Daten lassen sich meistens zwei Polen zuordnen:\n\nVariation einer Variable (Kennwerte, Sitzung 5 & Häufigkeiten, Sitzung 06)\nKovariation zweier Variablen (Zusammenhänge, Sitzung 08)"

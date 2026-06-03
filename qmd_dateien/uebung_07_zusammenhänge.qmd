@@ -1,0 +1,79 @@
+---
+title: "Übung 07: Zusammenhänge"
+subtitle: "Politik vermessen: Quantitative Methoden mit R | SoSe 2026 | Maura Kratz"
+author: "Vorname Nachname"
+date: today
+date-format: "DD.MM.YYYY"
+format:
+  pdf:
+    toc: false
+  html:
+    toc: true
+    toc-title: "Inhalt"
+    self-contained: true
+    theme: default
+execute:
+  echo: true
+  warning: false
+  message: false
+knitr:
+  opts_chunk:
+    fig-width: 7
+    fig-height: 4
+---
+
+<!-- ---------------------------------------------------------------
+     Hinweise zum Arbeiten mit dieser Datei:
+     - R-Code kommt in die Chunks (zwischen ```{r} und ```)
+     - Instruktionen stehen als unformatierter Text über den Chunks
+     - Interpretationen und Antworten kommen zwischen die ** unter den Chunks und werden also kursiv gerendert
+     - Rendern: Strg+Shift+K (oder oben Button "Render")
+     - Abgabe: die gerenderte PDF-Datei in Blackboard hochladen
+--------------------------------------------------------------- -->
+
+# Setup
+
+Lade die für deine Analyse nötigen Pakete. 
+
+```{r}
+# Code hier
+
+```
+
+# Aufgabe 1: Daten laden
+
+Lies den ALLBUS-Datensatz von 2023 ein. Speichere den Datensatz in einem Objekt namens `allbus_c_2023_raw`.
+
+```{r}
+# Code hier
+```
+
+Unter Sitzungen => Sitzung 08 findest du außerdem eine mit summarytools erstellte Übersicht über den Datensatz. Lade sie gern herunter und lege sie in deinen Datenordner. Du wirst im Laufe dieser und zukünftiger Übungen die Gelegenheit bekommen, selbst auszuwählen, welche Zusammenhänge dich interessieren. Um diese Auswahl zu treffen, kannst du dich auf diese Datensatzübersicht stützten. 
+
+
+# Aufgabe 2: Variablen vorbereiten
+
+Suche dir zwei (oder mehr) Variablen aus, deren Zusammenhang dich interessiert. Nimm dazu gern die Datensatzübersicht zur Hand (siehe oben). Welches Bauchgefühl oder welche Vermutung hast du bezüglich des Zusammenhangs? 
+
+*Antwort hier.*
+
+Mit dem look for-Befehl aus dem labelled-Package kannst du anschließend nach diesen Variablen suchen. Beantworte dir für jede der Variablen folgende Fragen: Welche Werte kann sie annehmen? Und welche davon sind in Wahrheit "Missings"? Konvertiere diese Werte zu NA. Transformiere dabei die Variable zu einem Faktor, wenn sie kategorial ist, oder zu einer numerischen Variable, wenn sie metrisch bzw. intervallakaliert ist. Vergiss bei ersterer Option nicht, die leeren Faktorlevel zu entfernen (siehe Skript zu Sitzung 08).
+
+```{r}
+# Code hier 
+```
+
+*Antwort hier.*
+
+
+# Aufgabe 3: Zusammenhang erkunden
+
+Überlege dir, wie du den Zusammenhang, der dich interessiert, am besten darstellen könntest. In einer Kreuztabelle? In einem (gestapelten) Balkendiagramm? In einer Korrelationsmatrix oder einem Korrelationskoeffizienten? Nutze alle Darstellungsmöglichkeiten, die sinnvoll sind und führe die entsprechenden Analysen durch. Interpretiere dein Output unten. 
+
+```{r}
+# Code hier
+```
+
+
+*Antwort hier.*
+

@@ -3,27 +3,39 @@
 # ______________________________________________________-----------
 
 
-# setup ---------------------
+# 01 setup ---------------------
+# das Übliche
 library(haven)
 library(dplyr)
+library(forcats)
+library(labelled)
 library(ggplot2)
+# für Kreuztabellen
+library(gmodels)
 library(gtsummary) # ggf. vorher installieren!
+library(janitor)
+library(questionr)
+# für Korrelationen
+library(correlation)
+library(report)
 
 
-
-# data ------------------------
+# 02 data ------------------------
 
 # Lade den ALLBUS compact herunter (siehe Webseite => Daten)
 # Lege ihn in deinen data-Ordner.
 # Einlesen tun wir ihn mit dem haven-Paket:
 
 
-allbus_c_2023_raw <- haven::read_dta("data/ZA8831_v1-3-0.dta")
-View(ZA8831_v1_3_0)
+allbus_c_2023_raw <- haven::read_dta("./data/ZA8831_v1-3-0.dta")
+
+# View(allbus_c_2023_raw)
 
 
 
-# Exkurs Datenformate: labelled-Vektoren und Faktoren
+# 03 Exkurs Datenformate -------------------------
+
+# labelled-Vektoren und Faktoren
 
 # In Stata haben die Ausprägungen von Variablen zwei Ebenen:
 # den numerischen Rohwert bzw. Value (z.B. 1, 2, 3)
@@ -57,8 +69,7 @@ if(FALSE){
 
 
 
-
-# Skalenniveaus ----------------------
+# 04 Umgang mit haven-labelled-Vektoren (wie im ALLBUS) ----------------------
 
 # Überblick bestimmte Variablen:
 # Position, Name, Label, Klasse, Values
@@ -67,7 +78,8 @@ allbus_c_2023_raw %>%
 
 # das gibt mir darüber Auskunft a) was zu NA gemacht werden muss
 # und b) welche Labels zu den Werten gehören, damit ich entscheiden kann,
-# ob ich die Variable als Faktor oder metrisch weiterverarbeite.
+# ob ich die Variable als Faktor oder metrisch weiterverarbeite (Stich-
+# wort Skalenniveau).
 
 # dann kann ich, je nach dem was ich tun will, die Variable weiterverarbeiten.
 # Bsp:
@@ -83,12 +95,16 @@ allbus_c_2023_raw %>%
 ## metrisch -> as.integer()/as.double()
 
 
-# staked bar charts ----------------
+# ERGÄNZUNG VISUALISIERUNG ------------------------------
 
-# anknüpfend an Übung 05 interesseirt uns vielleicht, inwiefern sich die
+# Staked bar charts ----------------
+
+# anknüpfend an Übung 05 interessiert uns vielleicht, inwiefern sich die
 # Einschätzung, eine vollzeit arbeitende Frau könne eine gute Mutter sein,
-# nach gender unterscheidet:
+# nach Gender der Befragten unterscheidet:
 
+# Zur Erinnerung: so sah unser ursprünglicher plot aus
+# ohne Differenzierung nach Gender):
 allbus_c_2023_raw %>%
   dplyr::mutate(fr07 = haven::as_factor(
     dplyr::case_when(fr07 < 0 ~ NA,
@@ -98,13 +114,15 @@ allbus_c_2023_raw %>%
   ggplot2::ggplot(mapping = aes(x = fr07)) +
   ggplot2::geom_bar()
 
-# das passiert, wenn ich die variable vorher nicht bereinige:
+# nun muss ich sex als fill-Variable auf der aestetics-Layer hinzufügen:
 allbus_c_2023_raw %>%
   dplyr::mutate(fr07 = haven::as_factor(
     dplyr::case_when(fr07 < 0 ~ NA, .default = fr07))) %>%
   dplyr::filter(!is.na(fr07)) %>%
   ggplot2::ggplot(mapping = aes(x = fr07, fill = haven::as_factor(sex))) +
   ggplot2::geom_bar()
+# siehe Legende: das passiert, wenn ich die variable vorher nicht bereinige
+# können wir so lassen, sauberer wäre aber...
 
 # look for sex
 allbus_c_2023_raw %>%
@@ -118,32 +136,82 @@ allbus_c_2023_raw %>%
   ) %>%
   dplyr::filter(!is.na(fr07),
                 !is.na(sex)) %>%
-  ggplot2::ggplot(mapping = aes(x = fr07, fill = sex)) + # fill entscheidend!
+  ggplot2::ggplot(mapping = aes(x = fr07, fill = sex)) +
   ggplot2::geom_bar()
 
-
-
-# weights (NOCH ERGÄNZEN, ggf. lieber srvyr) ----------------
-
-info_weights <- allbus_c_2023_raw %>%
-  labelled::look_for("wght")
-# wghtpew is what we want!
+# und noch der letzte Feinschliff
+allbus_c_2023_raw %>%
+  dplyr::mutate(
+    fr07 = haven::as_factor(dplyr::case_when(fr07 < 0 ~ NA, .default = fr07)),
+    sex  = haven::as_factor(dplyr::case_when(sex  < 0 ~ NA, .default = sex))
+  ) %>%
+  dplyr::filter(!is.na(fr07), !is.na(sex)) %>%
+  ggplot2::ggplot(aes(x = fr07, fill = sex)) +
+  ggplot2::geom_bar(color = "black") +
+  ggplot2::scale_y_continuous(breaks = seq(0, 5000, by = 100)) +
+  ggplot2::theme_bw() +
+  ggplot2::theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    legend.title = element_blank(),
+    axis.title.y = element_blank()
+  )
 
 allbus_c_2023_raw %>%
-  count(wghtpew)
+  dplyr::mutate(
+    fr07 = haven::as_factor(dplyr::case_when(fr07 < 0 ~ NA, .default = fr07)),
+    sex  = haven::as_factor(dplyr::case_when(sex  < 0 ~ NA, .default = sex))
+  ) %>%
+  dplyr::filter(!is.na(fr07), !is.na(sex)) %>%
+  ggplot2::ggplot(aes(x = fr07, fill = sex)) +
+  ggplot2::geom_bar(color = "black", position = "fill") + # stapelt auf 100%
+  ggplot2::scale_y_continuous(labels = scales::percent) +
+  ggplot2::theme_bw() +
+  ggplot2::theme(
+    axis.text.x  = element_text(angle = 45, hjust = 1),
+    legend.title = element_blank()
+  )
 
-# install.packages("survey")
-library(survey)
+# Allerdings ist im Allbus Ostdeutschland "oversampled",
+# d.h. es gibt mehr Ostdeutsche in der Stichprobe als in der Bevölkerung.
+# Das könnte die Ergebnisse verzerren.
+# Deshalb müssen wir die Daten gewichten, um die Verzerrung zu korrigieren.
 
-# AUS MASCH ET AL NOCH ANPASSEN!nun legen wir ein design object an
-allbus.w <- svydesign(ids =~ 1, data = allbus, weights =~ wghtpew)
-# ids ist übrigens für Erhebungscluster, die brauchen wir hier nicht
 
+# Gewichte --------------------------------
+allbus_c_2023_raw %>%
+  dplyr::mutate(
+    fr07 = haven::as_factor(dplyr::case_when(fr07 < 0 ~ NA, .default = fr07)),
+    sex  = haven::as_factor(dplyr::case_when(sex  < 0 ~ NA, .default = sex))
+  ) %>%
+  dplyr::filter(!is.na(fr07), !is.na(sex)) %>%
+  ggplot2::ggplot(aes(x = fr07, fill = sex, weight = wghtpew)) + #Gewichtung
+  ggplot2::geom_bar(color = "black", position = "fill") + # stapelt auf 100%
+  ggplot2::scale_y_continuous(labels = scales::percent) +
+  ggplot2::theme_bw() +
+  ggplot2::theme(
+    axis.text.x  = element_text(angle = 45, hjust = 1),
+    legend.title = element_blank()
+  )
+# Änderungen sind in diesem Fall marginal
+
+
+
+# ZUSAMMENHÄNGE --------------------
+
+# Je nach Skalenniveau:
+# kategorial × kategorial => Kreuztabelle, gruppierter/gestapelter Barplot
+# metrisch × metrisch => Scatterplot, Korrelation (Pearson)
+# kategorial x metisch => Verteilung der metrischen Variable je Gruppe
+  # dargestellt als  Violin-Plot, Dichteplot, Boxplot, gruppiertes Histogramm
+  # und/ oder Spearman Korrelation
 
 
 # Kreuztabellen -----------------------
 
-glimpse(allbus_c_2023_raw)
+# Die Frage nach dem Zusammenhang zwischen angegebenem Geschlecht und
+# Berufstätigkeit könnte ebenfalls interessant sein:
+allbus_c_2023_raw %>%
+  labelled::look_for("work")
 
 allbus_c_2023_raw %>%
   count(work)
@@ -151,7 +219,9 @@ allbus_c_2023_raw %>%
 allbus_c_2023_raw %>%
   count(sex)
 
-# Bereinigung: negative Codes -> NA, haven_labelled -> Faktor
+# zunächst Bereinigung:
+  # negative Codes -> NA
+  # haven_labelled -> Faktor
 allbus_c_2023 <- allbus_c_2023_raw %>%
   dplyr::mutate(
     sex_f  = haven::as_factor(dplyr::case_when(sex  < 0 ~ NA, .default = sex)) %>%
@@ -163,16 +233,21 @@ allbus_c_2023 <- allbus_c_2023_raw %>%
 allbus_c_2023 %>%
   count(work_f)
 
+allbus_c_2023 %>%
+  count(sex_f)
+
+
 # Kreuztabelle
 
 # für den schnellen überblick
-library(gmodels)
 gmodels::CrossTable(allbus_c_2023$sex_f, allbus_c_2023$work_f,
-                    prop.r    = TRUE,  # Zeilenprozente
-                    prop.c    = FALSE, # keine Spaltenprozente
-                    prop.t    = FALSE, # kein Gesamtanteil
+                    prop.r = TRUE,  # Zeilenprozente
+                    prop.c = FALSE, # keine Spaltenprozente
+                    prop.t = FALSE, # kein Gesamtanteil
                     prop.chisq = FALSE # kein Chi-Quadrat-Anteil
 )
+# merke: Gewichten kann das nicht!
+
 
 # etwas umständlich mit dplyr
 allbus_c_2023 %>%
@@ -183,29 +258,7 @@ allbus_c_2023 %>%
   dplyr::count(sex_f, work_f) %>%
   tidyr::pivot_wider(names_from = work_f, values_from = n)
 
-
-library(srvyr)
-
-allbus_c_2023 %>%
-  dplyr::filter(!is.na(sex_f), !is.na(work_f)) %>%
-  srvyr::as_survey_design(weights = wghtpew) %>%
-  srvyr::group_by(sex_f, work_f) %>%
-  srvyr::summarise(n = srvyr::survey_total(),
-                   pct = srvyr::survey_mean() * 100)
-
-
-
-
-
-# mit janitor - leichter aber ohne weihgts
-allbus_c_2023 %>%
-  dplyr::filter(!is.na(sex_f), !is.na(work_f)) %>%
-  janitor::tabyl(sex_f, work_f, show_missing_levels = FALSE) %>%
-  janitor::adorn_percentages("row") %>%
-  janitor::adorn_pct_formatting() %>%
-  janitor::adorn_ns()
-
-
+# mit janitor für Zeilenprozent
 allbus_c_2023 %>%
   dplyr::filter(!is.na(sex_f), !is.na(work_f)) %>%
   janitor::tabyl(sex_f, work_f, show_missing_levels = FALSE) %>%
@@ -215,9 +268,7 @@ allbus_c_2023 %>%
   janitor::adorn_ns(position = "front") # %>% knitr::kable() # für quarto
 
 
-
-# mit gtsummary - mit weights möglich -------------
-
+# mit gtsummary if you want it to look really fancy
 allbus_c_2023 %>%
   gtsummary::tbl_cross(
     row = sex_f,
@@ -227,22 +278,98 @@ allbus_c_2023 %>%
   )
 
 
-# mit gewichten!!
+# mit questionr für Gewichtungen
+questionr::wtd.table(allbus_c_2023$sex_f, allbus_c_2023$work_f,
+                     weights = allbus_c_2023$wghtpew)
 
+
+# BONUS: gewichtete Kreuztabellen mit gtsummary
+# wenn man n und % zugleich darstellen will
 allbus_c_2023 %>%
   dplyr::filter(!is.na(sex_f), !is.na(work_f)) %>%
   survey::svydesign(~1, data = ., weights = ~wghtpew) %>%
   gtsummary::tbl_svysummary(
-    by = work_f,
-    include = sex_f,
-    percent = "row",
-    missing = "no"
+    by       = work_f,
+    include  = sex_f,
+    percent  = "row",
+    missing  = "no"
+  ) %>%
+  gtsummary::add_overall()
+
+
+# Korrelationskoeffizienten ----------------
+
+allbus_c_2023 %>%
+  labelled::look_for("Vertrauen")
+
+# Zum Beispiel:
+# Hängen Vertrauen zu Parteien und Vertrauen in den Bundestag zusammen?
+
+# Missings ansehen und bereinigen
+allbus_c_2023 <- allbus_c_2023 %>%
+  dplyr::mutate(
+    pt03_d = dplyr::case_when(pt03 < 0 ~ NA_real_, .default = as.double(pt03)),
+    pt15_d = dplyr::case_when(pt15 < 0 ~ NA_real_, .default = as.double(pt15))
   )
 
 
+# checks
+allbus_c_2023 %>%
+  count(pt03_d)
+
+allbus_c_2023 %>%
+  tidyr::drop_na(pt03_d) %>%
+  count()
+
+allbus_c_2023 %>%
+  count(pt15_d)
 
 
-# scatter plots
-# Korrelationskoeffizienten
-# und Regressionen
+# Korrelation berechnen:
+
+# Option a) schick mit correlation package
+cor_01 <- allbus_c_2023 %>%
+  dplyr::select(pt03_d, pt15_d) %>%
+  correlation::correlation()
+
+summary(cor_01)
+
+
+# Option b) mit baseR cor() und report::report
+stats::cor.test(allbus_c_2023$pt03_d, allbus_c_2023$pt15_d)
+
+stats::cor.test(allbus_c_2023$pt03_d, allbus_c_2023$pt15_d) %>%
+  report::report()
+
+
+# scatter plot für einen ersten Überblick
+allbus_c_2023 %>%
+  ggplot(aes(x = pt15_d, y = pt03_d)) +
+  geom_point(position = "jitter", alpha = 0.3) +
+  labs(x = "Vertrauen in politische Parteien",
+       y = "Vertrauen in den Bundestag") +
+  theme_minimal()
+
+
+# Korrelationsmatrix
+# Na-Bereinigung für alle Vertrauensvariablen
+allbus_c_2023 <- allbus_c_2023 %>%
+  dplyr::mutate(
+    across(
+      c(pt01, pt02, pt03, pt04, pt06, pt07, pt08, pt09, pt10, pt11, pt12, pt14, pt15, pt19, pt20),
+      ~ dplyr::case_when(.x < 0 ~ NA_real_, .default = as.double(.x)),
+      .names = "{.col}_d"
+    )
+  )
+
+allbus_c_2023 %>%
+  select(ends_with("_d")) %>%
+  correlation::correlation()
+
+# Hinweis: mit dem method-Argument kannst du innerhalb des correlation-Pakets
+  # und auch in stats::cor.test() das Korrelationsmaß ändern,
+  # beispielsweise mit method = "spearman" für Spearman's rho bei ordinal
+  # skalierten Variablen.
+
+# Und nächste Woche ... Einfache und multiple OLS-Regressionen!
 
