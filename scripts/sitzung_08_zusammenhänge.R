@@ -274,13 +274,11 @@ allbus_c_2023 %>%
     row = sex_f,
     col = work_f,
     percent = "row",
-    missing = "no"
+    missing = "no",
+    margin  = "row"  # "row", "col", oder c("row", "col")
   )
-
-
-# mit questionr für Gewichtungen
-questionr::wtd.table(allbus_c_2023$sex_f, allbus_c_2023$work_f,
-                     weights = allbus_c_2023$wghtpew)
+# Von den Befragten Männern ist über die Hälfte Vollzeitbeschäftigt,
+# Von den befragten Frauen nur 30%
 
 
 # BONUS: gewichtete Kreuztabellen mit gtsummary
@@ -289,21 +287,44 @@ allbus_c_2023 %>%
   dplyr::filter(!is.na(sex_f), !is.na(work_f)) %>%
   survey::svydesign(~1, data = ., weights = ~wghtpew) %>%
   gtsummary::tbl_svysummary(
-    by       = work_f,
-    include  = sex_f,
+    by = work_f, # spalten
+    include = sex_f, # zeilen
     percent  = "row",
     missing  = "no"
   ) %>%
-  gtsummary::add_overall()
+  gtsummary::add_overall(last = TRUE)
+
+
+
+# mit questionr für Gewichtungen
+questionr::wtd.table(allbus_c_2023$sex_f, allbus_c_2023$work_f,
+                     weights = allbus_c_2023$wghtpew)
+
+
+
 
 
 # Korrelationskoeffizienten ----------------
 
-allbus_c_2023 %>%
-  labelled::look_for("Vertrauen")
+# den aus der Kreuztabelle bereits vermuteten Zusammenhang können
+# wir auch berechenen: zwei kategoriale Variablen => Chi-Quadrat-Test + Cramér's V>
+
+stats::chisq.test(allbus_c_2023$sex_f, allbus_c_2023$work_f) %>%
+  report::report()
+
+sum(stats::chisq.test(allbus_c_2023$sex_f, allbus_c_2023$work_f)$observed)
+
+effectsize::cramers_v(
+  stats::chisq.test(allbus_c_2023$sex_f, allbus_c_2023$work_f),
+  ci = 0.95,
+  alternative = "two.sided"
+)
 
 # Zum Beispiel:
 # Hängen Vertrauen zu Parteien und Vertrauen in den Bundestag zusammen?
+
+allbus_c_2023 %>%
+  labelled::look_for("Vertrauen")
 
 # Missings ansehen und bereinigen
 allbus_c_2023 <- allbus_c_2023 %>%

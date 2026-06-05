@@ -71,6 +71,34 @@ Wie wir Zusammenhänge zwischen zwei Variablen (bzw. Kovariation) untersuchen un
 | Metrisch × Metrisch | Zusammenhang | Streudiagramm | `geom_point()` |
 | Zeit × Metrisch | Verlauf | Liniendiagramm | `geom_line()` |
 
+## Mid-term Feedback {.smaller}
+
+::::: columns
+::: column
+**Was euch gefällt/ hilft:**
+
+-   Seminaratmosphäre
+-   Übungen
+-   Wiederholung & individuelle Fragen
+-   Erreichbarkeit & Support
+-   Cheatsheets, Skripte, Webseite, Material
+:::
+
+::: column
+**Verbesserungswünsche**:
+
+-   weniger Recap & individuelle Problemlösung
+
+-   Zeitaufteilung: Wdh. vs. Neues
+
+-   Data Access und Codebook thematisieren
+
+-   Datenbereinigung intensiver behandeln
+
+-   Übung & Sitzungsnummern harmonisieren, MacUser-Besonderheiten behandeln, Befehlsammlung erstellen
+:::
+:::::
+
 # Zusammenhänge
 
 ## Kreuztabelle {.smaller}
@@ -81,7 +109,7 @@ Wie wir Zusammenhänge zwischen zwei Variablen (bzw. Kovariation) untersuchen un
 ![](images/clipboard-1480612686.png){style="width: 800px;"}
 :::
 
-## Korrelationsmaße{.smaller}
+## Korrelationsmaße {.smaller}
 
 -   Zusammenhänge können mit Kreuztabellen oder Korrelationsmaßen dargestellt werden
 
@@ -97,13 +125,32 @@ Wie wir Zusammenhänge zwischen zwei Variablen (bzw. Kovariation) untersuchen un
 
 -   mehr dazu, wie er konkret berechnet wird unter [Statistik-Grundlagen](https://statistikgrundlagen.de/ebook/part/zusammenhaenge-und-standardisierung/)
 
-## Korrelationsmaße 
+## Korrelationsmaße
 
-::: fragment
-![](images/clipboard-630369882.png)
-:::
+```{r}
+#| echo: false
+library(dplyr)
+library(kableExtra)
+
+tibble::tribble(
+  ~` `,          ~metrisch,       ~ordinal,                                  ~nominal,
+  "metrisch",    "Pearson's r",   "Spearman's ρ (rho) / Kendall's τ (tau)", "Pearson's r (dichotom) / Eta η (eta) (polytom)",
+  "ordinal",     "",              "Spearman's ρ (rho) / Kendall's τ (tau)", "Spearman's ρ (rho) (dichotom)",
+  "nominal",     "",              "",                                        "Phi φ (phi) (dichotom) / Cramér's V (polytom)"
+) %>%
+  knitr::kable(escape = FALSE) %>%
+  kableExtra::kable_styling(full_width = TRUE) %>%
+  kableExtra::column_spec(1, bold = TRUE, border_right = "1px solid black") %>%
+  kableExtra::column_spec(2, border_right = "1px solid black") %>%
+  kableExtra::column_spec(3, border_right = "1px solid black") %>%
+  kableExtra::row_spec(0, extra_css = "border-bottom: 1px solid black;") %>%
+  kableExtra::row_spec(1:3, extra_css = "border-bottom: 1px solid black;")
+
+```
+
 
 -   mehr zu den verschiedenen Korrelationsmaßen unter [Statistik-Grundlagen](https://statistikgrundlagen.de/ebook/chapter/korrelation/) in Kapitel 4 zu Korrelationen!
+
 
 ## Grenzen der Korrelationsmaße
 
@@ -119,20 +166,19 @@ Wie wir Zusammenhänge zwischen zwei Variablen (bzw. Kovariation) untersuchen un
 
 # *correlation*-Paket
 
-::::: columns
+:::::: columns
 :::: column
 ::: fragment
 ![](images/clipboard-944839814.png){style="width: 400px;"}
 :::
 ::::
 
-:::: column
+::: column
 -   Teil von *easystats*
 -   "An R Framework for Easy Statistical Modeling, Visualization, and Reporting"
 -   Mehr auf der [Github-Seite](https://easystats.github.io/easystats/)
-::::
-:::::
-
+:::
+::::::
 
 # Hands On - Zusammenhänge
 

@@ -14,12 +14,11 @@ Hier findest du die Folien und R-Skripte zu jeder Sitzung. Folien sind als HTML 
 | 04 | 05.05.2026 | Dataset Merging | Master, unterschiedliche Joins | `dplyr::left_join()` | [HTML](slides/sitzung_04.html) / [PDF](slides/sitzung_04.pdf) | [R](scripts/sitzung_04_merging.R) |
 | 05 | 12.05.2026 | Quarto; Deskriptive Statistik – Kennwerte & Visualisierung | Mittelwert, Median, Streuung | `base`, `dplyr`, `ggplot2` | [HTML](slides/sitzung_05_kennwerte.html) / [PDF](slides/sitzung_05_kennwerte.pdf) | [R](scripts/sitzung_05_kennwerte.R) / [Quarto_Beispiel](do_not_render/sitzung_05_kennwerte_beispiel.qmd){.external download="sitzung_05_kennwerte_beispiel.qmd"} |
 | 06 | 19.05.2026 | Deskriptive Statistik – Häufigkeits- & Kreuztabellen | Häufigkeiten, Kreuztabellen | `dplyr`, `questionr`, `janitor` | [HTML](slides/sitzung_06_häufigkeiten.html) / [PDF](slides/sitzung_06_häufigkeiten.pdf)  | [R](scripts/sitzung_06_häufigkeiten.R) |
-| 07 | 26.05.2026 | Deskriptive Statistik – Schöne Grafiken | Grammar of Graphics, Visualisierung | `ggplot2`, `dplyr` | [HTML](slides/sitzung_07_visualisierung.html) / [PDF](slides/sitzung_07_visualisierung.pdf)  | [R](scripts/sitzung_07_visualisierung.R) ; [Quoten](scripts/Quoten.xlsx)|
-| 08 | 02.06.2026 | Deskriptive Statistik – Kreuztabelle & Korrelation | Korrelationskoeffizient, Streudiagramm | `correlation`, `gtsummary` , `gmodels`| [HTML](slides/sitzung_08_zusammenhänge.html) / [PDF](slides/sitzung_08_zusammenhänge.pdf) | [R](scripts/sitzung_08_zusammenhänge.R); [ALLBUS-dfSummary](qmd_dateien/allbus_c_2023_dfSummary.html)  |
-| 09 | 09.06.2026 | Inferenzstatistik – Einfache & Multiple Lineare Regression | Regressionskoeffizienten, p-Wert, R² | `stats`, `performance`, `texreg` | — / — | —  |
-| 10 | 16.06.2026 | Regression Diagnostics | Residuen, Heteroskedastizität, Ausreißer | `stats`, `performance` | — / — | —  |
-| 11 | 23.06.2026 | Logistische Regression | Odds Ratio, binäre AV | `stats`, `performance` | — / — | —  |
-| 12 | 30.06.2026 | Varianzanalyse (ANOVA) | — | — | — / — | —  |
-| 13 | 07.07.2026 | — | — | — | — / — | —  |
-| 14 | 14.07.2026 | — | — | — | — / — | —  |
+| 07 | 02.06.2026 | Deskriptive Statistik – Schöne Grafiken | Grammar of Graphics, Visualisierung | `ggplot2`, `dplyr` | [HTML](slides/sitzung_07_visualisierung.html) / [PDF](slides/sitzung_07_visualisierung.pdf)  | [R](scripts/sitzung_07_visualisierung.R) ; [Quoten](scripts/Quoten.xlsx)|
+| 08 | 09.06.2026 | Deskriptive Statistik – Kreuztabelle & Korrelation | Korrelationskoeffizient, Streudiagramm | `correlation`, `gtsummary` , `gmodels`| [HTML](slides/sitzung_08_zusammenhänge.html) / [PDF](slides/sitzung_08_zusammenhänge.pdf) | [R](scripts/sitzung_08_zusammenhänge.R); [ALLBUS-dfSummary](qmd_dateien/allbus_c_2023_dfSummary.html)  |
+| 09 | 16.06.2026 | Inferenzstatistik – Einfache & Multiple Lineare Regression | Regressionskoeffizienten, p-Wert, R² | `stats`, `performance`, `texreg` | — / — | —  |
+| 10 | 23.06.2026 | Regression Diagnostics | Residuen, Heteroskedastizität, Ausreißer | `stats`, `performance` | — / — | —  |
+| 11 | 30.06.2026 | Logistische Regression | Odds Ratio, binäre AV | `stats`, `performance` | — / — | —  |
+| 12 | 07.07.2026 | Varianzanalyse (ANOVA) & t-test | — | — | — / — | —  |
+| 13 | 14.07.2026 | Recap | — | — | — / — | —  |
 : {.striped .hover tbl-colwidths="[5,10,20,20,15,10,20]"}

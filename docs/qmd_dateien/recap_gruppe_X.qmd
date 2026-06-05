@@ -1,0 +1,171 @@
+---
+title: "Recap – Gruppe X"
+subtitle: "Politik vermessen: Quantitative Methoden mit R | SoSe 2026"
+author: "[Namen der Gruppenmitglieder]"
+date: today
+date-format: "DD.MM.YYYY"
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    toc-title: "Inhalt"
+    code-tools: false
+    theme: cosmo
+    self-contained: true
+  pdf:
+    toc: true
+    toc-depth: 2
+execute:
+  eval: false
+  echo: true
+---
+
+<!-- ---------------------------------------------------------------
+Hinweise zum Ausfüllen:
+- Tragt **euren Gruppencode** (A, B, C oder D) im Titel ein.
+- Tragt **eure Namen** unter `author` ein.
+- Fügt unter jedem Thema die wichtigsten gelernten Befehle ein – mit kurzem Kommentar (`# so funktioniert dieses Argument`).
+- ggf. mit kurzen Erklärungen in den Text darunter.
+- Am Ende einfach die ausgefüllte `.qmd`-Datei per E-Mail an mich zurückschicken
+- Ihr müsst nichts rendern, könnt es aber natürlich probeweise tun, um zwischendurch zu schauen, wie es aussieht
+--------------------------------------------------------------- -->
+
+---
+
+# 🔍 Grundsätzliches zum Arbeiten mit R und RStudio 
+```{r}
+# z.B.: Hilfe, Grammatik, Skript, Taschenrechener, etc. 
+
+```
+
+*Kommentare dazu, z.B.: Skript vs. Console, lokale Ordnerstruktur, RP Wie ist ein klassisches Skript aufgebaut...*
+
+
+---
+
+# 📦 Pakete laden
+
+```{r}
+# Pakete, die wir im Kurs regelmäßig genutzt haben
+
+```
+
+*Kommentare dazu, z.B.: Welche Pakete brauchen wir wofür?*
+
+---
+
+# 📁 Datenimport
+
+```{r}
+# Projekt anlegen, here::here(), Daten einlesen
+
+```
+
+*Kommentare, z.B.: relative vs. absolute Pfade; Was ist ein R-Projekt und warum nutzen wir es?*
+
+---
+
+# 🧹 Data Cleaning & Wrangling
+
+```{r}
+# Umbenennen, Filtern, Transformieren, mutate(), rename(), filter(), select()
+
+```
+
+*Kommentare/Erklärungen hierzu*
+
+---
+
+# 🔗 Dataset Merging
+
+```{r}
+# left_join()
+
+```
+
+*Was ist zu beachten, bevor Daten zusammengespielt werden können?*
+
+---
+
+# 📊 Deskriptive Statistik: Kennwerte, Häufigkeitstabellen
+
+```{r}
+# mean(), median(), sd(), IQR(), skimr::skim(), dplyr::summarise()
+
+```
+
+```{r}
+# count(), janitor::tabyl(), gtsummary::tbl_cross()
+
+```
+
+
+*Kommentare/Erklärungen dazu*
+
+---
+
+# 🎨 Visualisierung mit ggplot2
+
+```{r}
+# ggplot(), aes(), geom_histogram(), geom_bar(), geom_boxplot()
+# theme_minimal(), labs(), facet_wrap()
+
+```
+
+*Kommentare, z.B.: Was ist die Grundstruktur eines ggplot-Befehls?*
+
+---
+
+# 📈 Zusammenhänge: Kreuztabellen, Korrelation & Scatter Plots
+
+```{r}
+# cor(), cor.test(), lm(), summary(lm())
+
+```
+
+*Kommentare hierzu*
+
+---
+
+# 📉 Einfache und Multiple Lineare Regression
+
+```{r}
+# lm(y ~ x1 + x2 + x3), summary(), stargazer() / modelsummary()
+
+```
+
+*Kommentare, z.B.: Warum kontrollieren wir für weitere Variablen?*
+
+---
+
+# 🔍 Regression Diagnostics
+
+```{r}
+# plot(model), residuals(), fitted(), vif()
+
+```
+
+*Welche Annahmen überprüfen wir und wie?*
+
+---
+
+# 🔀 Logistische Regression
+
+```{r}
+# glm(y ~ x, family = binomial), exp(coef()), plogis()
+
+```
+
+*Wann nutzen wir logistische statt linearer Regression?*
+
+---
+
+# ⭐ Tipps und Tricks 
+
+*Was war für euch die nützlichste Funktion / der wichtigste Trick im ganzen Kurs? Und warum?*
+
+---
+
+# ❓ Noch offene Fragen
+
+*Was hat euch noch nicht ganz eingeleuchtet oder was würdet ihr euch nochmal wünschen?*
