@@ -13,11 +13,8 @@ library(dplyr)
 allbus_c_2023_raw <- haven::read_dta("./data/ZA8831_v1-3-0.dta")
 
 
-# 02 Regressionen -------------
 
-
-
-# 03 Inferenzstatistik - Beispiel --------------
+# 02 Inferenzstatistik - Beispiel --------------
 
 # Bei Inferenzstatistik geht es darum, herauszufinden, ob ein in der
 # Stichprobe gefundener Effekt (wahrscheinlich) auch in der Grundgesamtheit
@@ -47,7 +44,7 @@ allbus_c_2023 %>%
 # wahrscheinlich auch existiert.
 
 # Für die Zusammenhangsmaße aus der letzten Sitzug heißt das:
-# Es gibt immer zwei KEnnzahlen
+# Es gibt immer zwei Kennzahlen
 # Die Effektstärke (z.B. Cramér's V) gibt an, wie stark der Zusammenhang ist,
 # während der p-Wert (z.B. aus dem Chi²-Test) angibt, ob er signifikant ist
 
@@ -66,3 +63,10 @@ effectsize::cramers_v(
 )
 
 
+# 03 Regressionen -------------
+
+# Regressionen sind ein Verfahren, um den Zusammenhang zwischen einer abhängigen
+# Variable (y) und einer oder mehreren unabhängigen Variablen (x) zu modellieren.
+
+# Beispiel
+# Forschungsfrage: Lässt sich Rechts-Links-Selbstverortung auf das Alter zurückführen?

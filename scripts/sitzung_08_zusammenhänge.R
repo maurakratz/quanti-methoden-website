@@ -60,10 +60,6 @@ if(FALSE){
   # eng
   allbus_c_2023_eng_raw <- read_dta("data/ZA8833_v1-0-0.dta")
 
-  allbus_c_2023_eng_raw <- read_dta("data/ZA8833_v1-0-0.dta") %>%
-    haven::as_factor()
-
-
   View(ZA8833_v1_0_0)
 }
 
@@ -222,6 +218,7 @@ allbus_c_2023_raw %>%
 # zunächst Bereinigung:
   # negative Codes -> NA
   # haven_labelled -> Faktor
+  # leere Faktorlevels entfernen
 allbus_c_2023 <- allbus_c_2023_raw %>%
   dplyr::mutate(
     sex_f  = haven::as_factor(dplyr::case_when(sex  < 0 ~ NA, .default = sex)) %>%

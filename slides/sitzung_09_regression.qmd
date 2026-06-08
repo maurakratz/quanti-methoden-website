@@ -16,9 +16,9 @@ editor_options:
 
 ## Willkommen zurück!
 
-![](images/clipboard-4994590.png)
+![](images/clipboard-2557253040.png)
 
-## Recap: Korrelationen
+## Recap: Korrelationen {.smaller}
 
 -   Zusammenhänge können mit Kreuztabellen oder Korrelationsmaßen dargestellt werden
 
@@ -63,11 +63,13 @@ tibble::tribble(
 
 1.  Organisatorisches (Übungsfeedback, Fragen etc.)
 
-2.  Regressionen
+2.  Einführung in die Grundidee der Inferenzstatistik
 
-3.  Einführung in die Grundidee der Inferenzstatistik
+3.  Regressionen
 
-## Korrelationsmaße - Beispiel 
+# Inferenzstatistik
+
+## Korrelationsmaße - Beispiel {.smaller}
 
 Beispiel: Zusammenhang zwischen Geschlecht und Erwerbsstatus
 
@@ -83,9 +85,9 @@ Beispiel: Zusammenhang zwischen Geschlecht und Erwerbsstatus
 
 ## Inferenzstatistik
 
-![](images/clipboard-3333084297.png)
+![](images/clipboard-1556024670.png)
 
-## ... ist ein riesiges Feld 
+## ... ist ein riesiges Feld
 
 ![](images/clipboard-2740278302.png)
 
@@ -95,7 +97,7 @@ Quelle: Methodenberatung Uni Zürich
 
 -   Grundsätzlich gibt es also neben der Effektstärke (z.B. Korrelationsmaß), die uns sagt, ob der Effekt *relevant* ist ...
 
--   auch noch die Frage, ob richtig geschätztwurde und der gefundene Effekt also *signifikant* ist!
+-   auch noch die Frage, ob richtig geschätzt wurde und der gefundene Effekt also *signifikant* ist!
 
 -   Für Letzteres gibt es zwei grundsätzliche Herangehensweisen: Punkt - und Intervallschätzung
 
@@ -103,17 +105,7 @@ Quelle: Methodenberatung Uni Zürich
 
 -   Intervallschätzung: Konfidenzintervalle
 
-## Punktschätzung 
-
--   Stichworte statistische Signifikanz, P-Wert und Sternchen
-
--   Ist ein Ergebnis (zum Beispiel ein gefundener Zusammenhang) *signifikant*?
-
--   Signifikant = überzufällig, also zu groß, um noch als zufällig zu gelten.
-
--   wie hoch die Wahrscheinlichkeit ist, dass ich etwas in meinen Daten finde, das in Wirklichkeit nicht da ist?
-
-::: callout-tip
+::: {.callout-tip .fragment}
 ## Inferenz verstehen
 
 -   Kapitel 8 (Parameterschätzung), und 9 (Intervallschätzung) in [Statistik Grundlagen](https://statistikgrundlagen.de/ebook/chapter/stichproben/)
@@ -121,10 +113,10 @@ Quelle: Methodenberatung Uni Zürich
 -   bei Bedarf ggf. noch Kapitel 7 zu Stichproben als Grundlage
 :::
 
-## Punktschätzung - Beispiel 
+## Punktschätzung - Beispiel
 
-**H~1~:** Es gibt einen Zusammenhang zwischen Geschlecht und Erwerbsstatus (V \> 0)\
-**H~0~:** Es gibt keinen Zusammenhang (V = 0)
+**H~1~:** Es gibt einen Zusammenhang zwischen Geschlecht und Erwerbsstatus (V \> 0)\
+**H~0~:** Es gibt keinen Zusammenhang (V = 0)
 
 In der Stichprobe gefunden:
 
@@ -132,23 +124,167 @@ In der Stichprobe gefunden:
 
 -   Nun wollen wir wissen, wie gut unser Punktschätzer, also das Cramérs V von 0,22, den wahren Parameter in der GG schätzt
 
-## Punktschätzung - Beispiel 
+## Punktschätzung - Beispiel
+
+![](images/clipboard-1813958229.png)
+
+## Punktschätzung - Beispiel
 
 -   Um die Signifikanz zu bestimmen, wird die Verteilung aller V-Werte modelliert, die wir in unendlich vielen Stichproben beobachten würden, **wenn H₀ stimmte**.
 
 -   Diese Stichprobenkennwerteverteilung von V unter H0 ist mathematisch hergeleitet
 
--   **Der p-Wert ist der Anteil dieser hypothetischen Stichproben, die einen genauso extremen oder noch extremeren Wert geliefert hätten wie unsere.**\
+-   **Der p-Wert ist der Anteil dieser hypothetischen Stichproben, die einen genauso extremen oder noch extremeren Wert geliefert hätten wie unsere Schätzung**\
     → Ist dieser Anteil klein (≤ 5 %), verwerfen wir H₀ und der Effekt gilt als **statistisch signifikant** (`*` p \< .05, `**` p \< .01, `***` p \< .001)
 
-![](images/clipboard-1813958229.png)
-
-## Intervallschätzung 
+## Intervallschätzung
 
 **Punktschätzung:** In unserer Stichprobe beträgt V = 0.22 — das ist unsere beste Schätzung für die Grundgesamtheit.\
 **Intervallschätzung:** Würden wir das Verfahren 100× wiederholen, würde das KI in 95 von 100 Fällen den wahren Wert enthalten.
 
 → Der wahre Zusammenhang in der Grundgesamtheit liegt wahrscheinlich zwischen V = 0.20 und V = 0.24.
+
+# Regressionen
+
+-   Was sind Regressionen?
+-   Einfache lineare & multiple lineare Regression
+-   Voraussetzungen & Verletzungen (nächste Woche!)
+-   Logistische Regression (übernächste Woche!)
+-   Anwendung in R
+
+# Was sind Regressionen?
+
+-   Regressionen sind **stochastische** Vorhersagen (≠ deterministisch)
+
+-   Regression kann **deskriptiv** und **schließend** eingesetzt werden
+
+-   beantworten Fragen wie: Kann man y basierend auf x vorhersagen? Kann man y auf x zurückführen?
+
+-   Vom Lateinischen regredi = „zurückgehen“
+
+![](images/clipboard-2057436224.png)
+
+## Die Welt der Regressionen
+
+![](images/clipboard-969773716.png)
+
+## Die einfache lineare Regression
+
+-   Eine (einfache) lineare Regression zu rechenen heißt eine Gerade durch Punkte zu ziehen!
+
+-   AV $\leftarrow$ UV
+
+-   Regressionskoeffizient $b$: Wenn x um eine Einheit steigt, ändert sich y um den Betrag $b$.
+
+![](images/clipboard-3922862888.png)
+
+## Begriffsverwirrung:
+
+```{r}
+#| echo: false 
+
+library(dplyr) 
+library(kableExtra)  
+
+tibble::tribble(   ~X,                          ~Y,   "Prädiktor",                 "Kriterium",   "Unabhängige Variable (UV)", "Abhängige Variable (AV)",   "Regressor",                 "Regressand",   "Erklärende Variable",       "Erklärte Variable",   "Einflussgröße",             "Response" ) %>%   knitr::kable(escape = FALSE) %>%   kableExtra::kable_styling(full_width = TRUE) %>%   kableExtra::column_spec(1, border_right = "1px solid black") %>%   kableExtra::row_spec(0, bold = TRUE, extra_css = "border-bottom: 2px solid black;") %>%   kableExtra::row_spec(1:5, extra_css = "border-bottom: 1px solid black;")
+```
+
+## Beispiel: Einfache lineare Regression
+
+![](images/clipboard-2647160233.jpeg)
+
+![](images/clipboard-1157357765.jpeg)
+
+## Methode der kleinsten Quadrate
+
+-   Abweichungen von der Geraden = **Residuen**
+
+-   **Kleinste-Quadrate-Schätzung** (*ordinary least squares*, OLS)
+
+-   Alle Residuen werden **quadriert** und aufsummiert (damit sich $-$ und $+$ nicht aufheben)
+
+-   R findet die Gerade, bei der die **Summe der quadrierten Residuen minimal** ist
+
+## Modellgüte
+
+::::: columns
+::: {.column width="60%"}
+-   Bestimmtheitsmaß R² = Anteil der aufgeklärten Varianz
+-   Welcher Anteil der Streuung von Y wird durch das Regressionsmodell erklärt?
+-   $R^2 = \frac{\text{erklärte Streuung}}{\text{gesamte Streuung}}$
+-   $\uparrow$ Residuen $\Rightarrow$ $\downarrow$ Modellgüte
+-   $\downarrow$ Residuen $\Rightarrow$ $\uparrow$ Modellgüte
+-   Korrigiertes R²: korrigiert um die Anzahl der UVen bei multipler linearer Regression
+-   Mögliche Alternative: F-Test
+:::
+
+::: {.column width="40%"}
+![](images/clipboard-448071012.jpeg)
+:::
+:::::
+
+## Signifikanz und KI
+
+-   gleiches Prinzip wie bei anderen Kennwerten
+-   H$_0$ = kein Zusammenhang (Regressionskoeffizient $b$ = 0)
+-   Stichprobenverteilung von $b$ unter H$_0$ (t-Verteilung)
+-   Standardfehler (Standardabweichung der Stichprobenverteilung): Wie stark würde $b$ in verschiedenen Stichproben schwanken, wenn H0 stimmte?
+
+## Signifikanz und KI
+
+-   p-Wert:
+    -   Wie wahrscheinlich ist es, einen solchen oder noch extremeren Koeffizienten zu beobachten, wenn H$_0$ (= kein Zusammenhang) stimmte?
+    -   Beispielschwellwerte: p \< 0.001 = hochsignifikant \*\*\*, p \< 0.01 = signifikant \*\*, p \< 0.05 = schwach signifikant \*, p \> 0.05 = nicht signifikant
+-   KI:
+    -   95% KI enthält 0 $\Rightarrow$ nicht signifikant; 95% KI enthält keinen Wert über 0 $\Rightarrow$ signifikant
+    -   In 95 von 100 Stichproben würde das berechnete Konfidenzintervall den wahren Regressionskoeffizienten in der Grundgesamtheit enthalten.
+    -   Wenn man den Zorn der Statistiker\*innen auf sich zeihen will: Der wahre Regressionskoeffizient liegt mit 95%iger Wahrscheinlichkeit im KI.
+
+## Die multiple lineare Regression
+
+![](images/clipboard-2076104136.png)
+
+## Die multiple lineare Regression
+
+$$\hat{y} = b_0 + b_1 x_1 + b_2 x_2 + \ldots + b_k x_k$$
+
+-   Die $b$-Koeffizienten geben den **spezifischen / isolierten Einfluss** jedes Prädiktors an:
+
+-   Wenn $x_k$ um eine Einheit steigt, ändert sich $y$ um $b_k$,**wenn alle anderen Prädiktoren konstant bleiben** (*ceteris paribus*).
+
+::: {.callout-tip .fragment}
+## Multiple ≠ Multivariate Regression
+
+Multiple = mehrere **unabhängige** Variablen\
+Multivariate = mehrere **abhängige** Variablen
+:::
+
+## Ziele der multiplen linearen Regression
+
+-   **Varianzaufklärung**: Möglichst gut vorhersagen — z.B. wie viele Punkte werden erreicht?
+
+-   **Prinzip der Parsimonität**: Mit **möglichst wenig Prädiktoren** möglichst viel Streuung erklären
+
+## Anwendung in R
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Einfache lineare Regression
+modell_1 <- lm(av ~ uv, data = datensatz)
+summary(modell_1)
+
+# Multiple lineare Regression
+modell_2 <- lm(av ~ uv1 + uv2 + uv3, data = datensatz)
+summary(modell_2)
+```
+
+::: {style="margin-top: 0.5em; font-size: 0.9em;"}
+-   `lm()` für *linear model*
+-   Formelschreibweise: `av ~ uv` (AV links, UV rechts)
+-   `summary()` zeigt Koeffizienten, $R^2$, p-Werte
+:::
 
 # Hands On - Regressionen
 
@@ -174,5 +310,5 @@ plot(qr)
 ::: {style="display: flex; align-items: center; gap: 1em; "}
 ![](images/clipboard-2636932712.png){style="width: 140px;"}
 
-**Übung 7** zu Zusammenhängen bis spätestens Sonntagabend!
+**Übung 8 zu Regressionen** bis spätestens Sonntagabend!
 :::

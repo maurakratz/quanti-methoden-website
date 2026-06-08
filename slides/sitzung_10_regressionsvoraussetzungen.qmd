@@ -1,0 +1,140 @@
+---
+title: "Quantitative Methoden mit R & R-Studio"
+subtitle: "Sommersemester 2026 | Sitzung 10"
+author: "Maura Kratz"
+format: 
+  revealjs:
+    self-contained: true
+    theme: [default, fu_slides.scss] 
+    logo: "images/fu-logo-schwarz-RGB-p.png"
+    footer: "Quantitative Methoden mit R & R-Studio | SoSe26 | Maura Kratz"
+    incremental: true 
+    highlight-style: none
+editor_options: 
+  chunk_output_type: console
+---
+
+## Willkommen zurück!
+
+![](images/clipboard-2557253040.png)
+
+## Recap: Einfache und multiple lineare Regressionen {.smaller}
+
+-   Eine (einfache) lineare Regression zu rechenen heißt eine Gerade durch Punkte zu ziehen!
+
+-   UV $\rightarrow$ AV
+
+-   Wenn x um eine Einheit steigt, ändert sich y um den Betrag b.
+
+![](images/clipboard-3922862888.png)
+
+## Wichtigste Marker einer Regression
+
+-   Regressionskoeffizient $b$
+-   Modellgüte: Bestimmtheitsmaß R² = Anteil der aufgeklärten Varianz
+-   Signifikanz:
+    -   p-Wert: Wie wahrscheinlich ist es, einen solchen oder noch extremeren Koeffizienten zu beobachten, wenn H$_0$ (= kein Zusammenahng) stimmte?
+    -   Beispielschwellwerte: p \< 0.001 = hochsignifikant \*\*\*, p \< 0.01 = signifikant \*\*, p \< 0.05 = schwach signifikant \*, p \> 0.05 = nicht signifikant
+    -   KI: 95% KI enthält 0 $\Rightarrow$ nicht signifikant; 95% KI enthält keinen Wert über 0 $\Rightarrow$ signifikant
+    -   In 95 von 100 Stichproben würde das berechnete Konfidenzintervall den wahren Regressionskoeffizienten in der Grundgesamtheit enthalten.
+    -   Wenn man den Zorn der Statistiker\*innen auf sich zeihen will: Der wahre Regressionskoeffizient liegt mit 95%iger Wahrscheinlichkeit im KI.
+
+## Voraussetzungen
+
+| Voraussetzung | Prüfung |
+|----|----|
+| Linearer Zusammenhang (metrische Variablen) | Scatterplot |
+| Homoskedastizität der Residuen | Residuen vs. Fitted-Plot |
+| Normalverteilte Residuen | Histogramm, Q-Q-Plot, Shapiro-Wilk |
+| Unabhängige Beobachtungen | Studiendesign |
+| Keine Ausreißer | Leverage, Cook's Distance |
+| Keine Multikollinearität\* | Variance Inflation Factor (VIF) |
+
+::: {style="font-size: 0.6em;"}
+\* nur bei multiple linearen Regressionen
+:::
+
+## Bei Verletzung
+
+```{r}
+#| echo: false
+
+library(dplyr)
+
+tibble::tribble(
+  ~Methode,                                      ~`Wann sinnvoll?`,
+  "Bootstrapping",                               "Keine Normalverteilung der Residuen; n > 50",
+  "Robuste Standardfehler (HC3)*",                "Heteroskedastizität der Residuen; beliebiges n"
+) %>%
+  knitr::kable(escape = FALSE) %>%
+  kableExtra::kable_styling(full_width = TRUE) %>%
+  kableExtra::column_spec(1, bold = TRUE, border_right = "1px solid black") %>%
+  kableExtra::row_spec(0, bold = TRUE, extra_css = "border-bottom: 2px solid black;") %>%
+  kableExtra::row_spec(1:2, extra_css = "border-bottom: 1px solid black;")
+```
+
+::: {style="font-size: 0.6em;"}
+\* Long JS & Ervin LH (2000). Using heteroscedasticity consistent standard errors in the linear regression model. The American Statistician, 54(3), 217–224.
+:::
+
+## Was tun bei Verletzung der Annahmen?
+
+| Verletzung | Lösung |
+|------------------------------------|------------------------------------|
+| Kein linearer Zusammenhang | Polynomiale Regression / Spline-Modell |
+| Heteroskedastizität | Robuste Standardfehler (HC3) |
+| Ausreißer | Robuste Regression |
+| Keine Normalverteilung der Residuen | Bootstrapping |
+| Multikollinearität | Variablen ausschließen / transformieren, Ridge / Lasso |
+
+::: {style="font-size: 0.75em; color: #555; margin-top: 0.8em;"}
+Zum Vertiefen: Wagemann, Goerres & Siewert (2020). *Handbuch Methoden der Politikwissenschaft*. Springer. doi:10.1007/978-3-658-16936-7
+:::
+
+## Anwendung in R
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Einfache lineare Regression
+modell_1 <- lm(av ~ uv, data = datensatz)
+summary(modell_1)
+
+# Multiple lineare Regression
+modell_2 <- lm(av ~ uv1 + uv2 + uv3, data = datensatz)
+summary(modell_2)
+```
+
+::: {style="margin-top: 0.5em; font-size: 0.9em;"}
+-   `lm()` = *linear model*
+-   Formelschreibweise: `av ~ uv` (AV links, UV rechts)
+-   `summary()` zeigt Koeffizienten, $R^2$, p-Werte
+:::
+
+# Hands On - Regressionen
+
+![](images/clipboard-797395825.jpeg)
+
+## Minute Cards
+
+Bitte füllt die Minute Cards für die heutige Sitzung aus. Das sollt enicht länger als 3 Minuten dauern. Vielen Dank für eure Mitarbeit!
+
+```{r}
+#| echo: false
+library(qrcode)
+qr <- qrcode::qr_code("https://forms.gle/xScN9nh3n2yjZXXK8")
+plot(qr)
+```
+
+# Vielen Dank und bis kommenden Dienstag!
+
+::: {style="margin-top: 1em;"}
+![](images/clipboard-3998914491.png)
+:::
+
+::: {style="display: flex; align-items: center; gap: 1em; "}
+![](images/clipboard-2636932712.png){style="width: 140px;"}
+
+**Übung 10 zu Regressionsdiagnostik** bis spätestens Sonntagabend!
+:::
