@@ -18,23 +18,22 @@ editor_options:
 
 ![](images/clipboard-2557253040.png)
 
+
+# Was heute ansteht
+
+1.  Recap & Organisatorisches
+
+2.  Einführung in die Grundidee der Inferenzstatistik
+
+3.  Regressionen
+
+
 ## Recap: Korrelationen {.smaller}
 
 -   Zusammenhänge können mit Kreuztabellen oder Korrelationsmaßen dargestellt werden
 
--   Korrelationsmaße (auch Zusammenhangsmaße) geben Auskunft darüber, inwiefern ein Zusammenhang zwischen Variablen besteht.
+-   Korrelationsmaße (auch Zusammenhangsmaße) geben Auskunft darüber, inwiefern ein Zusammenhang zwischen zwei Variablen besteht.
 
--   Wertebereich -1 (perfekt negativer Zusammenhang) bis +1 (perfekt positiver Zusammenhang)
-
-    -   Ab (+/-) r=.10 spricht man von einem schwachen Zusammenhang (schwacher Effekt)
-
-    -   Ab (+/-) r=.30 spricht man von einem mittleren Zusammenhang (mittlerer Effekt)
-
-    -   Ab (+/-) r=.50 spricht man von einem starken Zusammenhang (starker Effekt).
-
--   mehr dazu, wie er konkret berechnet wird unter [Statistik-Grundlagen](https://statistikgrundlagen.de/ebook/part/zusammenhaenge-und-standardisierung/)
-
-## Korrelationsmaße
 
 ```{r}
 #| echo: false
@@ -57,17 +56,73 @@ tibble::tribble(
 
 ```
 
+
+::: {.callout-note .fragment}
+-   phi ist mathematisch identisch zu pearson!
+
+-   Alle Maße haben den Wertebereich **-1 bis +1** — außer Cramér's V und Eta η: diese reichen von **0 bis 1**, da sie auf Chi² basieren und keine Richtung ausdrücken können.
+
 -   mehr zu den verschiedenen Korrelationsmaßen unter [Statistik-Grundlagen](https://statistikgrundlagen.de/ebook/chapter/korrelation/) in Kapitel 4 zu Korrelationen!
+:::
 
-# Was heute ansteht
 
-1.  Organisatorisches (Übungsfeedback, Fragen etc.)
+## Konvention nach Cohen (1988)* {.smaller}
 
-2.  Einführung in die Grundidee der Inferenzstatistik
+::::: columns
+:::: column
+Wertebereich -1 bis +1:
 
-3.  Regressionen
+**Pearson r, Spearman ρ, Kendall τ**
+
+| r | Interpretation |
+|---|---|
+| < .10 | vernachlässigbar |
+| .10 – .30 | schwach |
+| .30 – .50 | moderat |
+| > .50 | stark |
+
+::: {.callout-note .fragment}
+-  `report::report()` verwendet die neuere, weniger konservative Konvention von Funder & Ozer (2019)**
+-   Generell ist die praktische Bedeutung von Zusammenhängen immer vom Kontext abhängig!
+:::
+
+::::
+:::: column
+Wertebereich 0 bis 1:
+
+**Cramér's V** — abhängig von Tabellengröße
+
+| V | 2×2 | 3×3 | 4×4 |
+|---|---|---|---|
+| schwach | .10 | .07 | .06 |
+| moderat | .30 | .21 | .17 |
+| stark | .50 | .35 | .29 |
+
+
+**Eta η²**
+
+| η² | Interpretation |
+|---|---|
+| ≥ .01 | schwach |
+| ≥ .06 | moderat |
+| ≥ .14 | stark |
+
+::::
+:::::
+
+::: {style="font-size: 0.6em; margin-top: 1em;"}
+\* Cohen, J. (1988). *Statistical Power Analysis for the Behavioral Sciences* (2nd ed.). Lawrence Erlbaum Associates.
+
+\*\* Funder, D. C., & Ozer, D. J. (2019). Evaluating effect size in psychological research: Sense and nonsense. *Advances in Methods and Practices in Psychological Science*, 2(2), 156–168. [DOI](https://doi.org/10.1177/2515245919847202).
+:::
+
+
+## Übungsfeedback
+
+-  
 
 # Inferenzstatistik
+
 
 ## Korrelationsmaße - Beispiel {.smaller}
 

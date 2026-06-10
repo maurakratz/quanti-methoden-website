@@ -991,7 +991,7 @@
     "href": "slides/sitzung_08_zusammenhänge.html#korrelationsmaße",
     "title": "Quantitative Methoden mit R & R-Studio",
     "section": "Korrelationsmaße",
-    "text": "Korrelationsmaße\n\nZusammenhänge können mit Kreuztabellen oder Korrelationsmaßen dargestellt werden\nKorrelationsmaße (auch Zusammenhangsmaße) geben Auskunft darüber, inwiefern ein Zusammenhang zwischen Variablen besteht.\nWertebereich -1 (perfekt negativer Zusammenhang) bis +1 (perfekt positiver Zusammenhang)\n\nAb (+/-) r=.10 spricht man von einem schwachen Zusammenhang (schwacher Effekt)\nAb (+/-) r=.30 spricht man von einem mittleren Zusammenhang (mittlerer Effekt)\nAb (+/-) r=.50 spricht man von einem starken Zusammenhang (starker Effekt).\n\nmehr dazu, wie er konkret berechnet wird unter Statistik-Grundlagen"
+    "text": "Korrelationsmaße\n\n\n\n\n\n\nmetrisch\nordinal\nnominal\n\n\n\n\nmetrisch\nPearson's r\nSpearman's ρ (rho) / Kendall's τ (tau)\nPearson's r (dichotom) / Eta η (eta) (polytom)\n\n\nordinal\n\nSpearman's ρ (rho) / Kendall's τ (tau)\nSpearman's ρ (rho) (dichotom)\n\n\nnominal\n\n\nPhi φ (phi) (dichotom) / Cramér's V (polytom)\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nphi ist mathematisch identisch zu pearson!\nAlle Maße haben den Wertebereich -1 bis +1 — außer Cramér’s V und Eta η: diese reichen von 0 bis 1, da sie auf Chi² basieren und keine Richtung ausdrücken können.\nmehr zu den verschiedenen Korrelationsmaßen unter Statistik-Grundlagen in Kapitel 4 zu Korrelationen!"
   },
   {
     "objectID": "slides/sitzung_08_zusammenhänge.html#grenzen-der-korrelationsmaße",
@@ -1005,7 +1005,7 @@
     "href": "slides/sitzung_08_zusammenhänge.html#korrelationsmaße-1",
     "title": "Quantitative Methoden mit R & R-Studio",
     "section": "Korrelationsmaße",
-    "text": "Korrelationsmaße\n\n\n\n\n\n\nmetrisch\nordinal\nnominal\n\n\n\n\nmetrisch\nPearson's r\nSpearman's ρ (rho) / Kendall's τ (tau)\nPearson's r (dichotom) / Eta η (eta) (polytom)\n\n\nordinal\n\nSpearman's ρ (rho) / Kendall's τ (tau)\nSpearman's ρ (rho) (dichotom)\n\n\nnominal\n\n\nPhi φ (phi) (dichotom) / Cramér's V (polytom)\n\n\n\n\n\n\nmehr zu den verschiedenen Korrelationsmaßen unter Statistik-Grundlagen in Kapitel 4 zu Korrelationen!"
+    "text": "Korrelationsmaße\n\n\n\n\n\n\nmetrisch\nordinal\nnominal\n\n\n\n\nmetrisch\nPearson's r\nSpearman's ρ (rho) / Kendall's τ (tau)\nPearson's r (dichotom) / Eta η (eta) (polytom)\n\n\nordinal\n\nSpearman's ρ (rho) / Kendall's τ (tau)\nSpearman's ρ (rho) (dichotom)\n\n\nnominal\n\n\nPhi φ (phi) (dichotom) / Cramér's V (polytom)\n\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nphi ist mathematisch identisch zu pearson!\nAlle Maße haben den Wertebereich -1 bis +1 — außer Cramér’s V und Eta η: diese reichen von 0 bis 1, da sie auf Chi² basieren und keine Richtung ausdrücken können.\nmehr zu den verschiedenen Korrelationsmaßen unter Statistik-Grundlagen in Kapitel 4 zu Korrelationen!"
   },
   {
     "objectID": "slides/sitzung_08_zusammenhänge.html",
@@ -1040,7 +1040,7 @@
     "href": "slides/sitzung_09_regression.html#recap-korrelationen",
     "title": "Quantitative Methoden mit R & R-Studio",
     "section": "Recap: Korrelationen",
-    "text": "Recap: Korrelationen\n\nZusammenhänge können mit Kreuztabellen oder Korrelationsmaßen dargestellt werden\nKorrelationsmaße (auch Zusammenhangsmaße) geben Auskunft darüber, inwiefern ein Zusammenhang zwischen Variablen besteht.\nWertebereich -1 (perfekt negativer Zusammenhang) bis +1 (perfekt positiver Zusammenhang)\n\nAb (+/-) r=.10 spricht man von einem schwachen Zusammenhang (schwacher Effekt)\nAb (+/-) r=.30 spricht man von einem mittleren Zusammenhang (mittlerer Effekt)\nAb (+/-) r=.50 spricht man von einem starken Zusammenhang (starker Effekt).\n\nmehr dazu, wie er konkret berechnet wird unter Statistik-Grundlagen"
+    "text": "Recap: Korrelationen\n\nZusammenhänge können mit Kreuztabellen oder Korrelationsmaßen dargestellt werden\nKorrelationsmaße (auch Zusammenhangsmaße) geben Auskunft darüber, inwiefern ein Zusammenhang zwischen zwei Variablen besteht.\n\n\n\n\nAttache Paket: 'dplyr'\n\n\nDie folgenden Objekte sind maskiert von 'package:stats':\n\n    filter, lag\n\n\nDie folgenden Objekte sind maskiert von 'package:base':\n\n    intersect, setdiff, setequal, union\n\n\nWarning: Paket 'kableExtra' wurde unter R Version 4.5.3 erstellt\n\n\n\nAttache Paket: 'kableExtra'\n\n\nDas folgende Objekt ist maskiert 'package:dplyr':\n\n    group_rows\n\n\n\n\n\n\nmetrisch\nordinal\nnominal\n\n\n\n\nmetrisch\nPearson's r\nSpearman's ρ (rho) / Kendall's τ (tau)\nPearson's r (dichotom) / Eta η (eta) (polytom)\n\n\nordinal\n\nSpearman's ρ (rho) / Kendall's τ (tau)\nSpearman's ρ (rho) (dichotom)\n\n\nnominal\n\n\nPhi φ (phi) (dichotom) / Cramér's V (polytom)\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\n\nphi ist mathematisch identisch zu pearson!\nAlle Maße haben den Wertebereich -1 bis +1 — außer Cramér’s V und Eta η: diese reichen von 0 bis 1, da sie auf Chi² basieren und keine Richtung ausdrücken können.\nmehr zu den verschiedenen Korrelationsmaßen unter Statistik-Grundlagen in Kapitel 4 zu Korrelationen!"
   },
   {
     "objectID": "slides/sitzung_09_regression.html#korrelationsmaße",
@@ -1082,7 +1082,7 @@
     "href": "slides/sitzung_09_regression.html#minute-cards",
     "title": "Quantitative Methoden mit R & R-Studio",
     "section": "Minute Cards",
-    "text": "Minute Cards\nBitte füllt die Minute Cards für die heutige Sitzung aus. Das sollt enicht länger als 3 Minuten dauern. Vielen Dank für eure Mitarbeit!"
+    "text": "Minute Cards\nBitte füllt die Minute Cards für die heutige Sitzung aus. Das sollt enicht länger als 3 Minuten dauern. Vielen Dank für eure Mitarbeit!\n\n\nWarning: Paket 'qrcode' wurde unter R Version 4.5.3 erstellt"
   },
   {
     "objectID": "slides/sitzung_09_regression.html#korrelationsmaße---beispiel",
@@ -1103,7 +1103,7 @@
     "href": "slides/sitzung_09_regression.html#inferenz-durch-parameterschätzung",
     "title": "Quantitative Methoden mit R & R-Studio",
     "section": "Inferenz durch Parameterschätzung",
-    "text": "Inferenz durch Parameterschätzung\n\nGrundsätzlich gibt es also neben der Effektstärke (z.B. Korrelationsmaß), die uns sagt, ob der Effekt relevant ist …\nauch noch die Frage, ob richtig geschätzt wurde und der gefundene Effekt also signifikant ist!\nFür Letzteres gibt es zwei grundsätzliche Herangehensweisen: Punkt - und Intervallschätzung\nPunktschätzung: p-Wert, Signifikanzniveau & ***\nIntervallschätzung: Konfidenzintervalle\n\n\n\n\n\n\n\n\nInferenz verstehen\n\n\n\nKapitel 8 (Parameterschätzung), und 9 (Intervallschätzung) in Statistik Grundlagen\nbei Bedarf ggf. noch Kapitel 7 zu Stichproben als Grundlage"
+    "text": "Inferenz durch Parameterschätzung\n\nGrundsätzlich gibt es also neben der Effektstärke (z.B. Korrelationsmaß), die uns sagt, ob der Effekt relevant ist …\nauch noch die Frage, ob richtig geschätzt wurde und der gefundene Effekt also signifikant ist!\nFür Letzteres gibt es zwei grundsätzliche Herangehensweisen: Punkt - und Intervallschätzung\nPunktschätzung: p-Wert, Signifikanzniveau & ***\nIntervallschätzung: Konfidenzintervalle\n\n\n\n\n\n\n\nTipInferenz verstehen\n\n\n\n\nKapitel 8 (Parameterschätzung), und 9 (Intervallschätzung) in Statistik Grundlagen\nbei Bedarf ggf. noch Kapitel 7 zu Stichproben als Grundlage"
   },
   {
     "objectID": "slides/sitzung_09_regression.html#punktschätzung---beispiel",
@@ -1243,7 +1243,7 @@
     "href": "slides/sitzung_09_regression.html#die-multiple-lineare-regression-1",
     "title": "Quantitative Methoden mit R & R-Studio",
     "section": "Die multiple lineare Regression",
-    "text": "Die multiple lineare Regression\n\\[\\hat{y} = b_0 + b_1 x_1 + b_2 x_2 + \\ldots + b_k x_k\\]\n\nDie \\(b\\)-Koeffizienten geben den spezifischen / isolierten Einfluss jedes Prädiktors an:\nWenn \\(x_k\\) um eine Einheit steigt, ändert sich \\(y\\) um \\(b_k\\),wenn alle anderen Prädiktoren konstant bleiben (ceteris paribus).\n\n\n\n\n\n\n\n\nMultiple ≠ Multivariate Regression\n\n\nMultiple = mehrere unabhängige Variablen\nMultivariate = mehrere abhängige Variablen"
+    "text": "Die multiple lineare Regression\n\\[\\hat{y} = b_0 + b_1 x_1 + b_2 x_2 + \\ldots + b_k x_k\\]\n\nDie \\(b\\)-Koeffizienten geben den spezifischen / isolierten Einfluss jedes Prädiktors an:\nWenn \\(x_k\\) um eine Einheit steigt, ändert sich \\(y\\) um \\(b_k\\),wenn alle anderen Prädiktoren konstant bleiben (ceteris paribus).\n\n\n\n\n\n\n\nTipMultiple ≠ Multivariate Regression\n\n\n\nMultiple = mehrere unabhängige Variablen\nMultivariate = mehrere abhängige Variablen"
   },
   {
     "objectID": "slides/sitzung_09_regression.html#ziele-der-multiplen-linearen-regression",
@@ -1384,5 +1384,54 @@
     "title": "Quantitative Methoden mit R & R-Studio",
     "section": "Minute Cards",
     "text": "Minute Cards\nBitte füllt die Minute Cards für die heutige Sitzung aus. Das sollt enicht länger als 3 Minuten dauern. Vielen Dank für eure Mitarbeit!"
+  },
+  {
+    "objectID": "slides/sitzung_08_zusammenhänge.html#konvention-nach",
+    "href": "slides/sitzung_08_zusammenhänge.html#konvention-nach",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Konvention nach",
+    "text": "Konvention nach\n\nZusammenhänge können mit Kreuztabellen oder Korrelationsmaßen dargestellt werden\nKorrelationsmaße (auch Zusammenhangsmaße) geben Auskunft darüber, inwiefern ein Zusammenhang zwischen Variablen besteht.\nWertebereich -1 (perfekt negativer Zusammenhang) bis +1 (perfekt positiver Zusammenhang)\n\nAb (+/-) r=.10 spricht man von einem schwachen Zusammenhang (schwacher Effekt)\nAb (+/-) r=.30 spricht man von einem mittleren Zusammenhang (mittlerer Effekt)\nAb (+/-) r=.50 spricht man von einem starken Zusammenhang (starker Effekt).\n\nmehr dazu, wie er konkret berechnet wird unter Statistik-Grundlagen"
+  },
+  {
+    "objectID": "slides/sitzung_08_zusammenhänge.html#konvention-nach-cohen-1988",
+    "href": "slides/sitzung_08_zusammenhänge.html#konvention-nach-cohen-1988",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Konvention nach Cohen (1988)*",
+    "text": "Konvention nach Cohen (1988)*\n\n\nWertebereich -1 bis +1:\nPearson r, Spearman ρ, Kendall τ\n\n\n\nr\nInterpretation\n\n\n\n\n&lt; .10\nvernachlässigbar\n\n\n.10 – .30\nschwach\n\n\n.30 – .50\nmoderat\n\n\n&gt; .50\nstark\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nreport::report() verwendet die neuere, weniger konservative Konvention von Funder & Ozer (2019)**\nGenerell ist die praktische Bedeutung von Zusammenhängen immer vom Kontext abhängig!\n\n\n\n\n\n\nWertebereich 0 bis 1:\nCramér’s V — abhängig von Tabellengröße\n\n\n\nV\n2×2\n3×3\n4×4\n\n\n\n\nschwach\n.10\n.07\n.06\n\n\nmoderat\n.30\n.21\n.17\n\n\nstark\n.50\n.35\n.29\n\n\n\nEta η²\n\n\n\nη²\nInterpretation\n\n\n\n\n≥ .01\nschwach\n\n\n≥ .06\nmoderat\n\n\n≥ .14\nstark\n\n\n\n\n\n* Cohen, J. (1988). Statistical Power Analysis for the Behavioral Sciences (2nd ed.). Lawrence Erlbaum Associates.\n** Funder, D. C., & Ozer, D. J. (2019). Evaluating effect size in psychological research: Sense and nonsense. Advances in Methods and Practices in Psychological Science, 2(2), 156–168. DOI."
+  },
+  {
+    "objectID": "slides/sitzung_08_zusammenhänge.html#konventionen",
+    "href": "slides/sitzung_08_zusammenhänge.html#konventionen",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Konventionen",
+    "text": "Konventionen\n\n\nPearson r, Spearman ρ, Kendall τ Wertebereich: -1 (perfekt negativ) bis +1 (perfekt positiv)\n\n\n\nr\nInterpretation\n\n\n\n\n&lt; .10\nvernachlässigbar\n\n\n.10 – .30\nschwach\n\n\n.30 – .50\nmoderat\n\n\n&gt; .50\nstark\n\n\n\n\nCramér’s V — abhängig von Tabellengröße: 0 bis 1\n\n\n\nV\n2×2\n3×3\n4×4\n\n\n\n\nschwach\n.10\n.07\n.06\n\n\nmoderat\n.30\n.21\n.17\n\n\nstark\n.50\n.35\n.29\n\n\n\n\n\n\n\n\n\n\nNote\n\n\nreport::report() verwendet Funder & Ozer (2019) — eine neuere, konservativere Einschätzung bei der schon kleine r als praktisch bedeutsam gelten."
+  },
+  {
+    "objectID": "slides/sitzung_08_zusammenhänge.html#konventionen-1",
+    "href": "slides/sitzung_08_zusammenhänge.html#konventionen-1",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Konventionen",
+    "text": "Konventionen\n\n\nPearson r, Spearman ρ, Kendall τ\n\n\n\nr\nInterpretation\n\n\n\n\n&lt; .10\nvernachlässigbar\n\n\n.10 – .30\nschwach\n\n\n.30 – .50\nmoderat\n\n\n&gt; .50\nstark\n\n\n\n\nCramér’s V — abhängig von Tabellengröße:\n\n\n\nV\n2×2\n3×3\n4×4\n\n\n\n\nschwach\n.10\n.07\n.06\n\n\nmoderat\n.30\n.21\n.17\n\n\nstark\n.50\n.35\n.29\n\n\n\n\n\n\n\n\n\n\nNote\n\n\nreport::report() verwendet Funder & Ozer (2019) — eine neuere, konservativere Einschätzung bei der schon kleine r als praktisch bedeutsam gelten."
+  },
+  {
+    "objectID": "slides/sitzung_08_zusammenhänge.html#übung-06",
+    "href": "slides/sitzung_08_zusammenhänge.html#übung-06",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Übung 06",
+    "text": "Übung 06\n\ndenkt daran, missings nicht nur explizit zu machen (z.B.: &lt;0 zu NA), sondern auch zu entfernen\nPLUS bei Faktoren die dazugehörigen Faktorlabels entfernen mit forcats::fct_drop() (sonst tauchen diese weiterhin in Tabellen auf) \\(\\rightarrow\\) lernen wir heute\ndamit Faktorlabels und nicht -levels auf den Achsen angezeigt werden: haven::as_factor() \\(\\rightarrow\\) lernen wir heute\nbitte achtet auf die Übungsnummer\nlabelled::look_for(allbus_c_2023_raw) als Alternative zu sumamrytools::dfSummary (allerdings nur in der Console)\n#| error: true als R-Chunk-Option (oder direkt im header unter execute als error: true , damit ich den Fehlercode sehen kann!"
+  },
+  {
+    "objectID": "slides/sitzung_09_regression.html#konvention-nach-cohen-1988",
+    "href": "slides/sitzung_09_regression.html#konvention-nach-cohen-1988",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Konvention nach Cohen (1988)*",
+    "text": "Konvention nach Cohen (1988)*\n\n\nWertebereich -1 bis +1:\nPearson r, Spearman ρ, Kendall τ\n\n\n\nr\nInterpretation\n\n\n\n\n&lt; .10\nvernachlässigbar\n\n\n.10 – .30\nschwach\n\n\n.30 – .50\nmoderat\n\n\n&gt; .50\nstark\n\n\n\n\n\n\n\n\n\nNote\n\n\n\n\nreport::report() verwendet die neuere, weniger konservative Konvention von Funder & Ozer (2019)**\nGenerell ist die praktische Bedeutung von Zusammenhängen immer vom Kontext abhängig!\n\n\n\n\nWertebereich 0 bis 1:\nCramér’s V — abhängig von Tabellengröße\n\n\n\nV\n2×2\n3×3\n4×4\n\n\n\n\nschwach\n.10\n.07\n.06\n\n\nmoderat\n.30\n.21\n.17\n\n\nstark\n.50\n.35\n.29\n\n\n\nEta η²\n\n\n\nη²\nInterpretation\n\n\n\n\n≥ .01\nschwach\n\n\n≥ .06\nmoderat\n\n\n≥ .14\nstark\n\n\n\n\n\n\n* Cohen, J. (1988). Statistical Power Analysis for the Behavioral Sciences (2nd ed.). Lawrence Erlbaum Associates.\n** Funder, D. C., & Ozer, D. J. (2019). Evaluating effect size in psychological research: Sense and nonsense. Advances in Methods and Practices in Psychological Science, 2(2), 156–168. DOI."
+  },
+  {
+    "objectID": "slides/sitzung_09_regression.html#übungsfeedback",
+    "href": "slides/sitzung_09_regression.html#übungsfeedback",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Übungsfeedback",
+    "text": "Übungsfeedback"
   }
 ]

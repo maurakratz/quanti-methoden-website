@@ -4,17 +4,20 @@
 
 
 # 01 setup ---------------------
+
 # das Übliche
-library(haven)
+library(haven) # für .dta-Formate
 library(dplyr)
-library(forcats)
+library(forcats) # für Faktoren
 library(labelled)
 library(ggplot2)
+
 # für Kreuztabellen
 library(gmodels)
 library(gtsummary) # ggf. vorher installieren!
 library(janitor)
 library(questionr)
+
 # für Korrelationen
 library(correlation)
 library(report)
@@ -93,7 +96,7 @@ allbus_c_2023_raw %>%
 
 # ERGÄNZUNG VISUALISIERUNG ------------------------------
 
-# Staked bar charts ----------------
+# 05 Staked bar charts ----------------
 
 # anknüpfend an Übung 05 interessiert uns vielleicht, inwiefern sich die
 # Einschätzung, eine vollzeit arbeitende Frau könne eine gute Mutter sein,
@@ -152,6 +155,7 @@ allbus_c_2023_raw %>%
     axis.title.y = element_blank()
   )
 
+# in %
 allbus_c_2023_raw %>%
   dplyr::mutate(
     fr07 = haven::as_factor(dplyr::case_when(fr07 < 0 ~ NA, .default = fr07)),
@@ -173,7 +177,7 @@ allbus_c_2023_raw %>%
 # Deshalb müssen wir die Daten gewichten, um die Verzerrung zu korrigieren.
 
 
-# Gewichte --------------------------------
+# 06 Gewichte --------------------------------
 allbus_c_2023_raw %>%
   dplyr::mutate(
     fr07 = haven::as_factor(dplyr::case_when(fr07 < 0 ~ NA, .default = fr07)),
@@ -202,7 +206,7 @@ allbus_c_2023_raw %>%
   # und/ oder Spearman Korrelation
 
 
-# Kreuztabellen -----------------------
+# 07 Kreuztabellen -----------------------
 
 # Die Frage nach dem Zusammenhang zwischen angegebenem Geschlecht und
 # Berufstätigkeit könnte ebenfalls interessant sein:
@@ -293,7 +297,7 @@ allbus_c_2023 %>%
 
 
 
-# mit questionr für Gewichtungen
+# alternativ: mit questionr für Gewichtungen
 questionr::wtd.table(allbus_c_2023$sex_f, allbus_c_2023$work_f,
                      weights = allbus_c_2023$wghtpew)
 
@@ -301,23 +305,65 @@ questionr::wtd.table(allbus_c_2023$sex_f, allbus_c_2023$work_f,
 
 
 
-# Korrelationskoeffizienten ----------------
+# 08 Korrelationskoeffizienten ----------------
 
 # den aus der Kreuztabelle bereits vermuteten Zusammenhang können
-# wir auch berechenen: zwei kategoriale Variablen => Chi-Quadrat-Test + Cramér's V>
+# wir auch berechenen:
+# zwei kategoriale Variablen => Chi-Quadrat-Test + Cramér's V
 
-stats::chisq.test(allbus_c_2023$sex_f, allbus_c_2023$work_f) %>%
-  report::report()
 
-sum(stats::chisq.test(allbus_c_2023$sex_f, allbus_c_2023$work_f)$observed)
+# Wie sind die Variablen kodiert?
 
+# mit count
+allbus_c_2023 %>%
+  dplyr::count(sex_f)
+allbus_c_2023 %>%
+  dplyr::count(work_f)
+
+# oder mit levels
+levels(allbus_c_2023$sex_f) %>%
+  tibble::enframe()
+levels(allbus_c_2023$work_f) %>%
+  tibble::enframe()
+# hier ist die Variable wie folgt codiert:
+# Geschlecht männlich => weiblich
+# Erwerbsstatus: Vollzeit => Nicht erwerbstätig
+# WICHTIG FÜR INTERPRETATION!
+
+# sex_f: nominal-polytom (3 Kategorien)
+# work_f: ordinal-kategorial (4 Kategorien mit Reihenfolge)
+
+# also: Cramers V und Chi²-Test
 effectsize::cramers_v(
   stats::chisq.test(allbus_c_2023$sex_f, allbus_c_2023$work_f),
   ci = 0.95,
   alternative = "two.sided"
 )
+# In diesem Fall ist der Zusammenhang zwischen Geschlecht und Erwerbsstatus
+# schwach bis moderat (Cramér's V von 0.22)
 
-# Zum Beispiel:
+sum(stats::chisq.test(allbus_c_2023$sex_f, allbus_c_2023$work_f)$observed)
+
+# alternativ wäre auch dichotom und ordinal vertretbar
+# dann spearman
+# da können wir dann auch ablesen, ob der Zusammenhang positiv oder negativ ist
+allbus_c_2023 %>%
+  dplyr::filter(sex_f %in% c("MANN", "FRAU")) %>%
+  dplyr::mutate(
+    sex_d  = as.integer(sex_f),
+    work_d = as.integer(work_f)
+  ) %>%
+  correlation::correlation(
+    select = "sex_d",
+    select2 = "work_d",
+    method= "spearman"
+  )
+# In diesem Fall hat Frausein einen schwachen, positiven Zusammenhang
+# (rho: 0.15) mit einem geringeren Erwerbsstatus.
+
+
+
+## Beispiel politisches Vertrauen: ----------------------
 # Hängen Vertrauen zu Parteien und Vertrauen in den Bundestag zusammen?
 
 allbus_c_2023 %>%
@@ -349,6 +395,8 @@ allbus_c_2023 %>%
 cor_01 <- allbus_c_2023 %>%
   dplyr::select(pt03_d, pt15_d) %>%
   correlation::correlation()
+# correlation nutzt standardmäßig den Pearson-Korrelationskoeffizienten
+# In diesem Fall ist das vertretbar, weil beide Variablen quasi-metrisch sind.
 
 summary(cor_01)
 
