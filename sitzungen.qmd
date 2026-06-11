@@ -19,6 +19,6 @@ Hier findest du die Folien und R-Skripte zu jeder Sitzung. Folien sind als HTML 
 | 09 | 16.06.2026 | Inferenzstatistik – Einfache & Multiple Lineare Regression | Regressionskoeffizienten, p-Wert, R² | `stats`, `performance`, `texreg` | — / — | —  |
 | 10 | 23.06.2026 | Regression Diagnostics | Residuen, Heteroskedastizität, Ausreißer | `stats`, `performance` | — / — | —  |
 | 11 | 30.06.2026 | Logistische Regression | Odds Ratio, binäre AV | `stats`, `performance` | — / — | —  |
-| 12 | 07.07.2026 | Varianzanalyse (ANOVA) & t-test | — | — | — / — | —  |
+| 12 | 07.07.2026 | Data Analysis Reports | — | — | — / — | —  |
 | 13 | 14.07.2026 | Recap | — | — | — / — | —  |
 : {.striped .hover tbl-colwidths="[5,10,20,20,15,10,20]"}

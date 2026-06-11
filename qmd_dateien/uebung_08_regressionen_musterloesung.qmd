@@ -1,0 +1,250 @@
+---
+title: "Übung 08: Regressionen"
+subtitle: "Politik vermessen: Quantitative Methoden mit R | SoSe 2026 | Maura Kratz"
+author: "Musterlösung"
+date: today
+date-format: "DD.MM.YYYY"
+format:
+  pdf:
+    toc: false
+  html:
+    toc: true
+    toc-title: "Inhalt"
+    self-contained: true
+    theme: default
+execute:
+  echo: true
+  warning: false
+  message: false
+knitr:
+  opts_chunk:
+    fig-width: 7
+    fig-height: 4
+---
+
+```{=html}
+<!-- ---------------------------------------------------------------
+     Hinweise zum Arbeiten mit dieser Datei:
+     - R-Code kommt in die Chunks (zwischen ```{r} und ```)
+     - Instruktionen stehen als unformatierter Text über den Chunks
+     - Interpretationen und Antworten kommen zwischen die ** unter den Chunks und werden also kursiv gerendert
+     - Rendern: Strg+Shift+K (oder oben Button "Render")
+     - Abgabe: die gerenderte PDF-Datei in Blackboard hochladen
+--------------------------------------------------------------- -->
+```
+
+# Setup
+
+Lade die für deine Analyse nötigen Pakete.
+
+```{r}
+# lade Pakete
+library(here)
+library(haven)
+library(dplyr)
+library(tidyr)
+library(labelled)
+library(ggplot2)
+library(texreg)
+library(broom)
+```
+
+# Aufgabe 1: Daten laden
+
+Lies den ALLBUS-Datensatz von 2023 ein. Speichere den Datensatz in einem Objekt namens `allbus_c_2023_raw`.
+
+```{r}
+allbus_c_2023_raw <- haven::read_dta(here::here("./data/ZA8831_v1-3-0.dta"))
+```
+
+# Aufgabe 2: Theorie, Forschungsfrage & Variablen vorbereiten
+
+In dieser Übung untersuchen wir die Forschungsfrage: **(Inwiefern) lässt sich politisches Interesse auf individuelle Ressourcen zurückführen?**
+
+Theoretischer Hintergrund ist das Civic-Voluntarism-Modell nach Verba, Schlozman & Brady (1995): Politische Beteiligung hängt demnach von Ressourcen ab: Wer mehr Bildung, mehr Einkommen, mehr Zeit und mehr "civic skills" hat, dem fällt politische Teilhabe leichter. Wir wollen untersuchen, ob das auch für politisches Interesse, sozusagen als Vorstufe für politische Beteiligung, gilt.
+
+**Aufgabe 2a: Hypothesen formulieren**
+
+Formuliere für die drei UVn Bildung, Einkommen und Alter deine Vermutungen in Bezug auf deren Zusammenhang mit politischem Interesse. Solche gerichteten Hypothesen lassen sich gut mit "je ... desto ..." formulieren. Und was glaubst du: Welche der drei Ressourcen wird den stärksten Effekt auf das politische Interesse haben? Begründe kurz. Wir werden das in in Aufgabe 6 prüfen.
+
+-   *H1: Je höher die Bildung, desto höher das politische Interesse (Bildung vermittelt Wissen und Selbstwirksamkeit).*
+
+-   *H2: Je höher das Einkommen, desto höher das politische Interesse (ökonomische Sicherheit schafft Freiraum für Politik).*
+
+-   *H3: Je höher das Alter, desto höher das politische Interesse (politische Sozialisation und Zeit).*
+
+-   *Vermutung: Bildung hat den stärksten Effekt — das Civic-Voluntarism-Modell sieht sie als zentrale Ressource, weil sie Wissen, Selbstwirksamkeit und civic skills gleichzeitig fördert.*
+
+**Aufgabe 2b: Variablen sichten**
+
+Suche mit `labelled::look_for()` nach den Variablen für (a) politisches Interesse, (b) Bildung/Schulabschluss, (c) Einkommen und (d) Alter. Beantworte anschließend für jede der vier Variablen: Wie heißt die Variable im Datensatz? Welche Werte kann sie annehmen? Welche davon sind in Wahrheit Missings? Gibt es Besonderheiten bei der Polung (Richtung) der Skala?
+
+```{r}
+#| results: false
+
+allbus_c_2023_raw %>%
+  labelled::look_for("Interesse")
+allbus_c_2023_raw %>%
+  labelled::look_for("Hochschulabschluss")
+allbus_c_2023_raw %>%
+  labelled::look_for("Einkommen")
+allbus_c_2023_raw %>%
+  labelled::look_for("Alter")
+# NB: results: false im Chunk-Header unterdrückt den langen Output
+# in der gerenderten PDF - in RStudio läuft der Code trotzdem!
+
+allbus_c_2023_raw %>%
+  count(pa02a)
+```
+
+-   *Politisches Interesse: `pa02a`, Skala 1 (sehr stark) bis 5 (überhaupt nicht) — Achtung, invers gepolt! Missings \< 0.*
+
+-   *Bildung: `de15` (Befragte:r hat Hochschulabschluss), 0 = nicht genannt / 1 = genannt (Dummy), Missings \< 0.*
+
+-   *Einkommen: `incc`, 26 geordnete Kategorien, Missings \< 0. Alter: `age`, in Jahren, Missings \< 0.*
+
+**Aufgabe 2c: Variablen aufbereiten**
+
+Bereite nun alle Variablen auf: Konvertiere Missings zu NA. Pole außerdem das politische Interesse um, sodass hohe Werte hohes Interesse bedeuten (das erleichtert die Interpretation aller Hypothesen). Wandle den Hochschulabschluss in einen Faktor um (vgl. Skript Sitzung 09).
+
+```{r}
+allbus_c_2023 <- allbus_c_2023_raw %>%
+  dplyr::mutate(
+    # Politisches Interesse: Missings raus + umpolen
+    pa02a_r = dplyr::case_when(pa02a < 0 ~ NA, .default = 6 - pa02a),
+    # Hochschulabschluss: Missings raus, als Faktor (Dummy)
+    de15_bi = haven::as_factor(dplyr::case_when(de15 < 0 ~ NA,
+                                                .default = de15)) %>%
+      forcats::fct_drop(),
+    # Einkommen: Missings raus 
+    incc = dplyr::case_when(incc < 0 ~ NA, .default = incc),
+    # Alter: Missings raus
+    age = dplyr::case_when(age < 0 ~ NA, .default = age)
+  )
+
+# Häufigkeiten prüfen
+allbus_c_2023 %>% count(pa02a) # vor inversion
+allbus_c_2023 %>% count(pa02a_r) # nach inversion 
+allbus_c_2023 %>% count(de15_bi)
+```
+
+*\*Hinweis zur Umpolung: \`6 - pa02a\` dreht die 5er-Skala um (aus 1 wird 6−1 = 5, aus 2 wird 4, die 3 bleibt in der Mitte, aus 5 wird 1). Nach der Umpolung bedeuten hohe Werte hohes Interesse — alle Hypothesen lassen sich nun als positive Zusammenhänge lesen. Die allgemeine Formel zum Übertragen auf andere Skalen lautet: neuer Wert = (Minimum + Maximum) − alter Wert. Hier: (1 + 5) − x = 6 − x; bei einer Skala von 0–10 wäre es entsprechend (0 + 10) − x = 10 − x.\**
+
+# Aufgabe 3: Voraussetzungen VOR dem Modell prüfen
+
+Prüfe vor der Regression: (a) Sind die Skalenniveaus geeignet? (b) Sind die Beobachtungen unabhängig? (c) Ist der Zusammenhang zwischen Einkommen und politischem Interesse annähernd linear? Nutze für (c) einen Scatterplot mit Loess-Kurve. (Für den dichotomen Hochschulabschluss ist keine Linearitätsprüfung nötig — bei nur zwei Ausprägungen ist jeder Zusammenhang "linear".)
+
+```{r}
+# Linearität AV ~ Einkommen
+allbus_c_2023 %>%
+  ggplot2::ggplot(mapping = ggplot2::aes(x = incc, y = pa02a_r)) +
+  ggplot2::geom_jitter(alpha = 0.2) +
+  ggplot2::stat_smooth(method = "loess") +
+  ggplot2::xlab("Einkommen (kat.)") +
+  ggplot2::ylab("Politisches Interesse (umgepolt: 5 = sehr stark)")
+
+# Linearität AV ~ Alter
+allbus_c_2023 %>%
+  ggplot2::ggplot(mapping = ggplot2::aes(x = age, y = pa02a_r)) +
+  ggplot2::geom_jitter(alpha = 0.2) +
+  ggplot2::stat_smooth(method = "loess") +
+  ggplot2::xlab("Alter") +
+  ggplot2::ylab("Politisches Interesse (umgepolt: 5 = sehr stark)")
+```
+
+*(a) Die AV `pa02a_r` (1–5) behandeln wir quasi-metrisch — bei nur 5 Stufen ist das grenzwertiger als bei unserer AV aus der Sitzung (0–10), aber für Übungszwecke vertretbar. `incc` ist ordinal mit 26 geordneten Kategorien (quasi-metrische Behandlung), Alter ist metrisch, der Hochschulabschluss geht als Dummy ein. (b) Der ALLBUS ist eine Zufallsstichprobe ohne Messwiederholung — Beobachtungen sind unabhängig. (c) AV \~ Einkommen: Die Loess-Kurve steigt leicht und weitgehend gleichmäßig — Linearität vertretbar. AV \~ Alter: Die Kurve steigt bis etwa 70 Jahre leicht an und fällt danach ab — eine leichte Krümmung am rechten Rand. Für unsere Zwecke noch vertretbar, aber ein Hinweis, dass der Alterseffekt nicht perfekt linear ist (wie man damit umgeht → Sitzung 10).*
+
+# Aufgabe 4: Einfache lineare Regression
+
+Rechne eine einfache lineare Regression mit politischem Interesse (umgepolt) als AV und dem Hochschulabschluss als UV. Verwende die Gewichtungsvariable `wghtpew`. Interpretiere anschließend (a) den Regressionskoeffizienten, (b) das R² und (c) die Signifikanz.
+
+```{r}
+model_1 <- lm(pa02a_r ~ de15_bi,
+              data = allbus_c_2023,
+              weights = wghtpew)
+summary(model_1)
+```
+
+*(a) Da die UV ein Dummy ist, gibt der Koeffizient den Unterschied zwischen den beiden Gruppen an: Personen mit Hochschulabschluss haben ein um 0.364 Punkte höheres vorhergesagtes politisches Interesse (Skala 1–5) als Personen ohne — das positive Vorzeichen entspricht H1. (b) R² = 0.027: Der Hochschulabschluss erklärt nur knapp 3 % der Varianz des politischen Interesses — ein geringer Erklärungsbeitrag. (c) Der Effekt ist statistisch signifikant (p \< .001) — in der Grundgesamtheit ist ein Zusammenhang sehr wahrscheinlich.*
+
+# Aufgabe 5: Multiple lineare Regression
+
+Erweitere das Modell gemäß dem Civic-Voluntarism-Modell um Einkommen und Alter. Stelle beide Modelle anschließend mit `texreg::texreg()` (alternativ `texreg::screenreg()`) nebeneinander dar und interpretiere: Wie verändert sich der Bildungseffekt? Wie verändert sich das R²? Werden alle drei Hypothesen gestützt?
+
+```{r}
+model_2 <- lm(pa02a_r ~ de15_bi + incc + age,
+              data = allbus_c_2023,
+              weights = wghtpew)
+
+```
+
+```{r}
+#| results: asis
+texreg::texreg(
+  list(model_1, model_2),
+  custom.coef.names = c("Intercept", "Hochschulabschluss",
+                        "Einkommen (kat.)", "Alter"), # lesbare Variablennamen 
+  digits = 3, # nachkommastellen
+  caption = "Lineare Regressionen: Politisches Interesse",
+  caption.above = TRUE, # Überschr. drüber oder drunter? 
+  use.packages = FALSE, # kein LaTeX-Paket-Code ausgeben (macht Quarto selbst)
+  float.pos = "H" # Tabelle GENAU an dieser Stelle platzieren
+)
+```
+
+*Der Effekt des Hochschulabschlusses verringert sich unter Kontrolle von Einkommen und Alter etwas (von 0.364 auf 0.296), bleibt aber deutlich und signifikant — ein Teil des bivariaten Bildungseffekts ging also auf Einkommen und Alter zurück. Das R² steigt von 0.027 auf 0.075 — das volle Modell erklärt rund 7,5 % der Varianz, fast das Dreifache. Die Koeffizienten in Modell 2 gelten ceteris paribus: Der Bildungseffekt gilt z.B. für Personen mit gleichem Einkommen und Alter. Hypothesenprüfung: Alle drei Hypothesen werden gestützt — Hochschulabschluss (+0.296), Einkommen (+0.029 pro Kategorie) und Alter (+0.008 pro Lebensjahr) hängen jeweils signifikant positiv mit politischem Interesse zusammen (alle p \< .001). Achtung beim Vergleich der Effektstärken: Die unstandardisierten Koeffizienten sind wegen der unterschiedlichen Skalen NICHT direkt vergleichbar — dazu Aufgabe 6.*
+
+# Aufgabe 6: Standardisierte Koeffizienten
+
+Welche Ressource ist am wichtigsten? Rechne das Modell mit z-standardisierten Variablen und vergleiche die Effektstärken.
+
+```{r}
+#| results: asis
+
+model_2_z <- lm(scale(pa02a_r) ~ de15_bi + scale(incc) + scale(age),
+                data = allbus_c_2023,
+                weights = wghtpew)
+
+texreg::texreg(
+  list(model_2, model_2_z),
+  custom.model.names = c("M2 (b)", "M2 (beta)"),
+  custom.coef.names = c("Intercept", "Hochschulabschluss",
+                        "Einkommen (kat.)", "Alter",
+                        "Einkommen (kat.)", "Alter"),
+  digits = 3,
+  caption = "Unstandardisierte (b) und standardisierte (beta) Koeffizienten",
+  caption.above = TRUE,
+  use.packages = FALSE,
+  float.pos = "H"
+)
+```
+
+*Die standardisierten Koeffizienten (beta) sind über die metrischen UVs hinweg vergleichbar: Steigt die UV um eine Standardabweichung, ändert sich die AV um beta Standardabweichungen. Einkommen (beta = 0.158) und Alter (beta = 0.160) sind praktisch gleich starke Prädiktoren — obwohl ihre unstandardisierten Koeffizienten (0.029 vs. 0.008) sehr unterschiedlich wirkten! Das zeigt, warum Standardisierung für den Stärkevergleich nötig ist. Der Dummy `de15_bi` bleibt unstandardisiert (vgl. Sitzung 09): Sein Koeffizient (0.315) beschreibt weiterhin den Sprung von "kein Hochschulabschluss" zu "Hochschulabschluss" — nur in SD-Einheiten der AV, und ist daher nicht direkt mit den betas der metrischen UVs vergleichbar.*
+
+# Aufgabe 7: Koeffizientenplot
+
+Stelle die standardisierten Ergebnisse als Koeffizientenplot dar (vgl. Skript Sitzung 09). Interpretiere den Plot: Welche Effekte sind signifikant und woran erkennt man das?
+
+```{r}
+broom::tidy(model_2_z, conf.int = TRUE) %>%
+  dplyr::filter(term != "(Intercept)") %>%
+  dplyr::mutate(term = dplyr::case_when(
+    term == "de15_biGENANNT" ~ "Hochschulabschluss",
+    term == "scale(incc)"    ~ "Einkommen (kat.)",
+    term == "scale(age)"     ~ "Alter"
+  )) %>%
+  ggplot2::ggplot(mapping = ggplot2::aes(x = estimate, y = term)) +
+  ggplot2::geom_vline(xintercept = 0, linetype = "dashed", color = "grey50") +
+  ggplot2::geom_errorbarh(mapping = ggplot2::aes(xmin = conf.low,
+                                                 xmax = conf.high),
+                          height = 0.2) +
+  ggplot2::geom_point(size = 3) +
+  ggplot2::labs(
+    title = "Was sagt politisches Interesse vorher?",
+    x = "Standardisierter Koeffizient (beta) mit 95%-KI",
+    y = ""
+  ) +
+  ggplot2::theme_bw()
+```
+
+*Punkt = geschätzter Koeffizient, Balken = 95%-Konfidenzintervall. Schneidet ein Balken die gestrichelte Nulllinie nicht, ist der Effekt signifikant. Hier schließen alle drei Balken die Null aus — alle Effekte sind signifikant und positiv. Gut sichtbar: Der Hochschulabschluss-Balken liegt am weitesten rechts, Einkommen und Alter liegen fast deckungsgleich übereinander — ihre Effektstärken sind praktisch identisch.*

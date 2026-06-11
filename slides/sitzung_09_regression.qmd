@@ -18,7 +18,6 @@ editor_options:
 
 ![](images/clipboard-2557253040.png)
 
-
 # Was heute ansteht
 
 1.  Recap & Organisatorisches
@@ -27,13 +26,11 @@ editor_options:
 
 3.  Regressionen
 
-
 ## Recap: Korrelationen {.smaller}
 
 -   Zusammenhänge können mit Kreuztabellen oder Korrelationsmaßen dargestellt werden
 
 -   Korrelationsmaße (auch Zusammenhangsmaße) geben Auskunft darüber, inwiefern ein Zusammenhang zwischen zwei Variablen besteht.
-
 
 ```{r}
 #| echo: false
@@ -56,7 +53,6 @@ tibble::tribble(
 
 ```
 
-
 ::: {.callout-note .fragment}
 -   phi ist mathematisch identisch zu pearson!
 
@@ -65,50 +61,47 @@ tibble::tribble(
 -   mehr zu den verschiedenen Korrelationsmaßen unter [Statistik-Grundlagen](https://statistikgrundlagen.de/ebook/chapter/korrelation/) in Kapitel 4 zu Korrelationen!
 :::
 
+## Konvention nach Cohen (1988)\* {.smaller}
 
-## Konvention nach Cohen (1988)* {.smaller}
-
-::::: columns
+:::::: columns
 :::: column
 Wertebereich -1 bis +1:
 
 **Pearson r, Spearman ρ, Kendall τ**
 
-| r | Interpretation |
-|---|---|
-| < .10 | vernachlässigbar |
-| .10 – .30 | schwach |
-| .30 – .50 | moderat |
-| > .50 | stark |
+| r         | Interpretation   |
+|-----------|------------------|
+| \< .10    | vernachlässigbar |
+| .10 – .30 | schwach          |
+| .30 – .50 | moderat          |
+| \> .50    | stark            |
 
 ::: {.callout-note .fragment}
--  `report::report()` verwendet die neuere, weniger konservative Konvention von Funder & Ozer (2019)**
+-   `report::report()` verwendet die neuere, weniger konservative Konvention von Funder & Ozer (2019)\*\*
 -   Generell ist die praktische Bedeutung von Zusammenhängen immer vom Kontext abhängig!
 :::
-
 ::::
-:::: column
+
+::: column
 Wertebereich 0 bis 1:
 
 **Cramér's V** — abhängig von Tabellengröße
 
-| V | 2×2 | 3×3 | 4×4 |
-|---|---|---|---|
+| V       | 2×2 | 3×3 | 4×4 |
+|---------|-----|-----|-----|
 | schwach | .10 | .07 | .06 |
 | moderat | .30 | .21 | .17 |
-| stark | .50 | .35 | .29 |
-
+| stark   | .50 | .35 | .29 |
 
 **Eta η²**
 
-| η² | Interpretation |
-|---|---|
-| ≥ .01 | schwach |
-| ≥ .06 | moderat |
-| ≥ .14 | stark |
-
-::::
-:::::
+| η²    | Interpretation |
+|-------|----------------|
+| ≥ .01 | schwach        |
+| ≥ .06 | moderat        |
+| ≥ .14 | stark          |
+:::
+::::::
 
 ::: {style="font-size: 0.6em; margin-top: 1em;"}
 \* Cohen, J. (1988). *Statistical Power Analysis for the Behavioral Sciences* (2nd ed.). Lawrence Erlbaum Associates.
@@ -116,13 +109,13 @@ Wertebereich 0 bis 1:
 \*\* Funder, D. C., & Ozer, D. J. (2019). Evaluating effect size in psychological research: Sense and nonsense. *Advances in Methods and Practices in Psychological Science*, 2(2), 156–168. [DOI](https://doi.org/10.1177/2515245919847202).
 :::
 
-
 ## Übungsfeedback
 
--  
+-   Fragen ?
+
+-   
 
 # Inferenzstatistik
-
 
 ## Korrelationsmaße - Beispiel {.smaller}
 
@@ -359,7 +352,7 @@ plot(qr)
 # Vielen Dank und bis kommenden Dienstag!
 
 ::: {style="margin-top: 1em;"}
-![](images/clipboard-3998914491.png)
+![](images/clipboard-2172192653.png)
 :::
 
 ::: {style="display: flex; align-items: center; gap: 1em; "}

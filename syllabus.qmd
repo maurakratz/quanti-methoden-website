@@ -49,9 +49,9 @@ Hat die sozio-ökonomische Ungleichheit in Deutschland in den letzten Jahrzehnte
 | 06 | Di, 19.05.2026, 10:00-12:00 c.t. | Deskriptive Statistik – Häufigkeiten |
 | 07 | Di, 02.06.2026, 10:00-12:00 c.t. | Deskriptive Statistik – Schöne Grafiken |
 | 08 | Di, 09.06.2026, 10:00-12:00 c.t. | Deskriptive Statistik – Kreuztabellen & Korrelation |
-| 09 | Di, 16.06.2026, 10:00-12:00 c.t. | Inferenzstatistik – Einfache & Multiple Lineare Regression |
-| 10 | Di, 23.06.2026, 10:00-12:00 c.t. {{< fa laptop >}} | Regression Diagnostics |
-| 11 | Di, 30.06.2026, 10:00-12:00 c.t. {{< fa laptop >}} | Logistische Regression |
+| 09 | Di, 16.06.2026, 10:00-12:00 c.t. {{< fa laptop >}}| Inferenzstatistik – Einfache & Multiple Lineare Regression |
+| 10 | Di, 23.06.2026, 10:00-12:00 c.t. {{< fa laptop >}}| Regression Diagnostics |
+| 11 | Di, 30.06.2026, 10:00-12:00 c.t. | Logistische Regression |
 | 12 | Di, 07.07.2026, 10:00-12:00 c.t. | Varianzanalysen & t-tests ODER Besprechung der Data Analysis Reports |
 | 13 | Di, 14.07.2026, 10:00-12:00 c.t. | Recap |
 
