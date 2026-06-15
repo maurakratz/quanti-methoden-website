@@ -101,11 +101,13 @@ allbus_c_2023_raw %>%
 
 -   *Bildung: `de15` (Befragte:r hat Hochschulabschluss), 0 = nicht genannt / 1 = genannt (Dummy), Missings \< 0.*
 
--   *Einkommen: `incc`, 26 geordnete Kategorien, Missings \< 0. Alter: `age`, in Jahren, Missings \< 0.*
+-   *Einkommen: `incc`, 26 geordnete Kategorien, Missings \< 0.*
+
+-   *Alter: `age`, in Jahren, Missings \< 0.*
 
 **Aufgabe 2c: Variablen aufbereiten**
 
-Bereite nun alle Variablen auf: Konvertiere Missings zu NA. Pole außerdem das politische Interesse um, sodass hohe Werte hohes Interesse bedeuten (das erleichtert die Interpretation aller Hypothesen). Wandle den Hochschulabschluss in einen Faktor um (vgl. Skript Sitzung 09).
+Bereite nun alle Variablen auf: Konvertiere Missings zu NA. Pole außerdem das politische Interesse um, sodass hohe Werte hohes Interesse bedeuten – das erleichtert die Interpretation aller Hypothesen. (Das könnt ihr bspw. mit `case-when()` machen. Wir haben es in diesem Kontext noch nicht durchgenommen, hängt euch also nicht zu sehr daran auf, sollte es nicht klappen. Denn es geht ja auch ohne – ihr müsst es dann nur in der Interpretation berücksichtigen.) Wandle den Hochschulabschluss in einen Faktor um (vgl. Skript Sitzung 09).
 
 ```{r}
 allbus_c_2023 <- allbus_c_2023_raw %>%

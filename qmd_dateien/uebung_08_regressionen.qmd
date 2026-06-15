@@ -1,0 +1,158 @@
+---
+title: "Übung 08: Regressionen"
+subtitle: "Politik vermessen: Quantitative Methoden mit R | SoSe 2026 | Maura Kratz"
+author: "Vorname Nachname"
+date: today
+date-format: "DD.MM.YYYY"
+format:
+  pdf:
+    toc: false
+  html:
+    toc: true
+    toc-title: "Inhalt"
+    self-contained: true
+    theme: default
+execute:
+  echo: true
+  warning: false
+  message: false
+knitr:
+  opts_chunk:
+    fig-width: 7
+    fig-height: 4
+---
+
+```{=html}
+<!-- ---------------------------------------------------------------
+     Hinweise zum Arbeiten mit dieser Datei:
+     - R-Code kommt in die Chunks (zwischen ```{r} und ```)
+     - Instruktionen stehen als unformatierter Text über den Chunks
+     - Interpretationen und Antworten kommen zwischen die ** unter den Chunks und werden also kursiv gerendert
+     - Rendern: Strg+Shift+K (oder oben Button "Render")
+     - Abgabe: die gerenderte PDF-Datei in Blackboard hochladen
+--------------------------------------------------------------- -->
+```
+
+# Setup
+
+Lade die für deine Analyse nötigen Pakete.
+
+```{r}
+# lade Pakete
+
+```
+
+# Aufgabe 1: Daten laden
+
+Lies den ALLBUS-Datensatz von 2023 ein. Speichere den Datensatz in einem Objekt namens `allbus_c_2023_raw`.
+
+```{r}
+
+```
+
+# Aufgabe 2: Theorie, Forschungsfrage & Variablen vorbereiten
+
+In dieser Übung untersuchen wir die Forschungsfrage: **(Inwiefern) lässt sich politisches Interesse auf individuelle Ressourcen zurückführen?**
+
+Theoretischer Hintergrund ist das Civic-Voluntarism-Modell nach Verba, Schlozman & Brady (1995): Politische Beteiligung hängt demnach von Ressourcen ab: Wer mehr Bildung, mehr Einkommen, mehr Zeit und mehr "civic skills" hat, dem fällt politische Teilhabe leichter. Wir wollen untersuchen, ob das auch für politisches Interesse, sozusagen als Vorstufe für politische Beteiligung, gilt.
+
+**Aufgabe 2a: Hypothesen formulieren**
+
+Formuliere für die drei UVn Bildung, Einkommen und Alter deine Vermutungen in Bezug auf deren Zusammenhang mit politischem Interesse. Solche gerichteten Hypothesen lassen sich gut mit "je ... desto ..." formulieren. Und was glaubst du: Welche der drei Ressourcen wird den stärksten Effekt auf das politische Interesse haben? Begründe kurz. Wir werden das in in Aufgabe 6 prüfen.
+
+-   *H1:*
+
+-   *H2:*
+
+-   *H3:*
+
+-   *Vermutung:*
+
+**Aufgabe 2b: Variablen sichten**
+
+Suche mit `labelled::look_for()` nach den Variablen für (a) politisches Interesse, (b) Bildung/Schulabschluss, (c) Einkommen und (d) Alter. Beantworte anschließend für jede der vier Variablen: Wie heißt die Variable im Datensatz? Welche Werte kann sie annehmen? Welche davon sind in Wahrheit Missings? Gibt es Besonderheiten bei der Polung (Richtung) der Skala?
+
+```{r}
+#| results: false
+
+```
+
+-   *Politisches Interesse:*
+
+-   *Bildung:*
+
+-   *Einkommen:*
+
+-   *Alter:*
+
+**Aufgabe 2c: Variablen aufbereiten**
+
+Bereite nun alle Variablen auf: Konvertiere Missings zu NA. Pole außerdem das politische Interesse um, sodass hohe Werte hohes Interesse bedeuten (das erleichtert die Interpretation aller Hypothesen). Wandle den Hochschulabschluss in einen Faktor um (vgl. Skript Sitzung 09).
+
+```{r}
+
+```
+
+# Aufgabe 3: Voraussetzungen VOR dem Modell prüfen
+
+Prüfe vor der Regression: (a) Sind die Skalenniveaus geeignet? (b) Sind die Beobachtungen unabhängig? (c) Ist der Zusammenhang zwischen Einkommen und politischem Interesse annähernd linear? Nutze für (c) einen Scatterplot mit Loess-Kurve. (Für den dichotomen Hochschulabschluss ist keine Linearitätsprüfung nötig — bei nur zwei Ausprägungen ist jeder Zusammenhang "linear".)
+
+```{r}
+
+```
+
+*(a)*
+
+*(b)*
+
+*(c)*
+
+# Aufgabe 4: Einfache lineare Regression
+
+Rechne eine einfache lineare Regression mit politischem Interesse (umgepolt) als AV und dem Hochschulabschluss als UV. Verwende die Gewichtungsvariable `wghtpew`. Interpretiere anschließend (a) den Regressionskoeffizienten, (b) das R² und (c) die Signifikanz.
+
+```{r}
+
+```
+
+*(a)*
+
+*(b)*
+
+*(c)*
+
+# Aufgabe 5: Multiple lineare Regression
+
+Erweitere das Modell gemäß dem Civic-Voluntarism-Modell um Einkommen und Alter. Stelle beide Modelle anschließend mit `texreg::texreg()` (alternativ `texreg::screenreg()`) nebeneinander dar und interpretiere: Wie verändert sich der Bildungseffekt? Wie verändert sich das R²? Werden alle drei Hypothesen gestützt?
+
+```{r}
+
+```
+
+```{r}
+#| results: asis
+
+```
+
+*Interpretation:*
+
+# Aufgabe 6: Standardisierte Koeffizienten
+
+Welche Ressource ist am wichtigsten? Rechne das Modell mit z-standardisierten Variablen und vergleiche die Effektstärken.
+
+```{r}
+#| results: asis
+
+```
+
+*Interpretation:*
+
+# Aufgabe 7: Koeffizientenplot
+
+Stelle die standardisierten Ergebnisse als Koeffizientenplot dar (vgl. Skript Sitzung 09). Interpretiere den Plot: Welche Effekte sind signifikant und woran erkennt man das?
+
+```{r}
+
+```
+
+*Interpretation:*
