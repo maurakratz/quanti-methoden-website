@@ -35,15 +35,15 @@ allbus_c_2023_raw <- haven::read_dta("./data/ZA8831_v1-3-0.dta")
 # Stichprobe gefundener Effekt (wahrscheinlich) auch in der Grundgesamtheit
 # existiert.
 
-# Dafür können grundsätzlich zwei verschiedne methoden der Schätzung angewendet werden
-# intervallschätzung (haben iene Ober-und Untergrenze)
+# Dafür können grundsätzlich zwei verschiedene Methoden der Schätzung angewendet werden
+# Intervallschätzung (haben iene Ober-und Untergrenze)
 # und Punktschätzung (p = ... oder ***)
 
 # Wenn wir beispielsweise die Korrelation aus der
-# vergangenenen Sitzung nehmen, in der es um die Frage ging, ob es einen
+# vergangenen Sitzung nehmen, in der es um die Frage ging, ob es einen
 # Zusammenhang zwischen Geschlecht und Erwerbsstatus gibt, können wir mit einem
-# Chi-Quadrat-Test herausfinden, ob der beobachtete Zusammenhang in der Grundgesamtheit
-# wahrscheinlich auch existiert.
+# Chi-Quadrat-Test herausfinden, ob der beobachtete Zusammenhang in der
+# Grundgesamtheit wahrscheinlich auch existiert.
 
 allbus_c_2023 <- allbus_c_2023_raw %>%
   dplyr::mutate(
@@ -97,12 +97,14 @@ stats::chisq.test(allbus_c_2023$sex_f, allbus_c_2023$work_f) %>%
 
 # FAHRPLAN: Eine Regression läuft immer in dieser Reihenfolge ab:
 # Schritt 1: Variablen auswählen (Theorie!), sichten & aufbereiten
-# Schritt 2: VOR dem Modell prüfen: Skalenniveaus, Unabhängigkeit, Linearität
+# Schritt 2: VOR dem Modell prüfen:
+# Skalenniveaus, Unabhängigkeit, Linearität, Exogenität
 # Schritt 3: Modell rechnen & interpretieren (b, R², p/KI)
-# Schritt 4: NACH dem Modell: Annahmen prüfen (Diagnostik)
+# Schritt 4: NACH dem Modell: alle Annahmen prüfen (Diagnostik)
 # -> kommt nächste Woche in Sitzung 10!
-# Schritt 5: ggf. nachbessern (robuste SEs, Bootstrap) -> ebenfalls Sitzung 10
-
+# Schritt 5: ggf. nachbessern (z.B. quadrieren, robuste SEs)
+# -> ebenfalls Sitzung 10
+# Schritt 6: Regressionsergebnisse schön darstellen!
 
 
 # Schritt 1: Daten importieren, Variablen sichten & vorbereiten --------------
@@ -119,15 +121,6 @@ allbus_c_2023 %>%
   labelled::look_for("Lebenszufriedenheit")
 # ls01 von 0-10 mit < 0 = missing
 
-if(FALSE){
-# Variablen aufbereiten
-allbus_c_2023 <- allbus_c_2023 %>%
-  dplyr::mutate(
-    incc_d = dplyr::case_when(incc < 0 ~ NA_real_, .default = as.double(incc)),
-    ls01_d = dplyr::case_when(ls01 < 0 ~ NA_real_, .default = as.double(ls01))
-  )
-}
-
 # Variablen aufbereiten
 allbus_c_2023 <- allbus_c_2023 %>%
   dplyr::mutate(
@@ -142,9 +135,7 @@ allbus_c_2023 %>%
   print(n = Inf)
 
 allbus_c_2023 %>%
-  tidyr::drop_na() %>%
-  count(incc) %>%
-  sum()
+  dplyr::count(is.na(incc))
 # 700 missings bei fast 5000 Befragten
 
 allbus_c_2023 %>%
@@ -158,9 +149,12 @@ allbus_c_2023 %>%
 # 80 missings bei fast 5000 Befragten
 
 
-# Schritt 2: Skalenniveau, Unabhängigkeit d. Beobachtungen & Linearität prüfen ---------
+# Schritt 2: Vorabprüfungen ---------
 
-# Skalenniveaus:
+# Skalenniveau, Unabhängigkeit d. Beobachtungen, Linearität d.
+# Zusammenhangs und Exogenität prüfen !
+
+## Skalenniveaus ------------
   # Das Einkommen incc ist eine ordinale Variable, da die Kategorien eine
   # natürliche Rangfolge haben, aber die Abstände zwischen den Kategorien
   # nicht gleich sind. Wir behandeln sie quasi-metrisch, was bei 26 Stufen
@@ -172,21 +166,34 @@ allbus_c_2023 %>%
   # sind streng genommen nicht unbedingt gleich - aber vertretbar.
 
 
-# Linearität
+## Linearität ---------------------
 allbus_c_2023 %>%
 ggplot2::ggplot(aes(x = incc, y = ls01)) +
   geom_jitter() + # überlagernde Punkte anzeigen
-  stat_smooth(method = loess) + # Form des Zusammenhangs anzeigen (gerade = linear)
+  stat_smooth(method = "loess") + # Form des Zusammenhangs anzeigen (gerade = linear)
   xlab("Einkommen (kat.)") + ylab("Lebenszufriedenheit")
 # erster Eindruck: Linearitätsannahme ist vertretbar,
 # aber der Zusammenhang ist schwach.
 # Genauere Prüfung nach der Spezifikation des Modells
 
-# unabhängige Beobachtungen
+## unabhängige Beobachtungen --------------
    # Keine empirische Prüfung - ergibt sich aus dem Studiendesign:
    # Der ALLBUS ist eine Zufallsstichprobe ohne Messwiederholung
    # -> Annahme erfüllt. Bei voneinander abhängigen Beobachtungen
    # (zum Beispiel zeitlich oder räumlich) müssen andere Modelle gerechnet werden
+
+## Exogenität --------------
+
+   # Keine empirische Prüfung möglich (der Fehlerterm ist unbeobachtbar!) -
+   # theoriegeleitet fragen: Welche Variablen beeinflussen die AV UND eine
+   # UV gemeinsam? Fehlen solche Variablen -> Omitted Variable Bias,
+   # die Koeffizienten sind verzerrt.
+   # Bei uns: Gesundheit und Alter beeinflussen Einkommen UND
+   # Lebenszufriedenheit -> deshalb sind sie als Kontrollvariablen im Modell.
+   # Kandidaten, die noch fehlen: Erwerbsstatus, Familienstand, Ost/West.
+   # -> nie perfekt erfüllbar; wichtig ist die theoretische Begründung
+   # der Modellspezifikation.
+
 
 
 # Schritt 3: Regression durchführen ---------------
@@ -327,7 +334,7 @@ texreg::screenreg(
 
 
 
-# Standardisieren --------------
+## standardisierte Koeffizienten --------------
 
 # standardisierte Koeffizienten (beta): alle Variablen auf SD-Einheiten
 # -> Effektstärken über UVs hinweg vergleichbar
@@ -371,7 +378,7 @@ texreg::screenreg(
 # über UVs hinweg vergleichbar.
 
 
-# Regressionsergebnisse darstellen! --------
+# Schritt 4 Regressionsergebnisse darstellen! --------
 
 # neben der Regressionstabelle, die immer berichtet werden sollte,
 # gibt es zusätzliche, visuelle Darstellungsmöglichkeiten. Die häufigste
@@ -468,98 +475,4 @@ sjPlot::plot_model(model_2, type = "std") + theme_linedraw()
 # - modelsummary::modelplot(model_2) # flexibel, ggplot-basiert
 # - jtools::plot_summs(model_1, model_2) # legt Modelle übereinander
 # - dotwhisker::dwplot(list(model_1, model_2)) # der Klassiker
-
-
-
-# ALT ---------
-# c) Koeffizientenplot: intuitivste Darstellung
-modelsummary::modelplot(model_2, coef_omit = "Intercept") +
-  ggplot2::geom_vline(xintercept = 0, linetype = "dashed") +
-  ggplot2::scale_y_discrete(labels = c(
-    "incc"       = "Einkommen (kat.)",
-    "age"        = "Alter",
-    "sex_biFRAU" = "Geschlecht: Frau",
-    "hs01"       = "Gesundheit"
-  )) +
-  ggplot2::scale_x_continuous(breaks = seq(-1, 0.5, by = 0.1)) +
-  ggplot2::theme_bw() +
-  ggplot2::theme(
-    panel.grid.major.x = ggplot2::element_line(color = "grey80"),
-    panel.grid.minor.x = ggplot2::element_line(color = "grey90")
-  )
-
-
-# Option 1: parameters/easystats (passt zu eurem Stack!)
-plot(parameters::model_parameters(model_2))
-# Caveat: könnte denselben ggplot2-4.0.x-Konflikt haben wie check_model()
-
-plot(parameters::model_parameters(model_2)) +
-  ggplot2::scale_y_discrete(labels = c(
-    "incc"       = "Einkommen (kat.)",
-    "age"        = "Alter",
-    "sex_biFRAU" = "Geschlecht: Frau",
-    "hs01"       = "Gesundheit"
-  )) +
-  ggplot2::scale_x_continuous(breaks = seq(-1, 0.5, by = 0.1)) +
-  ggplot2::theme_bw() +
-  ggplot2::theme(
-    panel.grid.major.x = ggplot2::element_line(color = "grey80"),
-    panel.grid.minor.x = ggplot2::element_line(color = "grey90")
-  )
-
-
-# Option 2: sjPlot - sehr beliebt in den Sozialwissenschaften
-# install.packages("sjPlot")
-sjPlot::plot_model(model_2)
-# automatisch farbcodiert (positiv/negativ), mit vielen Optionen
-# z.B. type = "std" für standardisierte Koeffizienten direkt im Plot!
-
-# Option 3: jtools
-# install.packages("jtools")
-jtools::plot_summs(model_2)
-# kann auch mehrere Modelle übereinanderlegen:
-jtools::plot_summs(model_1, model_2)
-
-# Option 4: dotwhisker - der Klassiker für "dot-and-whisker plots"
-# install.packages("dotwhisker")
-dotwhisker::dwplot(list(model_1, model_2))
-
-# Option 5: selbst bauen mit broom + ggplot2 (maximale Kontrolle)
-broom::tidy(model_2, conf.int = TRUE) %>%
-  dplyr::filter(term != "(Intercept)") %>%
-  ggplot2::ggplot(mapping = ggplot2::aes(x = estimate, y = term)) +
-  ggplot2::geom_point() +
-  ggplot2::geom_errorbarh(mapping = ggplot2::aes(xmin = conf.low, xmax = conf.high)) +
-  ggplot2::geom_vline(xintercept = 0, linetype = "dashed")
-
-
-# Koeffizientenplot selbst bauen - mit bekannten ggplot2-Befehlen!
-# Schritt 1: broom::tidy() macht aus dem Modell einen Datensatz
-broom::tidy(model_2, conf.int = TRUE)
-# -> jede Zeile ein Koeffizient, mit KI-Grenzen (conf.low, conf.high)
-
-# Schritt 2: diesen Datensatz plotten wie jeden anderen auch
-broom::tidy(model_2, conf.int = TRUE) %>%
-  dplyr::filter(term != "(Intercept)") %>%  # Intercept ausblenden
-  dplyr::mutate(term = dplyr::case_when(
-    term == "incc"       ~ "Einkommen (kat.)",
-    term == "age"        ~ "Alter",
-    term == "sex_biFRAU" ~ "Geschlecht: Frau",
-    term == "hs01"       ~ "Gesundheit"
-  )) %>%
-  ggplot2::ggplot(mapping = ggplot2::aes(x = estimate, y = term)) +
-  ggplot2::geom_vline(xintercept = 0, linetype = "dashed", color = "grey50") +
-  ggplot2::geom_errorbarh(mapping = ggplot2::aes(xmin = conf.low, xmax = conf.high),
-                          height = 0.2) +
-  ggplot2::geom_point(size = 3) +
-  ggplot2::xlab("Koeffizient (b) mit 95%-KI") + ggplot2::ylab("") +
-  ggplot2::theme_linedraw()
-
-# Interpretation:
-# - Punkt = geschätzter Koeffizient, Balken = 95%-Konfidenzintervall
-# - Schneidet der Balken die gestrichelte Nulllinie NICHT -> signifikant
-# - Je weiter vom Nullpunkt entfernt, desto stärker der Effekt
-#   (Achtung: nur bei standardisierten Koeffizienten direkt vergleichbar!)
-
-
 

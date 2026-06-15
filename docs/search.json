@@ -592,7 +592,7 @@
     "href": "sitzungen.html",
     "title": "Sitzungen",
     "section": "",
-    "text": "Hier findest du die Folien und R-Skripte zu jeder Sitzung. Folien sind als HTML (für den Browser) und PDF verfügbar.\n\n\n\n\n\n\n\n\n\n\n\n\nSitzung\nDatum\nThema\nSchlüsselbegriffe\nPakete\nFolien\nSkript\n\n\n\n\n01\n14.04.2026\nEinführung\nDatenanalyse, R, RStudio\nbase\nHTML / PDF\n—\n\n\n02\n21.04.2026\nProjekte & Datenimport\nArbeitsverzeichnis, Ordnerstruktur, variable names, variable labels, Codebook\nrio, janitor, labelled, summarytools\nHTML / PDF\nGrundlagen  Datenimport\n\n\n03\n28.04.2026\nData Cleaning & Wrangling\nUmbennenen, Filtern, Transformieren, Fehlende Werte\ndplyr::count(), dplyr::mutate(), dplyr::case_when(), dplyr::filter(), dplyr::select(), tidyr:::pivot_wider()\nHTML / PDF\nR\n\n\n04\n05.05.2026\nDataset Merging\nMaster, unterschiedliche Joins\ndplyr::left_join()\nHTML / PDF\nR\n\n\n05\n12.05.2026\nQuarto; Deskriptive Statistik – Kennwerte & Visualisierung\nMittelwert, Median, Streuung\nbase, dplyr, ggplot2\nHTML / PDF\nR / Quarto_Beispiel\n\n\n06\n19.05.2026\nDeskriptive Statistik – Häufigkeits- & Kreuztabellen\nHäufigkeiten, Kreuztabellen\ndplyr, questionr, janitor\nHTML / PDF\nR\n\n\n07\n02.06.2026\nDeskriptive Statistik – Schöne Grafiken\nGrammar of Graphics, Visualisierung\nggplot2, dplyr\nHTML / PDF\nR ; Quoten\n\n\n08\n09.06.2026\nDeskriptive Statistik – Kreuztabelle & Korrelation\nKorrelationskoeffizient, Streudiagramm\ncorrelation, gtsummary , gmodels\nHTML / PDF\nR; ALLBUS-dfSummary\n\n\n09\n16.06.2026\nInferenzstatistik – Einfache & Multiple Lineare Regression\nRegressionskoeffizienten, p-Wert, R²\nstats, performance, texreg\n— / —\n—\n\n\n10\n23.06.2026\nRegression Diagnostics\nResiduen, Heteroskedastizität, Ausreißer\nstats, performance\n— / —\n—\n\n\n11\n30.06.2026\nLogistische Regression\nOdds Ratio, binäre AV\nstats, performance\n— / —\n—\n\n\n12\n07.07.2026\nData Analysis Reports\n—\n—\n— / —\n—\n\n\n13\n14.07.2026\nRecap\n—\n—\n— / —\n—"
+    "text": "Hier findest du die Folien und R-Skripte zu jeder Sitzung. Folien sind als HTML (für den Browser) und PDF verfügbar.\n\n\n\n\n\n\n\n\n\n\n\n\nSitzung\nDatum\nThema\nSchlüsselbegriffe\nPakete\nFolien\nSkript\n\n\n\n\n01\n14.04.2026\nEinführung\nDatenanalyse, R, RStudio\nbase\nHTML / PDF\n—\n\n\n02\n21.04.2026\nProjekte & Datenimport\nArbeitsverzeichnis, Ordnerstruktur, variable names, variable labels, Codebook\nrio, janitor, labelled, summarytools\nHTML / PDF\nGrundlagen  Datenimport\n\n\n03\n28.04.2026\nData Cleaning & Wrangling\nUmbennenen, Filtern, Transformieren, Fehlende Werte\ndplyr::count(), dplyr::mutate(), dplyr::case_when(), dplyr::filter(), dplyr::select(), tidyr:::pivot_wider()\nHTML / PDF\nR\n\n\n04\n05.05.2026\nDataset Merging\nMaster, unterschiedliche Joins\ndplyr::left_join()\nHTML / PDF\nR\n\n\n05\n12.05.2026\nQuarto; Deskriptive Statistik – Kennwerte & Visualisierung\nMittelwert, Median, Streuung\nbase, dplyr, ggplot2\nHTML / PDF\nR / Quarto_Beispiel\n\n\n06\n19.05.2026\nDeskriptive Statistik – Häufigkeits- & Kreuztabellen\nHäufigkeiten, Kreuztabellen\ndplyr, questionr, janitor\nHTML / PDF\nR\n\n\n07\n02.06.2026\nDeskriptive Statistik – Schöne Grafiken\nGrammar of Graphics, Visualisierung\nggplot2, dplyr\nHTML / PDF\nR ; Quoten\n\n\n08\n09.06.2026\nDeskriptive Statistik – Kreuztabelle & Korrelation\nKorrelationskoeffizient, Streudiagramm\ncorrelation, gtsummary , gmodels\nHTML / PDF\nR; ALLBUS-dfSummary\n\n\n09\n16.06.2026\nInferenzstatistik – Einfache & Multiple Lineare Regression\nRegressionskoeffizienten, p-Wert, R²\nstats, performance, texreg\n—HTML/ PDF\nR\n\n\n10\n23.06.2026\nRegression Diagnostics\nResiduen, Heteroskedastizität, Ausreißer\nstats, performance\n— / —\n—\n\n\n11\n30.06.2026\nLogistische Regression\nOdds Ratio, binäre AV\nstats, performance\n— / —\n—\n\n\n12\n07.07.2026\nData Analysis Reports\n—\n—\n— / —\n—\n\n\n13\n14.07.2026\nRecap\n—\n—\n— / —\n—"
   },
   {
     "objectID": "slides/sitzung_02_data_import.html#willkommen-zurück",
@@ -1124,7 +1124,7 @@
     "href": "slides/sitzung_09_regression.html#intervallschätzung",
     "title": "Quantitative Methoden mit R & R-Studio",
     "section": "Intervallschätzung",
-    "text": "Intervallschätzung\nPunktschätzung: In unserer Stichprobe beträgt V = 0.22 — das ist unsere beste Schätzung für die Grundgesamtheit.\nIntervallschätzung: Würden wir das Verfahren 100× wiederholen, würde das KI in 95 von 100 Fällen den wahren Wert enthalten.\n→ Der wahre Zusammenhang in der Grundgesamtheit liegt wahrscheinlich zwischen V = 0.20 und V = 0.24."
+    "text": "Intervallschätzung\nPunktschätzung: In unserer Stichprobe beträgt V = 0.22 — das ist unsere beste Schätzung für die Grundgesamtheit.\nIntervallschätzung: Würden wir das Verfahren 100× wiederholen, würde das KI in 95 von 100 Fällen den wahren Wert enthalten.\n→ Der wahre Zusammenhang in der Grundgesamtheit liegt wahrscheinlich zwischen V = 0.20 und V = 0.24."
   },
   {
     "objectID": "slides/sitzung_09_regression.html#inferenzstatistik-1",
@@ -1348,14 +1348,14 @@
     "href": "slides/sitzung_10_regressionsvoraussetzungen.html#wichtigste-marker-einer-regression",
     "title": "Quantitative Methoden mit R & R-Studio",
     "section": "Wichtigste Marker einer Regression",
-    "text": "Wichtigste Marker einer Regression\n\nRegressionskoeffizient \\(b\\)\nModellgüte: Bestimmtheitsmaß R² = Anteil der aufgeklärten Varianz\nSignifikanz:\n\np-Wert: Wie wahrscheinlich ist es, einen solchen oder noch extremeren Koeffizienten zu beobachten, wenn H\\(_0\\) (= kein Zusammenahng) stimmte?\nBeispielschwellwerte: p &lt; 0.001 = hochsignifikant ***, p &lt; 0.01 = signifikant **, p &lt; 0.05 = schwach signifikant *, p &gt; 0.05 = nicht signifikant\nKI: 95% KI enthält 0 \\(\\Rightarrow\\) nicht signifikant; 95% KI enthält keinen Wert über 0 \\(\\Rightarrow\\) signifikant\nIn 95 von 100 Stichproben würde das berechnete Konfidenzintervall den wahren Regressionskoeffizienten in der Grundgesamtheit enthalten.\nWenn man den Zorn der Statistiker*innen auf sich zeihen will: Der wahre Regressionskoeffizient liegt mit 95%iger Wahrscheinlichkeit im KI."
+    "text": "Wichtigste Marker einer Regression\n\nRegressionskoeffizient \\(b\\)\nModellgüte: Bestimmtheitsmaß R² = Anteil der aufgeklärten Varianz\nSignifikanz:\n\np-Wert: Wie wahrscheinlich ist es, einen solchen oder noch extremeren Koeffizienten zu beobachten, wenn H\\(_0\\) (= kein Zusammenahng) stimmte?\nBeispielschwellwerte: p &lt; 0.001 = hochsignifikant ***, p &lt; 0.01 = signifikant **, p &lt; 0.05 = schwach signifikant *, p &gt; 0.05 = nicht signifikant\nKI: 95% KI enthält 0 \\(\\Rightarrow\\) nicht signifikant; 95% KI enthält keinen Wert über 0 \\(\\Rightarrow\\) signifikant\nIn 95 von 100 Stichproben würde das berechnete Konfidenzintervall den wahren Regressionskoeffizienten in der Grundgesamtheit enthalten.\nWenn man den Zorn der Statistiker*innen auf sich ziehen will: Der wahre Regressionskoeffizient liegt mit 95%iger Wahrscheinlichkeit im KI."
   },
   {
     "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#voraussetzungen",
     "href": "slides/sitzung_10_regressionsvoraussetzungen.html#voraussetzungen",
     "title": "Quantitative Methoden mit R & R-Studio",
     "section": "Voraussetzungen",
-    "text": "Voraussetzungen\n\n\n\n\n\n\n\n\nVoraussetzung\nPrüfung grafisch\nPrüfung statistisch\n\n\n\n\nLinearer Zusammenhang\nScatterplot + Loess; Residuen vs. Fitted\nRainbow-Test\n\n\nHomoskedastizität der Residuen\nResiduen vs. Fitted-Plot\nBreusch-Pagan-Test\n\n\nNormalverteilte Residuen\nHistogramm, Q-Q-Plot\nShapiro-Wilk*\n\n\nUnabhängige Beobachtungen\n—\nStudiendesign\n\n\nKeine Ausreißer\nCook’s Distance\nAnteil &gt; Schwellwert\n\n\nKeine Multikollinearität**\n—\nVariance Inflation Factor (VIF)\n\n\n\n\n* nur bis n = 5000; bei großem n grafische Prüfung bevorzugen\n** nur bei multiplen linearen Regressionen"
+    "text": "Voraussetzungen\n\n\n\n\n\n\nSkalenniveau\n\n\nDie AV muss (quasi)-metrisch sein. Die UVen können metrisch oder kategorial-dichotom sein.\n\n\n\n\n\n\n\n\nVoraussetzung\nPrüfung grafisch\nPrüfung statistisch\n\n\n\n\nUnabhängige Beobachtungen\n—\nStudiendesign\n\n\nLinearer Zusammenhang\nScatterplot + Loess; Residuen vs. Fitted\nRainbow-Test\n\n\nHomoskedastizität der Residuen\nResiduen vs. Fitted-Plot\nBreusch-Pagan-Test\n\n\nKeine Multikollinearität**\n—\nVariance Inflation Factor (VIF)\n\n\nKeine Ausreißer\nCook's Distance\nAnteil &gt; Schwellwert\n\n\nNormalverteilte Residuen\nHistogramm, Q-Q-Plot\nShapiro-Wilk*\n\n\n\n\n\n\n* nur bis n = 5000; bei großem n grafische Prüfung bevorzugen\n** nur bei multiplen linearen Regressionen"
   },
   {
     "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#bei-verletzung",
@@ -1369,7 +1369,7 @@
     "href": "slides/sitzung_10_regressionsvoraussetzungen.html#was-tun-bei-verletzung-der-annahmen",
     "title": "Quantitative Methoden mit R & R-Studio",
     "section": "Was tun bei Verletzung der Annahmen?",
-    "text": "Was tun bei Verletzung der Annahmen?\n\n\n\n\n\n\n\nVerletzung\nLösung\n\n\n\n\nKein linearer Zusammenhang\nPolynomiale Regression / Spline-Modell\n\n\nHeteroskedastizität\nRobuste Standardfehler (HC3)*\n\n\nAusreißer\nRobuste Regression\n\n\nKeine Normalverteilung der Residuen\nBootstrapping (ab n &gt; 50)\n\n\nMultikollinearität\nVariablen ausschließen / transformieren, Ridge / Lasso\n\n\n\n\n* Long JS & Ervin LH (2000). Using heteroscedasticity consistent standard errors in the linear regression model. The American Statistician, 54(3), 217–224.\n\n\nZum Vertiefen: Wagemann, Goerres & Siewert (2020). Handbuch Methoden der Politikwissenschaft. Springer."
+    "text": "Was tun bei Verletzung der Annahmen?\n\n\n\n\n\nVerletzung\nLösung\n\n\n\n\nSkalenniveau (AV nicht metrisch)\nAnderes Modell wählen, z.B. logistische Regression bei binärer AV (→ Sitzung 11!)\n\n\nExogenität verletzt\nRelevante Kontrollvariablen aufnehmen; vollständig nur über Forschungsdesign lösbar (fortgeschritten)\n\n\nAbhängige Beobachtungen\nCluster-robuste Standardfehler; Mehrebenen- oder Panelmodelle (FE/RE)\n\n\nKein linearer Zusammenhang\nU-Form → UV quadrieren (I(x^2)) · Sättigung → UV logarithmieren (log(x)) · exponentielles Wachstum → AV logarithmieren (log(y)) · Schwellenwert → UV kategorisieren · komplexe Formen → Splines (fortgeschritten)\n\n\nHeteroskedastizität\nHeteroskedastizitätsrobuste Standardfehler (HC3)*\n\n\nMultikollinearität\nEine der korrelierten UVen ausschließen oder zu Index zusammenfassen\n\n\nAusreißer\nFälle prüfen; Modell mit & ohne Ausreißer vergleichen; ggf. ausschließen; oder robuste Regression (fortgeschritten)\n\n\nNicht normalverteilte Residuen\nBei großem n unkritisch (zentraler Grenzwertsatz); bei kleinem n: Bootstrapping (fortgeschritten)\n\n\n\n\n\n\n* Long JS & Ervin LH (2000). Using heteroscedasticity consistent standard errors in the linear regression model. The American Statistician, 54(3), 217–224. Zum Vertiefen: Kapitel 21 bis 24 in Wagemann, Goerres & Siewert (2020). Handbuch Methoden der Politikwissenschaft. Springer."
   },
   {
     "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#anwendung-in-r",
@@ -1432,14 +1432,14 @@
     "href": "slides/sitzung_09_regression.html#übungsfeedback",
     "title": "Quantitative Methoden mit R & R-Studio",
     "section": "Übungsfeedback",
-    "text": "Übungsfeedback\n\nFragen ?"
+    "text": "Übungsfeedback\n\nVorgehen: Variablen auswählen → bereinigen → Skalenniveau klären (!) → Korrelationsmaß und Visualisierungsoption auswählen\nje weniger Kategorien, desto eher Boxplot/Balken statt Scatter — weil sich Punkte sonst zu stark überlagern\nKreuztabellen für nominal skalierte Variablen mit wenigen Ausprägungen\nKeine einheitl. Musterlösung, aber Beispiele werden hochgeladen\nFragen ?"
   },
   {
     "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#die-annahmen-inhaltlich-linearität",
     "href": "slides/sitzung_10_regressionsvoraussetzungen.html#die-annahmen-inhaltlich-linearität",
     "title": "Quantitative Methoden mit R & R-Studio",
     "section": "Die Annahmen inhaltlich: Linearität",
-    "text": "Die Annahmen inhaltlich: Linearität\n\nWas heißt das? Der Zusammenhang zwischen UV und AV lässt sich durch eine Gerade beschreiben — der Effekt ist überall gleich stark\nWarum problematisch? Eine Gerade durch einen gekrümmten Zusammenhang beschreibt die Daten falsch — Koeffizient und Vorhersagen sind verzerrt\nBeispiel: Alter und Lebenszufriedenheit verlaufen oft U-förmig — eine Gerade würde fälschlich „kein Effekt” zeigen"
+    "text": "Die Annahmen inhaltlich: Linearität\n\nWas heißt das? Der Zusammenhang zwischen UV und AV lässt sich durch eine Gerade beschreiben — der Effekt ist überall gleich stark\nWarum problematisch? Eine Gerade durch einen gekrümmten Zusammenhang beschreibt die Daten falsch — Koeffizient und Vorhersagen sind verzerrt\nBeispiel: Alter und Lebenszufriedenheit verlaufen oft U-förmig — eine Gerade würde fälschlich „kein Effekt” zeigen\nLösung: Polynomiale Regression (z.B. Alter²) oder Spline-Modelle"
   },
   {
     "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#die-annahmen-inhaltlich-homoskedastizität",
@@ -1481,7 +1481,7 @@
     "href": "slides/sitzung_10_regressionsvoraussetzungen.html#robuste-standardfehler-hc3",
     "title": "Quantitative Methoden mit R & R-Studio",
     "section": "Robuste Standardfehler (HC3)",
-    "text": "Robuste Standardfehler (HC3)\n\nProblem Heteroskedastizität: Die Streuung der Residuen ist nicht überall gleich → die normalen Standardfehler sind zu klein oder zu groß\nLösung: Standardfehler werden so korrigiert, dass sie der tatsächlichen, ungleichen Streuung gerecht werden\nDie Koeffizienten bleiben identisch — nur SEs, t- und p-Werte ändern sich\n\n```{r}\nlmtest::coeftest(model_2, vcov = sandwich::vcovHC(model_2, type = \"HC3\"))\n```"
+    "text": "Robuste Standardfehler (HC3)\n\nProblem Heteroskedastizität: Die Streuung der Residuen ist nicht überall gleich → die normalen Standardfehler sind zu klein oder zu groß\nDie Koeffizienten bleiben identisch — nur SEs, t- und p-Werte ändern sich\nLösung: Standardfehler werden so korrigiert, dass sie der tatsächlichen, ungleichen Streuung gerecht werden\n\n```{r}\nlmtest::coeftest(model_2, vcov = sandwich::vcovHC(model_2, type = \"HC3\"))\n```"
   },
   {
     "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#bootstrapping",
@@ -1495,7 +1495,7 @@
     "href": "slides/sitzung_10_regressionsvoraussetzungen.html#annahme-linearität",
     "title": "Quantitative Methoden mit R & R-Studio",
     "section": "Annahme: Linearität",
-    "text": "Annahme: Linearität\n\n\nPrüfung mit Loess-Kurve:\n```{r}\n#| eval: false\nallbus_c_2023 %&gt;%\n  ggplot2::ggplot(mapping = ggplot2::aes(x = age, y = ls01)) +\n  ggplot2::geom_jitter(alpha = 0.2) +\n  ggplot2::stat_smooth(method = \"loess\")\n```\n\nKurve annähernd gerade → Linearität ok\nKlare, systematische Biegung → verletzt\nKleine Wellen an den Rändern sind normal (dort liegen wenige Datenpunkte)"
+    "text": "Annahme: Linearität\n\n\nRot = lineares Modell\nLiegt die Punktwolke systematisch daneben → Annahme verletzt\nVier typische Muster + Lösungen auf den nächsten Folien"
   },
   {
     "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#linearität-verletzt-was-tun",
@@ -1503,5 +1503,306 @@
     "title": "Quantitative Methoden mit R & R-Studio",
     "section": "Linearität verletzt — was tun?",
     "text": "Linearität verletzt — was tun?\nTypische Verletzung: U-Form (z.B. Lebenszufriedenheit ~ Alter)\n→ Lösung: quadratischen Term ergänzen (polynomiale Regression)\n```{r}\n#| eval: false\nmodel_quad &lt;- lm(ls01 ~ incc + age + I(age^2) + sex_bi + hs01,\n                 data = allbus_c_2023,\n                 weights = wghtpew)\n```\n\nI(age^2) fügt Alter² als zusätzlichen Prädiktor hinzu — das Modell kann nun eine Kurve abbilden\nAchtung Interpretation: Der Alterseffekt hängt jetzt vom Alter selbst ab — beide Koeffizienten (age + I(age^2)) müssen gemeinsam interpretiert werden\nBei komplexeren Formen: Spline-Modelle (→ fortgeschrittene Methoden)"
+  },
+  {
+    "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#recap-einfache-lineare-regressionen",
+    "href": "slides/sitzung_10_regressionsvoraussetzungen.html#recap-einfache-lineare-regressionen",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Recap: Einfache lineare Regressionen",
+    "text": "Recap: Einfache lineare Regressionen\n\nEine (einfache) lineare Regression zu rechenen heißt eine Gerade durch Punkte zu ziehen!\nUV \\(\\rightarrow\\) AV\nWenn x um eine Einheit steigt, ändert sich y um den Betrag b."
+  },
+  {
+    "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#recap-multiple-lineare-regressioen",
+    "href": "slides/sitzung_10_regressionsvoraussetzungen.html#recap-multiple-lineare-regressioen",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Recap: Multiple lineare Regressioen",
+    "text": "Recap: Multiple lineare Regressioen"
+  },
+  {
+    "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#recap-multiple-lineare-regressioen-1",
+    "href": "slides/sitzung_10_regressionsvoraussetzungen.html#recap-multiple-lineare-regressioen-1",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Recap: Multiple lineare Regressioen",
+    "text": "Recap: Multiple lineare Regressioen\n\\[\\hat{y} = b_0 + b_1 x_1 + b_2 x_2 + \\ldots + b_k x_k\\]\n\nDie \\(b\\)-Koeffizienten geben den spezifischen / isolierten Einfluss jedes Prädiktors an:\nWenn \\(x_k\\) um eine Einheit steigt, ändert sich \\(y\\) um \\(b_k\\),wenn alle anderen Prädiktoren konstant bleiben (ceteris paribus).\n\n\n\n\n\n\n\nTipMultiple ≠ Multivariate Regression\n\n\n\nMultiple = mehrere unabhängige Variablen\nMultivariate = mehrere abhängige Variablen"
+  },
+  {
+    "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#voraussetzungen-1",
+    "href": "slides/sitzung_10_regressionsvoraussetzungen.html#voraussetzungen-1",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Voraussetzungen",
+    "text": "Voraussetzungen\n\n\n\n\n\nVoraussetzung\nPrüfung grafisch\nPrüfung statistisch\n\n\n\n\nLinearer Zusammenhang\nScatterplot + Loess; Residuen vs. Fitted\nRainbow-Test\n\n\nHomoskedastizität der Residuen\nResiduen vs. Fitted-Plot\nBreusch-Pagan-Test\n\n\nNormalverteilte Residuen\nHistogramm, Q-Q-Plot\nShapiro-Wilk*\n\n\nUnabhängige Beobachtungen\n—\nStudiendesign\n\n\nKeine Ausreißer\nCook's Distance\nAnteil &gt; Schwellwert\n\n\nKeine Multikollinearität**\n—\nVariance Inflation Factor (VIF)\n\n\n\n\n\n\n* nur bis n = 5000; bei großem n grafische Prüfung bevorzugen\n** nur bei multiplen linearen Regressionen"
+  },
+  {
+    "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#nichtlinearität-typische-muster-lösungen",
+    "href": "slides/sitzung_10_regressionsvoraussetzungen.html#nichtlinearität-typische-muster-lösungen",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Nichtlinearität: typische Muster & Lösungen",
+    "text": "Nichtlinearität: typische Muster & Lösungen\n\n\n\n\n\nMuster\nBeispiel\nLösung\n\n\n\n\nU-Form / umgekehrte U-Form\nLebenszufriedenheit ~ Alter\nQuadratischer Term: &lt;code&gt;I(x^2)&lt;/code&gt;\n\n\nSättigung\nLebenszufriedenheit ~ Einkommen\nUV logarithmieren: &lt;code&gt;log(x)&lt;/code&gt;\n\n\nExponentielles Wachstum\nAV wächst prozentual statt absolut\nAV logarithmieren: &lt;code&gt;log(y)&lt;/code&gt;\n\n\nSchwellenwert / Knick\nEffekt erst ab bestimmtem Wert (z.B. Sperrklausel)\nUV kategorisieren\n\n\nKomplexe Wellenform\nmehrfache Richtungswechsel\nSplines (→ fortgeschrittene Methoden)\n\n\n\n\n\n\nFaustregel: ein Bogen → quadratischer Term · einseitiges Abflachen → log() (nur bei positiven Werten) · mehr als zwei Richtungswechsel → Splines"
+  },
+  {
+    "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#homoskedastizität",
+    "href": "slides/sitzung_10_regressionsvoraussetzungen.html#homoskedastizität",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "5 Homoskedastizität",
+    "text": "5 Homoskedastizität\n\nWas heißt das? Die Residuen streuen über alle vorhergesagten Werte hinweg gleich stark — das Modell ist überall gleich (un)genau\nBei ungleicher Streuung (Heteroskedastizität) sind die Standardfehler falsch → p-Werte und KIs nicht verlässlich\nDie Koeffizienten selbst bleiben unverzerrt — nur die Signifikanzaussagen leiden\nLösung: Robuste Standardfehler (z.B. HC3)"
+  },
+  {
+    "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#typische-muster-lösungen",
+    "href": "slides/sitzung_10_regressionsvoraussetzungen.html#typische-muster-lösungen",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Typische Muster & Lösungen",
+    "text": "Typische Muster & Lösungen\n\n\n\n\n\nMuster\nBeispiel\nLösung\n\n\n\n\nU-Form / umgekehrte U-Form\nLebenszufriedenheit ~ Alter\nQuadratischer Term: I(x^2)\n\n\nSättigung\nLebenszufriedenheit ~ Einkommen\nUV logarithmieren: log(x)\n\n\nExponentielles Wachstum\nAV wächst prozentual statt absolut\nAV logarithmieren: log(y)\n\n\nSchwellenwert / Knick\nEffekt erst ab bestimmtem Wert (z.B. Sperrklausel)\nUV kategorisieren\n\n\nKomplexe Wellenform\nmehrfache Richtungswechsel\nSplines (→ fortgeschrittene Methoden)\n\n\n\n\n\n\nFaustregel: ein Bogen → quadratischer Term · einseitiges Abflachen → log() (nur bei positiven Werten) · mehr als zwei Richtungswechsel → Splines"
+  },
+  {
+    "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#typische-muster-lösungen-1",
+    "href": "slides/sitzung_10_regressionsvoraussetzungen.html#typische-muster-lösungen-1",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Typische Muster & Lösungen",
+    "text": "Typische Muster & Lösungen\n\n\n\n\n\nMuster\nBeispiel\nLösung\n\n\n\n\nU-Form / umgekehrte U-Form\nLebenszufriedenheit ~ Alter\nQuadratischer Term: I(x^2)\n\n\nSättigung\nLebenszufriedenheit ~ Einkommen\nUV logarithmieren: log(x)\n\n\nExponentielles Wachstum\nAV wächst prozentual statt absolut\nAV logarithmieren: log(y)\n\n\nSchwellenwert / Knick\nEffekt erst ab bestimmtem Wert (z.B. Sperrklausel)\nUV kategorisieren\n\n\nKomplexe Wellenform\nmehrfache Richtungswechsel\nSplines (→ fortgeschrittene Methoden)\n\n\n\n\n\n\nFaustregel: ein Bogen → quadratischer Term · einseitiges Abflachen → log() (nur bei positiven Werten) · mehr als zwei Richtungswechsel → Splines"
+  },
+  {
+    "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#normalverteilte-residuen",
+    "href": "slides/sitzung_10_regressionsvoraussetzungen.html#normalverteilte-residuen",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "8 Normalverteilte Residuen",
+    "text": "8 Normalverteilte Residuen\n\nWas heißt das? Die Abweichungen vom Modell sind zufällig und symmetrisch — viele kleine, wenige große Fehler\nWarum problematisch? p-Werte und KIs basieren auf der t-Verteilung — diese Herleitung setzt normalverteilte Residuen voraus\nBei großem n entschärft sich das Problem (zentraler Grenzwertsatz), daher in der Praxis meistens irrelevant!"
+  },
+  {
+    "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#unabhängige-beobachtungen",
+    "href": "slides/sitzung_10_regressionsvoraussetzungen.html#unabhängige-beobachtungen",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "3 Unabhängige Beobachtungen",
+    "text": "3 Unabhängige Beobachtungen\n\nWas heißt das? Die Beobachtungen beeinflussen sich nicht gegenseitig\nBsp. für Cluster: Regionen, Klassen, Länder, Haushalte, Personen über die Zeit (Paneldaten)\nWarum problematisch? Das Modell tut so, als hätte es unabhängige Datenpunkte → ist sich zu sicher → Standardfehler zu klein → Effekte erscheinen signifikant, obwohl sie es nicht sind (Scheinsignifikanz)\nPrüfung nicht statistisch, sondern über das Studiendesign\nLösungen: Abhängigkeiten explizit modellieren statt sie zu ignorieren!"
+  },
+  {
+    "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#unabhängige-beobachtungen-1",
+    "href": "slides/sitzung_10_regressionsvoraussetzungen.html#unabhängige-beobachtungen-1",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "3 Unabhängige Beobachtungen",
+    "text": "3 Unabhängige Beobachtungen\n\n\n\n\n\nAbhängigkeitsstruktur\nBeispiel\nLösung\n\n\n\n\nCluster (Fälle in Gruppen)\nSchüler:innen in Klassen, Befragte in Ländern\nMehrebenenmodell oder cluster-robuste Standardfehler\n\n\nMesswiederholung\nPanelbefragung (z.B. SOEP)\nFixed-/Random-Effects-Panelmodelle\n\n\nZeitliche Abfolge\nmonatliche Umfragewerte einer Partei\nZeitreihenmodelle, autokorrelations-robuste Standardfehler\n\n\nRäumliche Nähe\nbenachbarte Wahlkreise ähneln sich\nräumliche Regressionsmodelle\n\n\n\n\n\n\nAlle Verfahren → fortgeschrittene Methoden; hier nur als Ausblick. Im ALLBUS (Zufallsstichprobe einzelner Personen) ist die Annahme erfüllt."
+  },
+  {
+    "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#ausreißer",
+    "href": "slides/sitzung_10_regressionsvoraussetzungen.html#ausreißer",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Ausreißer",
+    "text": "Ausreißer\n\nWas heißt das? Kein einzelner Fall dominiert die Schätzung\nWarum problematisch? Bei OLS werden Residuen quadriert — extreme Fälle bekommen dadurch überproportionales Gewicht und können die Gerade regelrecht „zu sich ziehen”\nWichtig: Ausreißer prüfen heißt nicht automatisch ausschließen! Erst klären: Datenfehler oder echter Extremfall?"
+  },
+  {
+    "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#keine-multikollinearität",
+    "href": "slides/sitzung_10_regressionsvoraussetzungen.html#keine-multikollinearität",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "6 Keine Multikollinearität",
+    "text": "6 Keine Multikollinearität\n\n\n\nMultikollinearität liegt vor, wenn zwei (oder mehr) UVs so stark korrelieren, dass sie im Grunde dasselbe messen\nBsp.: Bildungsjahre und höchster Abschluss\nWarum problematisch? Interpretation einzelner Koeffizienten wird unzuverlässig und Standardfehler sehr groß! (Vorhersagekraft des Modells bleibt ok.)"
+  },
+  {
+    "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#keine-ausreißer",
+    "href": "slides/sitzung_10_regressionsvoraussetzungen.html#keine-ausreißer",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "7 Keine Ausreißer",
+    "text": "7 Keine Ausreißer\n\nWas heißt das? Kein einzelner Fall dominiert die Schätzung\nWarum problematisch? Bei OLS werden Residuen quadriert — extreme Fälle bekommen dadurch überproportionales Gewicht und können die Gerade regelrecht „zu sich ziehen”\nWichtig: Ausreißer prüfen heißt nicht automatisch ausschließen! Erst klären: Datenfehler oder echter Extremfall?"
+  },
+  {
+    "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#was-tun-bei-verletzung-der-annahmen-1",
+    "href": "slides/sitzung_10_regressionsvoraussetzungen.html#was-tun-bei-verletzung-der-annahmen-1",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Was tun bei Verletzung der Annahmen?",
+    "text": "Was tun bei Verletzung der Annahmen?\n\n\n\n\n\nVerletzung\nLösung\n\n\n\n\nSkalenniveau (AV nicht metrisch)\nAnderes Modell wählen, z.B. logistische Regression bei binärer AV (→ Sitzung 11!)\n\n\nExogenität verletzt\nRelevante Kontrollvariablen aufnehmen; vollständig nur über Forschungsdesign lösbar (fortgeschritten)\n\n\nAbhängige Beobachtungen\nCluster-robuste Standardfehler; Mehrebenen- oder Panelmodelle (FE/RE)\n\n\nKein linearer Zusammenhang\nU-Form → UV quadrieren (I(x^2)) · Sättigung → UV logarithmieren (log(x)) · exponentielles Wachstum → AV logarithmieren (log(y)) · Schwellenwert → UV kategorisieren · komplexe Formen → Splines (fortgeschritten)\n\n\nHeteroskedastizität\nRobuste Standardfehler (HC3)*\n\n\nMultikollinearität\nEine der korrelierten UVen ausschließen oder zu Index zusammenfassen\n\n\nAusreißer\nFälle prüfen; Modell mit & ohne Ausreißer vergleichen; ggf. ausschließen; oder robuste Regression (fortgeschritten)\n\n\nNicht normalverteilte Residuen\nBei großem n unkritisch (zentraler Grenzwertsatz); bei kleinem n: Bootstrapping (fortgeschritten)\n\n\n\n\n\n\n* Long JS & Ervin LH (2000). Using heteroscedasticity consistent standard errors in the linear regression model. The American Statistician, 54(3), 217–224. Zum Vertiefen: Kapitel 21 bis 24 in Wagemann, Goerres & Siewert (2020). Handbuch Methoden der Politikwissenschaft. Springer."
+  },
+  {
+    "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#annahme-linearität-1",
+    "href": "slides/sitzung_10_regressionsvoraussetzungen.html#annahme-linearität-1",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Annahme: Linearität",
+    "text": "Annahme: Linearität\n\n\nRot = lineares Modell\nLiegt die Punktwolke systematisch daneben → Annahme verletzt\nVier typische Muster + Lösungen auf den nächsten Folien"
+  },
+  {
+    "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#muster-1-u-form",
+    "href": "slides/sitzung_10_regressionsvoraussetzungen.html#muster-1-u-form",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Muster 1: U-Form",
+    "text": "Muster 1: U-Form\n\n\n\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\n\nBeispiel: Lebenszufriedenheit ~ Alter (Tief in der Lebensmitte)\nLösung: quadratischen Term ergänzen\n\nlm(ls01 ~ age + I(age^2), ...)\n\nRot = lineares Modell verfehlt die Kurve\nGrün = Modell mit I(x^2) fängt sie ein"
+  },
+  {
+    "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#muster-2-sättigung",
+    "href": "slides/sitzung_10_regressionsvoraussetzungen.html#muster-2-sättigung",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Muster 2: Sättigung",
+    "text": "Muster 2: Sättigung\n\n\n\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\n\nBeispiel: Lebenszufriedenheit ~ Einkommen (jeder zusätzliche Euro bringt weniger)\nLösung: UV logarithmieren\n\nlm(ls01 ~ log(incc), ...)\n\nNur bei positiven Werten möglich!"
+  },
+  {
+    "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#muster-3-exponentielles-wachstum",
+    "href": "slides/sitzung_10_regressionsvoraussetzungen.html#muster-3-exponentielles-wachstum",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Muster 3: Exponentielles Wachstum",
+    "text": "Muster 3: Exponentielles Wachstum\n\n\n\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\n\nBeispiel: AV wächst prozentual statt absolut (z.B. Kampagnenbudgets)\nLösung: AV logarithmieren\n\nlm(log(spending) ~ x, ...)\n\nKoeffizienten dann näherungsweise als %-Änderung interpretierbar"
+  },
+  {
+    "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#muster-4-schwellenwert-knick",
+    "href": "slides/sitzung_10_regressionsvoraussetzungen.html#muster-4-schwellenwert-knick",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Muster 4: Schwellenwert / Knick",
+    "text": "Muster 4: Schwellenwert / Knick\n\n\n\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\n\nBeispiel: Effekt setzt erst ab bestimmtem Wert ein (z.B. Sperrklausel)\nLösung: UV kategorisieren (Dummy)\n\nlm(y ~ I(x &gt; schwelle), ...)"
+  },
+  {
+    "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#linearität-typische-muster-lösungen",
+    "href": "slides/sitzung_10_regressionsvoraussetzungen.html#linearität-typische-muster-lösungen",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Linearität: typische Muster & Lösungen",
+    "text": "Linearität: typische Muster & Lösungen\n\n\n\n\n\nMuster\nBeispiel\nLösung\n\n\n\n\nU-Form / umgekehrte U-Form\nLebenszufriedenheit ~ Alter\nQuadratischer Term: I(x^2)\n\n\nSättigung\nLebenszufriedenheit ~ Einkommen\nUV logarithmieren: log(x)\n\n\nExponentielles Wachstum\nAV wächst prozentual statt absolut\nAV logarithmieren: log(y)\n\n\nSchwellenwert / Knick\nEffekt erst ab bestimmtem Wert (z.B. Sperrklausel)\nUV kategorisieren\n\n\nKomplexe Wellenform\nmehrfache Richtungswechsel\nSplines (→ fortgeschrittene Methoden)\n\n\n\n\n\n\nFaustregel: ein Bogen → quadratischer Term · einseitiges Abflachen → log() (nur bei positiven Werten) · mehr als zwei Richtungswechsel → Splines"
+  },
+  {
+    "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#annahme-linearität-2",
+    "href": "slides/sitzung_10_regressionsvoraussetzungen.html#annahme-linearität-2",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Annahme: Linearität",
+    "text": "Annahme: Linearität\n\n\nRot = lineares Modell\nLiegt die Punktwolke systematisch daneben → Annahme verletzt\nVier typische Muster + Lösungen auf den nächsten Folien"
+  },
+  {
+    "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#muster-1-u-form-1",
+    "href": "slides/sitzung_10_regressionsvoraussetzungen.html#muster-1-u-form-1",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Muster 1: U-Form",
+    "text": "Muster 1: U-Form\n\n\n\n\n\n\n\n\n\n\n\n\nBeispiel: Lebenszufriedenheit ~ Alter (Tief in der Lebensmitte)\nLösung: quadratischen Term ergänzen\nRot = lineares Modell verfehlt die Kurve\nGrün = Modell mit I(x^2) fängt sie ein"
+  },
+  {
+    "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#muster-2-sättigung-1",
+    "href": "slides/sitzung_10_regressionsvoraussetzungen.html#muster-2-sättigung-1",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Muster 2: Sättigung",
+    "text": "Muster 2: Sättigung\n\n\n\n\n\n\n\n\n\n\n\n\nBeispiel: Lebenszufriedenheit ~ Einkommen (jeder zusätzliche Euro bringt weniger)\nLösung: UV logarithmieren\nNur bei positiven Werten möglich!"
+  },
+  {
+    "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#muster-3-exponentielles-wachstum-1",
+    "href": "slides/sitzung_10_regressionsvoraussetzungen.html#muster-3-exponentielles-wachstum-1",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Muster 3: Exponentielles Wachstum",
+    "text": "Muster 3: Exponentielles Wachstum\n\n\n\n\n\n\n\n\n\n\n\n\nBeispiel: AV wächst prozentual statt absolut (z.B. Kampagnenbudgets)\nLösung: AV logarithmieren\nKoeffizienten dann näherungsweise als %-Änderung interpretierbar"
+  },
+  {
+    "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#muster-4-schwellenwert-knick-1",
+    "href": "slides/sitzung_10_regressionsvoraussetzungen.html#muster-4-schwellenwert-knick-1",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Muster 4: Schwellenwert / Knick",
+    "text": "Muster 4: Schwellenwert / Knick\n\n\n\n\n\n\n\n\n\n\n\n\nBeispiel: Effekt setzt erst ab bestimmtem Wert ein (z.B. Sperrklausel)\nLösung: UV kategorisieren (Dummy)"
+  },
+  {
+    "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#linearität-typische-muster-lösungen-1",
+    "href": "slides/sitzung_10_regressionsvoraussetzungen.html#linearität-typische-muster-lösungen-1",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Linearität: typische Muster & Lösungen",
+    "text": "Linearität: typische Muster & Lösungen\n\n\n\n\n\nMuster\nBeispiel\nLösung\n\n\n\n\nU-Form / umgekehrte U-Form\nLebenszufriedenheit ~ Alter\nQuadratischer Term: I(x^2)\n\n\nSättigung\nLebenszufriedenheit ~ Einkommen\nUV logarithmieren: log(x)\n\n\nExponentielles Wachstum\nAV wächst prozentual statt absolut\nAV logarithmieren: log(y)\n\n\nSchwellenwert / Knick\nEffekt erst ab bestimmtem Wert (z.B. Sperrklausel)\nUV kategorisieren\n\n\nKomplexe Wellenform\nmehrfache Richtungswechsel\nSplines (→ fortgeschrittene Methoden)\n\n\n\n\n\n\nFaustregel: ein Bogen → quadratischer Term · einseitiges Abflachen → log() (nur bei positiven Werten) · mehr als zwei Richtungswechsel → Splines"
+  },
+  {
+    "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#linearität",
+    "href": "slides/sitzung_10_regressionsvoraussetzungen.html#linearität",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "4 Linearität",
+    "text": "4 Linearität\n\nWas heißt das? Der Zusammenhang zwischen UV und AV lässt sich durch eine Gerade beschreiben — der Effekt ist überall gleich stark\nWarum problematisch? Eine Gerade durch einen gekrümmten Zusammenhang beschreibt die Daten falsch — Koeffizient und Vorhersagen sind verzerrt\nBeispiel: Alter und Lebenszufriedenheit verlaufen oft U-förmig — eine Gerade würde fälschlich „kein Effekt” zeigen\nLösung: Polynomiale Regression (z.B. Alter²) oder Spline-Modelle"
+  },
+  {
+    "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#linearität-1",
+    "href": "slides/sitzung_10_regressionsvoraussetzungen.html#linearität-1",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Linearität",
+    "text": "Linearität"
+  },
+  {
+    "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#test",
+    "href": "slides/sitzung_10_regressionsvoraussetzungen.html#test",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "test",
+    "text": "test"
+  },
+  {
+    "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#merkhilfe-regressionsannahmen",
+    "href": "slides/sitzung_10_regressionsvoraussetzungen.html#merkhilfe-regressionsannahmen",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Merkhilfe: Regressionsannahmen",
+    "text": "Merkhilfe: Regressionsannahmen\n\n\n\n\n\n\nUnabhängigkeit · Linearität · Homoskedastizität · Multikollinearität · Ausreißer\n„Unsere Lineare Hypothese Muss Aufgehen”\n\n\n\n\n\n\n\n\nAnnahme\nGauß-Markov?\n\n\n\n\nSkalenniveau (metrische AV)\n✗ Voraussetzung für OLS überhaupt — vor Gauß-Markov\n\n\nUnabhängigkeit\n✓ Gauß-Markov (OLS wird sonst verzerrt / ineffizient)\n\n\nLinearität\n✓ Gauß-Markov (Kernspezifikation des Modells)\n\n\nHomoskedastizität\n✓ Gauß-Markov (sonst Standardfehler falsch)\n\n\nMultikollinearität\n✗ darüber hinaus — Schätzer bleiben unverzerrt, aber instabil\n\n\nAusreißer\n✗ darüber hinaus — kein formales Theorem, aber praktisch relevant\n\n\n\n\n\n\nGauß-Markov-Theorem: Sind die drei Kernannahmen erfüllt, ist OLS der beste lineare unverzerrte Schätzer (BLUE — Best Linear Unbiased Estimator). Normalverteilung der Residuen ist keine Gauß-Markov-Annahme und bei großem n unkritisch (zentraler Grenzwertsatz)."
+  },
+  {
+    "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#prüfung-d.-voraussetzungen",
+    "href": "slides/sitzung_10_regressionsvoraussetzungen.html#prüfung-d.-voraussetzungen",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Prüfung d. Voraussetzungen",
+    "text": "Prüfung d. Voraussetzungen\n\n\n\n\n\n\n\n\n\nVoraussetzung\nPrüfung\n\n\n\n\nSkalenniveau (metrische AV)\ntheoretisch: Codebuch, Theorie\n\n\nExogenität\ntheoretisch: relevante Kontrollvariablen im Modell?\n\n\nUnabhängige Beobachtungen\ntheoretisch: Studiendesign\n\n\nLinearer Zusammenhang\ngrafisch: Scatterplot + Loess; Residuen vs. Fitted\nstatistisch: Rainbow-Test\n\n\nHomoskedastizität der Residuen\ngrafisch: Residuen vs. Fitted-Plot\nstatistisch: Breusch-Pagan-Test\n\n\nKeine Multikollinearität*\nstatistisch: Variance Inflation Factor (VIF)\n\n\nKeine Ausreißer\ngrafisch: Cook's Distance\nstatistisch: Anteil &gt; Schwellwert\n\n\nNormalverteilte Residuen\ngrafisch: Histogramm, Q-Q-Plot\nstatistisch: Shapiro-Wilk**\n\n\n\n\n\n\n* nur bei multiplen linearen Regressionen\n** nur bis n = 5000; bei großem n grafische Prüfung bevorzugen\nDie UVen können metrisch oder kategorial-dichotom sein."
+  },
+  {
+    "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#überblick-voraussetzungen-der-linearen-regression",
+    "href": "slides/sitzung_10_regressionsvoraussetzungen.html#überblick-voraussetzungen-der-linearen-regression",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Überblick: Voraussetzungen der linearen Regression",
+    "text": "Überblick: Voraussetzungen der linearen Regression\n\n\n\nAttache Paket: 'dplyr'\n\n\nDie folgenden Objekte sind maskiert von 'package:stats':\n\n    filter, lag\n\n\nDie folgenden Objekte sind maskiert von 'package:base':\n\n    intersect, setdiff, setequal, union\n\n\n\n\n\nNr\nVoraussetzung\nWorauf bezogen?\nFolgen bei Verletzung\n\n\n\n\n1\nSkalenniveau (metrische AV)\nDaten / Messung\nModell ist inhaltlich nicht interpretierbar\n\n\n2\nExogenität\nModellspezifikation\nKoeffizienten verzerrt (z.B. Omitted Variable Bias)\n\n\n3\nUnabhängige Beobachtungen\nStudiendesign\nScheinsignifikanz\n\n\n4\nLinearität\nFunktionale Form\nKoeffizienten falsch\n\n\n5\nHomoskedastizität\nResiduen\nScheinsignifikanz\n\n\n6\nKeine Multikollinearität*\nUVs untereinander\nKoeffizienten instabil, große Standardfehler\n\n\n7\nKeine Ausreißer\nEinzelne Fälle\nSchätzung instabil\n\n\n(8)\nNormalverteilung der Residuen (optional)\nResiduen\nNur bei kleinem n: Inferenz ungenau\n\n\n\n\n\n\n* nur bei multiplen linearen Regressionen (mind. zwei UVs). Voraussetzungen 1–3 sind der Analyse vorgelagert (Daten & Design), 4–8 werden am geschätzten Modell geprüft."
+  },
+  {
+    "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#skalenniveau-welches-modell-für-welche-av",
+    "href": "slides/sitzung_10_regressionsvoraussetzungen.html#skalenniveau-welches-modell-für-welche-av",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "1 Skalenniveau: Welches Modell für welche AV?",
+    "text": "1 Skalenniveau: Welches Modell für welche AV?\n\n\n\n\n\nSkalenniveau der AV\nBeispiel\nModell\n\n\n\n\nMetrisch\nLebenszufriedenheit (0–10), Einkommen\nLineare Regression (OLS) — diese Sitzung\n\n\nDichotom (binär)\nWahlbeteiligung (ja/nein)\nLogistische Regression — Sitzung 11!\n\n\nNominal (mehr als 2 Kategorien)\nParteiwahl (CDU, SPD, Grüne, ...)\nMultinomiale logistische Regression\n\n\nOrdinal\nZustimmung (stimme gar nicht zu ... voll zu)\nOrdinale logistische Regression\n\n\nZählvariable\nAnzahl Demonstrationsteilnahmen\nPoisson- / Negativ-Binomial-Regression\n\n\n\n\n\n\nMerke: Das Skalenniveau der AV bestimmt das Modell. Die UVs dürfen jedes Skalenniveau haben (kategoriale UVs als Dummies). Quasi-metrische AVs (z.B. 5er-Skalen) werden in der Praxis oft mit OLS gerechnet — umstritten, aber verbreitet."
+  },
+  {
+    "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#annahme-exogenität",
+    "href": "slides/sitzung_10_regressionsvoraussetzungen.html#annahme-exogenität",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Annahme: Exogenität",
+    "text": "Annahme: Exogenität\nWas heißt das? Die UVs dürfen nicht mit dem Fehlerterm korrelieren — alles, was die AV beeinflusst und nicht im Modell steht, darf nicht systematisch mit den UVs zusammenhängen.\nHäufigste Verletzung: Omitted Variable Bias (OVB)\nEine relevante Variable fehlt im Modell, die mit einer UV und der AV korreliert:\n\nModell: Einkommen ~ Bildung\nFehlt: soziale Herkunft (beeinflusst Bildung und Einkommen)\n→ Herkunftseffekt landet im Fehlerterm → korreliert mit Bildung\n→ Bildungskoeffizient „schluckt” den Herkunftseffekt → verzerrt\n\nWarum besonders kritisch? Die Schätzung selbst wird falsch — nicht nur die Standardfehler. Mehr Daten helfen nicht.\nPrüfung & Lösung: Kein statistischer Test möglich (ε ist unbeobachtbar). Theoriegeleitet fragen: Welche Variablen beeinflussen AV und UV gemeinsam? → als Kontrollvariablen aufnehmen. Vollständige Lösung nur über Forschungsdesign (Experimente → fortgeschrittene Methoden)."
+  },
+  {
+    "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#exogenität",
+    "href": "slides/sitzung_10_regressionsvoraussetzungen.html#exogenität",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "2 Exogenität",
+    "text": "2 Exogenität\n\nDie UVs dürfen nicht mit dem Fehlerterm korrelieren → alles, was die AV beeinflusst und nicht im Modell steht, darf nicht systematisch mit den UVs zusammenhängen.\nHäufigste Verletzung: Omitted Variable Bias (OVB) → relevante Variable fehlt im Modell, die mit einer UV und der AV korreliert\n\nBeispiel: Einkommen ~ Bildung\nFehlt: soziale Herkunft (beeinflusst Bildung und Einkommen)\nHerkunftseffekt landet im Fehlerterm → korreliert mit Bildung\nBildungskoeffizient „schluckt” den Herkunftseffekt → verzerrt\n\nDie Schätzung selbst wird falsch — nicht nur die Standardfehler!\nKein statistischer Test möglich (ε ist unbeobachtbar)\nTheoriegeleitete Lösung: Welche Variablen beeinflussen AV und UV gemeinsam? → als Kontrollvariablen aufnehmen.\nVollständige Lösung nur über Forschungsdesign (Experimente → fortgeschrittene Methoden)"
+  },
+  {
+    "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#skalenniveau-welches-modell-für-welche-skala",
+    "href": "slides/sitzung_10_regressionsvoraussetzungen.html#skalenniveau-welches-modell-für-welche-skala",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "1 Skalenniveau: Welches Modell für welche Skala?",
+    "text": "1 Skalenniveau: Welches Modell für welche Skala?\n\n\n\n\n\nSkalenniveau der AV\nBeispiel\nModell\n\n\n\n\nMetrisch\nLebenszufriedenheit (0–10), Einkommen\nLineare Regression (OLS) — diese Sitzung\n\n\nDichotom (binär)\nWahlbeteiligung (ja/nein)\nLogistische Regression — Sitzung 11!\n\n\nNominal (mehr als 2 Kategorien)\nParteiwahl (CDU, SPD, Grüne, ...)\nMultinomiale logistische Regression\n\n\nOrdinal\nZustimmung (stimme gar nicht zu ... voll zu)\nOrdinale logistische Regression\n\n\nZählvariable\nAnzahl Demonstrationsteilnahmen\nPoisson- / Negativ-Binomial-Regression\n\n\n\n\n\n\nMerke: Das Skalenniveau der AV bestimmt das Modell. Die UVs dürfen jedes Skalenniveau haben (kategoriale UVs als Dummies). Quasi-metrische AVs (z.B. 5er-Skalen) werden in der Praxis oft mit OLS gerechnet — umstritten, aber verbreitet."
+  },
+  {
+    "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#überblick-voraussetzungen-der-linearen-regression-1",
+    "href": "slides/sitzung_10_regressionsvoraussetzungen.html#überblick-voraussetzungen-der-linearen-regression-1",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Überblick: Voraussetzungen der linearen Regression",
+    "text": "Überblick: Voraussetzungen der linearen Regression\n\n\n\n\n\nNr\nVoraussetzung\nWorauf bezogen?\nPrüfung\n\n\n\n\n1\nSkalenniveau (metrische AV)\nDaten / Messung\nCodebuch, Theorie\n\n\n2\nExogenität\nModellspezifikation\nTheoriegeleitet: relevante Kontrollvariablen?\n\n\n3\nUnabhängige Beobachtungen\nStudiendesign\nErhebungsdesign prüfen\n\n\n4\nLinearität\nFunktionale Form\nScatterplot + Loess; Residuen vs. Fitted\n\n\n5\nHomoskedastizität\nResiduen\nResiduen vs. Fitted; Breusch-Pagan-Test\n\n\n6\nKeine Multikollinearität*\nUVs untereinander\nVIF\n\n\n7\nKeine Ausreißer\nEinzelne Fälle\nCook's Distance\n\n\n(8)\nNormalverteilung der Residuen**\nResiduen\nHistogramm, Q-Q-Plot\n\n\n\n\n\n\n* nur bei multiplen linearen Regressionen (mind. zwei UVs).\n** Normalverteilung: nur für exakte Inferenz bei kleinem n relevant; bei großem n unkritisch (zentraler Grenzwertsatz). Voraussetzungen 1–3 sind der Analyse vorgelagert (Daten & Design), 4–8 werden am geschätzten Modell geprüft."
+  },
+  {
+    "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#überblick-voraussetzungen-der-linearen-regression-2",
+    "href": "slides/sitzung_10_regressionsvoraussetzungen.html#überblick-voraussetzungen-der-linearen-regression-2",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Überblick: Voraussetzungen der linearen Regression",
+    "text": "Überblick: Voraussetzungen der linearen Regression\n\n\n\n\n\nNr\nVoraussetzung\nWorauf bezogen?\nFolgen bei Verletzung\n\n\n\n\n1\nSkalenniveau (metrische AV)\nDaten / Messung\nModell ist inhaltlich nicht interpretierbar\n\n\n2\nExogenität\nModellspezifikation\nKoeffizienten verzerrt (z.B. Omitted Variable Bias)\n\n\n3\nUnabhängige Beobachtungen\nStudiendesign\nStandardfehler zu klein → Scheinsignifikanz\n\n\n4\nLinearität\nFunktionale Form\nModell verfehlt den wahren Zusammenhang systematisch\n\n\n5\nHomoskedastizität\nResiduen\nStandardfehler falsch → Tests unzuverlässig\n\n\n6\nKeine Multikollinearität*\nUVs untereinander\nKoeffizienten instabil, Standardfehler aufgebläht\n\n\n7\nKeine Ausreißer\nEinzelne Fälle\nEinzelne Fälle dominieren die Schätzung\n\n\n(8)\nNormalverteilung der Residuen (optional)\nResiduen\nNur bei kleinem n: Inferenz ungenau\n\n\n\n\n\n\n* nur bei multiplen linearen Regressionen (mind. zwei UVs). Voraussetzungen 1–3 sind der Analyse vorgelagert (Daten & Design), 4–8 werden am geschätzten Modell geprüft."
+  },
+  {
+    "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#prüfung-d.-voraussetzungen-1",
+    "href": "slides/sitzung_10_regressionsvoraussetzungen.html#prüfung-d.-voraussetzungen-1",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Prüfung d. Voraussetzungen",
+    "text": "Prüfung d. Voraussetzungen\n\n\n\n\n\n\n\n\n\nVoraussetzung\nPrüfung\n\n\n\n\nSkalenniveau (metrische AV)\ntheoretisch: Codebuch, Theorie\n\n\nExogenität\ntheoretisch: relevante Kontrollvariablen im Modell?\n\n\nUnabhängige Beobachtungen\ntheoretisch: Studiendesign\n\n\nLinearer Zusammenhang\ngrafisch: Scatterplot + Loess; Residuen vs. Fitted\nstatistisch: Rainbow-Test\n\n\nHomoskedastizität der Residuen\ngrafisch: Residuen vs. Fitted-Plot\nstatistisch: Breusch-Pagan-Test\n\n\nKeine Multikollinearität*\nstatistisch: Variance Inflation Factor (VIF)\n\n\nKeine Ausreißer\ngrafisch: Cook's Distance\nstatistisch: Anteil &gt; Schwellwert\n\n\nNormalverteilte Residuen\ngrafisch: Histogramm, Q-Q-Plot\nstatistisch: Shapiro-Wilk**\n\n\n\n\n\n\n* nur bei multiplen linearen Regressionen\n** nur bis n = 5000; bei großem n grafische Prüfung bevorzugen\nDie UVen können metrisch oder kategorial-dichotom sein."
+  },
+  {
+    "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#was-tun-bei-verletzung-der-annahmen-2",
+    "href": "slides/sitzung_10_regressionsvoraussetzungen.html#was-tun-bei-verletzung-der-annahmen-2",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Was tun bei Verletzung der Annahmen?",
+    "text": "Was tun bei Verletzung der Annahmen?\n\n\n\n\n\n\n\n\n\nVerletzung\nLösung\n\n\n\n\nSkalenniveau (AV nicht metrisch)\nAnderes Modell wählen, z.B. logistische Regression bei binärer AV (→ Sitzung 11!)\n\n\nExogenität verletzt\nRelevante Kontrollvariablen aufnehmen; vollständig nur über Forschungsdesign lösbar (fortgeschritten)\n\n\nAbhängige Beobachtungen\nCluster-robuste Standardfehler; Mehrebenen- oder Panelmodelle (FE/RE)\n\n\nKein linearer Zusammenhang\nJe nach Muster:\nU-Form → UV quadrieren (I(x^2))\nSättigung → UV logarithmieren (log(x))\nExponentielles Wachstum → AV logarithmieren (log(y))\nSchwellenwert → UV kategorisieren\nKomplexe Formen → Splines (fortgeschritten)\n\n\nHeteroskedastizität\nRobuste Standardfehler (HC3)*\n\n\nMultikollinearität\nEine der korrelierten UVen ausschließen oder zu Index zusammenfassen\n\n\nAusreißer\nFälle prüfen; Modell mit & ohne Ausreißer vergleichen; ggf. ausschließen; oder robuste Regression (fortgeschritten)\n\n\nNicht normalverteilte Residuen\nBei großem n unkritisch (zentraler Grenzwertsatz); bei kleinem n: Bootstrapping (fortgeschritten)\n\n\n\n\n\n\nHervorgehoben: Linearität & Heteroskedastizität schauen wir uns gleich genauer an.\n* Long JS & Ervin LH (2000). Using heteroscedasticity consistent standard errors in the linear regression model. The American Statistician, 54(3), 217–224. Zum Vertiefen: Kapitel 21 bis 24 in Wagemann, Goerres & Siewert (2020). Handbuch Methoden der Politikwissenschaft. Springer."
+  },
+  {
+    "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#verletzung-d.-linearität",
+    "href": "slides/sitzung_10_regressionsvoraussetzungen.html#verletzung-d.-linearität",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Verletzung d. Linearität",
+    "text": "Verletzung d. Linearität\n\n\nWarning: Paket 'ggplot2' wurde unter R Version 4.5.3 erstellt\n\n\n`geom_smooth()` using formula = 'y ~ x'\n`geom_smooth()` using formula = 'y ~ x'\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\n\nRot = lineares Modell\nLiegt die Punktwolke systematisch daneben → Annahme verletzt\nVier typische Muster + Lösungen auf den nächsten Folien"
+  },
+  {
+    "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#annahme-d.-homoskedastizität",
+    "href": "slides/sitzung_10_regressionsvoraussetzungen.html#annahme-d.-homoskedastizität",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Annahme d. Homoskedastizität",
+    "text": "Annahme d. Homoskedastizität"
   }
 ]

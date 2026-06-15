@@ -16,7 +16,7 @@ Hier findest du die Folien und R-Skripte zu jeder Sitzung. Folien sind als HTML 
 | 06 | 19.05.2026 | Deskriptive Statistik – Häufigkeits- & Kreuztabellen | Häufigkeiten, Kreuztabellen | `dplyr`, `questionr`, `janitor` | [HTML](slides/sitzung_06_häufigkeiten.html) / [PDF](slides/sitzung_06_häufigkeiten.pdf)  | [R](scripts/sitzung_06_häufigkeiten.R) |
 | 07 | 02.06.2026 | Deskriptive Statistik – Schöne Grafiken | Grammar of Graphics, Visualisierung | `ggplot2`, `dplyr` | [HTML](slides/sitzung_07_visualisierung.html) / [PDF](slides/sitzung_07_visualisierung.pdf)  | [R](scripts/sitzung_07_visualisierung.R) ; [Quoten](scripts/Quoten.xlsx)|
 | 08 | 09.06.2026 | Deskriptive Statistik – Kreuztabelle & Korrelation | Korrelationskoeffizient, Streudiagramm | `correlation`, `gtsummary` , `gmodels`| [HTML](slides/sitzung_08_zusammenhänge.html) / [PDF](slides/sitzung_08_zusammenhänge.pdf) | [R](scripts/sitzung_08_zusammenhänge.R); [ALLBUS-dfSummary](qmd_dateien/allbus_c_2023_dfSummary.html)  |
-| 09 | 16.06.2026 | Inferenzstatistik – Einfache & Multiple Lineare Regression | Regressionskoeffizienten, p-Wert, R² | `stats`, `performance`, `texreg` | — / — | —  |
+| 09 | 16.06.2026 | Inferenzstatistik – Einfache & Multiple Lineare Regression | Regressionskoeffizienten, p-Wert, R² | `stats`, `performance`, `texreg` | [HTML](slides/sitzung_09_regression.html)/ [PDF](slides/sitzung_09_regression.pdf) | [R](scripts/sitzung_09_regressionen.R)  |
 | 10 | 23.06.2026 | Regression Diagnostics | Residuen, Heteroskedastizität, Ausreißer | `stats`, `performance` | — / — | —  |
 | 11 | 30.06.2026 | Logistische Regression | Odds Ratio, binäre AV | `stats`, `performance` | — / — | —  |
 | 12 | 07.07.2026 | Data Analysis Reports | — | — | — / — | —  |

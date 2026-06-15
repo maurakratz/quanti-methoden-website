@@ -104,6 +104,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="../site_libs/kePrint-0.0.1/kePrint.js"></script>
+
+<link href="../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -201,22 +205,40 @@ window.Quarto = {
    
   <ul>
   <li><a href="#willkommen-zurück" id="toc-willkommen-zurück" class="nav-link active" data-scroll-target="#willkommen-zurück">Willkommen zurück!</a></li>
-  <li><a href="#recap-einfache-und-multiple-lineare-regressionen" id="toc-recap-einfache-und-multiple-lineare-regressionen" class="nav-link" data-scroll-target="#recap-einfache-und-multiple-lineare-regressionen">Recap: Einfache und multiple lineare Regressionen</a></li>
+  <li><a href="#recap-einfache-lineare-regressionen" id="toc-recap-einfache-lineare-regressionen" class="nav-link" data-scroll-target="#recap-einfache-lineare-regressionen">Recap: Einfache lineare Regressionen</a></li>
+  <li><a href="#recap-multiple-lineare-regressioen" id="toc-recap-multiple-lineare-regressioen" class="nav-link" data-scroll-target="#recap-multiple-lineare-regressioen">Recap: Multiple lineare Regressioen</a></li>
+  <li><a href="#recap-multiple-lineare-regressioen-1" id="toc-recap-multiple-lineare-regressioen-1" class="nav-link" data-scroll-target="#recap-multiple-lineare-regressioen-1">Recap: Multiple lineare Regressioen</a></li>
   <li><a href="#wichtigste-marker-einer-regression" id="toc-wichtigste-marker-einer-regression" class="nav-link" data-scroll-target="#wichtigste-marker-einer-regression">Wichtigste Marker einer Regression</a></li>
-  <li><a href="#voraussetzungen" id="toc-voraussetzungen" class="nav-link" data-scroll-target="#voraussetzungen">Voraussetzungen</a></li>
-  <li><a href="#die-annahmen-inhaltlich-linearität" id="toc-die-annahmen-inhaltlich-linearität" class="nav-link" data-scroll-target="#die-annahmen-inhaltlich-linearität">Die Annahmen inhaltlich: Linearität</a></li>
-  <li><a href="#annahme-linearität" id="toc-annahme-linearität" class="nav-link" data-scroll-target="#annahme-linearität">Annahme: Linearität</a></li>
-  <li><a href="#linearität-verletzt-was-tun" id="toc-linearität-verletzt-was-tun" class="nav-link" data-scroll-target="#linearität-verletzt-was-tun">Linearität verletzt — was tun?</a></li>
-  <li><a href="#die-annahmen-inhaltlich-homoskedastizität" id="toc-die-annahmen-inhaltlich-homoskedastizität" class="nav-link" data-scroll-target="#die-annahmen-inhaltlich-homoskedastizität">Die Annahmen inhaltlich: Homoskedastizität</a></li>
-  <li><a href="#die-annahmen-inhaltlich-normalverteilte-residuen" id="toc-die-annahmen-inhaltlich-normalverteilte-residuen" class="nav-link" data-scroll-target="#die-annahmen-inhaltlich-normalverteilte-residuen">Die Annahmen inhaltlich: Normalverteilte Residuen</a></li>
-  <li><a href="#die-annahmen-inhaltlich-unabhängigkeit" id="toc-die-annahmen-inhaltlich-unabhängigkeit" class="nav-link" data-scroll-target="#die-annahmen-inhaltlich-unabhängigkeit">Die Annahmen inhaltlich: Unabhängigkeit</a></li>
-  <li><a href="#die-annahmen-inhaltlich-keine-ausreißer" id="toc-die-annahmen-inhaltlich-keine-ausreißer" class="nav-link" data-scroll-target="#die-annahmen-inhaltlich-keine-ausreißer">Die Annahmen inhaltlich: Keine Ausreißer</a></li>
-  <li><a href="#die-annahmen-inhaltlich-keine-multikollinearität" id="toc-die-annahmen-inhaltlich-keine-multikollinearität" class="nav-link" data-scroll-target="#die-annahmen-inhaltlich-keine-multikollinearität">Die Annahmen inhaltlich: Keine Multikollinearität</a></li>
+  <li><a href="#voraussetzungen-und-deren-bedeutung" id="toc-voraussetzungen-und-deren-bedeutung" class="nav-link" data-scroll-target="#voraussetzungen-und-deren-bedeutung">Voraussetzungen und deren Bedeutung</a>
+  <ul class="collapse">
+  <li><a href="#überblick-voraussetzungen-der-linearen-regression" id="toc-überblick-voraussetzungen-der-linearen-regression" class="nav-link" data-scroll-target="#überblick-voraussetzungen-der-linearen-regression"><span style="font-size: 0.8em;">Überblick: Voraussetzungen der linearen Regression</span></a></li>
+  <li><a href="#skalenniveau-welches-modell-für-welche-skala" id="toc-skalenniveau-welches-modell-für-welche-skala" class="nav-link" data-scroll-target="#skalenniveau-welches-modell-für-welche-skala">1 <span style="font-size: 0.8em;">Skalenniveau: Welches Modell für welche Skala?</span></a></li>
+  <li><a href="#exogenität" id="toc-exogenität" class="nav-link" data-scroll-target="#exogenität">2 Exogenität</a></li>
+  <li><a href="#unabhängige-beobachtungen" id="toc-unabhängige-beobachtungen" class="nav-link" data-scroll-target="#unabhängige-beobachtungen">3 Unabhängige Beobachtungen</a></li>
+  <li><a href="#unabhängige-beobachtungen-1" id="toc-unabhängige-beobachtungen-1" class="nav-link" data-scroll-target="#unabhängige-beobachtungen-1">3 Unabhängige Beobachtungen</a></li>
+  <li><a href="#linearität" id="toc-linearität" class="nav-link" data-scroll-target="#linearität">4 Linearität</a></li>
+  <li><a href="#homoskedastizität" id="toc-homoskedastizität" class="nav-link" data-scroll-target="#homoskedastizität">5 Homoskedastizität</a></li>
+  <li><a href="#keine-multikollinearität" id="toc-keine-multikollinearität" class="nav-link" data-scroll-target="#keine-multikollinearität">6 Keine Multikollinearität</a></li>
+  <li><a href="#keine-ausreißer" id="toc-keine-ausreißer" class="nav-link" data-scroll-target="#keine-ausreißer">7 Keine Ausreißer</a></li>
+  <li><a href="#normalverteilte-residuen" id="toc-normalverteilte-residuen" class="nav-link" data-scroll-target="#normalverteilte-residuen">8 Normalverteilte Residuen</a></li>
+  </ul></li>
+  <li><a href="#voraussetzungen-prüfen" id="toc-voraussetzungen-prüfen" class="nav-link" data-scroll-target="#voraussetzungen-prüfen">Voraussetzungen prüfen</a>
+  <ul class="collapse">
+  <li><a href="#prüfung-d.-voraussetzungen" id="toc-prüfung-d.-voraussetzungen" class="nav-link" data-scroll-target="#prüfung-d.-voraussetzungen">Prüfung d.&nbsp;Voraussetzungen</a></li>
+  </ul></li>
+  <li><a href="#remedies-bei-verletzung" id="toc-remedies-bei-verletzung" class="nav-link" data-scroll-target="#remedies-bei-verletzung">Remedies bei Verletzung</a>
+  <ul class="collapse">
   <li><a href="#was-tun-bei-verletzung-der-annahmen" id="toc-was-tun-bei-verletzung-der-annahmen" class="nav-link" data-scroll-target="#was-tun-bei-verletzung-der-annahmen">Was tun bei Verletzung der Annahmen?</a></li>
+  <li><a href="#verletzung-d.-linearität" id="toc-verletzung-d.-linearität" class="nav-link" data-scroll-target="#verletzung-d.-linearität">Verletzung d.&nbsp;Linearität</a></li>
+  <li><a href="#muster-1-u-form" id="toc-muster-1-u-form" class="nav-link" data-scroll-target="#muster-1-u-form">Muster 1: U-Form</a></li>
+  <li><a href="#muster-2-sättigung" id="toc-muster-2-sättigung" class="nav-link" data-scroll-target="#muster-2-sättigung">Muster 2: Sättigung</a></li>
+  <li><a href="#muster-3-exponentielles-wachstum" id="toc-muster-3-exponentielles-wachstum" class="nav-link" data-scroll-target="#muster-3-exponentielles-wachstum">Muster 3: Exponentielles Wachstum</a></li>
+  <li><a href="#muster-4-schwellenwert-knick" id="toc-muster-4-schwellenwert-knick" class="nav-link" data-scroll-target="#muster-4-schwellenwert-knick">Muster 4: Schwellenwert / Knick</a></li>
+  <li><a href="#linearität-typische-muster-lösungen" id="toc-linearität-typische-muster-lösungen" class="nav-link" data-scroll-target="#linearität-typische-muster-lösungen">Linearität: typische Muster &amp; Lösungen</a></li>
+  <li><a href="#annahme-d.-homoskedastizität" id="toc-annahme-d.-homoskedastizität" class="nav-link" data-scroll-target="#annahme-d.-homoskedastizität">Annahme d.&nbsp;Homoskedastizität</a></li>
   <li><a href="#robuste-standardfehler-hc3" id="toc-robuste-standardfehler-hc3" class="nav-link" data-scroll-target="#robuste-standardfehler-hc3">Robuste Standardfehler (HC3)</a></li>
-  <li><a href="#bootstrapping" id="toc-bootstrapping" class="nav-link" data-scroll-target="#bootstrapping">Bootstrapping</a></li>
-  <li><a href="#anwendung-in-r" id="toc-anwendung-in-r" class="nav-link" data-scroll-target="#anwendung-in-r">Anwendung in R</a></li>
-  <li><a href="#hands-on---regressionen" id="toc-hands-on---regressionen" class="nav-link" data-scroll-target="#hands-on---regressionen">Hands On - Regressionen</a>
+  </ul></li>
+  <li><a href="#hands-on---diagnostics" id="toc-hands-on---diagnostics" class="nav-link" data-scroll-target="#hands-on---diagnostics">Hands On - Diagnostics</a>
   <ul class="collapse">
   <li><a href="#minute-cards" id="toc-minute-cards" class="nav-link" data-scroll-target="#minute-cards">Minute Cards</a></li>
   </ul></li>
@@ -257,8 +279,8 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="willkommen-zurück">Willkommen zurück!</h2>
 <p><img src="images/clipboard-2557253040.png" class="img-fluid"></p>
 </section>
-<section id="recap-einfache-und-multiple-lineare-regressionen" class="level2 smaller">
-<h2 class="smaller anchored" data-anchor-id="recap-einfache-und-multiple-lineare-regressionen">Recap: Einfache und multiple lineare Regressionen</h2>
+<section id="recap-einfache-lineare-regressionen" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="recap-einfache-lineare-regressionen">Recap: Einfache lineare Regressionen</h2>
 <ul>
 <li><p>Eine (einfache) lineare Regression zu rechenen heißt eine Gerade durch Punkte zu ziehen!</p></li>
 <li><p>UV <span class="math inline">\(\rightarrow\)</span> AV</p></li>
@@ -266,8 +288,34 @@ window.Quarto = {
 </ul>
 <p><img src="images/clipboard-3922862888.png" class="img-fluid"></p>
 </section>
-<section id="wichtigste-marker-einer-regression" class="level2">
-<h2 class="anchored" data-anchor-id="wichtigste-marker-einer-regression">Wichtigste Marker einer Regression</h2>
+<section id="recap-multiple-lineare-regressioen" class="level2">
+<h2 class="anchored" data-anchor-id="recap-multiple-lineare-regressioen">Recap: Multiple lineare Regressioen</h2>
+<p><img src="images/clipboard-2076104136.png" class="img-fluid"></p>
+</section>
+<section id="recap-multiple-lineare-regressioen-1" class="level2">
+<h2 class="anchored" data-anchor-id="recap-multiple-lineare-regressioen-1">Recap: Multiple lineare Regressioen</h2>
+<p><span class="math display">\[\hat{y} = b_0 + b_1 x_1 + b_2 x_2 + \ldots + b_k x_k\]</span></p>
+<ul>
+<li><p>Die <span class="math inline">\(b\)</span>-Koeffizienten geben den <strong>spezifischen / isolierten Einfluss</strong> jedes Prädiktors an:</p></li>
+<li><p>Wenn <span class="math inline">\(x_k\)</span> um eine Einheit steigt, ändert sich <span class="math inline">\(y\)</span> um <span class="math inline">\(b_k\)</span>,<strong>wenn alle anderen Prädiktoren konstant bleiben</strong> (<em>ceteris paribus</em>).</p></li>
+</ul>
+<div class="fragment callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Multiple ≠ Multivariate Regression
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Multiple = mehrere <strong>unabhängige</strong> Variablen<br>
+Multivariate = mehrere <strong>abhängige</strong> Variablen</p>
+</div>
+</div>
+</section>
+<section id="wichtigste-marker-einer-regression" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="wichtigste-marker-einer-regression">Wichtigste Marker einer Regression</h2>
 <ul>
 <li>Regressionskoeffizient <span class="math inline">\(b\)</span></li>
 <li>Modellgüte: Bestimmtheitsmaß R² = Anteil der aufgeklärten Varianz</li>
@@ -277,240 +325,579 @@ window.Quarto = {
 <li>Beispielschwellwerte: p &lt; 0.001 = hochsignifikant ***, p &lt; 0.01 = signifikant **, p &lt; 0.05 = schwach signifikant *, p &gt; 0.05 = nicht signifikant</li>
 <li>KI: 95% KI enthält 0 <span class="math inline">\(\Rightarrow\)</span> nicht signifikant; 95% KI enthält keinen Wert über 0 <span class="math inline">\(\Rightarrow\)</span> signifikant</li>
 <li>In 95 von 100 Stichproben würde das berechnete Konfidenzintervall den wahren Regressionskoeffizienten in der Grundgesamtheit enthalten.</li>
-<li>Wenn man den Zorn der Statistiker*innen auf sich zeihen will: Der wahre Regressionskoeffizient liegt mit 95%iger Wahrscheinlichkeit im KI.</li>
+<li>Wenn man den Zorn der Statistiker*innen auf sich ziehen will: Der wahre Regressionskoeffizient liegt mit 95%iger Wahrscheinlichkeit im KI.</li>
 </ul></li>
 </ul>
 </section>
-<section id="voraussetzungen" class="level2">
-<h2 class="anchored" data-anchor-id="voraussetzungen">Voraussetzungen</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
+<section id="voraussetzungen-und-deren-bedeutung" class="level1">
+<h1>Voraussetzungen und deren Bedeutung</h1>
+<section id="überblick-voraussetzungen-der-linearen-regression" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="überblick-voraussetzungen-der-linearen-regression"><span style="font-size: 0.8em;">Überblick: Voraussetzungen der linearen Regression</span></h2>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attache Paket: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Die folgenden Objekte sind maskiert von 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Die folgenden Objekte sind maskiert von 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small">
 <thead>
 <tr class="header">
-<th>Voraussetzung</th>
-<th>Prüfung grafisch</th>
-<th>Prüfung statistisch</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; border-bottom: 1.5px solid black;">Nr</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; border-bottom: 1.5px solid black;">Voraussetzung</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; border-bottom: 1.5px solid black;">Worauf bezogen?</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; border-bottom: 1.5px solid black;">Folgen bei Verletzung</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Linearer Zusammenhang</td>
-<td>Scatterplot + Loess; Residuen vs.&nbsp;Fitted</td>
-<td>Rainbow-Test</td>
+<td style="text-align: left; font-weight: bold; border-right: 1px solid black; border-bottom: 1.5px solid black;">1</td>
+<td style="text-align: left; font-weight: bold; border-right: 1px solid black; border-bottom: 1.5px solid black;">Skalenniveau (metrische AV)</td>
+<td style="text-align: left; border-right: 1px solid black; border-bottom: 1.5px solid black;">Daten / Messung</td>
+<td style="text-align: left; border-bottom: 1.5px solid black;">Modell ist inhaltlich nicht interpretierbar</td>
 </tr>
 <tr class="even">
-<td>Homoskedastizität der Residuen</td>
-<td>Residuen vs.&nbsp;Fitted-Plot</td>
-<td>Breusch-Pagan-Test</td>
+<td style="text-align: left; font-weight: bold; border-right: 1px solid black; border-bottom: 1.5px solid black;">2</td>
+<td style="text-align: left; font-weight: bold; border-right: 1px solid black; border-bottom: 1.5px solid black;">Exogenität</td>
+<td style="text-align: left; border-right: 1px solid black; border-bottom: 1.5px solid black;">Modellspezifikation</td>
+<td style="text-align: left; border-bottom: 1.5px solid black;">Koeffizienten verzerrt (z.B. Omitted Variable Bias)</td>
 </tr>
 <tr class="odd">
-<td>Normalverteilte Residuen</td>
-<td>Histogramm, Q-Q-Plot</td>
-<td>Shapiro-Wilk*</td>
+<td style="text-align: left; font-weight: bold; border-right: 1px solid black; border-bottom: 1.5px solid black;">3</td>
+<td style="text-align: left; font-weight: bold; border-right: 1px solid black; border-bottom: 1.5px solid black;">Unabhängige Beobachtungen</td>
+<td style="text-align: left; border-right: 1px solid black; border-bottom: 1.5px solid black;">Studiendesign</td>
+<td style="text-align: left; border-bottom: 1.5px solid black;">Scheinsignifikanz</td>
 </tr>
 <tr class="even">
-<td>Unabhängige Beobachtungen</td>
-<td>—</td>
-<td>Studiendesign</td>
+<td style="text-align: left; font-weight: bold; border-right: 1px solid black; border-bottom: 1.5px solid black;">4</td>
+<td style="text-align: left; font-weight: bold; border-right: 1px solid black; border-bottom: 1.5px solid black;">Linearität</td>
+<td style="text-align: left; border-right: 1px solid black; border-bottom: 1.5px solid black;">Funktionale Form</td>
+<td style="text-align: left; border-bottom: 1.5px solid black;">Koeffizienten falsch</td>
 </tr>
 <tr class="odd">
-<td>Keine Ausreißer</td>
-<td>Cook’s Distance</td>
-<td>Anteil &gt; Schwellwert</td>
+<td style="text-align: left; font-weight: bold; border-right: 1px solid black; border-bottom: 1.5px solid black;">5</td>
+<td style="text-align: left; font-weight: bold; border-right: 1px solid black; border-bottom: 1.5px solid black;">Homoskedastizität</td>
+<td style="text-align: left; border-right: 1px solid black; border-bottom: 1.5px solid black;">Residuen</td>
+<td style="text-align: left; border-bottom: 1.5px solid black;">Scheinsignifikanz</td>
 </tr>
 <tr class="even">
-<td>Keine Multikollinearität**</td>
-<td>—</td>
-<td>Variance Inflation Factor (VIF)</td>
+<td style="text-align: left; font-weight: bold; border-right: 1px solid black; border-bottom: 1.5px solid black;">6</td>
+<td style="text-align: left; font-weight: bold; border-right: 1px solid black; border-bottom: 1.5px solid black;">Keine Multikollinearität*</td>
+<td style="text-align: left; border-right: 1px solid black; border-bottom: 1.5px solid black;">UVs untereinander</td>
+<td style="text-align: left; border-bottom: 1.5px solid black;">Koeffizienten instabil, große Standardfehler</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; font-weight: bold; border-right: 1px solid black; border-bottom: 1.5px solid black;">7</td>
+<td style="text-align: left; font-weight: bold; border-right: 1px solid black; border-bottom: 1.5px solid black;">Keine Ausreißer</td>
+<td style="text-align: left; border-right: 1px solid black; border-bottom: 1.5px solid black;">Einzelne Fälle</td>
+<td style="text-align: left; border-bottom: 1.5px solid black;">Schätzung instabil</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; font-weight: bold; border-right: 1px solid black; border-bottom: 1.5px solid black; border-bottom: 1.5px solid black; color: #999999;">(8)</td>
+<td style="text-align: left; font-weight: bold; border-right: 1px solid black; border-bottom: 1.5px solid black; border-bottom: 1.5px solid black; color: #999999;">Normalverteilung der Residuen (optional)</td>
+<td style="text-align: left; border-right: 1px solid black; border-bottom: 1.5px solid black; border-bottom: 1.5px solid black; color: #999999;">Residuen</td>
+<td style="text-align: left; border-bottom: 1.5px solid black; border-bottom: 1.5px solid black; color: #999999;">Nur bei kleinem n: Inferenz ungenau</td>
 </tr>
 </tbody>
 </table>
+</div>
+</div>
 <div style="font-size: 0.6em;">
-<p>* nur bis n = 5000; bei großem n grafische Prüfung bevorzugen<br>
-** nur bei multiplen linearen Regressionen</p>
+<p>* nur bei multiplen linearen Regressionen (mind. zwei UVs). Voraussetzungen 1–3 sind der Analyse <em>vorgelagert</em> (Daten &amp; Design), 4–8 werden <em>am geschätzten Modell</em> geprüft.</p>
 </div>
 </section>
-<section id="die-annahmen-inhaltlich-linearität" class="level2">
-<h2 class="anchored" data-anchor-id="die-annahmen-inhaltlich-linearität">Die Annahmen inhaltlich: Linearität</h2>
+<section id="skalenniveau-welches-modell-für-welche-skala" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="skalenniveau-welches-modell-für-welche-skala">1 <span style="font-size: 0.8em;">Skalenniveau: Welches Modell für welche Skala?</span></h2>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: left; border-bottom: 1.5px solid black;">Skalenniveau der AV</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; border-bottom: 1.5px solid black;">Beispiel</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; border-bottom: 1.5px solid black;">Modell</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left; font-weight: bold; border-right: 1px solid black; border-bottom: 1.5px solid black;">Metrisch</td>
+<td style="text-align: left; border-right: 1px solid black; border-bottom: 1.5px solid black;">Lebenszufriedenheit (0–10), Einkommen</td>
+<td style="text-align: left; border-bottom: 1.5px solid black;">Lineare Regression (OLS) — diese Sitzung</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; font-weight: bold; border-right: 1px solid black; border-bottom: 1.5px solid black;">Dichotom (binär)</td>
+<td style="text-align: left; border-right: 1px solid black; border-bottom: 1.5px solid black;">Wahlbeteiligung (ja/nein)</td>
+<td style="text-align: left; border-bottom: 1.5px solid black;">Logistische Regression — Sitzung 11!</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; font-weight: bold; border-right: 1px solid black; border-bottom: 1.5px solid black;">Nominal (mehr als 2 Kategorien)</td>
+<td style="text-align: left; border-right: 1px solid black; border-bottom: 1.5px solid black;">Parteiwahl (CDU, SPD, Grüne, ...)</td>
+<td style="text-align: left; border-bottom: 1.5px solid black;">Multinomiale logistische Regression</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; font-weight: bold; border-right: 1px solid black; border-bottom: 1.5px solid black;">Ordinal</td>
+<td style="text-align: left; border-right: 1px solid black; border-bottom: 1.5px solid black;">Zustimmung (stimme gar nicht zu ... voll zu)</td>
+<td style="text-align: left; border-bottom: 1.5px solid black;">Ordinale logistische Regression</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; font-weight: bold; border-right: 1px solid black; border-bottom: 1.5px solid black;">Zählvariable</td>
+<td style="text-align: left; border-right: 1px solid black; border-bottom: 1.5px solid black;">Anzahl Demonstrationsteilnahmen</td>
+<td style="text-align: left; border-bottom: 1.5px solid black;">Poisson- / Negativ-Binomial-Regression</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div style="font-size: 0.6em;">
+<p>Merke: Das Skalenniveau der <strong>AV</strong> bestimmt das Modell. Die UVs dürfen jedes Skalenniveau haben (kategoriale UVs als Dummies). Quasi-metrische AVs (z.B. 5er-Skalen) werden in der Praxis oft mit OLS gerechnet — umstritten, aber verbreitet.</p>
+</div>
+</section>
+<section id="exogenität" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="exogenität">2 Exogenität</h2>
+<ul>
+<li><p>Die UVs dürfen nicht mit dem Fehlerterm korrelieren → alles, was die AV beeinflusst und <em>nicht</em> im Modell steht, darf nicht systematisch mit den UVs zusammenhängen.</p></li>
+<li><p>Häufigste Verletzung: Omitted Variable Bias (OVB) → relevante Variable fehlt im Modell, die mit einer UV <strong>und</strong> der AV korreliert</p>
+<ul>
+<li><p>Beispiel: Einkommen ~ Bildung</p></li>
+<li><p>Fehlt: soziale Herkunft (beeinflusst Bildung <em>und</em> Einkommen)</p></li>
+<li><p>Herkunftseffekt landet im Fehlerterm → korreliert mit Bildung</p></li>
+<li><p>Bildungskoeffizient „schluckt” den Herkunftseffekt → <strong>verzerrt</strong></p></li>
+</ul></li>
+<li><p>Die Schätzung selbst wird falsch — nicht nur die Standardfehler!</p></li>
+<li><p>Kein statistischer Test möglich (ε ist unbeobachtbar)</p></li>
+<li><p>Theoriegeleitete Lösung: <em>Welche Variablen beeinflussen AV und UV gemeinsam?</em> → als Kontrollvariablen aufnehmen.</p></li>
+<li><p>Vollständige Lösung nur über Forschungsdesign (Experimente → fortgeschrittene Methoden)</p></li>
+</ul>
+</section>
+<section id="unabhängige-beobachtungen" class="level2">
+<h2 class="anchored" data-anchor-id="unabhängige-beobachtungen">3 Unabhängige Beobachtungen</h2>
+<ul>
+<li><strong>Was heißt das?</strong> Die Beobachtungen beeinflussen sich nicht gegenseitig</li>
+<li>Bsp. für Cluster: Regionen, Klassen, Länder, Haushalte, Personen über die Zeit (Paneldaten)</li>
+<li><strong>Warum problematisch?</strong> Das Modell tut so, als hätte es unabhängige Datenpunkte → ist sich zu sicher → Standardfehler zu klein → Effekte erscheinen signifikant, obwohl sie es nicht sind (Scheinsignifikanz)</li>
+<li>Prüfung nicht statistisch, sondern über das <strong>Studiendesign</strong></li>
+<li>Lösungen: Abhängigkeiten explizit modellieren statt sie zu ignorieren!</li>
+</ul>
+</section>
+<section id="unabhängige-beobachtungen-1" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="unabhängige-beobachtungen-1">3 Unabhängige Beobachtungen</h2>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: left; border-bottom: 1.5px solid black;">Abhängigkeitsstruktur</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; border-bottom: 1.5px solid black;">Beispiel</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; border-bottom: 1.5px solid black;">Lösung</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left; font-weight: bold; border-right: 1px solid black; border-bottom: 1.5px solid black;">Cluster (Fälle in Gruppen)</td>
+<td style="text-align: left; border-right: 1px solid black; border-bottom: 1.5px solid black;">Schüler:innen in Klassen, Befragte in Ländern</td>
+<td style="text-align: left; border-bottom: 1.5px solid black;">Mehrebenenmodell oder cluster-robuste Standardfehler</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; font-weight: bold; border-right: 1px solid black; border-bottom: 1.5px solid black;">Messwiederholung</td>
+<td style="text-align: left; border-right: 1px solid black; border-bottom: 1.5px solid black;">Panelbefragung (z.B. SOEP)</td>
+<td style="text-align: left; border-bottom: 1.5px solid black;">Fixed-/Random-Effects-Panelmodelle</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; font-weight: bold; border-right: 1px solid black; border-bottom: 1.5px solid black;">Zeitliche Abfolge</td>
+<td style="text-align: left; border-right: 1px solid black; border-bottom: 1.5px solid black;">monatliche Umfragewerte einer Partei</td>
+<td style="text-align: left; border-bottom: 1.5px solid black;">Zeitreihenmodelle, autokorrelations-robuste Standardfehler</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; font-weight: bold; border-right: 1px solid black; border-bottom: 1.5px solid black;">Räumliche Nähe</td>
+<td style="text-align: left; border-right: 1px solid black; border-bottom: 1.5px solid black;">benachbarte Wahlkreise ähneln sich</td>
+<td style="text-align: left; border-bottom: 1.5px solid black;">räumliche Regressionsmodelle</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div style="font-size: 0.6em;">
+<p>Alle Verfahren → fortgeschrittene Methoden; hier nur als Ausblick. Im ALLBUS (Zufallsstichprobe einzelner Personen) ist die Annahme erfüllt.</p>
+</div>
+</section>
+<section id="linearität" class="level2">
+<h2 class="anchored" data-anchor-id="linearität">4 Linearität</h2>
 <ul>
 <li><strong>Was heißt das?</strong> Der Zusammenhang zwischen UV und AV lässt sich durch eine Gerade beschreiben — der Effekt ist überall gleich stark</li>
 <li><strong>Warum problematisch?</strong> Eine Gerade durch einen gekrümmten Zusammenhang beschreibt die Daten falsch — Koeffizient und Vorhersagen sind verzerrt</li>
 <li>Beispiel: Alter und Lebenszufriedenheit verlaufen oft U-förmig — eine Gerade würde fälschlich „kein Effekt” zeigen</li>
+<li><strong>Lösung</strong>: Polynomiale Regression (z.B. Alter²) oder Spline-Modelle</li>
 </ul>
 </section>
-<section id="annahme-linearität" class="level2">
-<h2 class="anchored" data-anchor-id="annahme-linearität">Annahme: Linearität</h2>
-<div class="columns">
-<div class="column" style="width:55%;">
-<p><strong>Prüfung mit Loess-Kurve:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>allbus_c_2023 <span class="sc">%&gt;%</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(<span class="at">mapping =</span> ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> ls01)) <span class="sc">+</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_jitter</span>(<span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">"loess"</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ul>
-<li>Kurve annähernd gerade → Linearität ok</li>
-<li>Klare, systematische Biegung → verletzt</li>
-<li>Kleine Wellen an den Rändern sind normal (dort liegen wenige Datenpunkte)</li>
-</ul>
-</div><div class="column" style="width:45%;">
-<!-- Screenshot: nicht-lineare Muster (U-Form, Sättigung etc.) -->
-<p><img src="img/nichtlineare_muster.png" class="img-fluid"></p>
-</div>
-</div>
-<hr>
-</section>
-<section id="linearität-verletzt-was-tun" class="level2">
-<h2 class="anchored" data-anchor-id="linearität-verletzt-was-tun">Linearität verletzt — was tun?</h2>
-<p>Typische Verletzung: <strong>U-Form</strong> (z.B. Lebenszufriedenheit ~ Alter)</p>
-<p>→ Lösung: <strong>quadratischen Term</strong> ergänzen (polynomiale Regression)</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>model_quad <span class="ot">&lt;-</span> <span class="fu">lm</span>(ls01 <span class="sc">~</span> incc <span class="sc">+</span> age <span class="sc">+</span> <span class="fu">I</span>(age<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> sex_bi <span class="sc">+</span> hs01,</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> allbus_c_2023,</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">weights =</span> wghtpew)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ul>
-<li><code>I(age^2)</code> fügt Alter² als zusätzlichen Prädiktor hinzu — das Modell kann nun eine Kurve abbilden</li>
-<li><strong>Achtung Interpretation:</strong> Der Alterseffekt hängt jetzt vom Alter selbst ab — beide Koeffizienten (<code>age</code> + <code>I(age^2)</code>) müssen gemeinsam interpretiert werden</li>
-<li>Bei komplexeren Formen: Spline-Modelle (→ fortgeschrittene Methoden)</li>
-</ul>
-</section>
-<section id="die-annahmen-inhaltlich-homoskedastizität" class="level2">
-<h2 class="anchored" data-anchor-id="die-annahmen-inhaltlich-homoskedastizität">Die Annahmen inhaltlich: Homoskedastizität</h2>
+<section id="homoskedastizität" class="level2">
+<h2 class="anchored" data-anchor-id="homoskedastizität">5 Homoskedastizität</h2>
 <ul>
 <li><strong>Was heißt das?</strong> Die Residuen streuen über alle vorhergesagten Werte hinweg gleich stark — das Modell ist überall gleich (un)genau</li>
-<li><strong>Warum problematisch?</strong> Bei ungleicher Streuung (Heteroskedastizität) sind die <strong>Standardfehler falsch</strong> → p-Werte und KIs nicht verlässlich</li>
+<li>Bei ungleicher Streuung (Heteroskedastizität) sind die <strong>Standardfehler falsch</strong> → p-Werte und KIs nicht verlässlich</li>
 <li>Die Koeffizienten selbst bleiben unverzerrt — nur die Signifikanzaussagen leiden</li>
+<li>Lösung: Robuste Standardfehler (z.B. HC3)</li>
 </ul>
 </section>
-<section id="die-annahmen-inhaltlich-normalverteilte-residuen" class="level2">
-<h2 class="anchored" data-anchor-id="die-annahmen-inhaltlich-normalverteilte-residuen">Die Annahmen inhaltlich: Normalverteilte Residuen</h2>
+<section id="keine-multikollinearität" class="level2">
+<h2 class="anchored" data-anchor-id="keine-multikollinearität">6 Keine Multikollinearität</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
 <ul>
-<li><strong>Was heißt das?</strong> Die Abweichungen vom Modell sind zufällig und symmetrisch — viele kleine, wenige große Fehler</li>
-<li><strong>Warum problematisch?</strong> p-Werte und KIs basieren auf der t-Verteilung — diese Herleitung setzt normalverteilte Residuen voraus</li>
-<li>Bei großem n entschärft sich das Problem (zentraler Grenzwertsatz), trotzdem prüfen!</li>
+<li>Multikollinearität liegt vor, wenn zwei (oder mehr) UVs so stark korrelieren, dass sie im Grunde dasselbe messen</li>
+<li>Bsp.: Bildungsjahre und höchster Abschluss</li>
+<li><strong>Warum problematisch?</strong> Interpretation einzelner Koeffizienten wird unzuverlässig und Standardfehler sehr groß! (Vorhersagekraft des Modells bleibt ok.)</li>
 </ul>
+</div><div class="column" style="width:40%;">
+<p><img src="images/clipboard-2194789822.png" class="img-fluid"></p>
+</div>
+</div>
 </section>
-<section id="die-annahmen-inhaltlich-unabhängigkeit" class="level2">
-<h2 class="anchored" data-anchor-id="die-annahmen-inhaltlich-unabhängigkeit">Die Annahmen inhaltlich: Unabhängigkeit</h2>
-<ul>
-<li><strong>Was heißt das?</strong> Die Beobachtungen beeinflussen sich nicht gegenseitig — jede Person ist „ein eigener Fall”</li>
-<li><strong>Warum problematisch?</strong> Abhängige Fälle (z.B. Paare, Schulklassen, Messwiederholungen) liefern weniger Information als ihr n suggeriert → Standardfehler zu klein, Scheinsignifikanz</li>
-<li>Prüfung nicht statistisch, sondern über das <strong>Studiendesign</strong></li>
-</ul>
-</section>
-<section id="die-annahmen-inhaltlich-keine-ausreißer" class="level2">
-<h2 class="anchored" data-anchor-id="die-annahmen-inhaltlich-keine-ausreißer">Die Annahmen inhaltlich: Keine Ausreißer</h2>
+<section id="keine-ausreißer" class="level2">
+<h2 class="anchored" data-anchor-id="keine-ausreißer">7 Keine Ausreißer</h2>
 <ul>
 <li><strong>Was heißt das?</strong> Kein einzelner Fall dominiert die Schätzung</li>
 <li><strong>Warum problematisch?</strong> Bei OLS werden Residuen <strong>quadriert</strong> — extreme Fälle bekommen dadurch überproportionales Gewicht und können die Gerade regelrecht „zu sich ziehen”</li>
 <li>Wichtig: Ausreißer prüfen heißt nicht automatisch ausschließen! Erst klären: Datenfehler oder echter Extremfall?</li>
 </ul>
 </section>
-<section id="die-annahmen-inhaltlich-keine-multikollinearität" class="level2">
-<h2 class="anchored" data-anchor-id="die-annahmen-inhaltlich-keine-multikollinearität">Die Annahmen inhaltlich: Keine Multikollinearität</h2>
+<section id="normalverteilte-residuen" class="level2">
+<h2 class="anchored" data-anchor-id="normalverteilte-residuen">8 Normalverteilte Residuen</h2>
 <ul>
-<li><strong>Was heißt das?</strong> Die UVs messen nicht (fast) dasselbe — jede liefert eigene Information</li>
-<li><strong>Warum problematisch?</strong> Wenn UVs stark korrelieren, kann das Modell ihre Effekte <strong>nicht mehr auseinanderhalten</strong> → Koeffizienten werden instabil, Standardfehler explodieren</li>
-<li>Beispiel: Bildungsjahre und höchster Abschluss im selben Modell</li>
+<li><strong>Was heißt das?</strong> Die Abweichungen vom Modell sind zufällig und symmetrisch — viele kleine, wenige große Fehler</li>
+<li><strong>Warum problematisch?</strong> p-Werte und KIs basieren auf der t-Verteilung — diese Herleitung setzt normalverteilte Residuen voraus</li>
+<li>Bei großem n entschärft sich das Problem (zentraler Grenzwertsatz), daher in der Praxis meistens irrelevant!</li>
 </ul>
 </section>
-<section id="was-tun-bei-verletzung-der-annahmen" class="level2">
-<h2 class="anchored" data-anchor-id="was-tun-bei-verletzung-der-annahmen">Was tun bei Verletzung der Annahmen?</h2>
-<table class="caption-top table">
+</section>
+<section id="voraussetzungen-prüfen" class="level1">
+<h1>Voraussetzungen prüfen</h1>
+<section id="prüfung-d.-voraussetzungen" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="prüfung-d.-voraussetzungen">Prüfung d.&nbsp;Voraussetzungen</h2>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small">
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Verletzung</th>
-<th>Lösung</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; border-bottom: 1.5px solid black;">Voraussetzung</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; border-bottom: 1.5px solid black;">Prüfung</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Kein linearer Zusammenhang</td>
-<td>Polynomiale Regression / Spline-Modell</td>
+<td style="text-align: left; font-weight: bold; border-right: 1.5px solid black; border-bottom: 1.5px solid black;">Skalenniveau (metrische AV)</td>
+<td style="text-align: left; border-bottom: 1.5px solid black;"><strong>theoretisch:</strong> Codebuch, Theorie</td>
 </tr>
 <tr class="even">
-<td>Heteroskedastizität</td>
-<td>Robuste Standardfehler (HC3)*</td>
+<td style="text-align: left; font-weight: bold; border-right: 1.5px solid black; border-bottom: 1.5px solid black;">Exogenität</td>
+<td style="text-align: left; border-bottom: 1.5px solid black;"><strong>theoretisch:</strong> relevante Kontrollvariablen im Modell?</td>
 </tr>
 <tr class="odd">
-<td>Ausreißer</td>
-<td>Robuste Regression</td>
+<td style="text-align: left; font-weight: bold; border-right: 1.5px solid black; border-bottom: 1.5px solid black;">Unabhängige Beobachtungen</td>
+<td style="text-align: left; border-bottom: 1.5px solid black;"><strong>theoretisch:</strong> Studiendesign</td>
 </tr>
 <tr class="even">
-<td>Keine Normalverteilung der Residuen</td>
-<td>Bootstrapping (ab n &gt; 50)</td>
+<td style="text-align: left; font-weight: bold; border-right: 1.5px solid black; border-bottom: 1.5px solid black;">Linearer Zusammenhang</td>
+<td style="text-align: left; border-bottom: 1.5px solid black;"><strong>grafisch:</strong> Scatterplot + Loess; Residuen vs. Fitted<br>
+<strong>statistisch:</strong> Rainbow-Test</td>
 </tr>
 <tr class="odd">
-<td>Multikollinearität</td>
-<td>Variablen ausschließen / transformieren, Ridge / Lasso</td>
+<td style="text-align: left; font-weight: bold; border-right: 1.5px solid black; border-bottom: 1.5px solid black;">Homoskedastizität der Residuen</td>
+<td style="text-align: left; border-bottom: 1.5px solid black;"><strong>grafisch:</strong> Residuen vs. Fitted-Plot<br>
+<strong>statistisch:</strong> Breusch-Pagan-Test</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; font-weight: bold; border-right: 1.5px solid black; border-bottom: 1.5px solid black;">Keine Multikollinearität*</td>
+<td style="text-align: left; border-bottom: 1.5px solid black;"><strong>statistisch:</strong> Variance Inflation Factor (VIF)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; font-weight: bold; border-right: 1.5px solid black; border-bottom: 1.5px solid black;">Keine Ausreißer</td>
+<td style="text-align: left; border-bottom: 1.5px solid black;"><strong>grafisch:</strong> Cook's Distance<br>
+<strong>statistisch:</strong> Anteil &gt; Schwellwert</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; font-weight: bold; border-right: 1.5px solid black; border-bottom: 1.5px solid black;">Normalverteilte Residuen</td>
+<td style="text-align: left; border-bottom: 1.5px solid black;"><strong>grafisch:</strong> Histogramm, Q-Q-Plot<br>
+<strong>statistisch:</strong> Shapiro-Wilk**</td>
 </tr>
 </tbody>
 </table>
-<div style="font-size: 0.6em;">
-<p>* Long JS &amp; Ervin LH (2000). Using heteroscedasticity consistent standard errors in the linear regression model. <em>The American Statistician</em>, 54(3), 217–224.</p>
 </div>
-<div style="font-size: 0.75em; color: #555;">
-<p>Zum Vertiefen: Wagemann, Goerres &amp; Siewert (2020). <em>Handbuch Methoden der Politikwissenschaft</em>. Springer.</p>
+</div>
+<div style="font-size: 0.6em;">
+<p>* nur bei multiplen linearen Regressionen<br>
+** nur bis n = 5000; bei großem n grafische Prüfung bevorzugen<br>
+Die UVen können metrisch oder kategorial-dichotom sein.</p>
+</div>
+</section>
+</section>
+<section id="remedies-bei-verletzung" class="level1">
+<h1>Remedies bei Verletzung</h1>
+<section id="was-tun-bei-verletzung-der-annahmen" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="was-tun-bei-verletzung-der-annahmen">Was tun bei Verletzung der Annahmen?</h2>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: left; border-bottom: 1.5px solid black;">Verletzung</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; border-bottom: 1.5px solid black;">Lösung</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left; font-weight: bold; border-right: 1.5px solid black; border-bottom: 1.5px solid black;">Skalenniveau (AV nicht metrisch)</td>
+<td style="text-align: left; border-bottom: 1.5px solid black;">Anderes Modell wählen, z.B. logistische Regression bei binärer AV (→ Sitzung 11!)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; font-weight: bold; border-right: 1.5px solid black; border-bottom: 1.5px solid black;">Exogenität verletzt</td>
+<td style="text-align: left; border-bottom: 1.5px solid black;">Relevante Kontrollvariablen aufnehmen; vollständig nur über Forschungsdesign lösbar (fortgeschritten)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; font-weight: bold; border-right: 1.5px solid black; border-bottom: 1.5px solid black;">Abhängige Beobachtungen</td>
+<td style="text-align: left; border-bottom: 1.5px solid black;">Cluster-robuste Standardfehler; Mehrebenen- oder Panelmodelle (FE/RE)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; font-weight: bold; border-right: 1.5px solid black; border-bottom: 1.5px solid black; border-bottom: 1.5px solid black; background-color: rgba(184, 219, 73, 0.25);">Kein linearer Zusammenhang</td>
+<td style="text-align: left; border-bottom: 1.5px solid black; border-bottom: 1.5px solid black; background-color: rgba(184, 219, 73, 0.25);">U-Form → UV quadrieren (I(x^2)) · Sättigung → UV logarithmieren (log(x)) · exponentielles Wachstum → AV logarithmieren (log(y)) · Schwellenwert → UV kategorisieren · komplexe Formen → Splines (fortgeschritten)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; font-weight: bold; border-right: 1.5px solid black; border-bottom: 1.5px solid black; border-bottom: 1.5px solid black; background-color: rgba(184, 219, 73, 0.25);">Heteroskedastizität</td>
+<td style="text-align: left; border-bottom: 1.5px solid black; border-bottom: 1.5px solid black; background-color: rgba(184, 219, 73, 0.25);">Heteroskedastizitätsrobuste Standardfehler (HC3)*</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; font-weight: bold; border-right: 1.5px solid black; border-bottom: 1.5px solid black;">Multikollinearität</td>
+<td style="text-align: left; border-bottom: 1.5px solid black;">Eine der korrelierten UVen ausschließen oder zu Index zusammenfassen</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; font-weight: bold; border-right: 1.5px solid black; border-bottom: 1.5px solid black;">Ausreißer</td>
+<td style="text-align: left; border-bottom: 1.5px solid black;">Fälle prüfen; Modell mit &amp; ohne Ausreißer vergleichen; ggf. ausschließen; oder robuste Regression (fortgeschritten)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; font-weight: bold; border-right: 1.5px solid black;">Nicht normalverteilte Residuen</td>
+<td style="text-align: left;">Bei großem n unkritisch (zentraler Grenzwertsatz); bei kleinem n: Bootstrapping (fortgeschritten)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div style="font-size: 0.6em;">
+<p>* Long JS &amp; Ervin LH (2000). Using heteroscedasticity consistent standard errors in the linear regression model. <em>The American Statistician</em>, 54(3), 217–224. Zum Vertiefen: Kapitel 21 bis 24 in Wagemann, Goerres &amp; Siewert (2020). <em>Handbuch Methoden der Politikwissenschaft</em>. Springer.</p>
+</div>
+</section>
+<section id="verletzung-d.-linearität" class="level2">
+<h2 class="anchored" data-anchor-id="verletzung-d.-linearität">Verletzung d.&nbsp;Linearität</h2>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Paket 'ggplot2' wurde unter R Version 4.5.3 erstellt</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'
+`geom_smooth()` using formula = 'y ~ x'
+`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="sitzung_10_regressionsvoraussetzungen_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li>Rot = lineares Modell</li>
+<li>Liegt die Punktwolke systematisch daneben → Annahme verletzt</li>
+<li>Vier typische Muster + Lösungen auf den nächsten Folien</li>
+</ul>
+</section>
+<section id="muster-1-u-form" class="level2">
+<h2 class="anchored" data-anchor-id="muster-1-u-form">Muster 1: U-Form</h2>
+<div class="columns">
+<div class="column" style="width:55%;">
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="sitzung_10_regressionsvoraussetzungen_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="528"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:45%;">
+<p><strong>Beispiel:</strong> Lebenszufriedenheit ~ Alter (Tief in der Lebensmitte)</p>
+<p><strong>Lösung:</strong> quadratischen Term ergänzen</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(ls01 <span class="sc">~</span> age <span class="sc">+</span> <span class="fu">I</span>(age<span class="sc">^</span><span class="dv">2</span>), ...)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><span style="color: red;">Rot</span> = lineares Modell verfehlt die Kurve<br>
+<span style="color: darkgreen;">Grün</span> = Modell mit <code>I(x^2)</code> fängt sie ein</p>
+</div>
+</div>
+</section>
+<section id="muster-2-sättigung" class="level2">
+<h2 class="anchored" data-anchor-id="muster-2-sättigung">Muster 2: Sättigung</h2>
+<div class="columns">
+<div class="column" style="width:55%;">
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="sitzung_10_regressionsvoraussetzungen_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="528"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:45%;">
+<p><strong>Beispiel:</strong> Lebenszufriedenheit ~ Einkommen (jeder zusätzliche Euro bringt weniger)</p>
+<p><strong>Lösung:</strong> UV logarithmieren</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(ls01 <span class="sc">~</span> <span class="fu">log</span>(incc), ...)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Nur bei positiven Werten möglich!</p>
+</div>
+</div>
+</section>
+<section id="muster-3-exponentielles-wachstum" class="level2">
+<h2 class="anchored" data-anchor-id="muster-3-exponentielles-wachstum">Muster 3: Exponentielles Wachstum</h2>
+<div class="columns">
+<div class="column" style="width:55%;">
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="sitzung_10_regressionsvoraussetzungen_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="528"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:45%;">
+<p><strong>Beispiel:</strong> AV wächst prozentual statt absolut (z.B. Kampagnenbudgets)</p>
+<p><strong>Lösung:</strong> AV logarithmieren</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(<span class="fu">log</span>(spending) <span class="sc">~</span> x, ...)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Koeffizienten dann näherungsweise als %-Änderung interpretierbar</p>
+</div>
+</div>
+</section>
+<section id="muster-4-schwellenwert-knick" class="level2">
+<h2 class="anchored" data-anchor-id="muster-4-schwellenwert-knick">Muster 4: Schwellenwert / Knick</h2>
+<div class="columns">
+<div class="column" style="width:55%;">
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="sitzung_10_regressionsvoraussetzungen_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="528"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:45%;">
+<p><strong>Beispiel:</strong> Effekt setzt erst ab bestimmtem Wert ein (z.B. Sperrklausel)</p>
+<p><strong>Lösung:</strong> UV kategorisieren (Dummy)</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(y <span class="sc">~</span> <span class="fu">I</span>(x <span class="sc">&gt;</span> schwelle), ...)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</section>
+<section id="linearität-typische-muster-lösungen" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="linearität-typische-muster-lösungen">Linearität: typische Muster &amp; Lösungen</h2>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: left; border-bottom: 1.5px solid black;">Muster</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; border-bottom: 1.5px solid black;">Beispiel</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; border-bottom: 1.5px solid black;">Lösung</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left; font-weight: bold; border-right: 1px solid black; border-bottom: 1.5px solid black;">U-Form / umgekehrte U-Form</td>
+<td style="text-align: left; border-right: 1px solid black; border-bottom: 1.5px solid black;">Lebenszufriedenheit ~ Alter</td>
+<td style="text-align: left; border-bottom: 1.5px solid black;">Quadratischer Term: I(x^2)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; font-weight: bold; border-right: 1px solid black; border-bottom: 1.5px solid black;">Sättigung</td>
+<td style="text-align: left; border-right: 1px solid black; border-bottom: 1.5px solid black;">Lebenszufriedenheit ~ Einkommen</td>
+<td style="text-align: left; border-bottom: 1.5px solid black;">UV logarithmieren: log(x)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; font-weight: bold; border-right: 1px solid black; border-bottom: 1.5px solid black;">Exponentielles Wachstum</td>
+<td style="text-align: left; border-right: 1px solid black; border-bottom: 1.5px solid black;">AV wächst prozentual statt absolut</td>
+<td style="text-align: left; border-bottom: 1.5px solid black;">AV logarithmieren: log(y)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; font-weight: bold; border-right: 1px solid black; border-bottom: 1.5px solid black;">Schwellenwert / Knick</td>
+<td style="text-align: left; border-right: 1px solid black; border-bottom: 1.5px solid black;">Effekt erst ab bestimmtem Wert (z.B. Sperrklausel)</td>
+<td style="text-align: left; border-bottom: 1.5px solid black;">UV kategorisieren</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; font-weight: bold; border-right: 1px solid black; border-bottom: 1.5px solid black;">Komplexe Wellenform</td>
+<td style="text-align: left; border-right: 1px solid black; border-bottom: 1.5px solid black;">mehrfache Richtungswechsel</td>
+<td style="text-align: left; border-bottom: 1.5px solid black;">Splines (→ fortgeschrittene Methoden)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div style="font-size: 0.6em;">
+<p>Faustregel: ein Bogen → quadratischer Term · einseitiges Abflachen → <code>log()</code> (nur bei positiven Werten) · mehr als zwei Richtungswechsel → Splines</p>
+</div>
+</section>
+<section id="annahme-d.-homoskedastizität" class="level2">
+<h2 class="anchored" data-anchor-id="annahme-d.-homoskedastizität">Annahme d.&nbsp;Homoskedastizität</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="sitzung_10_regressionsvoraussetzungen_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
 </div>
 </section>
 <section id="robuste-standardfehler-hc3" class="level2">
 <h2 class="anchored" data-anchor-id="robuste-standardfehler-hc3">Robuste Standardfehler (HC3)</h2>
 <ul>
 <li>Problem Heteroskedastizität: Die Streuung der Residuen ist nicht überall gleich → die normalen Standardfehler sind <strong>zu klein oder zu groß</strong></li>
-<li>Lösung: Standardfehler werden so korrigiert, dass sie der tatsächlichen, ungleichen Streuung gerecht werden</li>
 <li>Die <strong>Koeffizienten bleiben identisch</strong> — nur SEs, t- und p-Werte ändern sich</li>
+<li>Lösung: Standardfehler werden so korrigiert, dass sie der tatsächlichen, ungleichen Streuung gerecht werden</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>lmtest<span class="sc">::</span><span class="fu">coeftest</span>(model_2, <span class="at">vcov =</span> sandwich<span class="sc">::</span><span class="fu">vcovHC</span>(model_2, <span class="at">type =</span> <span class="st">"HC3"</span>))</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>lmtest<span class="sc">::</span><span class="fu">coeftest</span>(model_2, <span class="at">vcov =</span> sandwich<span class="sc">::</span><span class="fu">vcovHC</span>(model_2, <span class="at">type =</span> <span class="st">"HC3"</span>))</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="bootstrapping" class="level2">
-<h2 class="anchored" data-anchor-id="bootstrapping">Bootstrapping</h2>
-<ul>
-<li>Problem: Residuen nicht normalverteilt → t-Verteilung als Grundlage der p-Werte ist nicht mehr gerechtfertigt</li>
-<li>Lösung: R zieht <strong>viele Stichproben aus unserer Stichprobe</strong> (mit Zurücklegen, gleiches n) und rechnet z.B. 2000 Regressionen</li>
-<li>Aus den 2000 Koeffizienten entsteht eine <strong>empirische Verteilung</strong> → daraus wird das KI direkt abgelesen, ohne Verteilungsannahme</li>
-<li>Liegt die 0 nicht im KI → Effekt signifikant</li>
-</ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>fit_b <span class="ot">&lt;-</span> car<span class="sc">::</span><span class="fu">Boot</span>(model_2, <span class="at">R =</span> <span class="dv">2000</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(fit_b, <span class="at">level =</span> .<span class="dv">95</span>)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="anwendung-in-r" class="level2">
-<h2 class="anchored" data-anchor-id="anwendung-in-r">Anwendung in R</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Einfache lineare Regression</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>modell_1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(av <span class="sc">~</span> uv, <span class="at">data =</span> datensatz)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modell_1)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Multiple lineare Regression</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>modell_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(av <span class="sc">~</span> uv1 <span class="sc">+</span> uv2 <span class="sc">+</span> uv3, <span class="at">data =</span> datensatz)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modell_2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div style="margin-top: 0.5em; font-size: 0.9em;">
-<ul>
-<li><code>lm()</code> = <em>linear model</em></li>
-<li>Formelschreibweise: <code>av ~ uv</code> (AV links, UV rechts)</li>
-<li><code>summary()</code> zeigt Koeffizienten, <span class="math inline">\(R^2\)</span>, p-Werte</li>
-</ul>
-</div>
-</section>
-<section id="hands-on---regressionen" class="level1">
-<h1>Hands On - Regressionen</h1>
+<section id="hands-on---diagnostics" class="level1">
+<h1>Hands On - Diagnostics</h1>
 <p><img src="images/clipboard-797395825.jpeg" class="img-fluid"></p>
 <section id="minute-cards" class="level2">
 <h2 class="anchored" data-anchor-id="minute-cards">Minute Cards</h2>
@@ -522,7 +909,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="sitzung_10_regressionsvoraussetzungen_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="sitzung_10_regressionsvoraussetzungen_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -532,12 +919,13 @@ window.Quarto = {
 <section id="vielen-dank-und-bis-kommenden-dienstag" class="level1">
 <h1>Vielen Dank und bis kommenden Dienstag!</h1>
 <div style="margin-top: 1em;">
-<p><img src="images/clipboard-3998914491.png" class="img-fluid"></p>
+<p><img src="images/clipboard-357532660.png" class="img-fluid"></p>
 </div>
 <div style="display: flex; align-items: center; gap: 1em; ">
 <p><img src="images/clipboard-2636932712.png" class="img-fluid" style="width: 140px;"></p>
 <p><strong>Übung 10 zu Regressionsdiagnostik</strong> bis spätestens Sonntagabend!</p>
 </div>
+<p>:::::::::</p>
 
 
 </section>

@@ -45,11 +45,11 @@ tibble::tribble(
 ) %>%
   knitr::kable(escape = FALSE) %>%
   kableExtra::kable_styling(full_width = TRUE) %>%
-  kableExtra::column_spec(1, bold = TRUE, border_right = "1px solid black") %>%
-  kableExtra::column_spec(2, border_right = "1px solid black") %>%
-  kableExtra::column_spec(3, border_right = "1px solid black") %>%
-  kableExtra::row_spec(0, extra_css = "border-bottom: 1px solid black;") %>%
-  kableExtra::row_spec(1:3, extra_css = "border-bottom: 1px solid black;")
+  kableExtra::column_spec(1, bold = TRUE, border_right = "1.5px solid black") %>%
+  kableExtra::column_spec(2, border_right = "1.5px solid black") %>%
+  kableExtra::column_spec(3, border_right = "1.5px solid black") %>%
+  kableExtra::row_spec(0, extra_css = "border-bottom: 1.5px solid black;") %>%
+  kableExtra::row_spec(1:3, extra_css = "border-bottom: 1.5px solid black;")
 
 ```
 
@@ -111,9 +111,15 @@ Wertebereich 0 bis 1:
 
 ## Übungsfeedback
 
--   Fragen ?
+-   Vorgehen: Variablen auswählen → bereinigen → Skalenniveau klären (!) → Korrelationsmaß und Visualisierungsoption auswählen 
 
--   
+-   je weniger Kategorien, desto eher Boxplot/Balken statt Scatter — weil sich Punkte sonst zu stark überlagern
+
+-   Kreuztabellen für nominal skalierte Variablen mit wenigen Ausprägungen
+
+-   Keine einheitl. Musterlösung, aber Beispiele werden hochgeladen 
+
+-   Fragen ?
 
 # Inferenzstatistik
 
@@ -187,8 +193,8 @@ In der Stichprobe gefunden:
 
 ## Intervallschätzung
 
-**Punktschätzung:** In unserer Stichprobe beträgt V = 0.22 — das ist unsere beste Schätzung für die Grundgesamtheit.\
-**Intervallschätzung:** Würden wir das Verfahren 100× wiederholen, würde das KI in 95 von 100 Fällen den wahren Wert enthalten.
+**Punktschätzung:** In unserer Stichprobe beträgt V = 0.22 — das ist unsere beste Schätzung für die Grundgesamtheit.\
+**Intervallschätzung:** Würden wir das Verfahren 100× wiederholen, würde das KI in 95 von 100 Fällen den wahren Wert enthalten.
 
 → Der wahre Zusammenhang in der Grundgesamtheit liegt wahrscheinlich zwischen V = 0.20 und V = 0.24.
 
@@ -278,7 +284,7 @@ tibble::tribble(   ~X,                          ~Y,   "Prädiktor",             
 -   Stichprobenverteilung von $b$ unter H$_0$ (t-Verteilung)
 -   Standardfehler (Standardabweichung der Stichprobenverteilung): Wie stark würde $b$ in verschiedenen Stichproben schwanken, wenn H0 stimmte?
 
-## Signifikanz und KI
+## Signifikanz und KI{.smaller}
 
 -   p-Wert:
     -   Wie wahrscheinlich ist es, einen solchen oder noch extremeren Koeffizienten zu beobachten, wenn H$_0$ (= kein Zusammenhang) stimmte?
