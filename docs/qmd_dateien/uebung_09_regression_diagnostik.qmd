@@ -1,0 +1,130 @@
+---
+title: "Übung 09: Multiple Regression & Diagnostik"
+subtitle: "Politik vermessen: Quantitative Methoden mit R | SoSe 2026 | Maura Kratz"
+author: "Vorname Nachname"
+date: today
+date-format: "DD.MM.YYYY"
+format:
+  pdf:
+    toc: false
+  html:
+    toc: true
+    toc-title: "Inhalt"
+    self-contained: true
+    theme: default
+execute:
+  echo: true
+  warning: false
+  message: false
+knitr:
+  opts_chunk:
+    fig-width: 7
+    fig-height: 4
+---
+
+<!-- ---------------------------------------------------------------
+     Hinweise zum Arbeiten mit dieser Datei:
+     - R-Code kommt in die Chunks (zwischen ```{r} und ```)
+     - Instruktionen stehen als unformatierter Text über den Chunks
+     - Interpretationen und Antworten kommen zwischen die ** unter den Chunks und werden also kursiv gerendert
+     - Rendern: Strg+Shift+K (oder oben Button "Render")
+     - Abgabe: die gerenderte PDF-Datei in Blackboard hochladen
+--------------------------------------------------------------- -->
+
+# Setup
+
+Lade die für deine Analyse nötigen Pakete.
+
+```{r}
+# Code hier
+```
+
+# Aufgabe 1: Daten laden
+
+Lies den ALLBUS-Datensatz von 2023 ein. Speichere den Datensatz in einem Objekt namens `allbus_c_2023_raw`.
+
+```{r}
+# Code hier
+```
+
+# Aufgabe 2: Forschungsfrage & Variablenauswahl
+
+In dieser Übung baust du deine eigene multiple Regression. Überlege dir zunächst eine Forschungsfrage, die sich mit einer linearen Regression beantworten lässt. Nimm dazu gern wieder die Datensatzübersicht zur Hand (siehe Sitzung 08).
+
+Wähle dafür eine **abhängige Variable (AV)**, die (quasi-)metrisch ist, sowie **mindestens drei unabhängige Variablen (UVs)**, davon mindestens eine kategorial-dichotome. Welche Vermutung hast du bezüglich der Zusammenhänge?
+
+Denke dabei auch an die **Exogenität**: Welche Variablen könnten deine AV *und* eine deiner UVs gemeinsam beeinflussen — und hast du sie als Kontrollvariablen dabei?
+
+*Antwort hier.*
+
+# Aufgabe 3: Variablen vorbereiten
+
+Suche deine gewählten Variablen mit dem `look_for`-Befehl aus dem labelled-Package. Beantworte dir für jede: Welche Werte kann sie annehmen? Welche davon sind in Wahrheit "Missings"? Konvertiere diese zu `NA`. Dichotomisiere oder pole ggf. um, wo nötig. Prüfe anschließend mit `count()`, ob die Aufbereitung geklappt hat.
+
+```{r}
+# Code hier
+```
+
+*Antwort hier.*
+
+# Aufgabe 4: Vorab-Prüfungen
+
+Prüfe **vor** dem Modell die Voraussetzungen, die sich ohne geschätztes Modell klären lassen:
+
+- **Skalenniveau:** Passt es für eine lineare Regression?
+- **Unabhängigkeit der Beobachtungen:** Was sagt das Studiendesign des ALLBUS?
+- **Linearität:** Sichte die Form des Zusammenhangs zwischen AV und einer metrischen UV mit einem Scatterplot + Loess-Kurve.
+
+```{r}
+# Code hier
+```
+
+*Antwort hier.*
+
+# Aufgabe 5: Regression rechnen & interpretieren
+
+Rechne deine multiple lineare Regression (mit `weights = wghtpew`) und gib die Ergebnisse in einer Tabelle aus. Interpretiere anschließend die Modellgüte (R²) sowie Richtung, Stärke und Signifikanz der Effekte (*ceteris paribus*).
+
+```{r}
+# Code hier
+```
+
+*Antwort hier.*
+
+# Aufgabe 6: Diagnostik
+
+Prüfe nun **am Modell** alle Annahmen. Nutze für jede die grafische *und* — wo möglich — die statistische Variante und halte deinen Befund fest:
+
+- **Linearität** (Residuen vs. Fitted; Rainbow-Test)
+- **Homoskedastizität** (Scale-Location-Plot; Breusch-Pagan-Test)
+- **Multikollinearität** (VIF)
+- **Ausreißer** (Cook's Distance bzw. Leverage)
+- **Normalverteilung der Residuen** (Q-Q-Plot)
+
+```{r}
+# Code hier
+```
+
+Welche Annahmen sind erfüllt, welche verletzt? Warum ist die Normalverteilung der Residuen bei deinem n vermutlich unkritisch?
+
+*Antwort hier.*
+
+# Aufgabe 7: Konsequenzen ziehen
+
+Zieh aus deiner Diagnostik die passende Konsequenz:
+
+- Bei **Heteroskedastizität** → heteroskedastizitätsrobuste Standardfehler (HC3) rechnen und mit den normalen SEs vergleichen.
+- Bei **verletzter Linearität** → eine UV transformieren (quadrieren / logarithmieren / kategorisieren) und prüfen, ob es das Modell verbessert.
+- Sind alle Annahmen erfüllt → kurz begründen, dass keine Nachbesserung nötig ist.
+
+```{r}
+# Code hier
+```
+
+*Antwort hier: Ändern sich deine Schlussfolgerungen?*
+
+# Aufgabe 8: Fazit
+
+Beantworte deine Forschungsfrage aus Aufgabe 2 in zwei bis drei Sätzen — auf Basis deiner Ergebnisse und unter Berücksichtigung der Diagnostik.
+
+*Antwort hier.*

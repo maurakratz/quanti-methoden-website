@@ -28,7 +28,7 @@ editor_options:
 
 ![](images/clipboard-3922862888.png)
 
-## Recap: Multiple lineare Regressioen
+## Recap: Multiple lineare Regressionen
 
 ![](images/clipboard-2076104136.png)
 
@@ -52,7 +52,7 @@ Multivariate = mehrere **abhängige** Variablen
 -   Regressionskoeffizient $b$
 -   Modellgüte: Bestimmtheitsmaß R² = Anteil der aufgeklärten Varianz
 -   Signifikanz:
-    -   p-Wert: Wie wahrscheinlich ist es, einen solchen oder noch extremeren Koeffizienten zu beobachten, wenn H$_0$ (= kein Zusammenahng) stimmte?
+    -   p-Wert: Wie wahrscheinlich ist es, einen solchen oder noch extremeren Koeffizienten zu beobachten, wenn H$_0$ (= kein Zusammenhang) stimmte?
     -   Beispielschwellwerte: p \< 0.001 = hochsignifikant \*\*\*, p \< 0.01 = signifikant \*\*, p \< 0.05 = schwach signifikant \*, p \> 0.05 = nicht signifikant
     -   KI: 95% KI enthält 0 $\Rightarrow$ nicht signifikant; 95% KI enthält keinen Wert über 0 $\Rightarrow$ signifikant
     -   In 95 von 100 Stichproben würde das berechnete Konfidenzintervall den wahren Regressionskoeffizienten in der Grundgesamtheit enthalten.
@@ -102,7 +102,7 @@ tibble::tribble(
   "Metrisch",                        "Lebenszufriedenheit (0–10), Einkommen",         "Lineare Regression (OLS) — diese Sitzung",
   "Dichotom (binär)",                "Wahlbeteiligung (ja/nein)",                     "Logistische Regression — Sitzung 11!",
   "Nominal (mehr als 2 Kategorien)", "Parteiwahl (CDU, SPD, Grüne, ...)",             "Multinomiale logistische Regression",
-  "Ordinal",                         "Zustimmung (stimme gar nicht zu ... voll zu)",  "Ordinale logistische Regression",
+  "Ordinal",                         "Zustimmung (stimme gar nicht zu; egal; ...voll zu)",  "Ordinale logistische Regression",
   "Zählvariable",                    "Anzahl Demonstrationsteilnahmen",               "Poisson- / Negativ-Binomial-Regression"
 ) %>%
   knitr::kable(escape = FALSE) %>%
@@ -172,7 +172,7 @@ Alle Verfahren → fortgeschrittene Methoden; hier nur als Ausblick. Im ALLBUS (
 ## 4 Linearität
 
 -   **Was heißt das?** Der Zusammenhang zwischen UV und AV lässt sich durch eine Gerade beschreiben — der Effekt ist überall gleich stark
--   **Warum problematisch?** Eine Gerade durch einen gekrümmten Zusammenhang beschreibt die Daten falsch — Koeffizient und Vorhersagen sind verzerrt
+-   Eine Gerade durch einen gekrümmten Zusammenhang beschreibt die Daten falsch — Koeffizient und Vorhersagen sind verzerrt
 -   Beispiel: Alter und Lebenszufriedenheit verlaufen oft U-förmig — eine Gerade würde fälschlich „kein Effekt" zeigen
 -   **Lösung**: Polynomiale Regression (z.B. Alter²) oder Spline-Modelle
 
@@ -181,7 +181,7 @@ Alle Verfahren → fortgeschrittene Methoden; hier nur als Ausblick. Im ALLBUS (
 -   **Was heißt das?** Die Residuen streuen über alle vorhergesagten Werte hinweg gleich stark — das Modell ist überall gleich (un)genau
 -   Bei ungleicher Streuung (Heteroskedastizität) sind die **Standardfehler falsch** → p-Werte und KIs nicht verlässlich
 -   Die Koeffizienten selbst bleiben unverzerrt — nur die Signifikanzaussagen leiden
--   Lösung: Robuste Standardfehler (z.B. HC3)
+-   Lösung: Heteroskedastizitätsrobuste Standardfehler (z.B. HC3)
 
 ## 6 Keine Multikollinearität
 
@@ -218,14 +218,14 @@ Alle Verfahren → fortgeschrittene Methoden; hier nur als Ausblick. Im ALLBUS (
 library(dplyr) 
 tibble::tribble(
   ~Voraussetzung, ~`Prüfung`,
-  "Skalenniveau (metrische AV)", "<b>theoretisch:</b> Codebuch, Theorie",
+  "Skalenniveau (metrische AV)*", "<b>theoretisch:</b> Codebuch, Theorie",
   "Exogenität", "<b>theoretisch:</b> relevante Kontrollvariablen im Modell?",
   "Unabhängige Beobachtungen", "<b>theoretisch:</b> Studiendesign",
   "Linearer Zusammenhang", "<b>grafisch:</b> Scatterplot + Loess; Residuen vs. Fitted<br><b>statistisch:</b> Rainbow-Test",
   "Homoskedastizität der Residuen", "<b>grafisch:</b> Residuen vs. Fitted-Plot<br><b>statistisch:</b> Breusch-Pagan-Test",
-  "Keine Multikollinearität*", "<b>statistisch:</b> Variance Inflation Factor (VIF)",
+  "Keine Multikollinearität**", "<b>statistisch:</b> Variance Inflation Factor (VIF)",
   "Keine Ausreißer", "<b>grafisch:</b> Cook's Distance<br><b>statistisch:</b> Anteil > Schwellwert",
-  "Normalverteilte Residuen", "<b>grafisch:</b> Histogramm, Q-Q-Plot<br><b>statistisch:</b> Shapiro-Wilk**"
+  "Normalverteilte Residuen", "<b>grafisch:</b> Histogramm, Q-Q-Plot<br><b>statistisch:</b> Shapiro-Wilk***"
 ) %>%
   knitr::kable(escape = FALSE, format = "html") %>%
   kableExtra::kable_styling(full_width = TRUE) %>%
@@ -234,9 +234,9 @@ tibble::tribble(
 ```
 
 ::: {style="font-size: 0.6em;"}
-\* nur bei multiplen linearen Regressionen\
-\*\* nur bis n = 5000; bei großem n grafische Prüfung bevorzugen\
-Die UVen können metrisch oder kategorial-dichotom sein.
+\* Die UVen können metrisch oder kategorial sein; kategoriale mit mehr als zwei Ausprägungen werden als Dummies kodiert.\
+\*\* nur bei multiplen linearen Regressionen\
+\*\*\* nur bis n = 5000; bei großem n grafische Prüfung bevorzugen
 :::
 
 # Remedies bei Verletzung 
@@ -527,4 +527,3 @@ plot(qr)
 **Übung 10 zu Regressionsdiagnostik** bis spätestens Sonntagabend!
 :::
 
-:::::::::

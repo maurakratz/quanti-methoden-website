@@ -161,7 +161,7 @@ allbus_c_2023 %>%
   # vertretbar ist. Alternativ müssten wir eine ordinale Regression rechnen,
   # z.B. mit MASS::polr())
 
-  # Die Lebenszufriedenheit ls01 betrachten wie ebenfalls als quai-metrische
+  # Die Lebenszufriedenheit ls01 betrachten wie ebenfalls als quasi-metrische
   # Variable, da sie auf einer Skala von 0 bis 10 gemessen wird. Die Abstände
   # sind streng genommen nicht unbedingt gleich - aber vertretbar.
 
@@ -243,6 +243,7 @@ texreg::screenreg(model_1) # Konsole
 # texreg::texreg()    -> LaTeX-Tabelle (für PDF-Rendering, mit #| results: asis)
 # texreg::htmlreg()   -> HTML-Tabelle (falls ihr nach HTML rendert)
 # eine gute Alternative ist modelsummary::modelsummary()
+
 # Option 2: stargazer
 # der old-school classic
 stargazer::stargazer(model_1, type = "text")   # Konsole

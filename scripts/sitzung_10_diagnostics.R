@@ -66,8 +66,10 @@ allbus_c_2023 <- allbus_c_2023_raw %>%
       forcats::fct_drop()
   )
 
+#missings prüfen
 allbus_c_2023 %>%
   count(hs01)
+
 
 # 03 Regressionen rechnen -------------
 
@@ -76,6 +78,7 @@ model_1 <- lm(ls01 ~ incc,
               data = allbus_c_2023,
               weights = wghtpew)
 
+# multiple lineare Regression
 model_2 <- lm(ls01 ~ incc + age + sex_bi + hs01,
               data = allbus_c_2023,
               weights = wghtpew)
@@ -87,9 +90,9 @@ texreg::screenreg(list(model_1, model_2),
 
 
 
-# Hinweis: Das Modell mit den standardisierten Koeffizientnen ist
+# Hinweis: Das Modell mit den standardisierten Koeffizienten ist
 # sinnvoll für den Effektvergleich!
-# Diagniostik führen wir aber am anderen, normalen Modell durch
+# Diagnostik führen wir aber am anderen, normalen Modell durch
 
 
 
@@ -141,8 +144,9 @@ car::crPlots(model_2, terms = ~ incc + age + hs01)
 
 # STATISTISCH: Rainbow-Test
 lmtest::raintest(model_2)
-# Interpretation: H0 = Zusammenhang ist linear.
-# p > .05 -> Linearität beibehalten. p < .05 -> verletzt.
+# Interpretation:
+# H0 = Zusammenhang ist linear. H1 = Zusammenhang ist nicht linear.
+# p > 0.05 -> Linearität beibehalten. p < 0.05 -> verletzt.
 
 # In unserem Fall spricht beides für Linearität!
 
@@ -160,10 +164,14 @@ plot(performance::check_heteroscedasticity(model_2))
 
 # Alternative (Base R): derselbe Plot wie bei Linearität!
 # plot(model_2, which = 1)
-# Rote Linie soll waagerecht bei 0 verlaufen (Linearität);
+# Für Homoskedastizität auf die HÖHE (vertikale Spannweite) der Punkt-
+# wolke achten - nicht WO sie liegt, sondern WIE HOCH sie ist:
+# Bleibt die Spannweite über alle Fitted-Werte gleich = ok; wird sie
+# irgendwo deutlich größer/kleiner = Heteroskedastizität.
+# Die rote Linie betrifft dagegen die Linearität (siehe Abschnitt 4).
 # Base R beschriftet automatisch die drei auffälligsten Fälle:
-# Personen, die laut Modell zufrieden sein
-# müssten (Fitted 8-9), aber es nicht so angegeben haben.
+# Personen, die laut Modell zufrieden sein müssten (Fitted 8-9),
+# aber es nicht so angegeben haben.
 
 # STATISTISCH: Breusch-Pagan-Test
 lmtest::bptest(model_2)
@@ -181,7 +189,7 @@ lmtest::bptest(model_2)
 # GRAFISCH (performance):
 plot(performance::check_collinearity(model_2))
 # Alternative: als Tabelle
-performance::check_collinearity(model_2)
+# performance::check_collinearity(model_2)
 # oder klassisch: car::vif(model_2)
 # Interpretation: VIF < 5 unproblematisch, VIF > 10 starke Multikollinearität.
 # Bei Werten > 10: eine der korrelierten UVen ausschließen oder zusammenfassen.
@@ -218,8 +226,9 @@ plot(performance::check_outliers(model_2))
 
 ## 8 Normalverteilung der Residuen --------------------
 
-# bei großem n von > ? unkritisch
-# Ich zeige es der Vollständigkeit halber!
+# bei großem n von unkritisch (Faustregel: ab ~30 Fällen pro Parameter greift
+# der zentrale Grenzwertsatz
+# Ich zeige es der Vollständigkeit halber trotzdem!
 
 # GRAFISCH (performance): Q-Q-Plot
 plot(performance::check_normality(model_2), type = "qq")
@@ -256,19 +265,29 @@ shapiro.test(rstandard(model_2))
 # 05: Konsequenzen ziehen und ggf. Modell nachbessern --------------
 
 # BILANZ unserer Diagnostik:
-# erfüllt:  Linearität (4), Multikollinearität (6), Ausreißer (7)
-# verletzt: Homoskedastizität (5) -> robuste SEs (jetzt!)
-#           Normalverteilung (8)  -> bei großem n unkritisch, keine Maßnahme
+# erfüllt:  Linearität (4), keine Multikollinearität (6), keine Ausreißer (7)
+# verletzt: Homoskedastizität (5) -> heteroskedastizitätsrobuste SEs (jetzt!)
+#           Normalverteilung (8) -> bei großem n unkritisch, keine Maßnahme
 
-# Tipp: Robuste SEs (HC3) schaden nie - im Zweifel mitberichten.
+# Tipp: heteroskedastizitätsrobuste SEs (HC3) schaden nie - im Zweifel mitberichten.
 
 
-## HC3-robuste Standardfehler -------------------------------------
+## Heteroskedastizitätsrobuste Standardfehler ----------------------------------
+
+# HC3 = Heteroscedasticity-Consistent, Variante 3 (Long & Ervin 2000).
+# Familie HC0-HC5; HC3 ist die robuste Allzweck-Wahl.
+
 hc3 <- lmtest::coeftest(model_2, vcov = sandwich::vcovHC(model_2, type = "HC3"))
+# Die komplizierte Codeline berechnet die Koeffiziententabelle mit
+# heteroskedastizitätsrobusten Standardfehlern (HC3):
+# vcovHC() liefert die robuste Varianz-Kovarianz-Matrix
+# coeftest() zieht daraus die korrigierten SEs, t- und p-Werte.
+
+
 hc3
 # Koeffizienten bleiben identisch, nur SEs und p-Werte werden korrigiert.
 
-# Vergleich: normale vs. robuste SEs
+# Vergleich: normale vs. heteroskedastizitätsrobuste SEs
 texreg::screenreg(
   list(model_2, model_2),
   custom.model.names = c("M2", "M2 (HC3)"),
@@ -313,12 +332,15 @@ summary(model_2_log)
 # Nach jeder Respezifikation: Diagnostik wiederholen (zurück zu Schritt 4)!
 
 
-## Bootstrap (optional / Ausblick) ----------------------------------
+## Exkurs: Bootstrap ----------------------------------
 
-# Bei kleinem n + verletzter Normalverteilung wäre Bootstrapping eine
-# Option: 2000 Stichproben mit Zurücklegen ziehen, Modell jeweils neu
-# schätzen, SEs aus der Streuung der Replikationen gewinnen.
-# Bei unserem n ist das nicht nötig - hier nur als Demo:
+# Die Grundidee von Bootstrapping: 2000 Stichproben mit Zurücklegen ziehen,
+# Modell jeweils neu schätzen, SEs aus der Streuung der Replikationen gewinnen.
+
+# Wann? Nur bei KLEINEM n mit nicht normalverteilten Residuen. Bei großem n
+# greift der zentrale Grenzwertsatz (Faustregel: ab ~30 Fällen pro
+# Parameter) - bei unserem n ~ 4500 ist Bootstrapping also nicht nötig -
+# hier nur als Demo:
 
 if(FALSE){
   # car::Boot() verlangt einen Datensatz ohne NAs -> vorher filtern
@@ -339,69 +361,3 @@ if(FALSE){
 }
 
 
-
-
-# ALT --------------------
-# 05: Konsequenzen ziehen und ggf. Modell nachbessern --------------
-
-# Unsere Diagnostik ergab: Heteroskedastizität + nicht-normalverteilte Residuen
-# -> beide Remedies anwenden und prüfen, ob die Ergebnisse stabil bleiben.
-
-# Tipp: einfach IMMER heteroskedastizitätsrobuste SEs und Bootstraps rechnen -
-# dann sind wir auf der sicheren Seite!
-
-
-## HC3-robuste Standardfehler -------------------------------------
-hc3 <- lmtest::coeftest(model_2, vcov = sandwich::vcovHC(model_2, type = "HC3"))
-# Koeffizienten bleiben identisch, nur SEs und p-Werte werden korrigiert.
-
-
-## Bootstrap ----------------------
-# car::Boot() verlangt einen Datensatz ohne NAs -> vorher auf die
-# Modellvariablen filtern (lm() hatte diese Zeilen ohnehin still entfernt,
-# jetzt passiert es nur explizit):
-
-allbus_model_data <- allbus_c_2023 %>%
-  dplyr::filter(!is.na(ls01), !is.na(incc), !is.na(age),
-                !is.na(sex_bi), !is.na(hs01), !is.na(wghtpew))
-
-model_2 <- lm(ls01 ~ incc + age + sex_bi + hs01,
-              data = allbus_model_data,
-              weights = wghtpew)
-# gleiches Ergebnis wie oben!
-
-# Bootstrap rechnen: 2000 Stichproben aus unserer Stichprobe ziehen
-# (mit Zurücklegen) und das Modell jeweils neu schätzen
-set.seed(1234)  # Startwert festlegen für Reproduzierbarkeit
-fit_b <- car::Boot(model_2, R = 2000)
-
-summary(fit_b)
-# Interpretation:
-# - original: die Koeffizienten unseres Modells (unverändert)
-# - bootSE: Standardfehler aus der Streuung über die 2000 Replikationen -
-#   hier fast identisch mit den normalen SEs -> Ergebnisse sind robust
-# - bootBias: Differenz zwischen Original und Bootstrap-Mittel -
-#   nahe 0 = unproblematisch
-
-confint(fit_b, level = .95)
-# Interpretation:
-# Keines der KIs enthält die 0 -> alle Effekte bleiben auch beim
-# verteilungsfreien Bootstrap signifikant.
-# z.B. incc [0.016, 0.039]: der wahre Einkommenseffekt liegt mit
-# 95% Sicherheit in diesem Bereich - klein, aber von 0 verschieden.
-
-# Fazit: Trotz verletzter Annahmen ändern sich die Schlussfolgerungen
-# nicht - die Verletzungen waren bei n ~ 4500 praktisch folgenlos.
-# Die Prüfung gehört trotzdem zum Handwerk!
-
-# (NB zur Warnmeldung: R nutzt die Perzentil-Methode statt BCa fürs KI -
-# das ist unproblematisch und kann ignoriert werden.)
-
-
-texreg::screenreg(
-  list(model_1, model_2, model_2, model_2),
-  custom.model.names = c("M1 (bivariat)", "M2", "M2 (HC3)", "M2 (Bootstrap)"),
-  override.se      = list(0, 0, hc3[, "Std. Error"], summary(fit_b)$bootSE),
-  override.pvalues = list(0, 0, hc3[, "Pr(>|t|)"],   0),
-  digits = 3
-)
