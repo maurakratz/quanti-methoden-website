@@ -49,9 +49,9 @@ Lies den ALLBUS-Datensatz von 2023 ein. Speichere den Datensatz in einem Objekt 
 
 # Aufgabe 2: Forschungsfrage & Variablenauswahl
 
-In dieser Übung baust du deine eigene multiple Regression. Überlege dir zunächst eine Forschungsfrage, die sich mit einer linearen Regression beantworten lässt. Nimm dazu gern wieder die Datensatzübersicht zur Hand (siehe Sitzung 08).
+In dieser Übung baust du deine eigene multiple Regression. Nimm dazu gern wieder die Datensatzübersicht zur Hand (siehe Sitzung 08). Überlege dir zunächst eine **Forschungsfrage**, die sich mit einer linearen Regression beantworten lässt. 
 
-Wähle dafür eine **abhängige Variable (AV)**, die (quasi-)metrisch ist, sowie **mindestens drei unabhängige Variablen (UVs)**, davon mindestens eine kategorial-dichotome. Welche Vermutung hast du bezüglich der Zusammenhänge?
+Wähle dafür eine **abhängige Variable (AV)**, die (quasi-)metrisch ist, sowie **mindestens drei unabhängige Variablen (UVs)**, davon mindestens eine kategoriale. Welche Vermutung hast du bezüglich der Zusammenhänge?
 
 Denke dabei auch an die **Exogenität**: Welche Variablen könnten deine AV *und* eine deiner UVs gemeinsam beeinflussen — und hast du sie als Kontrollvariablen dabei?
 
@@ -71,9 +71,10 @@ Suche deine gewählten Variablen mit dem `look_for`-Befehl aus dem labelled-Pack
 
 Prüfe **vor** dem Modell die Voraussetzungen, die sich ohne geschätztes Modell klären lassen:
 
-- **Skalenniveau:** Passt es für eine lineare Regression?
-- **Unabhängigkeit der Beobachtungen:** Was sagt das Studiendesign des ALLBUS?
-- **Linearität:** Sichte die Form des Zusammenhangs zwischen AV und einer metrischen UV mit einem Scatterplot + Loess-Kurve.
+- Skalenniveau: Passt es für eine lineare Regression?
+- Exogenität: Hast du alle relevanten UVen im Modell?
+- Unabhängigkeit der Beobachtungen: Was sagt das Studiendesign des ALLBUS?
+- Linearität: Sichte die Form des Zusammenhangs zwischen AV und der zentralen metrischen UV mit einem Scatterplot + Loess-Kurve.
 
 ```{r}
 # Code hier
@@ -83,7 +84,7 @@ Prüfe **vor** dem Modell die Voraussetzungen, die sich ohne geschätztes Modell
 
 # Aufgabe 5: Regression rechnen & interpretieren
 
-Rechne deine multiple lineare Regression (mit `weights = wghtpew`) und gib die Ergebnisse in einer Tabelle aus. Interpretiere anschließend die Modellgüte (R²) sowie Richtung, Stärke und Signifikanz der Effekte (*ceteris paribus*).
+Rechne deine multiple lineare Regression (mit `weights = wghtpew`) und gib die Ergebnisse in einer Tabelle aus. Interpretiere anschließend die Modellgüte (R²) sowie Richtung, Stärke und Signifikanz der Effekte (*ceteris paribus*).  
 
 ```{r}
 # Code hier
@@ -91,21 +92,32 @@ Rechne deine multiple lineare Regression (mit `weights = wghtpew`) und gib die E
 
 *Antwort hier.*
 
-# Aufgabe 6: Diagnostik
-
-Prüfe nun **am Modell** alle Annahmen. Nutze für jede die grafische *und* — wo möglich — die statistische Variante und halte deinen Befund fest:
-
-- **Linearität** (Residuen vs. Fitted; Rainbow-Test)
-- **Homoskedastizität** (Scale-Location-Plot; Breusch-Pagan-Test)
-- **Multikollinearität** (VIF)
-- **Ausreißer** (Cook's Distance bzw. Leverage)
-- **Normalverteilung der Residuen** (Q-Q-Plot)
+Um vergleichende Aussagen zu machen, berechne auch standardisierte Koeffizienten.
 
 ```{r}
 # Code hier
 ```
 
-Welche Annahmen sind erfüllt, welche verletzt? Warum ist die Normalverteilung der Residuen bei deinem n vermutlich unkritisch?
+*Antwort hier.*
+
+
+# Aufgabe 6: Diagnostik
+
+Prüfe nun **nachträglich** am Modell alle relevanten Annahmen:
+- Linearität 
+- Homoskedastizität 
+- Multikollinearität 
+- Ausreißer
+Nutze für jede die grafische und — wo möglich — die statistische Variante und halte deinen Befund fest:
+
+
+```{r}
+# Code hier
+```
+
+*Antwort hier.*
+
+Welche Annahmen sind erfüllt, welche verletzt? Halte dein Fazit kurz fest.
 
 *Antwort hier.*
 
@@ -121,10 +133,12 @@ Zieh aus deiner Diagnostik die passende Konsequenz:
 # Code hier
 ```
 
-*Antwort hier: Ändern sich deine Schlussfolgerungen?*
+Was haben deine "remedies" bewirkt? Zieh eine kurze Bilanz aus der Diagnostik.
+
+*Antwort hier*
 
 # Aufgabe 8: Fazit
 
-Beantworte deine Forschungsfrage aus Aufgabe 2 in zwei bis drei Sätzen — auf Basis deiner Ergebnisse und unter Berücksichtigung der Diagnostik.
+Beantworte auf Basis deiner Ergebnisse und unter Berücksichtigung der Diagnostik deine Forschungsfrage aus Aufgabe 2 in wenigen Sätzen.
 
 *Antwort hier.*
