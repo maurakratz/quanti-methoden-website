@@ -32,7 +32,7 @@ editor_options:
 
 ![](images/clipboard-2076104136.png)
 
-## Recap: Multiple lineare Regressioen
+## Recap: Multiple lineare Regressionen
 
 $$\hat{y} = b_0 + b_1 x_1 + b_2 x_2 + \ldots + b_k x_k$$
 
