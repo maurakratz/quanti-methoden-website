@@ -1300,5 +1300,264 @@
     "title": "Übung 02: Datenimport & Datensatzüberblick",
     "section": "",
     "text": "Denkt daran: um als PFD rendern zu können, müsst ihr einmalig in der Konsole tinytex::install_tinytex() ausführen, damit die nötige Software (LaTeX) für die PDF-Erstellung installiert wird. Alternativ quarto install tinytex im Terminal eingeben. Danach könnt ihr die Übung sowohl als HTML als auch als PDF rendern.\n\nSetup\n\nlibrary(rio)\nlibrary(dplyr)\nlibrary(tidyr)\nlibrary(janitor)\nlibrary(labelled)\nlibrary(summarytools)\n\n\n\nAufgabe 1: Daten importieren\nDie Datei kerg2.csv enthält die amtlichen Wahlergebnisse der Bundestagswahl 2025. Wir importieren sie zunächst mit Standardeinstellungen — und stellen dabei fest, dass etwas nicht stimmt.\n\nbtw_2025_ergebnisse_raw &lt;- rio::import(\"../data/kerg2.csv\",\n                                       sep  = \";\",\n                                       dec  = \",\",\n                                       skip = 9) |&gt;\n  janitor::clean_names()\n\n\n\nAufgabe 2: Datensatz aufbereiten\nZunächst prüfen wir, ob in der Spalte bemerkung relevante Informationen stehen:\n\nbtw_2025_ergebnisse_raw |&gt;\n  dplyr::distinct(bemerkung)\n\n  bemerkung\n1        NA\n\n\nDie Spalte enthält keine relevanten Einträge und kann entfernt werden:\n\nbtw_2025_ergebnisse &lt;- btw_2025_ergebnisse_raw |&gt;\n  dplyr::select(-bemerkung)\n\n\n\nAufgabe 3: Variablenlabels vergeben\nFür eine bessere Lesbarkeit vergeben wir Variablenlabels. Labels beschreiben den Inhalt einer Variable und werden z.B. in Tabellen und Grafiken angezeigt.\n\nlabels_btw_2025_ergebnisse &lt;- list(\n  wahlart            = \"Wahlart: Bundes-, Landes-, Kommunalwahl\",\n  wahltag            = \"Datum des Wahltags\",\n  gebietsart         = \"Gebietsart: Bundesland, Wahlkreis oder gesamtes Staatsgebiet\",\n  gebietsnummer      = \"Gebietsnummer\",\n  gebietsname        = \"Gebietsname\",\n  ueg_gebietsart     = \"Übergeordnete Gebietsart\",\n  ueg_gebietsnummer  = \"Übergeordnete Gebietsnummer\",\n  gruppenart         = \"Gruppenart: Partei, Einzelbewerber, System\",\n  gruppenname        = \"Gruppenname, z.B. Parteiname\",\n  gruppenreihenfolge = \"Reihenfolge der Gruppe\",\n  stimme             = \"Stimmart: Erst- oder Zweitstimme\",\n  anzahl             = \"Anzahl Stimmen\",\n  prozent            = \"Stimmenanteil in Prozent\",\n  vorp_anzahl        = \"Anzahl Stimmen bei vorhergehender Wahl\",\n  vorp_prozent       = \"Stimmenanteil bei vorhergehender Wahl in Prozent\",\n  diff_prozent       = \"Veränderung zur vorhergehenden Wahl in Prozent\",\n  diff_prozent_pkt   = \"Veränderung zur vorhergehenden Wahl in Prozentpunkten\",\n  gewahlt            = \"Gewählt: Parteiname\"\n)\n\nbtw_2025_ergebnisse &lt;- btw_2025_ergebnisse |&gt;\n  labelled::set_variable_labels(.labels = labels_btw_2025_ergebnisse,\n                                .strict = FALSE)\n\n\n\nAufgabe 4: Datensatzüberblick\nAbschließend verschaffen wir uns einen Überblick über den aufbereiteten Datensatz. Denk daran, die graph column auszuschalten, da sie nichtkorrekt dargestellt wird.\nsummarytools::dfSummary(btw_2025_ergebnisse,\n                        plain.ascii  = FALSE,\n                        style        = \"grid\",\n                        na.col       = FALSE,\n                        graph.col    = FALSE,\n                        method       = \"render\")\n\nData Frame Summary\n\nbtw_2025_ergebnisse\nDimensions: 15617 x 18\nDuplicates: 0\n\n\n\n\n\n\n\n\n\n\n\nNo\nVariable\nLabel\nStats / Values\nFreqs (% of Valid)\nValid\n\n\n\n\n1\nwahlart\n[character]\nWahlart: Bundes-, Landes-, Kommunalwahl\n1. BT\n15617 (100.0%)\n15617\n(100.0%)\n\n\n2\nwahltag\n[character]\nDatum des Wahltags\n1. 23.02.2025\n15617 (100.0%)\n15617\n(100.0%)\n\n\n3\ngebietsart\n[character]\nGebietsart: Bundesland, Wahlkreis oder gesamtes Staatsgebiet\n1. Bund\n2. Land\n3. Wahlkreis\n67 ( 0.4%)\n774 ( 5.0%)\n14776 (94.6%)\n15617\n(100.0%)\n\n\n4\ngebietsnummer\n[integer]\nGebietsnummer\nMean (sd) : 143.5 (87.7)\nmin &lt; med &lt; max:\n1 &lt; 140 &lt; 299\nIQR (CV) : 149 (0.6)\n299 distinct values\n15617\n(100.0%)\n\n\n5\ngebietsname\n[character]\nGebietsname\n1. Bundesgebiet\n2. Berlin-Friedrichshain-Kre\n3. Berlin-Tempelhof-Schönebe\n4. Dortmund I\n5. Duisburg II\n6. Gütersloh I\n7. Köln II\n8. Märkischer Kreis II\n9. Olpe – Märkischer Kreis I\n10. Recklinghausen II\n[ 306 others ]\n67 ( 0.4%)\n58 ( 0.4%)\n58 ( 0.4%)\n58 ( 0.4%)\n58 ( 0.4%)\n58 ( 0.4%)\n58 ( 0.4%)\n58 ( 0.4%)\n58 ( 0.4%)\n58 ( 0.4%)\n15028 (96.2%)\n15617\n(100.0%)\n\n\n6\nueg_gebietsart\n[character]\nÜbergeordnete Gebietsart\n1. (Empty string)\n2. BUND\n3. LAND\n67 ( 0.4%)\n774 ( 5.0%)\n14776 (94.6%)\n15617\n(100.0%)\n\n\n7\nueg_gebietsnummer\n[integer]\nÜbergeordnete Gebietsnummer\nMean (sd) : 12 (20.2)\nmin &lt; med &lt; max:\n1 &lt; 8 &lt; 99\nIQR (CV) : 4 (1.7)\n17 distinct values\n15550\n(99.6%)\n\n\n8\ngruppenart\n[character]\nGruppenart: Partei, Einzelbewerber, System\n1. Einzelbewerber/Wählergrup\n2. Partei\n3. System-Gruppe\n139 ( 0.9%)\n12950 (82.9%)\n2528 (16.2%)\n15617\n(100.0%)\n\n\n9\ngruppenname\n[character]\nGruppenname, z.B. Parteiname\n1. AfD\n2. BSW\n3. BÜNDNIS DEUTSCHLAND\n4. Die Linke\n5. Die PARTEI\n6. FDP\n7. FREIE WÄHLER\n8. GRÜNE\n9. Gültige\n10. MLPD\n[ 87 others ]\n632 ( 4.0%)\n632 ( 4.0%)\n632 ( 4.0%)\n632 ( 4.0%)\n632 ( 4.0%)\n632 ( 4.0%)\n632 ( 4.0%)\n632 ( 4.0%)\n632 ( 4.0%)\n632 ( 4.0%)\n9297 (59.5%)\n15617\n(100.0%)\n\n\n10\ngruppenreihenfolge\n[integer]\nReihenfolge der Gruppe\nMean (sd) : 49.4 (195.4)\nmin &lt; med &lt; max:\n-4 &lt; 10 &lt; 1000\nIQR (CV) : 12 (4)\n35 distinct values\n15617\n(100.0%)\n\n\n11\nstimme\n[integer]\nStimmart: Erst- oder Zweitstimme\nMin : 1\nMean : 1.5\nMax : 2\n1 : 7500 (50.1%)\n2 : 7485 (49.9%)\n14985\n(96.0%)\n\n\n12\nanzahl\n[integer]\nAnzahl Stimmen\nMean (sd) : 95245.1 (1163500)\nmin &lt; med &lt; max:\n8 &lt; 7381 &lt; 60510631\nIQR (CV) : 35360.5 (12.2)\n7493 distinct values\n9747\n(62.4%)\n\n\n13\nprozent\n[numeric]\nStimmenanteil in Prozent\nMean (sd) : 16.2 (27.8)\nmin &lt; med &lt; max:\n0 &lt; 3.6 &lt; 99.8\nIQR (CV) : 17.3 (1.7)\n9418 distinct values\n9431\n(60.4%)\n\n\n14\nvorp_anzahl\n[integer]\nAnzahl Stimmen bei vorhergehender Wahl\nMean (sd) : 76920.9 (1028519)\nmin &lt; med &lt; max:\n0 &lt; 3312 &lt; 61172771\nIQR (CV) : 26356 (13.4)\n7817 distinct values\n11459\n(73.4%)\n\n\n15\nvorp_prozent\n[numeric]\nStimmenanteil bei vorhergehender Wahl in Prozent\nMean (sd) : 13.5 (25.6)\nmin &lt; med &lt; max:\n0 &lt; 1.6 &lt; 99.7\nIQR (CV) : 12.4 (1.9)\n11020 distinct values\n11143\n(71.4%)\n\n\n16\ndiff_prozent\n[numeric]\nVeränderung zur vorhergehenden Wahl in Prozent\nMean (sd) : 17 (93.3)\nmin &lt; med &lt; max:\n-99.4 &lt; -1.6 &lt; 3786.8\nIQR (CV) : 59.7 (5.5)\n8415 distinct values\n8523\n(54.6%)\n\n\n17\ndiff_prozent_pkt\n[numeric]\nVeränderung zur vorhergehenden Wahl in Prozentpunkten\nMean (sd) : 0 (4.3)\nmin &lt; med &lt; max:\n-23.1 &lt; -0.2 &lt; 26.4\nIQR (CV) : 1.4 (-123)\n11027 distinct values\n11143\n(71.4%)\n\n\n18\ngewahlt\n[character]\nGewählt: Parteiname\n1. (Empty string)\n2. –\n3. AfD\n4. CDU\n5. CSU\n6. Die Linke\n7. GRÜNE\n8. SPD\n841 ( 5.4%)\n1098 ( 7.0%)\n1944 (12.4%)\n6398 (41.0%)\n2224 (14.2%)\n316 ( 2.0%)\n612 ( 3.9%)\n2184 (14.0%)\n15617\n(100.0%)\n\n\n\nDer Datensatz enthält 15617 Zeilen und 18 Spalten. Jede Zeile entspricht einem Ergebnis einer Partei in einem Gebiet (Wahlkreis, Bundesland oder Bundesgebiet) für eine Stimmart (Erst- oder Zweitstimme)."
+  },
+  {
+    "objectID": "slides/sitzung_11_logistische_regressionen.html#willkommen-zurück",
+    "href": "slides/sitzung_11_logistische_regressionen.html#willkommen-zurück",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Willkommen zurück!",
+    "text": "Willkommen zurück!"
+  },
+  {
+    "objectID": "slides/sitzung_11_logistische_regressionen.html#feedback-übung-8",
+    "href": "slides/sitzung_11_logistische_regressionen.html#feedback-übung-8",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Feedback Übung 8",
+    "text": "Feedback Übung 8\n\nWas bedeutet Split (-11) im Allbus-Datensatz?\nordinale UV in multipler linearer Regression\nordinale Variablen (z.B. Schulabschluss) können entweder als quasi-metrisch oder als kategorial, also factor, behandelt werden\nbei kategorialen Variablen werden allerdings automatisch dummies für jede Kategorie gegenüber der Referenzkategorie gebildet → ggf. kleines n pro Kategorie → große SEs und CIs\n\n\n\n\n\n\n\nPraxistipps\n\n\n\ndünn besetzte Kategorien zusammenfassen (z.B. „Fachhochschulreife” + „Hochschulreife” → „(Fach-)Hochschulreife”)\nJe mehr Stufen, desto unproblematischer die quasi-metrische Behandlung. Ab ~5–7 Stufen wird sie in den Sozialwissenschaften breit akzeptiert."
+  },
+  {
+    "objectID": "slides/sitzung_11_logistische_regressionen.html#praxistipps",
+    "href": "slides/sitzung_11_logistische_regressionen.html#praxistipps",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Praxistipps",
+    "text": "Praxistipps\n\ndünn besetzte Kategorien zusammenfassen (z.B. „Fachhochschulreife” + „Hochschulreife” → „(Fach-)Hochschulreife”)\nJe mehr Stufen, desto unproblematischer die quasi-metrische Behandlung. Ab ~5–7 Stufen wird sie in den Sozialwissenschaften breit akzeptiert."
+  },
+  {
+    "objectID": "slides/sitzung_11_logistische_regressionen.html#recap-voraussetzungen-der-linearen-regression",
+    "href": "slides/sitzung_11_logistische_regressionen.html#recap-voraussetzungen-der-linearen-regression",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Recap: Voraussetzungen der linearen Regression",
+    "text": "Recap: Voraussetzungen der linearen Regression\n\n\n\n\n\nNr\nVoraussetzung\nWorauf bezogen?\nFolgen bei Verletzung\n\n\n\n\n1\nSkalenniveau (metrische AV)\nDaten / Messung\nModell ist inhaltlich nicht interpretierbar\n\n\n2\nExogenität\nModellspezifikation\nKoeffizienten verzerrt (z.B. Omitted Variable Bias)\n\n\n3\nUnabhängige Beobachtungen\nStudiendesign\nScheinsignifikanz\n\n\n4\nLinearität\nFunktionale Form\nKoeffizienten falsch\n\n\n5\nHomoskedastizität\nResiduen\nScheinsignifikanz\n\n\n6\nKeine Multikollinearität*\nUVs untereinander\nKoeffizienten instabil, große Standardfehler\n\n\n7\nKeine Ausreißer\nEinzelne Fälle\nSchätzung instabil\n\n\n(8)\nNormalverteilung der Residuen (optional)\nResiduen\nNur bei kleinem n: Inferenz ungenau\n\n\n\n\n\n\n* nur bei multiplen linearen Regressionen (mind. zwei UVs). Voraussetzungen 1–3 sind der Analyse vorgelagert (Daten & Design), 4–8 werden am geschätzten Modell geprüft."
+  },
+  {
+    "objectID": "slides/sitzung_11_logistische_regressionen.html#recap-prüfung-d.-voraussetzungen",
+    "href": "slides/sitzung_11_logistische_regressionen.html#recap-prüfung-d.-voraussetzungen",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Recap: Prüfung d. Voraussetzungen",
+    "text": "Recap: Prüfung d. Voraussetzungen\n\n\n\n\n\n\n\n\n\nVoraussetzung\nPrüfung\n\n\n\n\nSkalenniveau (metrische AV)*\ntheoretisch: Codebuch, Theorie\n\n\nExogenität\ntheoretisch: relevante Kontrollvariablen im Modell?\n\n\nUnabhängige Beobachtungen\ntheoretisch: Studiendesign\n\n\nLinearer Zusammenhang\ngrafisch: Scatterplot + Loess; Residuen vs. Fitted\nstatistisch: Rainbow-Test\n\n\nHomoskedastizität der Residuen\ngrafisch: Residuen vs. Fitted-Plot\nstatistisch: Breusch-Pagan-Test\n\n\nKeine Multikollinearität**\nstatistisch: Variance Inflation Factor (VIF)\n\n\nKeine Ausreißer\ngrafisch: Cook's Distance\nstatistisch: Anteil &gt; Schwellwert\n\n\nNormalverteilte Residuen\ngrafisch: Histogramm, Q-Q-Plot\nstatistisch: Shapiro-Wilk***\n\n\n\n\n\n\n* Die UVen können metrisch oder kategorial sein; kategoriale mit mehr als zwei Ausprägungen werden als Dummies kodiert.\n** nur bei multiplen linearen Regressionen\n*** nur bis n = 5000; bei großem n grafische Prüfung bevorzugen"
+  },
+  {
+    "objectID": "slides/sitzung_11_logistische_regressionen.html#recap-was-tun-bei-verletzung-der-annahmen",
+    "href": "slides/sitzung_11_logistische_regressionen.html#recap-was-tun-bei-verletzung-der-annahmen",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Recap: Was tun bei Verletzung der Annahmen?",
+    "text": "Recap: Was tun bei Verletzung der Annahmen?\n\n\n\n\n\nNr\nVerletzung\nLösung\n\n\n\n\n1\nSkalenniveau (AV nicht metrisch)\nAnderes Modell wählen, z.B. logistische Regression bei binärer AV (→ Sitzung 11!)\n\n\n2\nExogenität verletzt\nRelevante Kontrollvariablen aufnehmen; vollständig nur über Forschungsdesign lösbar (fortgeschritten)\n\n\n3\nAbhängige Beobachtungen\nCluster-robuste Standardfehler; Mehrebenen- oder Panelmodelle (FE/RE)\n\n\n4\nKein linearer Zusammenhang\nU-Form → UV quadrieren (I(x^2)) · Sättigung → UV logarithmieren (log(x)) · exponentielles Wachstum → AV logarithmieren (log(y)) · Schwellenwert → UV kategorisieren · komplexe Formen → Splines (fortgeschritten)\n\n\n5\nHeteroskedastizität\nHeteroskedastizitätsrobuste Standardfehler (HC3)*\n\n\n6\nMultikollinearität\nEine der korrelierten UVen ausschließen oder zu Index zusammenfassen\n\n\n7\nAusreißer\nFälle prüfen; Modell mit & ohne Ausreißer vergleichen; ggf. ausschließen; oder robuste Regression (fortgeschritten)\n\n\n(8)\nNicht normalverteilte Residuen\nBei großem n unkritisch (zentraler Grenzwertsatz); bei kleinem n: Bootstrapping (fortgeschritten)\n\n\n\n\n\n\n* Long JS & Ervin LH (2000). Using heteroscedasticity consistent standard errors in the linear regression model. The American Statistician, 54(3), 217–224. Zum Vertiefen: Kapitel 21 bis 24 in Wagemann, Goerres & Siewert (2020). Handbuch Methoden der Politikwissenschaft. Springer."
+  },
+  {
+    "objectID": "slides/sitzung_11_logistische_regressionen.html#minute-cards",
+    "href": "slides/sitzung_11_logistische_regressionen.html#minute-cards",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Minute Cards",
+    "text": "Minute Cards\nBitte füllt die Minute Cards für die heutige Sitzung aus. Das sollt enicht länger als 3 Minuten dauern. Vielen Dank für eure Mitarbeit!"
+  },
+  {
+    "objectID": "slides/sitzung_11_logistische_regressionen.html#ergänzung-multiple-ols-regression-ü8",
+    "href": "slides/sitzung_11_logistische_regressionen.html#ergänzung-multiple-ols-regression-ü8",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Ergänzung multiple OLS-Regression (Ü8)",
+    "text": "Ergänzung multiple OLS-Regression (Ü8)\n\nWas bedeutet Split (-11) im Allbus-Datensatz?\nordinale UV in multipler linearer Regression\n\nordinale Variablen (z.B. Schulabschluss) können entweder als quasi-metrisch oder als kategorial, also factor, behandelt werden\nbei kategorialen Variablen werden allerdings automatisch dummies für jede Kategorie gegenüber der Referenzkategorie gebildet → ggf. kleines n pro Kategorie → große SEs und CIs\n\n\n\n\n\n\n\n\n\nPraxistipps\n\n\n\ndünn besetzte Kategorien zusammenfassen (z.B. „Fachhochschulreife” + „Hochschulreife” → „(Fach-)Hochschulreife”)\nJe mehr Stufen, desto unproblematischer die quasi-metrische Behandlung. Ab ~5–7 Stufen wird sie in den Sozialwissenschaften breit akzeptiert."
+  },
+  {
+    "objectID": "slides/sitzung_11_logistische_regressionen.html#orga",
+    "href": "slides/sitzung_11_logistische_regressionen.html#orga",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Orga",
+    "text": "Orga\n\nihr bekommt heute eure letzte übung (10) auf. Wenn ihr unsicher seid, ob ihr noch ersatzleistungen erbringen müsst, um die ART für diesen Kurs zu bekommen, schriebt mir 📧\nkommende Sitzung würde ich gern euren Data Analysis Plans widmen! Macht euch also Gedanken + gern ein paar Notizen. Schreibt mir, wenn ihr euren diskutieren wollt + gern schon mal Ideen/Themen/Forschungsfragen, sollte es schon welche geben 📧\nindividuelle Deadlines für die Abgabe d. Prüfungsleistung müssen innerhalb der Vorlesungszeit mit mir abgestimmt werden! Auch hier gerne 📧"
+  },
+  {
+    "objectID": "slides/sitzung_11_logistische_regressionen.html#das-problem-eine-binäre-av",
+    "href": "slides/sitzung_11_logistische_regressionen.html#das-problem-eine-binäre-av",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Das Problem: eine binäre AV",
+    "text": "Das Problem: eine binäre AV\n\nViele politikwissenschaftliche AVs sind binär: gewählt/nicht gewählt, Mitglied/kein Mitglied, zugestimmt/abgelehnt (AV ∈ {0, 1})\nEine lineare Regression (OLS) ist hier ungeeignet:\n\nsie sagt Werte außerhalb von [0, 1] vorher (unsinnige „Wahrscheinlichkeiten”)\nder Zusammenhang ist nicht linear, sondern S-förmig\nResiduen sind weder normalverteilt noch homoskedastisch"
+  },
+  {
+    "objectID": "slides/sitzung_11_logistische_regressionen.html#die-lösung-ein-glm",
+    "href": "slides/sitzung_11_logistische_regressionen.html#die-lösung-ein-glm",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Die Lösung: ein GLM",
+    "text": "Die Lösung: ein GLM\n\nstatt eines linearen Modells (LM) ein GLM (generalized linear model)\nder zentrale Unterschied steckt in der Schätzmethode – nicht mehr Ordinary least squares (OLS), sondern Maximum-Likelihood (ML):\n\n\n\n\n\n\n\n\nOLS (lineare Regression)\nML (logistische Regression)\n\n\n\n\nIdee\nGerade so legen, dass die Summe der quadrierten Residuen minimal ist (»kleinste Quadrate«)\nKoeffizienten so wählen, dass die beobachteten 0/1-Daten am wahrscheinlichsten werden (»größte Plausibilität«)\n\n\nRechenweg\nexakte Formel → Ergebnis in einem Schritt\nkeine Formel → iterativ angenähert (mehrere Durchläufe)\n\n\nAV\nmetrisch\nbinär (0/1)\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn R\n\n\nglm(av ~ uv1 + uv2, data = ..., family = binomial(link = \"logit\"), weights = ...)"
+  },
+  {
+    "objectID": "slides/sitzung_11_logistische_regressionen.html#odds-logit-logistische-funktion",
+    "href": "slides/sitzung_11_logistische_regressionen.html#odds-logit-logistische-funktion",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Odds, Logit & logistische Funktion",
+    "text": "Odds, Logit & logistische Funktion\n\nWahrscheinlichkeit \\(p\\): Anteil, mit dem AV = 1 eintritt\nOdds / Chance: Verhältnis von Eintreten zu Nicht-Eintreten\n\n\\[\\text{Odds} = \\frac{p}{1-p}\\]\n\nLogit: der (natürliche) Logarithmus der Odds — darauf ist das Modell linear:\n\n\\[\\text{logit}(p) = \\ln\\!\\left(\\frac{p}{1-p}\\right) = \\beta_0 + \\beta_1 x\\]\n\nnach \\(p\\) aufgelöst ergibt sich die S-förmige logistische Funktion:\n\n\\[p = \\frac{1}{1 + e^{-(\\beta_0 + \\beta_1 x)}}\\]\n\nDie Koeffizienten \\(\\beta\\) sind Log-Odds und nicht direkt interpretierbar. Erst \\(e^{\\beta}\\) liefert das anschauliche Odds Ratio."
+  },
+  {
+    "objectID": "slides/sitzung_11_logistische_regressionen.html#odds-ratios-interpretieren",
+    "href": "slides/sitzung_11_logistische_regressionen.html#odds-ratios-interpretieren",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Odds Ratios interpretieren",
+    "text": "Odds Ratios interpretieren\nEreignis heißt immer AV == 1 (z.B. „gewählt”, „krank”). Das Odds Ratio \\(\\text{OR} = e^{\\beta}\\) gibt die multiplikative Veränderung der Odds pro Einheit der UV an:\n\nOR = 0,6: eine Erhöhung der UV um eine Einheit verringert die Odds um 40 % (1 − 0,6 = 0,4)\nOR = 1,2: eine Erhöhung um eine Einheit erhöht die Odds um 20 % (1,2 − 1 = 0,2)\nOR = 3,8: eine Erhöhung um eine Einheit erhöht die Odds um 280 % (3,8 − 1 = 2,8)"
+  },
+  {
+    "objectID": "slides/sitzung_11_logistische_regressionen.html#voraussetzungen-im-vergleich",
+    "href": "slides/sitzung_11_logistische_regressionen.html#voraussetzungen-im-vergleich",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Voraussetzungen im Vergleich",
+    "text": "Voraussetzungen im Vergleich\n\n\n\n\n\nLineare Regression\nLogistische Regression\n\n\n\n\nmetrische AV\nbinäre AV (0/1)\n\n\nUnabhängige Beobachtungen\nUnabhängige Beobachtungen\n\n\nKeine einflussr. Ausreißer\nKeine einflussr. Ausreißer\n\n\nKeine Multikollinearität*\nKeine Multikollinearität*\n\n\nLinearität\nLinearität des Logits\n\n\nHomoskedastizität\n— (entfällt)\n\n\nNormalvert. der Residuen\n— (entfällt)\n\n\n\n\n\n\n* nur bei multiplen Regressionen (mind. zwei UVs). Homoskedastizität und Normalverteilung der Residuen entfallen, weil die AV binär ist.\nStichprobengröße: Faustregel »10 events per variable« – pro Prädiktor mind. ~10 Fälle in der selteneren AV-Kategorie. Beispiel: 4 Prädiktoren → mind. ~40 Fälle der selteneren Kategorie; bei seltenen Ereignissen entsprechend mehr."
+  },
+  {
+    "objectID": "slides/sitzung_11_logistische_regressionen.html#varianten-des-glm",
+    "href": "slides/sitzung_11_logistische_regressionen.html#varianten-des-glm",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Varianten des GLM",
+    "text": "Varianten des GLM\n\n\n\n\n\nAV-Typ\nModell\n\n\n\n\nbinär (2 Kategorien)\nLogit- oder Probit-Modell\n\n\nordinal (&gt; 2, geordnet)\nOrdered Logit / Ordered Probit\n\n\nnominal (&gt; 2, ungeordnet)\nMultinomiales Logit / Probit\n\n\nZähldaten (0, 1, 2, … Ereignisse)\nPoisson / Negativ-Binomial\n\n\n\n\n\n\nAlle sind GLMs mit unterschiedlicher Link-Funktion. Heute behandeln wir nur die binär-logistische Variante (Logit)."
+  },
+  {
+    "objectID": "slides/sitzung_11_logistische_regressionen.html#weiterlesen",
+    "href": "slides/sitzung_11_logistische_regressionen.html#weiterlesen",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Weiterlesen",
+    "text": "Weiterlesen\n\nBehnke, Joachim (2015). Logistische Regressionsanalyse: Eine Einführung. Wiesbaden: Springer Fachmedien. doi:10.1007/978-3-658-05082-5\nSchlittgen, Rainer (2013). Regressionsanalysen mit R. Lehr- und Handbücher der Statistik. De Gruyter, S. 213 ff. doi:10.1524/9783486739671"
+  },
+  {
+    "objectID": "slides/sitzung_11_logistische_regressionen.html#die-lösung-ein-glm-1",
+    "href": "slides/sitzung_11_logistische_regressionen.html#die-lösung-ein-glm-1",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Die Lösung: ein GLM",
+    "text": "Die Lösung: ein GLM\n\nstatt eines linearen Modells (LM) ein GLM (generalized linear model)\nder zentrale Unterschied steckt in der Schätzmethode – nicht mehr Ordinary least squares (OLS), sondern Maximum-Likelihood (ML):\n\n\n\n\n\n\n\nOLS (lineare Regression)\nML (logistische Regression)\n\n\n\n\nIdee\nGerade so legen, dass die Summe der quadrierten Residuen minimal ist (»kleinste Quadrate«)\nKoeffizienten so wählen, dass die beobachteten 0/1-Daten am wahrscheinlichsten werden (»größte Plausibilität«)\n\n\nRechenweg\nexakte Formel → Ergebnis in einem Schritt\nkeine Formel → iterativ angenähert (mehrere Durchläufe)\n\n\nAV\nmetrisch\nbinär (0/1)\n\n\n\n\n\n\n\n\n\n\n\n\nIn R\n\n\nglm(av ~ uv1 + uv2, data = ..., family = binomial(link = \"logit\"), weights = ...)"
+  },
+  {
+    "objectID": "slides/sitzung_11_logistische_regressionen.html#der-trick-die-wahrscheinlichkeit-entfesseln",
+    "href": "slides/sitzung_11_logistische_regressionen.html#der-trick-die-wahrscheinlichkeit-entfesseln",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Der Trick: die Wahrscheinlichkeit „entfesseln”",
+    "text": "Der Trick: die Wahrscheinlichkeit „entfesseln”\nWir wollen die Wahrscheinlichkeit \\(p\\) modellieren, dass AV = 1 (z.B. „gewählt”). Problem: \\(p\\) ist zwischen 0 und 1 eingesperrt – eine Gerade läuft aber aus diesem Bereich heraus. Lösung: \\(p\\) in zwei Schritten umrechnen, bis eine Gerade passt.\nSchritt 1 – Odds (Chance): Verhältnis von Eintreten zu Nicht-Eintreten\n\\[\\text{Odds} = \\frac{p}{1-p}\\]\n\nBedeutung: „Wie viel wahrscheinlicher ist Eintreten als Nicht-Eintreten?”\nBeispiel: \\(p = 0{,}8 \\Rightarrow \\text{Odds} = \\tfrac{0{,}8}{0{,}2} = 4\\), also „4 zu 1”\nWertebereich jetzt: \\(0\\) bis \\(+\\infty\\) (die obere Grenze ist weg)\n\nSchritt 2 – Logit (logarithmierte Odds):\n\\[\\text{logit}(p) = \\ln(\\text{Odds})\\]\n\nder Logarithmus lässt auch negative Werte zu\nWertebereich jetzt: \\(-\\infty\\) bis \\(+\\infty\\) → eine Gerade passt!"
+  },
+  {
+    "objectID": "slides/sitzung_11_logistische_regressionen.html#das-logistische-modell",
+    "href": "slides/sitzung_11_logistische_regressionen.html#das-logistische-modell",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Das logistische Modell",
+    "text": "Das logistische Modell\nAuf der Logit-Skala ist das Modell wieder schön linear:\n\\[\\text{logit}(p) = \\beta_0 + \\beta_1 x\\]\n\nBedeutung: Pro Einheit \\(x\\) ändern sich die log-Odds um \\(\\beta_1\\)\num zurück zur anschaulichen Wahrscheinlichkeit zu kommen, lösen wir nach \\(p\\) auf → die logistische Funktion (die S-Kurve von vorhin):\n\n\\[p = \\frac{1}{1 + e^{-(\\beta_0 + \\beta_1 x)}}\\]\n\nliefert garantiert Werte zwischen 0 und 1 ✓\n\n\n\n\n\n\n\n\nImportant\n\n\nDie Koeffizienten \\(\\beta\\) sind log-Odds – sperrig zu lesen. Deshalb rechnen wir sie gleich in Odds Ratios um: \\(\\text{OR} = e^{\\beta}\\)."
+  },
+  {
+    "objectID": "slides/sitzung_11_logistische_regressionen.html#voraussetzungen-im-vergleich-1",
+    "href": "slides/sitzung_11_logistische_regressionen.html#voraussetzungen-im-vergleich-1",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Voraussetzungen im Vergleich",
+    "text": "Voraussetzungen im Vergleich\n\n\n\n\n\nLineare Regression\nLogistische Regression\n\n\n\n\nmetrische AV\nbinäre AV (0/1)\n\n\nUnabhängige Beobachtungen\nUnabhängige Beobachtungen\n\n\nKeine einflussr. Ausreißer\nKeine einflussr. Ausreißer\n\n\nKeine Multikollinearität*\nKeine Multikollinearität*\n\n\nLinearität\nLinearität des Logits\n\n\nHomoskedastizität\n— (entfällt)\n\n\nNormalvert. der Residuen\n— (entfällt)\n\n\n\n\n\n\n* nur bei multiplen Regressionen (mind. zwei UVs). Homoskedastizität und Normalverteilung der Residuen entfallen, weil die AV binär ist.\nStichprobengröße: Faustregel »10 events per variable« – pro Prädiktor mind. ~10 Fälle in der selteneren AV-Kategorie. Beispiel: 4 Prädiktoren → mind. ~40 Fälle der selteneren Kategorie; bei seltenen Ereignissen entsprechend mehr."
+  },
+  {
+    "objectID": "slides/sitzung_11_logistische_regressionen.html#wahrscheinlichkeit-berechnen",
+    "href": "slides/sitzung_11_logistische_regressionen.html#wahrscheinlichkeit-berechnen",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Wahrscheinlichkeit berechnen",
+    "text": "Wahrscheinlichkeit berechnen\nWir wollen die Wahrscheinlichkeit \\(p\\) modellieren, dass AV = 1 (z.B. „gewählt”).\nProblem: \\(p\\) liegt zwischen 0 und 1 – eine Gerade läuft aber aus diesem Bereich heraus.\nLösung: \\(p\\) in zwei Schritten umrechnen, bis eine Gerade passt.\nSchritt 1: Wahrscheinlichkeit \\(p\\) → Odds (Chance): Verhältnis von Eintreten zu Nicht-Eintreten\n\\[\\text{Odds} = \\frac{p}{1-p}\\]\n\nBedeutung: „Wie viel wahrscheinlicher ist Eintreten als Nicht-Eintreten?”\nBeispiel: \\(p = 0{,}8 \\Rightarrow \\text{Odds} = \\tfrac{0{,}8}{0{,}2} = 4\\), also „4 zu 1”\nWertebereich jetzt: \\(0\\) bis \\(+\\infty\\) (die obere Grenze ist weg)\n\nSchritt 2: Odds → Log-Odds (Logit/logarithmierte Odds)\n\\[\\text{logit}(p) = \\ln(\\text{Odds})\\]\n\nder Logarithmus lässt auch negative Werte zu\nWertebereich jetzt: \\(-\\infty\\) bis \\(+\\infty\\) → eine Gerade passt!"
+  },
+  {
+    "objectID": "slides/sitzung_11_logistische_regressionen.html#das-problem-der-binären-av",
+    "href": "slides/sitzung_11_logistische_regressionen.html#das-problem-der-binären-av",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Das Problem der binären AV",
+    "text": "Das Problem der binären AV\n\nViele politikwissenschaftliche AVs sind binär: gewählt/nicht gewählt, Mitglied/kein Mitglied, zugestimmt/abgelehnt (AV ∈ {0, 1})\nEine lineare Regression (OLS) ist hier ungeeignet:\n\nsie sagt Werte außerhalb von [0, 1] vorher (unsinnige „Wahrscheinlichkeiten”)\nder Zusammenhang ist nicht linear, sondern S-förmig\nResiduen sind weder normalverteilt noch homoskedastisch"
+  },
+  {
+    "objectID": "slides/sitzung_11_logistische_regressionen.html#was-rechnet-die-logistische-regression",
+    "href": "slides/sitzung_11_logistische_regressionen.html#was-rechnet-die-logistische-regression",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Was rechnet die logistische Regression?",
+    "text": "Was rechnet die logistische Regression?\n\nWir wollen die Wahrscheinlichkeit \\(p\\) modellieren, dass AV = 1 (z.B. „gewählt”).\nProblem: \\(p\\) liegt zwischen 0 und 1 – eine Gerade läuft aber aus diesem Bereich heraus.\nLösung: \\(p\\) in zwei Schritten umrechnen, bis eine Gerade passt.\n\n\nSchritt 1: Wahrscheinlichkeit \\(p\\) → Odds (Chance):\n\\[\\text{Odds} = \\frac{p}{1-p}\\]\n\n\nBedeutung: „Wie viel wahrscheinlicher ist Eintreten als Nicht-Eintreten?” (Verhältnis von Eintreten zu Nicht-Eintreten)\nBeispiel: \\(p = 0{,}8 \\Rightarrow \\text{Odds} = \\tfrac{0{,}8}{0{,}2} = 4\\), also „4 zu 1”\nWertebereich jetzt: \\(0\\) bis \\(+\\infty\\) (die obere Grenze ist weg)"
+  },
+  {
+    "objectID": "slides/sitzung_11_logistische_regressionen.html#drei-ebenen-der-interpretation-1",
+    "href": "slides/sitzung_11_logistische_regressionen.html#drei-ebenen-der-interpretation-1",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Drei Ebenen der Interpretation",
+    "text": "Drei Ebenen der Interpretation\n\n\n\n\n\n\n\n\n\n\nEbene\nWie berechnet?\nWie lesen?\n\n\n\n\nlog-Odds (Roh-β)\ndirekt aus glm()\nnur Signifikanz und Richtung (Vorzeichen):\n+ erhöht, − senkt die Chance auf AV = 1\n\n\nOdds Ratio (OR)\nexp(β)\nEffektstärke: Faktor, um den sich die Odds ändern;\nProzent = (OR − 1) · 100\n\n\nVorhergesagte Wahrscheinlichkeit\nUV-Werte in die logist. Funktion einsetzen\nkonkrete Wahrscheinlichkeit für bestimmte Fälle\n– am intuitivsten\n\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\nFaustregel: Signifikanz & Richtung liest man aus den log-Odds, die Effektstärke kommuniziert man über Odds Ratios, konkrete Aussagen über vorhergesagte Wahrscheinlichkeiten."
+  },
+  {
+    "objectID": "slides/sitzung_11_logistische_regressionen.html#vom-koeffizienten-zur-aussage",
+    "href": "slides/sitzung_11_logistische_regressionen.html#vom-koeffizienten-zur-aussage",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Vom Koeffizienten zur Aussage",
+    "text": "Vom Koeffizienten zur Aussage\nBeispiel: ein Prädiktor hat den Koeffizienten \\(\\beta_1 = 0{,}41\\).\n\n1. log-Odds: \\(\\beta_1 = +0{,}41 &gt; 0\\) → die UV erhöht die Chance auf AV = 1. (Nur Richtung ablesen – die Zahl selbst ist schwer greifbar.)\n2. Odds Ratio: \\(e^{0{,}41} \\approx 1{,}5\\) → pro Einheit UV werden die Odds mal 1,5, also +50 %.\n\nOR &gt; 1 erhöht · OR &lt; 1 senkt · OR = 1 kein Effekt\nProzent \\(= (\\text{OR} - 1) \\cdot 100\\)\n\n3. Vorhergesagte Wahrscheinlichkeit: UV-Werte in \\(p = \\tfrac{1}{1+e^{-(\\beta_0+\\beta_1 x)}}\\) einsetzen.\n\nz.B. steigt \\(p\\) von \\(0{,}30\\) (bei \\(x = 0\\)) auf \\(0{,}39\\) (bei \\(x = 1\\))\nAchtung: der Effekt auf \\(p\\) ist nicht konstant – er hängt vom Ausgangsniveau ab (S-Kurve!)"
+  },
+  {
+    "objectID": "slides/sitzung_11_logistische_regressionen.html#was-rechnet-die-logistische-regression-1",
+    "href": "slides/sitzung_11_logistische_regressionen.html#was-rechnet-die-logistische-regression-1",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Was rechnet die logistische Regression?",
+    "text": "Was rechnet die logistische Regression?\nSchritt 2: Odds → Log-Odds (Logit/logarithmierte Odds)\n\\[\\text{logit}(p) = \\ln(\\text{Odds})\\]\n\nder Logarithmus lässt auch negative Werte zu\nWertebereich jetzt: \\(-\\infty\\) bis \\(+\\infty\\) → eine Gerade passt!\ndie Roh-Koeffizienten aus glm() sind also log-Odds → wenig anschaulich\nfür die Interpretation rechnen wir sie in Odds Ratios (= Chancenverhältnis, \\(e^{\\beta}\\)) um → nächste Slide"
+  },
+  {
+    "objectID": "slides/sitzung_11_logistische_regressionen.html#odds-ratios-interpretieren-1",
+    "href": "slides/sitzung_11_logistische_regressionen.html#odds-ratios-interpretieren-1",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Odds Ratios interpretieren",
+    "text": "Odds Ratios interpretieren\nEreignis heißt immer AV == 1 (z.B. „gewählt”, „krank”). Das Odds Ratio \\(\\text{OR} = e^{\\beta}\\) gibt die multiplikative Veränderung der Odds pro Einheit der UV an:\n\nOR = 0,6: eine Erhöhung der UV um eine Einheit verringert die Odds um 40 % (1 − 0,6 = 0,4)\nOR = 1,2: eine Erhöhung um eine Einheit erhöht die Odds um 20 % (1,2 − 1 = 0,2)\nOR = 3,8: eine Erhöhung um eine Einheit erhöht die Odds um 280 % (3,8 − 1 = 2,8)\n\n\n\n\n\n\n\n\n… und als vorhergesagte Wahrscheinlichkeit\n\n\nOdds Ratios sind abstrakt – konkreter wird es, wenn wir \\(p\\) für bestimmte Fälle berechnen:\n\n„Für eine 30-jährige Person liegt die vorhergesagte Wahrscheinlichkeit, wählen zu gehen, bei 72 %, für eine 60-jährige bei 85 % (übrige UVs konstant gehalten).”\nAchtung: Derselbe OR bewirkt nicht überall denselben Sprung in \\(p\\) – nahe \\(p = 0{,}5\\) ist der Effekt am größten, an den Rändern (nahe 0 oder 1) kleiner (→ S-Kurve)."
+  },
+  {
+    "objectID": "slides/sitzung_11_logistische_regressionen.html#bsp.-vom-koeffizienten-zur-aussage",
+    "href": "slides/sitzung_11_logistische_regressionen.html#bsp.-vom-koeffizienten-zur-aussage",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Bsp.: Vom Koeffizienten zur Aussage",
+    "text": "Bsp.: Vom Koeffizienten zur Aussage\nBeispiel: ein Prädiktor hat den Koeffizienten \\(\\beta_1 = 0{,}41\\).\n\n1. log-Odds: \\(\\beta_1 = +0{,}41 &gt; 0\\) → die UV erhöht die Chance auf AV = 1. (Nur Richtung ablesen – die Zahl selbst ist schwer greifbar.)\n2. Odds Ratio: \\(e^{0{,}41} \\approx 1{,}5\\) → pro Einheit UV werden die Odds mal 1,5, also +50 %.\n\nOR &gt; 1 erhöht · OR &lt; 1 senkt · OR = 1 kein Effekt\nProzent \\(= (\\text{OR} - 1) \\cdot 100\\)\n\n3. Vorhergesagte Wahrscheinlichkeit: UV-Werte in \\(p = \\tfrac{1}{1+e^{-(\\beta_0+\\beta_1 x)}}\\) einsetzen.\n\nz.B. steigt \\(p\\) von \\(0{,}30\\) (bei \\(x = 0\\)) auf \\(0{,}39\\) (bei \\(x = 1\\))\nAchtung: der Effekt auf \\(p\\) ist nicht konstant – er hängt vom Ausgangsniveau ab (S-Kurve!)"
+  },
+  {
+    "objectID": "slides/sitzung_11_logistische_regressionen.html#odds-ratios-interpretieren-2",
+    "href": "slides/sitzung_11_logistische_regressionen.html#odds-ratios-interpretieren-2",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Odds Ratios interpretieren",
+    "text": "Odds Ratios interpretieren\nEreignis heißt immer AV == 1 (z.B. „gewählt”, „krank”). Das Odds Ratio \\(\\text{OR} = e^{\\beta}\\) gibt die multiplikative Veränderung der Odds pro Einheit der UV an:\n\nOR = 0,6: eine Erhöhung der UV um eine Einheit verringert die Odds um 40 % (1 − 0,6 = 0,4)\nOR = 1,2: eine Erhöhung um eine Einheit erhöht die Odds um 20 % (1,2 − 1 = 0,2)\nOR = 3,8: eine Erhöhung um eine Einheit erhöht die Odds um 280 % (3,8 − 1 = 2,8)\n\n\n\n\n\n\n\n\n… und als vorhergesagte Wahrscheinlichkeit\n\n\nOdds Ratios sind abstrakt – konkreter wird es, wenn wir \\(p\\) für bestimmte Fälle berechnen:\n\n„Für eine 30-jährige Person liegt die vorhergesagte Wahrscheinlichkeit, wählen zu gehen, bei 72 %, für eine 60-jährige bei 85 % (übrige UVs konstant gehalten).”\nAchtung: Derselbe OR bewirkt nicht überall denselben Sprung in \\(p\\) – nahe \\(p = 0{,}5\\) ist der Effekt am größten, an den Rändern (nahe 0 oder 1) kleiner (→ S-Kurve)."
+  },
+  {
+    "objectID": "slides/sitzung_11_logistische_regressionen.html#was-rechnet-die-logistische-regression-2",
+    "href": "slides/sitzung_11_logistische_regressionen.html#was-rechnet-die-logistische-regression-2",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Was rechnet die logistische Regression?",
+    "text": "Was rechnet die logistische Regression?\nSchritt 2: Odds → Log-Odds (Logit/logarithmierte Odds)\n\\[\\text{logit}(p) = \\ln(\\text{Odds})\\]\n\nder Logarithmus lässt auch negative Werte zu\nWertebereich jetzt: \\(-\\infty\\) bis \\(+\\infty\\) → eine Gerade passt!\ndie Roh-Koeffizienten aus glm() sind also log-Odds → wenig anschaulich\nfür die Interpretation rechnen wir sie in Odds Ratios (= Chancenverhältnis, \\(e^{\\beta}\\)) um → nächste Slide"
+  },
+  {
+    "objectID": "slides/sitzung_11_logistische_regressionen.html#von-der-wahrscheinlichkeit-zum-logit",
+    "href": "slides/sitzung_11_logistische_regressionen.html#von-der-wahrscheinlichkeit-zum-logit",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Von der Wahrscheinlichkeit zum Logit",
+    "text": "Von der Wahrscheinlichkeit zum Logit\nSchritt 1 – Wahrscheinlichkeit \\(p\\) (das, was wir eigentlich wollen)\n\nWertebereich: \\(0\\) bis \\(1\\) → für eine Gerade zu eng\n\nSchritt 2 – Odds (Chance): \\(\\tfrac{p}{1-p}\\)\n\n„wie viel wahrscheinlicher ist Eintreten als Nicht-Eintreten?”\nBeispiel: \\(p = 0{,}8 \\Rightarrow \\text{Odds} = \\tfrac{0{,}8}{0{,}2} = 4\\), also „4 zu 1”\nWertebereich: \\(0\\) bis \\(+\\infty\\) (obere Grenze 1 ist weg)\n\nSchritt 3 – log-Odds / Logit (logarithmierte Chance): \\(\\ln(\\text{Odds})\\)\n\nWertebereich: \\(-\\infty\\) bis \\(+\\infty\\) → jetzt passt eine Gerade ✓\ndarauf legt glm() die Regressionsgerade\ndie Roh-Koeffizienten aus glm() sind also log-Odds → wenig anschaulich, deshalb rechnen wir sie in Odds Ratios (= Chancenverhältnis, \\(e^{\\beta}\\)) um → nächste Slide\n\n\nBegriffe nicht verwechseln: Chance (Odds, \\(\\tfrac{p}{1-p}\\)) ist ein Verhältnis innerhalb einer Situation · Chancenverhältnis (Odds Ratio, \\(e^{\\beta}\\)) vergleicht zwei Chancen miteinander."
+  },
+  {
+    "objectID": "slides/sitzung_11_logistische_regressionen.html#was-rechnet-die-logistische-regression-3",
+    "href": "slides/sitzung_11_logistische_regressionen.html#was-rechnet-die-logistische-regression-3",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Was rechnet die logistische Regression?",
+    "text": "Was rechnet die logistische Regression?\nSie modelliert nicht direkt die Wahrscheinlichkeit \\(p\\) (dass AV = 1), sondern deren log-Odds als lineare Funktion der UVs:\n\\[\\underbrace{\\ln\\!\\left(\\tfrac{p}{1-p}\\right)}_{\\text{log-Odds (= Logit)}} = \\beta_0 + \\beta_1 x_1 + \\beta_2 x_2 + \\dots\\]\nDrei Skalen – dieselbe Information, unterschiedlich lesbar:\n\\[\\underbrace{\\beta}_{\\text{log-Odds}} \\;\\xrightarrow{\\;\\exp(\\beta)\\;}\\; \\underbrace{\\text{OR}}_{\\text{Chancenverhältnis}} \\;\\longrightarrow\\; \\underbrace{p}_{\\text{Wahrscheinlichkeit}}\\]\n\nglm() schätzt in log-Odds (wenig anschaulich)\n\\(e^{\\beta}\\) liefert das Odds Ratio (Effektstärke)\nEinsetzen in die logist. Funktion liefert die Wahrscheinlichkeit (am intuitivsten)"
+  },
+  {
+    "objectID": "slides/sitzung_11_logistische_regressionen.html#was-rechnet-die-logistische-regression-4",
+    "href": "slides/sitzung_11_logistische_regressionen.html#was-rechnet-die-logistische-regression-4",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Was rechnet die logistische Regression?",
+    "text": "Was rechnet die logistische Regression?\nSie modelliert nicht direkt die Wahrscheinlichkeit \\(p\\) (dass AV = 1), sondern deren log-Odds als lineare Funktion der UVs:\n\\[\\underbrace{\\ln\\!\\left(\\tfrac{p}{1-p}\\right)}_{\\text{log-Odds (= Logit)}} = \\beta_0 + \\beta_1 x_1 + \\beta_2 x_2 + \\dots\\]\nWarum dieser Umweg? Weil \\(p\\) zwischen 0 und 1 eingesperrt ist – eine Gerade läuft da heraus. Wir „befreien” \\(p\\) in zwei Transformationen, bis eine lineare Funktion passt:"
+  },
+  {
+    "objectID": "slides/sitzung_11_logistische_regressionen.html#drei-ebenen-der-interpretation",
+    "href": "slides/sitzung_11_logistische_regressionen.html#drei-ebenen-der-interpretation",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Drei Ebenen der Interpretation",
+    "text": "Drei Ebenen der Interpretation\n\n\n\n\n\n\n\n\n\n\nEbene\nWie berechnet?\nWie lesen?\n\n\n\n\nlog-Odds (Roh-β)\ndirekt aus glm()\nnur Signifikanz und Richtung (Vorzeichen):\n+ erhöht, − senkt die Chance auf AV = 1\n\n\nOdds Ratio (OR)\nexp(β)\nEffektstärke: Faktor, um den sich die Odds ändern;\nProzent = (OR − 1) · 100\n\n\nVorhergesagte Wahrscheinlichkeit\nUV-Werte in die logist. Funktion einsetzen\nkonkrete Wahrscheinlichkeit für bestimmte Fälle\n– am intuitivsten\n\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\nFaustregel: Signifikanz & Richtung liest man aus den log-Odds, die Effektstärke kommuniziert man über Odds Ratios, konkrete Aussagen über vorhergesagte Wahrscheinlichkeiten."
+  },
+  {
+    "objectID": "slides/sitzung_11_logistische_regressionen.html#was-rechnet-die-logistische-regression-5",
+    "href": "slides/sitzung_11_logistische_regressionen.html#was-rechnet-die-logistische-regression-5",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Was rechnet die logistische Regression?",
+    "text": "Was rechnet die logistische Regression?\nSie modelliert nicht direkt die Wahrscheinlichkeit \\(p\\) (dass AV = 1), sondern deren log-Odds als lineare Funktion der UVs:\n\\[\\underbrace{\\ln\\!\\left(\\tfrac{p}{1-p}\\right)}_{\\text{log-Odds (= Logit)}} = \\beta_0 + \\beta_1 x_1 + \\beta_2 x_2 + \\dots\\]\nDrei Skalen – dieselbe Information, unterschiedlich lesbar:\n\\[\\underbrace{\\beta}_{\\text{log-Odds}} \\;\\xrightarrow{\\;\\exp(\\beta)\\;}\\; \\underbrace{\\text{OR}}_{\\text{Chancenverhältnis}} \\;\\longrightarrow\\; \\underbrace{p}_{\\text{Wahrscheinlichkeit}}\\]\n\nglm() schätzt in log-Odds (wenig anschaulich)\n\\(e^{\\beta}\\) liefert das Odds Ratio (Effektstärke)\nEinsetzen in die logist. Funktion liefert die Wahrscheinlichkeit (am intuitivsten)"
+  },
+  {
+    "objectID": "slides/sitzung_11_logistische_regressionen.html#drei-unterschiedlich-gut-lesbare-outputs",
+    "href": "slides/sitzung_11_logistische_regressionen.html#drei-unterschiedlich-gut-lesbare-outputs",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Drei unterschiedlich gut lesbare Outputs",
+    "text": "Drei unterschiedlich gut lesbare Outputs\n\\[\\underbrace{\\beta}_{\\text{log-Odds}} \\;\\xrightarrow{\\;e^{\\beta}\\;}\\; \\underbrace{\\text{OR}}_{\\text{Chancenverhältnis}} \\;\\longrightarrow\\; \\underbrace{p}_{\\text{Wahrscheinlichkeit}}\\]\n\nglm() schätzt in log-Odds (wenig anschaulich)\n\\(e^{\\beta}\\) liefert das Odds Ratio, indem es das Logarithmieren rückgängig macht\n\nOR = 0,6: eine Erhöhung der UV um eine Einheit verringert die Odds um 40 % (1 − 0,6 = 0,4)\nOR = 1,2: eine Erhöhung um eine Einheit erhöht die Odds um 20 % (1,2 − 1 = 0,2)\nOR = 3,8: eine Erhöhung um eine Einheit erhöht die Odds um 280 % (3,8 − 1 = 2,8)\n\nEinsetzen in die logist. Funktion liefert die vorhergesagte Wahrscheinlichkeit (am intuitivsten)\n\n„Für eine 30-jährige Person liegt die vorhergesagte Wahrscheinlichkeit, wählen zu gehen, bei 72 %, für eine 60-jährige bei 85 % (übrige UVs konstant gehalten).”\nAchtung: Derselbe OR bewirkt nicht überall denselben Sprung in \\(p\\) – nahe \\(p = 0{,}5\\) ist der Effekt am größten, an den Rändern (nahe 0 oder 1) kleiner (→ S-Kurve)."
+  },
+  {
+    "objectID": "slides/sitzung_11_logistische_regressionen.html#drei-unterschiedlich-gut-lesbare-outputs-1",
+    "href": "slides/sitzung_11_logistische_regressionen.html#drei-unterschiedlich-gut-lesbare-outputs-1",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Drei unterschiedlich gut lesbare Outputs",
+    "text": "Drei unterschiedlich gut lesbare Outputs\n\\[\\underbrace{\\beta}_{\\text{log-Odds}} \\;\\xrightarrow{\\;\\exp(\\beta)\\;}\\; \\underbrace{\\text{OR}}_{\\text{Chancenverhältnis}} \\;\\longrightarrow\\; \\underbrace{p}_{\\text{Wahrscheinlichkeit}}\\]\n\nglm() schätzt in log-Odds (wenig anschaulich)\n\\(e^{\\beta}\\) liefert das Odds Ratio (Effektstärke). Ereignis heißt immer AV == 1 (z.B. „gewählt”, „krank”); das OR gibt die multiplikative Veränderung der Odds pro Einheit der UV an:\n\nOR = 0,6: eine Erhöhung der UV um eine Einheit verringert die Odds um 40 % (1 − 0,6 = 0,4)\nOR = 1,2: eine Erhöhung um eine Einheit erhöht die Odds um 20 % (1,2 − 1 = 0,2)\nOR = 3,8: eine Erhöhung um eine Einheit erhöht die Odds um 280 % (3,8 − 1 = 2,8)\n\nEinsetzen in die logist. Funktion liefert die Wahrscheinlichkeit (am intuitivsten)\n\n\n\n\n\n\n\n\n… und als vorhergesagte Wahrscheinlichkeit\n\n\nOdds Ratios sind abstrakt – konkreter wird es, wenn wir \\(p\\) für bestimmte Fälle berechnen:\n\n„Für eine 30-jährige Person liegt die vorhergesagte Wahrscheinlichkeit, wählen zu gehen, bei 72 %, für eine 60-jährige bei 85 % (übrige UVs konstant gehalten).”\nAchtung: Derselbe OR bewirkt nicht überall denselben Sprung in \\(p\\) – nahe \\(p = 0{,}5\\) ist der Effekt am größten, an den Rändern (nahe 0 oder 1) kleiner (→ S-Kurve)."
   }
 ]

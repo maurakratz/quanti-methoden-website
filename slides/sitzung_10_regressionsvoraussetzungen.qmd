@@ -524,6 +524,6 @@ plot(qr)
 ::: {style="display: flex; align-items: center; gap: 1em; "}
 ![](images/clipboard-2636932712.png){style="width: 140px;"}
 
-**Übung 10 zu Regressionsdiagnostik** bis spätestens Sonntagabend!
+**Übung 9 zu Regressionsdiagnostik** bis spätestens Sonntagabend!
 :::
 
