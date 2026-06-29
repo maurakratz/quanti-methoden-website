@@ -6,11 +6,11 @@
 # FAHRPLAN: Eine Regression läuft immer in dieser Reihenfolge ab:
 # Schritt 1: Variablen auswählen (Theorie!), sichten & aufbereiten
 # Schritt 2: VOR dem Modell prüfen:
-# Skalenniveaus, Unabhängigkeit, Linearität, Exogenität
-# Schritt 3: Modell rechnen & interpretieren (b, R², p/KI)
-# Schritt 4: NACH dem Modell: alle Annahmen prüfen (Diagnostik)
-# Schritt 5: ggf. nachbessern (z.B. quadrieren, robuste SEs)
-# Schritt 6: Regressionsergebnisse schön darstellen!
+# Skalenniveaus, Unabhängigkeit, Exogenität, Ausreichende Fallzahl/Basisrate
+# Schritt 3: Modell rechnen & interpretieren (b, Modellgüte, p/KI)
+# Schritt 4: NACH dem Modell: alle Annahmen prüfen (Diagnostik) + ggf.
+# nachbessern
+# Schritt 5: schön visualisieren
 
 
 
@@ -22,9 +22,9 @@ library(haven)
 library(labelled)
 library(dplyr)
 library(ggplot2)
+library(gmodels)
 
 
-library(stargazer) #install.packages("stargazer")
 library(texreg) #install.packages("texreg")
 library(broom) # Modelloutput als tidy tibble
 library(survey) # gewichtete regressionen
@@ -170,7 +170,7 @@ allbus_c_2023 %>%
     basisrate = n_afd / n_gesamt
   )
 # Wichtig, weil die seltenere Kategorie genug Fälle braucht
-# Faustregel ~10 pro Prädiktor und weil die Basisrate der
+# (Faustregel ~10 pro Prädiktor) und weil die Basisrate der
 # Maßstab für die Modellgüte ist (s. Schritt 05).
 
 # Faustregel anwenden:
@@ -202,8 +202,6 @@ gmodels::CrossTable(
   prop.chisq = FALSE
 )
 
-## Hinweis: Linearität wird hier NICHT vorab geprüft, sondern als
-## "Linearität des Logits" erst am Modell (Schritt 04).
 
 
 # 03 Regressionen rechnen -------------
@@ -233,10 +231,25 @@ texreg::screenreg(list(model_log_1, model_log_2),
 #                float.pos = "H")
 
 
-## Interpretation der log odds -------------------
+## Interpretation der log odds & Modellgüte -------------------
 
 # Vertrauen in Parteien, Frausein und hohe Bildung senken die Chancen, AfD
 # zu wählen. Alle drei sind hochsignifikante Effekte
+
+# Modellgüte
+
+# AIC/BIC: nur relativ nützlich, zum Vergleich mit anderen Modellen für
+# dieselbe AV (kleiner = besser) - allein stehend nicht interpretierbar.
+# hier: unser multiples Modell ist besser als unser einfaches
+
+# Pseudo-R² nach Tjur (Pendant zum R² der linearen Regression)
+performance::r2_tjur(model_log_2)
+
+# Gesamtüberblick zur Modellgüte (AIC, BIC, R², ...)
+performance::model_performance(model_log_2)
+# AIC/BIC: siehe oben
+# PCP = 0.815 -> das Modell liegt in ~82 % der Fälle richtig (Achtung,
+# das ist v.a. die Basisrate, siehe Konfusionsmatrix unten).
 
 ## Interpretation der odds ratios -------------------
 
@@ -249,6 +262,26 @@ parameters::model_parameters(model_log_2, exponentiate = TRUE)
 # alternativ mit broom:
 broom::tidy(model_log_2, exponentiate = TRUE, conf.int = TRUE)
 
+
+# Visualisierung der Odds Ratios als Forest Plot
+
+# quick and dirty
+plot(parameters::model_parameters(model_log_2, exponentiate = TRUE))
+
+# flexibler mit ggplot2
+or_plot_dat <- broom::tidy(model_log_2, exponentiate = TRUE, conf.int = TRUE) %>%
+  dplyr::filter(term != "(Intercept)")  # Intercept hier nicht sinnvoll interpretierbar
+
+ggplot2::ggplot(or_plot_dat,
+                mapping = ggplot2::aes(x = estimate, y = term)) +
+  ggplot2::geom_vline(xintercept = 1, linetype = "dashed", color = "grey50") +
+  ggplot2::geom_pointrange(mapping = ggplot2::aes(xmin = conf.low, xmax = conf.high)) +
+  ggplot2::scale_x_log10() +  # log-Skala: OR 0.5 und OR 2 liegen optisch symmetrisch zu 1
+  ggplot2::labs(x = "Odds Ratio (log-Skala)", y = NULL,
+                title = "Odds Ratios: AfD-Wahlabsicht") +
+  ggplot2::theme_minimal(base_size = 13)
+
+
 # Interpretation Odds Ratio:
 # - OR < 1 senkt, OR > 1 erhöht die Chance auf AV == 1; OR = 1 kein Effekt
 # - prozentuale Veränderung der Odds = (OR - 1) * 100
@@ -258,7 +291,7 @@ broom::tidy(model_log_2, exponentiate = TRUE, conf.int = TRUE)
 
 # trust_parties = 0.53*** : pro Punkt mehr Vertrauen sinken die Odds einer
 # AfD-Wahl um ~47 %
-# age = 0.98***: pro Lebensjahr -1.6 % Odds
+# age = 0.984***: pro Lebensjahr -1.6 % Odds
 # sex_bi[FRAU] = 0.54*** : Frauen vs. Männer ~46 % geringere Odds.
 # educ3[mittel] = 1.30 : nicht signifikant!(KI 0.93-1.81 schließt 1 ein)
 # educ3[hoch] = 0.33***: hohe vs. niedrige Bildung ~67 % geringere Odds.
@@ -277,6 +310,10 @@ broom::tidy(model_log_2, exponentiate = TRUE, conf.int = TRUE)
 pred_trust <- ggeffects::ggpredict(model_log_2, terms = "trust_parties")
 
 pred_trust
+# Wenn das in eine schöne Tabelle gepackt werden soll, z.B. für PDF/HTML
+# in einem Quarto-Chunk mit #| results: asis und ggf.
+# insight::print_md(pred_trust)
+
 
 # Was bedeuten diese vorhergesagten Wahrscheinlichkeiten?
 
@@ -293,7 +330,7 @@ pred_trust
 #   ganze Niveau niedriger (s. Odds Ratios oben).
 # - 95%-KI: Schätzung am Rand (hohes Vertrauen) präziser als in der Mitte.
 
-# grafische darstellung
+# grafische Darstellung
 
 # quick and dirty
 plot(pred_trust)
@@ -324,6 +361,43 @@ ggplot2::ggplot(pred_trust,
 # am größten, an den Rändern kleiner. Deshalb Wahrscheinlichkeiten immer
 # für konkrete UV-Werte angeben.
 
+# Klassifikationsgüte:
+# Konfusionsmatrix: wie gut trifft das Modell bei Schwelle 0.5?
+model_data <- model_log_2$model # tatsächlich genutzte Fälle
+pred_class <- as.integer(predict(model_log_2, type = "response") > 0.5)
+table(Vorhersage = pred_class, Beobachtet = model_data$vote_afd)
+# Interpretation: Bei seltenem Ereignis sagt das Modell oft fast immer 0
+# vorher -> hohe Gesamttrefferquote, aber kaum Treffer für AV == 1.
+# Die Trefferquote allein ist daher trügerisch.
+# In diesem Fall: Das Modell sagt fast immer "keine AfD" vorher und liegt
+# damit oft richtig, OHNE viel zu erklären.
+
+
+# Bei seltenem Ereignis ist Schwelle 0.5 zu konservativ - das Modell
+# "traut sich" kaum, AfD vorherzusagen (s. Konfusionsmatrix oben).
+# Einfache Nachbesserung: Schwelle auf die Basisrate setzen statt auf 0.5.
+
+basisrate <- mean(model_data$vote_afd)   # ≈ 0.12 (s. Schritt 02)
+
+pred_class_neu <- as.integer(predict(model_log_2, type = "response") > basisrate)
+table(Vorhersage = pred_class_neu, Beobachtet = model_data$vote_afd)
+
+# Vergleich zur alten Schwelle (0.5):
+# - Sensitivität (AfD-Fälle erkannt) steigt deutlich
+# - dafür sinkt die Spezifität (mehr Falsch-Positive: "keine AfD"
+#   fälschlich als "AfD" eingestuft)
+# -> klassischer Trade-off: es gibt keine "richtige" Schwelle, nur einen
+#    Kompromiss je nach Anwendungsfall (z.B. wie teuer ein False Positive
+#    vs. ein False Negative ist).
+
+# zeigt den Trade-off (Sensitivität vs. Spezifität) über ALLE möglichen
+# Schwellen hinweg - nicht nur für eine fest gewählte (0.5 oder Basisrate).
+roc_perf <- performance::performance_roc(model_log_2)
+roc_perf # AUC-Wert in der Konsole
+plot(roc_perf) # ROC-Kurve
+# Interpretation AUC: 0.5 = Modell rät nur (Zufall), 1.0 = perfekte Trennung.
+# Faustregel: ab ~0.7 brauchbar, ab ~0.8 gut.
+
 
 # 04 Diagnostik -----------------------
 
@@ -346,25 +420,21 @@ plot(performance::check_collinearity(model_log_2))
 performance::check_outliers(model_log_2)
 plot(performance::check_outliers(model_log_2))
 # Auffällige Fälle erst prüfen (Datenfehler? Extremfall?), nicht blind löschen.
+# Alternative (Base R): Cook's Distance
+# plot(model_log_2, which = 4)
+
+# HINWEIS - fortgeschrittene/optionale Diagnostik (hier nicht Pflicht):
+# Linearität des Logits: prüft, ob der Zusammenhang einer metrischen UV
+#   mit dem Logit linear ist. Geht NICHT per einfachem Scatterplot, vielmehr:
+#   performance::binned_residuals(model_log_2) bzw.
+#   plot(performance::binned_residuals(model_log_2)). (Bei echten Sozialdaten
+#   (meldet dieser Test fast immer "bad fit" - das ist normal, gehört aber
+#   als Limitation erwähnt. Anschließend Box-Tidwell-Test: gezielt
+#   nachschlagen, WELCHE UV ggf. transformiert werden müsste (UV * log(UV) als
+#   Zusatzterm, signifikant -> Logit in dieser UV nicht linear).
 
 
-# 05 Modellgüte -----------------------------
-# Pseudo-R² nach Tjur (Pendant zum R² der linearen Regression)
-performance::r2_tjur(model_log_2)
-
-# Gesamtüberblick zur Modellgüte (AIC, BIC, R², ...)
-performance::model_performance(model_log_2)
-
-# Konfusionsmatrix: wie gut trifft das Modell bei Schwelle 0.5?
-model_data <- model_log_2$model # tatsächlich genutzte Fälle
-pred_class <- as.integer(predict(model_log_2, type = "response") > 0.5)
-table(Vorhersage = pred_class, Beobachtet = model_data$vote_afd)
-# Interpretation: Bei seltenem Ereignis sagt das Modell oft fast immer 0
-# vorher -> hohe Gesamttrefferquote, aber kaum Treffer für AV == 1.
-# Die Trefferquote allein ist daher trügerisch.
-
-
-# OPTIONAL: survey-gewichtete logistische Regression --------------
+# 05 OPTIONAL: survey-gewichtete logistische Regression --------------
 # Streng genommen sollte ALLBUS für Inferenz gewichtet werden (wghtpew).
 # glm(..., weights = ) ist dafür NICHT korrekt (Warnungen, falsche SEs).
 # Korrekt über das survey-Paket mit svyglm:

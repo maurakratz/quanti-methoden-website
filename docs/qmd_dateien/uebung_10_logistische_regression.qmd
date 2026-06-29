@@ -1,0 +1,150 @@
+---
+title: "Übung 10: Logistische Regression"
+subtitle: "Politik vermessen: Quantitative Methoden mit R | SoSe 2026 | Maura Kratz"
+author: "Vorname Nachname"
+date: today
+date-format: "DD.MM.YYYY"
+format:
+  pdf:
+    toc: false
+  html:
+    toc: true
+    toc-title: "Inhalt"
+    self-contained: true
+    theme: default
+execute:
+  echo: true
+  warning: false
+  message: false
+knitr:
+  opts_chunk:
+    fig-width: 7
+    fig-height: 4
+---
+
+<!-- ---------------------------------------------------------------
+     Hinweise zum Arbeiten mit dieser Datei:
+     - R-Code kommt in die Chunks (zwischen ```{r} und ```)
+     - Instruktionen stehen als unformatierter Text über den Chunks
+     - Interpretationen und Antworten kommen zwischen die ** unter den Chunks und werden also kursiv gerendert
+     - Rendern: Strg+Shift+K (oder oben Button "Render")
+     - Abgabe: die gerenderte PDF-Datei in Blackboard hochladen
+--------------------------------------------------------------- -->
+
+Diese Übung ist **offen**: Ihr sucht euch selbst eine sinnvolle Forschungsfrage mit einer **binären abhängigen Variable** im ALLBUS 2023 (ZA8831) und passenden unabhängigen Variablen. Nutzt dafür das Codebuch sowie `labelled::look_for()`. **Wichtig:** Verwendet nicht die AV/UVs aus der Sitzung (`vote_afd`, `trust_parties`) – sucht euch ein eigenes Beispiel.
+
+## Setup
+
+```{r}
+#| message: false
+library(haven)
+library(dplyr)
+library(here)
+library(parameters)
+library(performance)
+library(ggeffects)
+library(ggplot2)
+library(broom)
+library(texreg)
+```
+
+## Aufgabe 1: Forschungsfrage & Variablenwahl
+
+Formuliert eine Forschungsfrage mit einer **binären AV** (z.B. Gewerkschaftsmitgliedschaft, Demonstrationsteilnahme, eine dichotomisierte Einstellungsfrage o.Ä.) und mindestens **drei UVs** – darunter mindestens eine metrische und eine kategoriale. Nutzt `labelled::look_for()`, um passende Variablen im Datensatz zu finden. Notiert euren Variablenplan.
+
+*Antwort hier eintragen.*
+
+## Aufgabe 2: Daten laden & aufbereiten
+
+Ladet den ALLBUS-Datensatz mit `here::here()`. Sichtet eure gewählten Variablen zunächst mit `count()` (Missing-Codes? Kategorien zusammenfassen nötig?) und erstellt anschließend eure AV und UVs in einem `mutate()`-Block (Missings auf `NA`, ggf. dünne Kategorien zusammenfassen).
+
+```{r}
+# Code hier
+```
+
+Prüft anschließend die Verteilungen eurer neuen Variablen mit `count()`.
+
+```{r}
+# Code hier
+```
+
+## Aufgabe 3: Vorabprüfung
+
+a)  Wie hoch ist die **Basisrate** eurer AV (Anteil AV == 1)? Erfüllt eure seltenere Kategorie die Faustregel „\~10 Fälle pro Prädiktor"? Zeigt die Rechnung.
+
+```{r}
+# Code hier
+```
+
+*Antwort hier eintragen.*
+
+b)  Prüft mind. eine kategoriale UV per Kreuztabelle auf **Separation** (eine Kategorie mit (fast) nur 0 oder nur 1 der AV).
+
+```{r}
+# Code hier
+```
+
+*Antwort hier eintragen.*
+
+## Aufgabe 4: Modell rechnen & log-Odds interpretieren
+
+Rechnet eine **einfache** logistische Regression (AV \~ UV von Interesse) und eine **multiple** logistische Regression (AV \~ alle UVs). Stellt beide Modelle mit `texreg` nebeneinander dar.
+
+```{r}
+# Code hier
+```
+
+Interpretiert die **Vorzeichen und Signifikanz** der Roh-Koeffizienten (log-Odds) eures multiplen Modells in eigenen Worten.
+
+*Antwort hier eintragen.*
+
+## Aufgabe 5: Odds Ratios interpretieren
+
+Berechnet die Odds Ratios eures multiplen Modells inkl. Konfidenzintervallen.
+
+```{r}
+# Code hier
+```
+
+Interpretiert für eure UVs die Odds Ratios: Richtung, Effektstärke (in Prozent) und Signifikanz.
+
+*Antwort hier eintragen.*
+
+## Aufgabe 6: Vorhergesagte Wahrscheinlichkeiten
+
+Berechnet die vorhergesagten Wahrscheinlichkeiten für eure zentrale UV von Interesse (übrige UVs konstant gehalten) und stellt das Ergebnis als **Tabelle** dar (z.B. mit `insight::print_md()`, `#| results: asis`).
+
+```{r}
+#| results: asis
+# Code hier
+```
+
+Visualisiert die vorhergesagten Wahrscheinlichkeiten anschließend grafisch (z.B. `plot()` oder `ggplot2`).
+
+```{r}
+# Code hier
+```
+
+Interpretiert: Wie verändert sich die Wahrscheinlichkeit über den Wertebereich eurer UV? 
+
+*Antwort hier eintragen.*
+
+## Aufgabe 7: Diagnostik
+
+Prüft euer multiples Modell auf (a) Multikollinearität (VIF) und (b) einflussreiche Ausreißer.
+
+```{r}
+# Code hier
+```
+
+*Antwort hier eintragen.*
+
+## Aufgabe 8: Modellgüte
+
+Berechnet Tjur's Pseudo-R² sowie eine Konfusionsmatrix bei Schwelle 0,5. Vergleicht die Trefferquote mit der Basisrate aus Aufgabe 3 – ist sie wirklich aussagekräftig?
+
+```{r}
+# Code hier
+```
+
+*Antwort hier eintragen.*

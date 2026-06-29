@@ -39,7 +39,7 @@
     "href": "slides/sitzung_10_regressionsvoraussetzungen.html#recap-multiple-lineare-regressionen-1",
     "title": "Quantitative Methoden mit R & R-Studio",
     "section": "Recap: Multiple lineare Regressionen",
-    "text": "Recap: Multiple lineare Regressionen\n\\[\\hat{y} = b_0 + b_1 x_1 + b_2 x_2 + \\ldots + b_k x_k\\]\n\nDie \\(b\\)-Koeffizienten geben den spezifischen / isolierten Einfluss jedes Prädiktors an:\nWenn \\(x_k\\) um eine Einheit steigt, ändert sich \\(y\\) um \\(b_k\\),wenn alle anderen Prädiktoren konstant bleiben (ceteris paribus).\n\n\n\n\n\n\n\n\nMultiple ≠ Multivariate Regression\n\n\nMultiple = mehrere unabhängige Variablen\nMultivariate = mehrere abhängige Variablen"
+    "text": "Recap: Multiple lineare Regressionen\n\\[\\hat{y} = b_0 + b_1 x_1 + b_2 x_2 + \\ldots + b_k x_k\\]\n\nDie \\(b\\)-Koeffizienten geben den spezifischen / isolierten Einfluss jedes Prädiktors an:\nWenn \\(x_k\\) um eine Einheit steigt, ändert sich \\(y\\) um \\(b_k\\),wenn alle anderen Prädiktoren konstant bleiben (ceteris paribus).\n\n\n\n\n\n\n\nTipMultiple ≠ Multivariate Regression\n\n\n\nMultiple = mehrere unabhängige Variablen\nMultivariate = mehrere abhängige Variablen"
   },
   {
     "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#wichtigste-marker-einer-regression",
@@ -53,7 +53,7 @@
     "href": "slides/sitzung_10_regressionsvoraussetzungen.html#überblick-voraussetzungen-der-linearen-regression",
     "title": "Quantitative Methoden mit R & R-Studio",
     "section": "Überblick: Voraussetzungen der linearen Regression",
-    "text": "Überblick: Voraussetzungen der linearen Regression\n\n\n\n\n\nNr\nVoraussetzung\nWorauf bezogen?\nFolgen bei Verletzung\n\n\n\n\n1\nSkalenniveau (metrische AV)\nDaten / Messung\nModell ist inhaltlich nicht interpretierbar\n\n\n2\nExogenität\nModellspezifikation\nKoeffizienten verzerrt (z.B. Omitted Variable Bias)\n\n\n3\nUnabhängige Beobachtungen\nStudiendesign\nScheinsignifikanz\n\n\n4\nLinearität\nFunktionale Form\nKoeffizienten falsch\n\n\n5\nHomoskedastizität\nResiduen\nScheinsignifikanz\n\n\n6\nKeine Multikollinearität*\nUVs untereinander\nKoeffizienten instabil, große Standardfehler\n\n\n7\nKeine Ausreißer\nEinzelne Fälle\nSchätzung instabil\n\n\n(8)\nNormalverteilung der Residuen (optional)\nResiduen\nNur bei kleinem n: Inferenz ungenau\n\n\n\n\n\n\n* nur bei multiplen linearen Regressionen (mind. zwei UVs). Voraussetzungen 1–3 sind der Analyse vorgelagert (Daten & Design), 4–8 werden am geschätzten Modell geprüft."
+    "text": "Überblick: Voraussetzungen der linearen Regression\n\n\n\nAttache Paket: 'dplyr'\n\n\nDie folgenden Objekte sind maskiert von 'package:stats':\n\n    filter, lag\n\n\nDie folgenden Objekte sind maskiert von 'package:base':\n\n    intersect, setdiff, setequal, union\n\n\n\n\n\nNr\nVoraussetzung\nWorauf bezogen?\nFolgen bei Verletzung\n\n\n\n\n1\nSkalenniveau (metrische AV)\nDaten / Messung\nModell ist inhaltlich nicht interpretierbar\n\n\n2\nExogenität\nModellspezifikation\nKoeffizienten verzerrt (z.B. Omitted Variable Bias)\n\n\n3\nUnabhängige Beobachtungen\nStudiendesign\nScheinsignifikanz\n\n\n4\nLinearität\nFunktionale Form\nKoeffizienten falsch\n\n\n5\nHomoskedastizität\nResiduen\nScheinsignifikanz\n\n\n6\nKeine Multikollinearität*\nUVs untereinander\nKoeffizienten instabil, große Standardfehler\n\n\n7\nKeine Ausreißer\nEinzelne Fälle\nSchätzung instabil\n\n\n(8)\nNormalverteilung der Residuen (optional)\nResiduen\nNur bei kleinem n: Inferenz ungenau\n\n\n\n\n\n\n* nur bei multiplen linearen Regressionen (mind. zwei UVs). Voraussetzungen 1–3 sind der Analyse vorgelagert (Daten & Design), 4–8 werden am geschätzten Modell geprüft."
   },
   {
     "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#skalenniveau-welches-modell-für-welche-skala",
@@ -137,35 +137,35 @@
     "href": "slides/sitzung_10_regressionsvoraussetzungen.html#verletzung-d.-linearität",
     "title": "Quantitative Methoden mit R & R-Studio",
     "section": "Verletzung d. Linearität",
-    "text": "Verletzung d. Linearität\n\n\nRot = lineares Modell\nLiegt die Punktwolke systematisch daneben → Annahme verletzt\nVier typische Muster + Lösungen auf den nächsten Folien"
+    "text": "Verletzung d. Linearität\n\n\nWarning: Paket 'ggplot2' wurde unter R Version 4.5.3 erstellt\n\n\n`geom_smooth()` using formula = 'y ~ x'\n`geom_smooth()` using formula = 'y ~ x'\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\n\nRot = lineares Modell\nLiegt die Punktwolke systematisch daneben → Annahme verletzt\nVier typische Muster + Lösungen auf den nächsten Folien"
   },
   {
     "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#muster-1-u-form",
     "href": "slides/sitzung_10_regressionsvoraussetzungen.html#muster-1-u-form",
     "title": "Quantitative Methoden mit R & R-Studio",
     "section": "Muster 1: U-Form",
-    "text": "Muster 1: U-Form\n\n\n\n\n\n\n\n\n\n\n\n\nBeispiel: Lebenszufriedenheit ~ Alter (Tief in der Lebensmitte)\nLösung: quadratischen Term ergänzen\nRot = lineares Modell verfehlt die Kurve\nGrün = Modell mit I(x^2) fängt sie ein"
+    "text": "Muster 1: U-Form\n\n\n\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\n\nBeispiel: Lebenszufriedenheit ~ Alter (Tief in der Lebensmitte)\nLösung: quadratischen Term ergänzen\n\nlm(ls01 ~ age + I(age^2), ...)\n\nRot = lineares Modell verfehlt die Kurve\nGrün = Modell mit I(x^2) fängt sie ein"
   },
   {
     "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#muster-2-sättigung",
     "href": "slides/sitzung_10_regressionsvoraussetzungen.html#muster-2-sättigung",
     "title": "Quantitative Methoden mit R & R-Studio",
     "section": "Muster 2: Sättigung",
-    "text": "Muster 2: Sättigung\n\n\n\n\n\n\n\n\n\n\n\n\nBeispiel: Lebenszufriedenheit ~ Einkommen (jeder zusätzliche Euro bringt weniger)\nLösung: UV logarithmieren\nNur bei positiven Werten möglich!"
+    "text": "Muster 2: Sättigung\n\n\n\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\n\nBeispiel: Lebenszufriedenheit ~ Einkommen (jeder zusätzliche Euro bringt weniger)\nLösung: UV logarithmieren\n\nlm(ls01 ~ log(incc), ...)\n\nNur bei positiven Werten möglich!"
   },
   {
     "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#muster-3-exponentielles-wachstum",
     "href": "slides/sitzung_10_regressionsvoraussetzungen.html#muster-3-exponentielles-wachstum",
     "title": "Quantitative Methoden mit R & R-Studio",
     "section": "Muster 3: Exponentielles Wachstum",
-    "text": "Muster 3: Exponentielles Wachstum\n\n\n\n\n\n\n\n\n\n\n\n\nBeispiel: AV wächst prozentual statt absolut (z.B. Kampagnenbudgets)\nLösung: AV logarithmieren\nKoeffizienten dann näherungsweise als %-Änderung interpretierbar"
+    "text": "Muster 3: Exponentielles Wachstum\n\n\n\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\n\nBeispiel: AV wächst prozentual statt absolut (z.B. Kampagnenbudgets)\nLösung: AV logarithmieren\n\nlm(log(spending) ~ x, ...)\n\nKoeffizienten dann näherungsweise als %-Änderung interpretierbar"
   },
   {
     "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#muster-4-schwellenwert-knick",
     "href": "slides/sitzung_10_regressionsvoraussetzungen.html#muster-4-schwellenwert-knick",
     "title": "Quantitative Methoden mit R & R-Studio",
     "section": "Muster 4: Schwellenwert / Knick",
-    "text": "Muster 4: Schwellenwert / Knick\n\n\n\n\n\n\n\n\n\n\n\n\nBeispiel: Effekt setzt erst ab bestimmtem Wert ein (z.B. Sperrklausel)\nLösung: UV kategorisieren (Dummy)"
+    "text": "Muster 4: Schwellenwert / Knick\n\n\n\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\n\nBeispiel: Effekt setzt erst ab bestimmtem Wert ein (z.B. Sperrklausel)\nLösung: UV kategorisieren (Dummy)\n\nlm(y ~ I(x &gt; schwelle), ...)"
   },
   {
     "objectID": "slides/sitzung_10_regressionsvoraussetzungen.html#linearität-typische-muster-lösungen",
@@ -193,7 +193,7 @@
     "href": "slides/sitzung_10_regressionsvoraussetzungen.html#minute-cards",
     "title": "Quantitative Methoden mit R & R-Studio",
     "section": "Minute Cards",
-    "text": "Minute Cards\nBitte füllt die Minute Cards für die heutige Sitzung aus. Das sollt enicht länger als 3 Minuten dauern. Vielen Dank für eure Mitarbeit!"
+    "text": "Minute Cards\nBitte füllt die Minute Cards für die heutige Sitzung aus. Das sollt enicht länger als 3 Minuten dauern. Vielen Dank für eure Mitarbeit!\n\n\nWarning: Paket 'qrcode' wurde unter R Version 4.5.3 erstellt"
   },
   {
     "objectID": "slides/sitzung_08_zusammenhänge.html#willkommen-zurück",
@@ -1362,7 +1362,7 @@
     "href": "slides/sitzung_11_logistische_regressionen.html#orga",
     "title": "Quantitative Methoden mit R & R-Studio",
     "section": "Orga",
-    "text": "Orga\n\nihr bekommt heute eure letzte übung (10) auf. Wenn ihr unsicher seid, ob ihr noch ersatzleistungen erbringen müsst, um die ART für diesen Kurs zu bekommen, schriebt mir 📧\nkommende Sitzung würde ich gern euren Data Analysis Plans widmen! Macht euch also Gedanken + gern ein paar Notizen. Schreibt mir, wenn ihr euren diskutieren wollt + gern schon mal Ideen/Themen/Forschungsfragen, sollte es schon welche geben 📧\nindividuelle Deadlines für die Abgabe d. Prüfungsleistung müssen innerhalb der Vorlesungszeit mit mir abgestimmt werden! Auch hier gerne 📧"
+    "text": "Orga\n\nihr bekommt heute eure letzte Übung (10) auf. Wenn ihr unsicher seid, ob ihr noch Ersatzleistungen erbringen müsst, um die ART für diesen Kurs zu bekommen, schreibt mir 📧\nkommende Sitzung würde ich gern euren Data Analysis Plans widmen! Macht euch also Gedanken + gern ein paar Notizen. Schreibt mir, wenn ihr euren diskutieren wollt + gern schon mal Ideen/Themen/Forschungsfragen, sollte es schon welche geben 📧\nindividuelle Deadlines für die Abgabe d. Prüfungsleistung müssen innerhalb der Vorlesungszeit mit mir abgestimmt werden! Auch hier gerne 📧"
   },
   {
     "objectID": "slides/sitzung_11_logistische_regressionen.html#das-problem-eine-binäre-av",
@@ -1397,7 +1397,7 @@
     "href": "slides/sitzung_11_logistische_regressionen.html#voraussetzungen-im-vergleich",
     "title": "Quantitative Methoden mit R & R-Studio",
     "section": "Voraussetzungen im Vergleich",
-    "text": "Voraussetzungen im Vergleich\n\n\n\n\n\nLineare Regression\nLogistische Regression\n\n\n\n\nmetrische AV\nbinäre AV (0/1)\n\n\nUnabhängige Beobachtungen\nUnabhängige Beobachtungen\n\n\nKeine einflussr. Ausreißer\nKeine einflussr. Ausreißer\n\n\nKeine Multikollinearität*\nKeine Multikollinearität*\n\n\nLinearität\nLinearität des Logits\n\n\nHomoskedastizität\n— (entfällt)\n\n\nNormalvert. der Residuen\n— (entfällt)\n\n\n\n\n\n\n* nur bei multiplen Regressionen (mind. zwei UVs). Homoskedastizität und Normalverteilung der Residuen entfallen, weil die AV binär ist.\nStichprobengröße: Faustregel »10 events per variable« – pro Prädiktor mind. ~10 Fälle in der selteneren AV-Kategorie. Beispiel: 4 Prädiktoren → mind. ~40 Fälle der selteneren Kategorie; bei seltenen Ereignissen entsprechend mehr."
+    "text": "Voraussetzungen im Vergleich\n\n\n\n\n\nLineare Regression\nLogistische Regression\n\n\n\n\nmetrische AV\nbinäre AV (0/1)\n\n\nExogenität\nExogenität\n\n\nUnabhängige Beobachtungen\nUnabhängige Beobachtungen\n\n\n—\nAusreichende Stichprobengröße*\n\n\nKeine einflussr. Ausreißer\nKeine einflussr. Ausreißer\n\n\nKeine Multikollinearität*\nKeine Multikollinearität**\n\n\nLinearität\nLinearität des Logits\n\n\nHomoskedastizität\n— (entfällt)\n\n\nNormalvert. der Residuen\n— (entfällt)\n\n\n\n\n\n\n* OLS hat eine exakte Formel, ML schätzt iterativ und braucht eine große Stichprobe. Engpass ist die seltenere AV-Kategorie: Faustregel »10 events per variable« – pro Prädiktor mind. ~10 Fälle in der selteneren Kategorie. Beispiel: 4 Prädiktoren → mind. ~40 Fälle der selteneren Kategorie; bei seltenen Ereignissen entsprechend mehr.\n** nur bei multiplen Regressionen (mind. zwei UVs)."
   },
   {
     "objectID": "slides/sitzung_11_logistische_regressionen.html#varianten-des-glm",
@@ -1559,5 +1559,19 @@
     "title": "Quantitative Methoden mit R & R-Studio",
     "section": "Drei unterschiedlich gut lesbare Outputs",
     "text": "Drei unterschiedlich gut lesbare Outputs\n\\[\\underbrace{\\beta}_{\\text{log-Odds}} \\;\\xrightarrow{\\;\\exp(\\beta)\\;}\\; \\underbrace{\\text{OR}}_{\\text{Chancenverhältnis}} \\;\\longrightarrow\\; \\underbrace{p}_{\\text{Wahrscheinlichkeit}}\\]\n\nglm() schätzt in log-Odds (wenig anschaulich)\n\\(e^{\\beta}\\) liefert das Odds Ratio (Effektstärke). Ereignis heißt immer AV == 1 (z.B. „gewählt”, „krank”); das OR gibt die multiplikative Veränderung der Odds pro Einheit der UV an:\n\nOR = 0,6: eine Erhöhung der UV um eine Einheit verringert die Odds um 40 % (1 − 0,6 = 0,4)\nOR = 1,2: eine Erhöhung um eine Einheit erhöht die Odds um 20 % (1,2 − 1 = 0,2)\nOR = 3,8: eine Erhöhung um eine Einheit erhöht die Odds um 280 % (3,8 − 1 = 2,8)\n\nEinsetzen in die logist. Funktion liefert die Wahrscheinlichkeit (am intuitivsten)\n\n\n\n\n\n\n\n\n… und als vorhergesagte Wahrscheinlichkeit\n\n\nOdds Ratios sind abstrakt – konkreter wird es, wenn wir \\(p\\) für bestimmte Fälle berechnen:\n\n„Für eine 30-jährige Person liegt die vorhergesagte Wahrscheinlichkeit, wählen zu gehen, bei 72 %, für eine 60-jährige bei 85 % (übrige UVs konstant gehalten).”\nAchtung: Derselbe OR bewirkt nicht überall denselben Sprung in \\(p\\) – nahe \\(p = 0{,}5\\) ist der Effekt am größten, an den Rändern (nahe 0 oder 1) kleiner (→ S-Kurve)."
+  },
+  {
+    "objectID": "slides/sitzung_11_logistische_regressionen.html#feedback-übung-09",
+    "href": "slides/sitzung_11_logistische_regressionen.html#feedback-übung-09",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Feedback Übung 09",
+    "text": "Feedback Übung 09"
+  },
+  {
+    "objectID": "slides/sitzung_11_logistische_regressionen.html#modellgüte-zwei-fehlerarten",
+    "href": "slides/sitzung_11_logistische_regressionen.html#modellgüte-zwei-fehlerarten",
+    "title": "Quantitative Methoden mit R & R-Studio",
+    "section": "Modellgüte: zwei Fehlerarten",
+    "text": "Modellgüte: zwei Fehlerarten\nBei Schwelle 0,5 sagt das Modell „AV = 1” voraus, wenn \\(p &gt; 0{,}5\\). Das kann auf zwei Arten schiefgehen:\n\n\n\n\n\nMaß\nFrage\nBeispiel\n\n\n\n\nSensitivität\nVon den tatsächlichen Ereignis-Fällen (AV = 1) – wie viele erkennt das Modell?\nvon echten AfD-Wähler:innen erkannt: nur ~10 %\n\n\nSpezifität\nVon den tatsächlichen Nicht-Ereignis-Fällen (AV = 0) – wie viele erkennt das Modell?\nvon echten Nicht-AfD-Wähler:innen erkannt: ~99 %\n\n\n\n\n\nDer Trade-Off: Senkt man die Schwelle, steigt die Sensitivität – aber die Spezifität sinkt (und umgekehrt). Es gibt keine „richtige” Schwelle, nur einen Kompromiss je nach Anwendungsfall: Wie teuer ist ein übersehener Fall vs. ein fälschlich markierter?\n\n\n\n\n\n\nTip\n\n\nBei seltenem Ereignis (kleine Basisrate) ist eine hohe Gesamttrefferquote oft trügerisch – das Modell trifft v.a. durch Erraten der Mehrheitsklasse."
   }
 ]
