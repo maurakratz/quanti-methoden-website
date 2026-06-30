@@ -100,8 +100,8 @@ allbus_c_2023 <- allbus_c_2023_raw %>%
     vote_afd = dplyr::case_when(
       pv01 == 42 ~ 1, # AfD
       pv01 == 91 ~ NA_real_, # "würde nicht wählen" -> Missing
-      pv01 < 0   ~ NA_real_, # Missings
-      .default   = 0 # andere Partei (inkl. "andere Partei", Code 90)
+      pv01 < 0 ~ NA_real_, # Missings
+      .default = 0 # andere Partei (inkl. "andere Partei", Code 90)
     ),
     # zentrale UV: Vertrauen in Parteien, 1-7, metrisch behandelt
     trust_parties = dplyr::case_when(pt15 < 0 ~ NA_real_, .default = as.double(pt15)),
