@@ -121,13 +121,13 @@ tibble::tribble(
 \* Long JS & Ervin LH (2000). Using heteroscedasticity consistent standard errors in the linear regression model. *The American Statistician*, 54(3), 217–224. Zum Vertiefen: Kapitel 21 bis 24 in Wagemann, Goerres & Siewert (2020). *Handbuch Methoden der Politikwissenschaft*. Springer.
 :::
 
-## Feedback Übung 09
 
 ## Orga
 
 -   ihr bekommt heute eure letzte Übung (10) auf. Wenn ihr unsicher seid, ob ihr noch Ersatzleistungen erbringen müsst, um die ART für diesen Kurs zu bekommen, schreibt mir 📧
 -   kommende Sitzung würde ich gern euren Data Analysis Plans widmen! Macht euch also Gedanken + gern ein paar Notizen. Schreibt mir, wenn ihr euren diskutieren wollt + gern schon mal Ideen/Themen/Forschungsfragen, sollte es schon welche geben 📧
 -   individuelle Deadlines für die Abgabe d. Prüfungsleistung müssen innerhalb der Vorlesungszeit mit mir abgestimmt werden! Auch hier gerne 📧
+-   Fragen zu Übung 09? 
 
 # Logistische Regressionen
 
