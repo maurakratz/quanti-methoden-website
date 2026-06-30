@@ -31,7 +31,6 @@ library(survey) # gewichtete regressionen
 library(parameters) # Koeffizienten & Odds Ratios aufbereiten (easystats)
 library(performance) #install.packages("performance")
 library(ggeffects) # vorhergesagte Wahrscheinlichkeiten
-library(report) # sprachliche Interpretationshilfe
 library(car) # VIF
 
 options(scipen = 999)
@@ -167,8 +166,9 @@ allbus_c_2023 %>%
     n_afd      = sum(vote_afd),   # Anzahl AV == 1
     n_gesamt   = dplyr::n(),      # Anzahl gültiger Fälle
     basisrate  = mean(vote_afd),   # Anteil AV == 1  (= n_afd / n_gesamt)
-    basisrate = n_afd / n_gesamt
+    basisrate_2 = n_afd / n_gesamt
   )
+
 # Wichtig, weil die seltenere Kategorie genug Fälle braucht
 # (Faustregel ~10 pro Prädiktor) und weil die Basisrate der
 # Maßstab für die Modellgüte ist (s. Schritt 05).
@@ -250,6 +250,7 @@ performance::model_performance(model_log_2)
 # AIC/BIC: siehe oben
 # PCP = 0.815 -> das Modell liegt in ~82 % der Fälle richtig (Achtung,
 # das ist v.a. die Basisrate, siehe Konfusionsmatrix unten).
+
 
 ## Interpretation der odds ratios -------------------
 
