@@ -6,6 +6,7 @@ project:
     - "!qmd_dateien/**"          
   resources:
     - scripts/*.R
+    - materials/*.pdf
     - "qmd_dateien/**"
 
 website:
